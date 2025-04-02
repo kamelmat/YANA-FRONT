@@ -1,17 +1,17 @@
-import "./App.css"
-import { Typography, useTheme } from "@mui/material"
+import AppRoutes from "./routes/AppRoutes"
 import BottomNav from "./components/BottomNav"
+import { BrowserRouter } from "react-router-dom"
+import { MapView } from "./components/MapView"
 
-function App() {
-  const theme = useTheme()
+const App: React.FC = () => {
 
   return (
-    <>
-      <Typography variant="h1" sx={{ color: theme.colors.pink }}>
-        You are not Alone
-      </Typography>
-      <BottomNav></BottomNav>
-    </>
+    <BrowserRouter>
+      <>
+        <MapView />
+        <BottomNav></BottomNav>
+      </>
+    </BrowserRouter>
   )
 }
 
