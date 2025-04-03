@@ -63,7 +63,7 @@ const BottomNav: React.FC = () => {
   const [value, setValue] = React.useState(0)
   const screenSize = useScreenSize()
   const navigate = useNavigate()
-  const location = useLocation();
+  const location = useLocation()
 
   const navItems: NavItem[] = [
     {
