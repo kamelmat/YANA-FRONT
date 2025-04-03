@@ -64,7 +64,7 @@ export default function Header() {
               style={{ height: "4.5vh", cursor: "pointer" }}
               onClick={() => navigate("/")}
             />
-            <img src={Slogan} alt="Slogan" style={{ height: "4.5vh" }} />
+            {screenSize === "lg" && <img src={Slogan} alt="Slogan" style={{ height: "4.5vh" }} />}
           </>
         )}
         {screenSize === "sm" && (
