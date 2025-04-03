@@ -53,7 +53,7 @@ const theme = createTheme({
   },
   gradients: {
     gradientBlack: "linear-gradient(to top, #262626, #3E4044)",
-    gradientPurple: "linear-gradient(to right, #95B6FF, #3F0881)",
+    gradientPurple: "linear-gradient(to bottom, #95B6FF, #3F0881)",
   },
   borders: {
     borderRadius: "20px"
