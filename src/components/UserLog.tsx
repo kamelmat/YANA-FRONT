@@ -116,7 +116,7 @@ export default function UserLog() {
 
           <TextField
             id="password"
-            label="Password"
+            label="Contraseña"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
