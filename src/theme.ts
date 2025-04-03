@@ -15,6 +15,7 @@ declare module "@mui/material/styles" {
     gradients: {
       gradientBlack?: string
       gradientPurple?: string
+      gradientPurpleToBottom?: string
     }
     borders: {
       borderRadius?: string
@@ -35,6 +36,7 @@ declare module "@mui/material/styles" {
     gradients?: {
       gradientBlack?: string
       gradientPurple?: string
+      gradientPurpleToBottom?: string
     }
     borders?: {
       borderRadius?: string
@@ -57,11 +59,14 @@ const theme = createTheme({
   },
   gradients: {
     gradientBlack: "linear-gradient(to top, #262626, #3E4044)",
-    gradientPurple: "linear-gradient(to bottom, #95B6FF, #3F0881)",
+
+    gradientPurple: "linear-gradient(to right, #95B6FF, #3F0881)",
+    gradientPurpleToBottom: "linear-gradient(to bottom, #5983E0, #5D24A2)",
+
   },
   borders: {
-    borderRadius: "20px"
-  }
+    borderRadius: "20px",
+  },
 })
 
 export default theme
