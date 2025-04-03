@@ -114,7 +114,7 @@ const Sidebar: React.FC = () => {
         bottom: 0,
         width: WIDTH + 'px',
         backgroundColor: theme.colors.blackBackground,
-        zIndex: theme.zIndex.appBar,
+        zIndex: 900,
         paddingTop: "15vh",
         borderRadius: 0,
         display: "flex",

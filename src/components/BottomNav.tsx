@@ -111,7 +111,7 @@ const BottomNav: React.FC = () => {
         borderRadius: `${theme.borders?.borderRadius} ${theme.borders?.borderRadius} 0 0`,
         height: "20vw",
         background: theme.gradients.gradientBlack,
-        zIndex: theme.zIndex.appBar,
+        zIndex: 900,
       }}
     >
       <BottomNavigation
