@@ -49,7 +49,10 @@ export default function Header() {
         height: "8vh",
         backgroundColor: theme.colors.blackBackground,
         padding: "0 20px",
-        position: "relative",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        zIndex: 1000
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
