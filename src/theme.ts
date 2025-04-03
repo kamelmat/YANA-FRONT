@@ -1,4 +1,5 @@
-import { createTheme } from "@mui/material/styles"
+import { createTheme } from "@mui/material/styles";
+import "@fontsource/roboto";
 
 declare module "@mui/material/styles" {
   interface Theme {
@@ -42,6 +43,9 @@ declare module "@mui/material/styles" {
 }
 
 const theme = createTheme({
+  typography: {
+    fontFamily: "Roboto, sans-serif",
+  },
   colors: {
     blackBackground: "#1E1E1E",
     lightBlue: "#809AEE",
