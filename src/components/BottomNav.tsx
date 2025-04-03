@@ -3,7 +3,7 @@ import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material"
 import { useTheme, Theme } from "@mui/material/styles"
 import styled from "@emotion/styled"
 import { useScreenSize } from "../hooks/useScreenSize"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import HomeIcon from "../assets/icons/roofing.svg?react"
 import ResourcesIcon from "../assets/icons/loupe.svg?react"
@@ -63,6 +63,7 @@ const BottomNav: React.FC = () => {
   const [value, setValue] = React.useState(0)
   const screenSize = useScreenSize()
   const navigate = useNavigate()
+  const location = useLocation();
 
   const navItems: NavItem[] = [
     {
@@ -91,9 +92,9 @@ const BottomNav: React.FC = () => {
     },
   ]
 
-  if (screenSize !== "sm") return
+  if (screenSize !== "sm" || location.pathname === "/login") return
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
     navigate(navItems[newValue].route)
   }
