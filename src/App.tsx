@@ -1,5 +1,6 @@
 import AppRoutes from "./routes/AppRoutes"
 import BottomNav from "./components/BottomNav"
+
 import { BrowserRouter } from "react-router-dom"
 import { MapView } from "./components/MapView"
 
