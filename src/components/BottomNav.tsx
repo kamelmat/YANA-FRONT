@@ -1,27 +1,29 @@
-import React from "react";
-import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
-import { useTheme, Theme } from "@mui/material/styles";
-import styled from "@emotion/styled";
-import { useScreenSize } from "../hooks/useScreenSize";
+import React from "react"
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material"
+import { useTheme, Theme } from "@mui/material/styles"
+import styled from "@emotion/styled"
+import { useScreenSize } from "../hooks/useScreenSize"
+import { useNavigate } from "react-router-dom"
 
-import HomeIcon from "../assets/icons/roofing.svg?react";
-import ResourcesIcon from "../assets/icons/loupe.svg?react";
-import ContactsIcon from "../assets/icons/people_outline.svg?react";
-import ProfileIcon from "../assets/icons/sentiment_satisfied_alt.svg?react";
+import HomeIcon from "../assets/icons/roofing.svg?react"
+import ResourcesIcon from "../assets/icons/loupe.svg?react"
+import ContactsIcon from "../assets/icons/people_outline.svg?react"
+import ProfileIcon from "../assets/icons/sentiment_satisfied_alt.svg?react"
 
 interface NavItem {
-  label: string;
-  icon: React.ReactNode;
-  selectedColor: string;
+  label: string
+  icon: React.ReactNode
+  selectedColor: string
+  route: string
 }
 
 interface StyledNavActionProps {
-  selected?: boolean;
-  selectedColor?: string;
+  selected?: boolean
+  selectedColor?: string
 }
 
 const StyledBottomNavAction = styled(BottomNavigationAction, {
-  shouldForwardProp: (prop) => prop !== 'selectedColor'
+  shouldForwardProp: (prop) => prop !== "selectedColor",
 })<StyledNavActionProps>(({ selectedColor }) => ({
   minWidth: "auto",
   paddingBottom: "10px",
@@ -54,37 +56,47 @@ const StyledBottomNavAction = styled(BottomNavigationAction, {
   "&:focus": {
     outline: "none",
   },
-}));
+}))
 
 const BottomNav: React.FC = () => {
-  const theme = useTheme() as Theme;
-  const [value, setValue] = React.useState(0);
-  const screenSize = useScreenSize();
+  const theme = useTheme() as Theme
+  const [value, setValue] = React.useState(0)
+  const screenSize = useScreenSize()
+  const navigate = useNavigate()
 
   const navItems: NavItem[] = [
     {
       label: "Home",
       icon: <HomeIcon width={24} height={24} />,
-      selectedColor: theme.colors.pink
+      selectedColor: theme.colors.pink,
+      route: "/",
     },
     {
       label: "Recursos",
       icon: <ResourcesIcon width={24} height={24} />,
-      selectedColor: theme.colors.lightBlue
+      selectedColor: theme.colors.lightBlue,
+      route: "/resources",
     },
     {
       label: "Contactos",
       icon: <ContactsIcon width={24} height={24} />,
-      selectedColor: theme.colors.yellow
+      selectedColor: theme.colors.yellow,
+      route: "/contacts",
     },
     {
       label: "Perfil",
       icon: <ProfileIcon width={24} height={24} />,
-      selectedColor: theme.colors.green
-    }
-  ];
+      selectedColor: theme.colors.green,
+      route: "/profile",
+    },
+  ]
 
-  if (screenSize !== "sm") return;
+  if (screenSize !== "sm") return
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue)
+    navigate(navItems[newValue].route)
+  }
 
   return (
     <Paper
@@ -98,16 +110,16 @@ const BottomNav: React.FC = () => {
         borderRadius: `${theme.borders?.borderRadius} ${theme.borders?.borderRadius} 0 0`,
         height: "20vw",
         background: theme.gradients.gradientBlack,
-        zIndex: theme.zIndex.appBar
+        zIndex: theme.zIndex.appBar,
       }}
     >
       <BottomNavigation
         value={value}
-        onChange={(_, newValue) => setValue(newValue)}
+        onChange={handleChange}
         showLabels
         sx={{
           background: "transparent",
-          height: "100%"
+          height: "100%",
         }}
       >
         {navItems.map((item, index) => (
@@ -121,7 +133,7 @@ const BottomNav: React.FC = () => {
         ))}
       </BottomNavigation>
     </Paper>
-  );
-};
+  )
+}
 
-export default React.memo(BottomNav);
+export default React.memo(BottomNav)
