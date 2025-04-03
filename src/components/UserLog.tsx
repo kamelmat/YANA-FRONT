@@ -3,7 +3,7 @@ import Logo from '../../public/yana.svg';
 import Slogan from '../assets/branding/slogan.svg';
 import theme from '../theme';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useScreenSize } from '../hooks/useScreenSize';
 import { Box, Button, Checkbox, Link, Stack, TextField, Typography } from '@mui/material';
 
@@ -17,7 +17,28 @@ export default function UserLog() {
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
+    if (rememberMe) {
+      localStorage.setItem('username', username);
+      localStorage.setItem('password', password);
+      localStorage.setItem('rememberMe', 'true');
+    } else {
+      localStorage.removeItem('username');
+      localStorage.removeItem('password');
+      localStorage.removeItem('rememberMe');
+    }
   };
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem('username');
+    const savedPassword = localStorage.getItem('password');
+    const savedRememberMe = localStorage.getItem('rememberMe') === 'true';
+
+    if (savedRememberMe) {
+      setUsername(savedUsername || '');
+      setPassword(savedPassword || '');
+      setRememberMe(savedRememberMe);
+    }
+  }, []);
 
   if (screenSize !== "sm") return;
 
