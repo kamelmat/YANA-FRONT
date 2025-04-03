@@ -1,19 +1,15 @@
 import Google from '../assets/icons/Google.svg';
-import Logo from '../../public/yana.svg';
+import Logo from '../assets/branding/yana.svg';
 import Slogan from '../assets/branding/slogan.svg';
 import theme from '../theme';
 
 import { useState, useEffect } from "react";
-import { useScreenSize } from '../hooks/useScreenSize';
 import { Box, Button, Checkbox, Link, Stack, TextField, Typography } from '@mui/material';
 
 export default function UserLog() {
-
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  const screenSize = useScreenSize();
-
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
@@ -40,21 +36,10 @@ export default function UserLog() {
     }
   }, []);
 
-  if (screenSize !== "sm") return;
-
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: theme.colors.blackBackground,
-        height: '100vh',
-      }}
-    >
-      <img src={Logo} alt="Logo" style={{ width: '25vw', height: 'auto', marginBottom: "0.75rem" }} />
-      <img src={Slogan} alt="Slogan" style={{ width: '55vw', height: 'auto', marginBottom: "2rem" }} />
+    <>
+      <img src={Logo} alt="Logo" style={{ width: '25%', height: 'auto', marginBottom: "0.75rem" }} />
+      <img src={Slogan} alt="Slogan" style={{ width: '55%', height: 'auto', marginBottom: "2rem" }} />
 
       <Box
         component="form"
@@ -216,6 +201,6 @@ export default function UserLog() {
           </Link>
         </Typography>
       </Box>
-    </Box>
+    </>
   );
 }
