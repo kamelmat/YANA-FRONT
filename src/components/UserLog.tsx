@@ -53,8 +53,8 @@ export default function UserLog() {
         height: '100vh',
       }}
     >
-      <img src={Logo} alt="Logo" style={{ width: '35vw', height: 'auto', marginBottom: "2rem" }} />
-      <img src={Slogan} alt="Slogan" style={{ width: '65vw', height: 'auto' }} />
+      <img src={Logo} alt="Logo" style={{ width: '25vw', height: 'auto', marginBottom: "0.75rem" }} />
+      <img src={Slogan} alt="Slogan" style={{ width: '55vw', height: 'auto', marginBottom: "2rem" }} />
 
       <Box
         component="form"
@@ -62,7 +62,7 @@ export default function UserLog() {
         noValidate
         sx={{
           width: '100%',
-          padding: '2em 1em 0 1em',
+          padding: '0 1em',
           color: '#fff',
         }}
       >
@@ -70,7 +70,7 @@ export default function UserLog() {
           Acceder
         </Typography>
 
-        <Stack spacing={2} direction="column" sx={{ marginTop: 2 }}>
+        <Stack spacing={2} direction="column" sx={{ marginTop: 1 }}>
           <TextField
             fullWidth
             id="username"
@@ -209,7 +209,7 @@ export default function UserLog() {
           </Button>
         </Stack>
 
-        <Typography variant="body2" align="center" sx={{ mt: 5 }}>
+        <Typography variant="body2" align="center" sx={{ mt: 4 }}>
           ¿No tienes una cuenta?{' '}
           <Link href="#" underline="none" sx={{ textTransform: 'none', color: theme.colors.lightBlue }}>
             Regístrate
