@@ -1,20 +1,20 @@
 import React from "react"
-import { Routes, Route } from "react-router-dom"
-import Home from "../pages/Home"
-import Register from "../pages/Register"
-import Login from "../pages/Login"
 import Map from "../pages/Map"
-import Resources from "../pages/Resources"
+import Home from "../pages/Home"
+import Login from "../pages/Login"
 import Profile from "../pages/Profile"
+import Register from "../pages/Register"
+import Resources from "../pages/Resources"
+import { Routes, Route } from "react-router-dom"
 
 const AppRoutes: React.FC = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/register" element={<Register />} />
-    <Route path="/login" element={<Login />} />
     <Route path="/map" element={<Map />} />
-    <Route path="/resources" element={<Resources />} />
+    <Route path="/login" element={<Login />} />
     <Route path="/profile" element={<Profile />} />
+    <Route path="/register" element={<Register />} />
+    <Route path="/resources" element={<Resources />} />
   </Routes>
 )
 
