@@ -9,10 +9,10 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <>
-        <Footer />
         <Header />
         <AppRoutes />
         <BottomNav />
+        <Footer />
       </>
     </BrowserRouter>
   )
