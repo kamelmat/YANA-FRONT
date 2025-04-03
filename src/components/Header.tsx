@@ -28,6 +28,8 @@ const SECTION_TITLES: Record<string, string> = {
   "/contacts": "Mis Contactos",
   "/resources": "Organizaciones",
   "/profile": "Mi perfil",
+  "/FAQ": "Preguntas frequentes",
+  "/settings": "Configuración"
 };
 
 export default function Header() {
@@ -38,6 +40,8 @@ export default function Header() {
   const navigate = useNavigate();
 
   const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh";
+
+  if (location === "/login") return;
 
   return (
     <Box
@@ -64,7 +68,7 @@ export default function Header() {
               style={{ height: "4.5vh", cursor: "pointer" }}
               onClick={() => navigate("/")}
             />
-            <img src={Slogan} alt="Slogan" style={{ height: "4.5vh" }} />
+            {screenSize === "lg" && <img src={Slogan} alt="Slogan" style={{ height: "4.5vh" }} />}
           </>
         )}
         {screenSize === "sm" && (

@@ -60,7 +60,6 @@ const StyledBottomNavAction = styled(BottomNavigationAction, {
 
 const BottomNav: React.FC = () => {
   const theme = useTheme() as Theme
-  const [value, setValue] = React.useState(0)
   const screenSize = useScreenSize()
   const navigate = useNavigate()
   const location = useLocation()
@@ -95,9 +94,10 @@ const BottomNav: React.FC = () => {
   if (screenSize !== "sm" || location.pathname === "/login") return
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
     navigate(navItems[newValue].route)
   }
+
+  const currentIndex = navItems.findIndex(item => item.route === location.pathname);
 
   return (
     <Paper
@@ -111,11 +111,11 @@ const BottomNav: React.FC = () => {
         borderRadius: `${theme.borders?.borderRadius} ${theme.borders?.borderRadius} 0 0`,
         height: "20vw",
         background: theme.gradients.gradientBlack,
-        zIndex: theme.zIndex.appBar,
+        zIndex: 900,
       }}
     >
       <BottomNavigation
-        value={value}
+        value={currentIndex}
         onChange={handleChange}
         showLabels
         sx={{
@@ -128,7 +128,7 @@ const BottomNav: React.FC = () => {
             key={item.label}
             label={item.label}
             icon={item.icon}
-            selected={value === index}
+            selected={currentIndex === index}
             selectedColor={item.selectedColor}
           />
         ))}
