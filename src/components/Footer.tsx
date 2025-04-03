@@ -1,8 +1,13 @@
 import { Box, Typography, Container, Grid } from "@mui/material"
 import theme from "../theme"
 import Logo from "../assets/branding/yana.svg"
+import { useLocation } from "react-router-dom"
 
 export const Footer = () => {
+  const location = useLocation().pathname;
+
+  if (location === "login" || location === "/") return;
+
   return (
     <Box
       component="footer"
