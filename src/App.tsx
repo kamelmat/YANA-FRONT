@@ -2,6 +2,7 @@ import "./App.css"
 import { Typography, useTheme } from "@mui/material"
 import BottomNav from "./components/BottomNav"
 import { BrowserRouter } from "react-router-dom"
+import { MapView } from "./components/MapView"
 
 const App: React.FC = () => {
   const theme = useTheme()
@@ -9,9 +10,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <>
-        <Typography variant="h1" sx={{ color: theme.colors.pink }}>
-          You are not Alone
-        </Typography>
+        <MapView />
         <BottomNav></BottomNav>
       </>
     </BrowserRouter>
