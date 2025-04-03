@@ -28,6 +28,8 @@ const SECTION_TITLES: Record<string, string> = {
   "/contacts": "Mis Contactos",
   "/resources": "Organizaciones",
   "/profile": "Mi perfil",
+  "/FAQ": "Preguntas frequentes",
+  "/settings": "Configuración"
 };
 
 export default function Header() {
