@@ -8,7 +8,7 @@ export const Footer = () => {
   const location = useLocation().pathname
   const screenSize = useScreenSize()
 
-  if (location === "login" || location === "/") return null
+  if (location === "/login" || location === "/") return null
 
   const sidebarWidth = screenSize === "sm" ? 0 : theme.sidebar?.width
 
