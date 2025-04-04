@@ -1,20 +1,20 @@
-import { Box, IconButton, Typography } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
-import styled from "@emotion/styled";
-import { useScreenSize } from "../hooks/useScreenSize";
-import { useUserStore } from "../store/useUserStore";
-import { getFormattedDate } from "../utils/getFormattedDate";
+import { Box, IconButton, Typography } from "@mui/material"
+import { useLocation, useNavigate } from "react-router-dom"
+import styled from "@emotion/styled"
+import { useScreenSize } from "../hooks/useScreenSize"
+import { useUserStore } from "../store/useUserStore"
+import { getFormattedDate } from "../utils/getFormattedDate"
 
-import Logo from "../assets/branding/yana.svg";
-import Slogan from "../assets/branding/slogan.svg";
-import NotificationsIcon from "../assets/icons/notifications.svg";
-import HamburgerIcon from "../assets/icons/hamburger.svg";
-import BackIcon from "../assets/icons/back.svg";
-import ProfileIcon from "../assets/icons/profile.svg";
+import Logo from "../assets/branding/yana.svg"
+import Slogan from "../assets/branding/slogan.svg"
+import NotificationsIcon from "../assets/icons/notifications.svg"
+import HamburgerIcon from "../assets/icons/hamburger.svg"
+import BackIcon from "../assets/icons/back.svg"
+import ProfileIcon from "../assets/icons/profile.svg"
 
-import theme from "../theme";
+import theme from "../theme"
 
-import "@fontsource/league-spartan";
+import "@fontsource/league-spartan"
 
 const CustomIconButton = styled(IconButton)(() => ({
   transition: "transform 0.2s ease-in-out",
@@ -22,26 +22,26 @@ const CustomIconButton = styled(IconButton)(() => ({
   "&:hover": {
     transform: "scale(1.15)",
   },
-}));
+}))
 
 const SECTION_TITLES: Record<string, string> = {
   "/contacts": "Mis Contactos",
   "/resources": "Organizaciones",
   "/profile": "Mi perfil",
   "/FAQ": "Preguntas frequentes",
-  "/settings": "Configuración"
-};
+  "/settings": "Configuración",
+}
 
 export default function Header() {
-  const screenSize = useScreenSize();
-  const { username } = useUserStore();
-  const date = getFormattedDate();
-  const location = useLocation().pathname;
-  const navigate = useNavigate();
+  const screenSize = useScreenSize()
+  const { username } = useUserStore()
+  const date = getFormattedDate()
+  const location = useLocation().pathname
+  const navigate = useNavigate()
 
-  const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh";
+  const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh"
 
-  if (location === "/login") return;
+  if (location === "/login") return
 
   return (
     <Box
@@ -56,7 +56,7 @@ export default function Header() {
         position: "fixed",
         top: 0,
         left: 0,
-        zIndex: 1000
+        zIndex: 1000,
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
@@ -75,7 +75,15 @@ export default function Header() {
           <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
             {location === "/" && (
               <>
-                <Typography variant="h6" sx={{ color: "white", fontWeight: "bold", lineHeight: 1.3, fontFamily: "League Spartan" }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: "white",
+                    fontWeight: "bold",
+                    lineHeight: 1.3,
+                    fontFamily: "League Spartan",
+                  }}
+                >
                   Bienvenid@, {username}
                 </Typography>
                 <Typography sx={{ color: "white", lineHeight: 1.3, fontFamily: "League Spartan" }}>
@@ -121,5 +129,5 @@ export default function Header() {
         )}
       </Box>
     </Box>
-  );
+  )
 }

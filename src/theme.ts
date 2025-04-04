@@ -1,5 +1,5 @@
-import { createTheme } from "@mui/material/styles";
-import "@fontsource/roboto";
+import { createTheme } from "@mui/material/styles"
+import "@fontsource/roboto"
 
 declare module "@mui/material/styles" {
   interface Theme {
@@ -19,6 +19,11 @@ declare module "@mui/material/styles" {
     }
     borders: {
       borderRadius?: string
+    }
+    sidebar?: {
+      iconSize: string
+      paddingX: string
+      width: string
     }
   }
 
@@ -41,6 +46,11 @@ declare module "@mui/material/styles" {
     borders?: {
       borderRadius?: string
     }
+    sidebar?: {
+      iconSize: number
+      paddingX: number
+      width: number
+    }
   }
 }
 
@@ -62,10 +72,14 @@ const theme = createTheme({
 
     gradientPurple: "linear-gradient(to right, #95B6FF, #3F0881)",
     gradientPurpleToBottom: "linear-gradient(to bottom, #5983E0, #5D24A2)",
-
   },
   borders: {
     borderRadius: "20px",
+  },
+  sidebar: {
+    iconSize: 30,
+    paddingX: 24,
+    width: 78,
   },
 })
 

@@ -12,10 +12,11 @@ import SettingsIcon from "../assets/icons/settings.svg?react"
 import ExitIcon from "../assets/icons/exit.svg?react"
 
 import styled from "@emotion/styled"
+import theme from "../theme"
 
-const ICON_SIZE = 30;
-const WIDTH = 250;
-const PADDING_X = 24;
+const ICON_SIZE = theme.sidebar?.iconSize!
+const WIDTH = 250
+const PADDING_X: number = Number(theme.sidebar?.paddingX!)
 
 interface NavItem {
   label: string
@@ -32,7 +33,7 @@ interface StyledListItemProps {
 const StyledListItem = styled(ListItem, {
   shouldForwardProp: (prop) => prop !== "selectedColor",
 })<StyledListItemProps>(({ selectedColor, selected }) => ({
-  color: '#fff',
+  color: "#fff",
   padding: `12px ${PADDING_X}px`,
   cursor: "pointer",
   display: "flex",
@@ -41,7 +42,7 @@ const StyledListItem = styled(ListItem, {
   transition: "all 0.3s ease",
   "& svg": {
     "& path": {
-      fill: selected ? selectedColor : '#ffffff',
+      fill: selected ? selectedColor : "#ffffff",
       transition: "all 0.3s ease",
     },
   },
@@ -50,7 +51,7 @@ const StyledListItem = styled(ListItem, {
       transition: "all 0.3s ease",
       fill: selectedColor,
     },
-  }
+  },
 }))
 
 const Sidebar: React.FC = () => {
@@ -87,7 +88,7 @@ const Sidebar: React.FC = () => {
     {
       label: "Configuración",
       icon: <SettingsIcon width={ICON_SIZE} height={ICON_SIZE} />,
-      selectedColor:  "white",
+      selectedColor: "white",
       route: "/settings",
     },
     {
@@ -110,9 +111,9 @@ const Sidebar: React.FC = () => {
       sx={{
         position: "fixed",
         top: 0,
-        left: -WIDTH + PADDING_X * 2 + ICON_SIZE + 'px',
+        left: -WIDTH + PADDING_X * 2 + ICON_SIZE + "px",
         bottom: 0,
-        width: WIDTH + 'px',
+        width: WIDTH + "px",
         backgroundColor: theme.colors.blackBackground,
         zIndex: 900,
         paddingTop: "15vh",
