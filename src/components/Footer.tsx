@@ -2,11 +2,15 @@ import { Box, Typography, Container, Grid } from "@mui/material"
 import theme from "../theme"
 import Logo from "../assets/branding/yana.svg"
 import { useLocation } from "react-router-dom"
+import { useScreenSize } from "../hooks/useScreenSize"
 
 export const Footer = () => {
-  const location = useLocation().pathname;
+  const location = useLocation().pathname
+  const screenSize = useScreenSize()
 
-  if (location === "login" || location === "/") return;
+  if (location === "login" || location === "/") return null
+
+  const sidebarWidth = screenSize === "sm" ? 0 : theme.sidebar?.width
 
   return (
     <Box
@@ -17,7 +21,13 @@ export const Footer = () => {
         padding: 2,
         py: 4,
         pb: 10,
-        width: "100%",
+        width: `calc(100% - ${sidebarWidth}px)`,
+        marginLeft: `${sidebarWidth}px`,
+        position: "relative",
+        ...(screenSize === "sm" && {
+          width: "100%",
+          marginLeft: 0,
+        }),
       }}
     >
       <Container maxWidth="xl">
