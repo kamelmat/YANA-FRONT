@@ -14,7 +14,7 @@ export default function Login() {
     case "lg":
       const width = screenSize === "lg" ? "27%" : "80%";
       return (
-        <Box sx={{ height: '100vh', width: '100vw', background: theme.gradients.gradientPurple, display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ height: '100vh', width: '100vw', background: theme.gradients.gradientPurpleToBottom, display: 'flex', alignItems: 'center' }}>
           <Box
             sx={{
               display: 'flex',
