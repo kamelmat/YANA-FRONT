@@ -8,11 +8,13 @@ import CustomTextField from '../commons/CommonTextField';
 
 import { useState, useEffect } from "react";
 import { Box, Checkbox, Link, Stack, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginComponent() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
@@ -97,7 +99,7 @@ export default function LoginComponent() {
 
           <CustomButton
             text="Iniciar sesión con Google"
-            icon={<img src={Google} alt="Google Icon" style={{ width: '20px', height: '20px' }} />}
+            icon={<img src={Google} alt="Google Icon" style={{ width: '35px', height: '35px' }} />}
             variantType="secondary"
             onClick={() => console.log('Google login')}
             sx={{ marginBottom: 2 }}
@@ -106,7 +108,7 @@ export default function LoginComponent() {
 
         <Typography variant="body2" align="center" sx={{ mt: 4 }}>
           ¿No tienes una cuenta?{' '}
-          <Link href="#" underline="none" sx={{ textTransform: 'none', color: theme.colors.lightBlue }}>
+          <Link href="#" underline="none" sx={{ textTransform: 'none', color: theme.colors.lightBlue }} onClick={() => navigate('/register')}>
             Regístrate
           </Link>
         </Typography>
