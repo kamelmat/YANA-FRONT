@@ -3,8 +3,11 @@ import Logo from '../assets/branding/yana.svg';
 import Slogan from '../assets/branding/slogan.svg';
 import theme from '../theme';
 
+import CustomButton from '../commons/CommonButton';
+import CustomTextField from '../commons/CommonTextField';
+
 import { useState, useEffect } from "react";
-import { Box, Button, Checkbox, Link, Stack, TextField, Typography } from '@mui/material';
+import { Box, Checkbox, Link, Stack, Typography } from '@mui/material';
 
 export default function UserLog() {
   const [username, setUsername] = useState('');
@@ -56,89 +59,17 @@ export default function UserLog() {
         </Typography>
 
         <Stack spacing={2} direction="column" sx={{ marginTop: 1 }}>
-          <TextField
-            fullWidth
-            id="username"
+          <CustomTextField
             label="Usuario"
-            name="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                color: theme.colors.lightGray,
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: theme.colors.lightGray,
-                  borderWidth: "1px",
-                },
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: theme.colors.lightBlue,
-                },
-                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: theme.colors.lightBlue,
-                },
-              },
-              "& .MuiInputLabel-root": {
-                color: theme.colors.lightGray,
-                "&.Mui-focused": {
-                  color: theme.colors.lightBlue,
-                },
-              },
-              "& input": {
-                backgroundColor: "transparent !important",
-              },
-              "& input:-webkit-autofill": {
-                WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
-                WebkitTextFillColor: "#fff !important",
-                transition: "background-color 9999s ease-in-out 0s !important",
-              },
-              "& input:-webkit-autofill:hover, & input:-webkit-autofill:focus, & input:-webkit-autofill:active": {
-                WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
-                WebkitTextFillColor: "#fff !important",
-                transition: "background-color 9999s ease-in-out 0s !important",
-              },
-            }}
+            setValue={setUsername}
           />
 
-          <TextField
-            id="password"
+          <CustomTextField
             label="Contraseña"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
             value={password}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                color: theme.colors.lightGray,
-                "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: theme.colors.lightGray,
-                  borderWidth: "1px",
-                },
-                "&:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: theme.colors.lightBlue,
-                },
-                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                  borderColor: theme.colors.lightBlue,
-                },
-              },
-              "& .MuiInputLabel-root": {
-                color: theme.colors.lightGray,
-                "&.Mui-focused": {
-                  color: theme.colors.lightBlue,
-                },
-              },
-              "& input": {
-                backgroundColor: "transparent !important",
-              },
-              "& input:-webkit-autofill": {
-                WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
-                WebkitTextFillColor: "#fff !important",
-                transition: "background-color 9999s ease-in-out 0s !important",
-              },
-              "& input:-webkit-autofill:hover, & input:-webkit-autofill:focus, & input:-webkit-autofill:active": {
-                WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
-                WebkitTextFillColor: "#fff !important",
-                transition: "background-color 9999s ease-in-out 0s !important",
-              },
-            }}
+            setValue={setPassword}
           />
         </Stack>
 
@@ -158,40 +89,19 @@ export default function UserLog() {
         </Stack>
 
         <Stack spacing={1.5} direction="column" sx={{ marginTop: 4 }}>
-          <Button
+          <CustomButton
             type="submit"
-            size="medium"
-            fullWidth
-            sx={{
-              color: 'black',
-              backgroundColor: theme.colors.lightGray,
-              borderRadius: '35px',
-              textTransform: 'none',
-              padding: '1em',
-              fontWeight: 600,
-            }}
-          >
-            Ingresar
-          </Button>
+            text="Ingresar"
+            variantType="primary"
+          />
 
-          <Button
-            size="medium"
-            type="submit"
-            variant="outlined"
-            fullWidth
-            startIcon={<img src={Google} alt="Google Icon" style={{ width: '20px', height: '20px' }} />}
-            sx={{
-              marginBottom: 2,
-              color: '#809AEE',
-              borderRadius: '30px',
-              textTransform: 'none',
-              padding: '1em',
-              fontWeight: 600,
-              borderColor: theme.colors.lightBlue,
-            }}
-          >
-            Iniciar sesión con Google
-          </Button>
+          <CustomButton
+            text="Iniciar sesión con Google"
+            icon={<img src={Google} alt="Google Icon" style={{ width: '20px', height: '20px' }} />}
+            variantType="secondary"
+            onClick={() => console.log('Google login')}
+            sx={{ marginBottom: 2 }}
+          />
         </Stack>
 
         <Typography variant="body2" align="center" sx={{ mt: 4 }}>
