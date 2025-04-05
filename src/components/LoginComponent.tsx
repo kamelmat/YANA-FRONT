@@ -9,7 +9,7 @@ import CustomTextField from '../commons/CommonTextField';
 import { useState, useEffect } from "react";
 import { Box, Checkbox, Link, Stack, Typography } from '@mui/material';
 
-export default function UserLog() {
+export default function LoginComponent() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
