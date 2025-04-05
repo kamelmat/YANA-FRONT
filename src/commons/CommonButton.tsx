@@ -1,7 +1,6 @@
 import { Button, ButtonProps } from '@mui/material';
 import { ReactNode } from 'react';
 import theme from '../theme';
-import { darken } from '@mui/material';
 
 type VariantType = 'primary' | 'secondary';
 
