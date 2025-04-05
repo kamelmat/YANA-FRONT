@@ -41,7 +41,7 @@ export default function Header() {
 
   const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh"
 
-  if (location === "/login") return
+  if (location === "/login" || location === "/register") return
 
   return (
     <Box
