@@ -26,21 +26,24 @@ export default function CustomButton({
       sx={{
         textTransform: 'none',
         fontWeight: 600,
-        padding: '1em',
-        borderRadius: isPrimary ? '35px' : '30px',
+        padding: 0,
+        borderRadius: '35px',
         color: isPrimary ? 'black' : theme.colors.lightBlue,
-        backgroundColor: isPrimary ? theme.colors.lightGray : 'transparent',
+        backgroundColor: isPrimary ? "#fff" : 'transparent',
         borderColor: !isPrimary ? theme.colors.lightBlue : undefined,
         '&:hover': {
           backgroundColor: isPrimary
-            ? '#bfbfbf'
+            ? theme.colors.lightGray
             : `${theme.colors.lightBlue}20`,
+        },
+        '&:disabled' : {
+          backgroundColor: isPrimary ? `${theme.colors.lightGray}90` : '',
         },
         ...rest.sx,
       }}
       variant={isPrimary ? 'contained' : 'outlined'}
     >
-      {text}
+      <span style={{ padding: '1em 0' }}>{text}</span>
     </Button>
   );
 }

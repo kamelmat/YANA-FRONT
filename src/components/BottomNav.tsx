@@ -91,7 +91,7 @@ const BottomNav: React.FC = () => {
     },
   ]
 
-  if (screenSize !== "sm" || location.pathname === "/login") return
+  if (screenSize !== "sm" || location.pathname === "/login" || location.pathname === "/register") return
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     navigate(navItems[newValue].route)

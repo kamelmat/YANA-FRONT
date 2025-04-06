@@ -65,7 +65,7 @@ const theme = createTheme({
     yellow: "#FEE77D",
     blueExtraLight: "#B1C9FF",
     green: "#92E3A9",
-    lightGray: "rgb(247 242 250)",
+    lightGray: "#d9d9d9",
   },
   gradients: {
     gradientBlack: "linear-gradient(to top, #262626, #3E4044)",
