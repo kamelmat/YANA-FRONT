@@ -6,12 +6,18 @@ interface CustomTextFieldProps extends Omit<TextFieldProps, 'value' | 'onChange'
   label: string;
   value: string;
   setValue: (val: string) => void;
+  error?: boolean;
+  helperText?: React.ReactNode;
+  placeholder?: string;
 }
 
 export default function CustomTextField({
   label,
   value,
   setValue,
+  error,
+  helperText,
+  placeholder,
   ...rest
 }: CustomTextFieldProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +31,9 @@ export default function CustomTextField({
       label={label}
       value={value}
       onChange={handleChange}
+      error={error}
+      helperText={helperText}
+      placeholder={placeholder}
       sx={{
         ...rest.sx,
         "& .MuiOutlinedInput-root": {
