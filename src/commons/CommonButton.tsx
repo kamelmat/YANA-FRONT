@@ -36,6 +36,9 @@ export default function CustomButton({
             ? theme.colors.lightGray
             : `${theme.colors.lightBlue}20`,
         },
+        '&:disabled' : {
+          backgroundColor: isPrimary ? `${theme.colors.lightGray}90` : '',
+        },
         ...rest.sx,
       }}
       variant={isPrimary ? 'contained' : 'outlined'}
