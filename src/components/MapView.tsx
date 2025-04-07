@@ -4,9 +4,11 @@ import { getUserLocation } from "../utils/getUserLocation"
 import { useEffect } from "react"
 import { useUserLocationStore } from "../store/userLocationStore"
 import marker from "../assets/icons/marker.svg"
+import { useRef } from "react"
 
 export const MapView = () => {
   const { userLocation, setUserLocation } = useUserLocationStore()
+  const mapRef = useRef<maplibregl.Map | null>(null)
 
   useEffect(() => {
     getUserLocation()
@@ -19,8 +21,13 @@ export const MapView = () => {
   }, [setUserLocation])
 
   useEffect(() => {
-    if (userLocation && userLocation.latitude !== null && userLocation.longitude !== null) {
-      const map = new maplibregl.Map({
+    if (
+      userLocation &&
+      userLocation.latitude !== null &&
+      userLocation.longitude !== null &&
+      !mapRef.current
+    ) {
+      mapRef.current = new maplibregl.Map({
         container: "map",
         style:
           "https://api.maptiler.com/maps/0195fe03-6eea-79e3-a9d3-d4531a0a351b/style.json?key=S27siZckn8M30xtrFfEn",
@@ -30,16 +37,25 @@ export const MapView = () => {
 
       new maplibregl.Marker({
         element: (() => {
-          const el = document.createElement('div');
-          el.innerHTML = `<img src="${marker}" alt="marker" />`;
-          return el;
+          const el = document.createElement("div")
+          el.innerHTML = `<img src="${marker}" alt="marker" />`
+          return el
         })(),
         anchor: "bottom",
-      }).setLngLat([userLocation.longitude, userLocation.latitude]).addTo(map)
-
-      return () => map.remove()
+      })
+        .setLngLat([userLocation.longitude, userLocation.latitude])
+        .addTo(mapRef.current)
     }
   }, [userLocation])
+
+  useEffect(() => {
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove()
+        mapRef.current = null
+      }
+    }
+  }, [])
 
   return (
     <div>
