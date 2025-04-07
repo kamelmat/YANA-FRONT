@@ -23,7 +23,7 @@ i18n.use(initReactI18next).init({
           method: {
             title: "Create an account",
             subtitle: "Your information is confidential. We will not share it with anyone.",
-            useEmail: "Use email to register",
+            useEmail: "Register with email",
             useGoogle: "Use Google to register",
             privacyText: "By creating an account, you agree to our",
             privacyLink: "Terms of service and privacy policy",
@@ -141,7 +141,7 @@ i18n.use(initReactI18next).init({
           method: {
             title: "Crear una cuenta",
             subtitle: "Tu información es confidencial. No vamos a compartir tus datos.",
-            useEmail: "Usar correo electrónico para registrarse",
+            useEmail: "Registrarse con correo electrónico",
             useGoogle: "Crear una cuenta con Google",
             privacyText: "Al crear una cuenta, aceptas los",
             privacyLink: "Términos de uso y políticas de privacidad",
@@ -149,7 +149,7 @@ i18n.use(initReactI18next).init({
             login: "Ingresar",
           },
           email: {
-            title: "Crea un perfil con tu correo electrónico",
+            title: "Crea un perfil con tu email",
             subtitle: "Completa los datos y recibe el código de registro por correo electrónico.",
             nameField: {
               label: "Nombre",
@@ -165,7 +165,7 @@ i18n.use(initReactI18next).init({
             },
           },
           password: {
-            title: "Crea una contraseña segura",
+            title: "Crear contraseña",
             subtitle: "Por favor, crea una contraseña segura para tu cuenta.",
             passwordField: {
               label: "Contraseña",
