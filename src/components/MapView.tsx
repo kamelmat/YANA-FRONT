@@ -3,6 +3,7 @@ import "maplibre-gl/dist/maplibre-gl.css"
 import { getUserLocation } from "../utils/getUserLocation"
 import { useEffect } from "react"
 import { useUserLocationStore } from "../store/userLocationStore"
+import marker from "../assets/icons/marker.svg"
 
 export const MapView = () => {
   const { userLocation, setUserLocation } = useUserLocationStore()
@@ -27,7 +28,14 @@ export const MapView = () => {
         zoom: 14,
       })
 
-      new maplibregl.Marker().setLngLat([userLocation.longitude, userLocation.latitude]).addTo(map)
+      new maplibregl.Marker({
+        element: (() => {
+          const el = document.createElement('div');
+          el.innerHTML = `<img src="${marker}" alt="marker" />`;
+          return el;
+        })(),
+        anchor: "bottom",
+      }).setLngLat([userLocation.longitude, userLocation.latitude]).addTo(map)
 
       return () => map.remove()
     }
