@@ -1,5 +1,8 @@
 import CustomButton from "../../commons/CommonButton";
+import { useTranslation } from "react-i18next";
 
 export default function RegisterDoneStage({ onContinue }: { onContinue: () => void }) {
-  return <CustomButton text="Continuar" onClick={onContinue} />;
+  const { t } = useTranslation();
+
+  return <CustomButton text={t("register.continue")} onClick={onContinue} />;
 }

@@ -4,9 +4,11 @@ import styled from "@emotion/styled"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useUserStore } from "../store/useUserStore"
 import { getFormattedDate } from "../utils/getFormattedDate"
+import { useTranslation } from "react-i18next"
 
 import Logo from "../assets/branding/yana.svg"
-import Slogan from "../assets/branding/slogan.svg"
+import Slogan_ES from "../assets/branding/slogan_es.svg"
+import Slogan_EN from "../assets/branding/slogan_en.svg"
 import NotificationsIcon from "../assets/icons/notifications.svg"
 import HamburgerIcon from "../assets/icons/hamburger.svg"
 import BackIcon from "../assets/icons/back.svg"
@@ -24,20 +26,13 @@ const CustomIconButton = styled(IconButton)(() => ({
   },
 }))
 
-const SECTION_TITLES: Record<string, string> = {
-  "/contacts": "Mis Contactos",
-  "/resources": "Organizaciones",
-  "/profile": "Mi perfil",
-  "/FAQ": "Preguntas frequentes",
-  "/settings": "Configuración",
-}
-
 export default function Header() {
   const screenSize = useScreenSize()
   const { username } = useUserStore()
   const date = getFormattedDate()
   const location = useLocation().pathname
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh"
 
@@ -68,7 +63,7 @@ export default function Header() {
               style={{ height: "4.5vh", cursor: "pointer" }}
               onClick={() => navigate("/")}
             />
-            {screenSize === "lg" && <img src={Slogan} alt="Slogan" style={{ height: "4.5vh" }} />}
+            {screenSize === "lg" && <img src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN} alt="Slogan" style={{ height: "4.5vh" }} />}
           </>
         )}
         {screenSize === "sm" && (
@@ -77,16 +72,17 @@ export default function Header() {
               <>
                 <Typography
                   variant="h6"
+                  fontSize={18}
                   sx={{
                     color: "white",
                     fontWeight: "bold",
-                    lineHeight: 1.3,
+                    lineHeight: 1,
                     fontFamily: "League Spartan",
                   }}
                 >
-                  Bienvenid@, {username}
+                  {t("header.welcome", { name: username })}
                 </Typography>
-                <Typography sx={{ color: "white", lineHeight: 1.3, fontFamily: "League Spartan" }}>
+                <Typography fontSize={14} sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
                   {date}
                 </Typography>
               </>
@@ -108,9 +104,11 @@ export default function Header() {
           textAlign: "center",
         }}
       >
-        <Typography variant="h5" sx={{ color: "white" }}>
-          {SECTION_TITLES[location] || ""}
-        </Typography>
+        {location !== "/"  && 
+          <Typography variant="h5" sx={{ color: "white" }}>
+            {t(`${location}.title`)}
+          </Typography>
+        }
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>

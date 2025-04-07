@@ -5,6 +5,7 @@ import "./index.css"
 import theme from "./theme.ts"
 import { ThemeProvider } from "@emotion/react"
 import { CssBaseline } from "@mui/material"
+import './i18n'
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

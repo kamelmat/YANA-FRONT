@@ -1,6 +1,7 @@
 import Google from '../assets/icons/Google.svg';
 import Logo from '../assets/branding/yana.svg';
-import Slogan from '../assets/branding/slogan.svg';
+import Slogan_ES from '../assets/branding/slogan_es.svg';
+import Slogan_EN from '../assets/branding/slogan_en.svg';
 import theme from '../theme';
 
 import CustomButton from '../commons/CommonButton';
@@ -9,12 +10,14 @@ import CustomTextField from '../commons/CommonTextField';
 import { useState, useEffect } from "react";
 import { Box, Checkbox, Link, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 export default function LoginComponent() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
@@ -44,7 +47,7 @@ export default function LoginComponent() {
   return (
     <>
       <img src={Logo} alt="Logo" style={{ width: '25%', height: 'auto', marginBottom: "0.75rem" }} />
-      <img src={Slogan} alt="Slogan" style={{ width: '55%', height: 'auto', marginBottom: "2rem" }} />
+      <img src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN} alt="Slogan" style={{ width: '55%', height: 'auto', marginBottom: "2rem" }} />
 
       <Box
         component="form"
@@ -57,18 +60,18 @@ export default function LoginComponent() {
         }}
       >
         <Typography>
-          Acceder
+          {t("login.access")}
         </Typography>
 
         <Stack spacing={2} direction="column" sx={{ marginTop: 1 }}>
           <CustomTextField
-            label="Usuario"
+            label={t("login.username")}
             value={username}
             setValue={setUsername}
           />
 
           <CustomTextField
-            label="Contraseña"
+            label={t("login.password")}
             type="password"
             value={password}
             setValue={setPassword}
@@ -82,23 +85,23 @@ export default function LoginComponent() {
               sx={{ color: '#fff', '&.Mui-checked': { color: '#fff' } }}
             />
             <Typography variant="body2" sx={{ color: '#fff' }}>
-              Recordarme
+              {t("login.remember")}
             </Typography>
           </Box>
           <Link href="#" variant="body2" sx={{ color: theme.colors.lightBlue, textDecoration: 'none' }}>
-            Olvidé la contraseña
+            {t("login.forgot")}
           </Link>
         </Stack>
 
         <Stack spacing={1.5} direction="column" sx={{ marginTop: 4 }}>
           <CustomButton
             type="submit"
-            text="Ingresar"
+            text={t("login.login")}
             variantType="primary"
           />
 
           <CustomButton
-            text="Iniciar sesión con Google"
+            text={t("login.loginGoogle")}
             icon={<img src={Google} alt="Google Icon" style={{ width: '35px', height: '35px' }} />}
             variantType="secondary"
             onClick={() => console.log('Google login')}
@@ -107,9 +110,9 @@ export default function LoginComponent() {
         </Stack>
 
         <Typography variant="body2" align="center" sx={{ mt: 4 }}>
-          ¿No tienes una cuenta?{' '}
+          {t("login.dontHaveAccount")}{' '}
           <Link href="#" underline="none" sx={{ textTransform: 'none', color: theme.colors.lightBlue }} onClick={() => navigate('/register')}>
-            Regístrate
+            {t("login.register")}
           </Link>
         </Typography>
       </Box>

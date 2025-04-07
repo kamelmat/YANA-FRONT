@@ -1,4 +1,5 @@
 import CustomTextField from "../../commons/CommonTextField";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   name: string;
@@ -10,19 +11,21 @@ interface Props {
 }
 
 export default function RegisterEmailStage({ name, setName, email, setEmail, emailError, handleEmailBlur }: Props) {
+  const { t } = useTranslation();
+
   return (
     <>
       <CustomTextField
-        label="Nombre"
+        label={t("register.email.nameField.label")}
         value={name}
         setValue={setName}
-        placeholder="Ingresa tu nombre"
+        placeholder={t("register.email.nameField.placeholder")}
       />
       <CustomTextField
-        label="Email"
+        label={t("register.email.emailField.label")}
         value={email}
         setValue={setEmail}
-        placeholder="Completa tu email"
+        placeholder={t("register.email.emailField.placeholder")}
         error={!!emailError}
         helperText={emailError}
         onBlur={handleEmailBlur}

@@ -5,7 +5,7 @@ import theme from "../theme";
 import CustomButton from "../commons/CommonButton";
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
-
+import { useTranslation } from "react-i18next";
 import RegisterMethodStage from "../components/register/RegisterMethodStage";
 import RegisterEmailStage from "../components/register/RegisterEmailStage";
 import RegisterPasswordStage from "../components/register/RegisterPasswordStage";
@@ -20,31 +20,16 @@ import {
 
 type Stage = "email" | "password" | "done" | "method";
 
-const STAGES = {
-  email: {
-    title: "Crear un perfil con tu email",
-    subtitle: "Completa los datos y recibe el código de registro por correo electrónico.",
-    nextStage: "password",
-  },
-  password: {
-    title: "Crear contraseña",
-    subtitle: "Por favor, crea una contraseña segura para tu cuenta.",
-    nextStage: "done",
-  },
-  done: {
-    title: "¡Listo!",
-    subtitle: "Te damos la bienvenida a You are not alone.",
-  },
-  method: {
-    title: "Crear una cuenta",
-    subtitle: "Tu información es confidencial. No vamos a compartir tus datos.",
-    nextStage: "email",
-  },
+const NEXT_STAGE = {
+  email: "password",
+  password: "done",
+  method: "email",
 };
 
 export default function Register() {
   const screenSize = useScreenSize();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [stage, setStage] = useState<Stage>("method");
   const [name, setName] = useState('');
@@ -78,7 +63,7 @@ export default function Register() {
     if (stage === "done") {
       navigate('/login');
     } else {
-      setStage(STAGES[stage].nextStage as Stage);
+      setStage(NEXT_STAGE[stage] as Stage);
     }
   };
 
@@ -87,7 +72,7 @@ export default function Register() {
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="space-between"
+        justifyContent={stage === "done" ? "center" : "space-between"}
         alignItems="center"
         sx={{ height: "100%", width: "100%", my: 6, px: 1 }}
       >
@@ -108,10 +93,10 @@ export default function Register() {
             }}
           />
           <Typography variant="h4" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
-            {STAGES[stage].title}
+            {t(`register.${stage}.title`)}
           </Typography>
           <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
-            {STAGES[stage].subtitle}
+            {t(`register.${stage}.subtitle`)}
           </Typography>
 
           <Stack sx={{ width: "100%", gap: 2, my: 3 }}>
@@ -148,25 +133,25 @@ export default function Register() {
 
             {stage === "done" && <RegisterDoneStage onContinue={handleClick} />}
           </Stack>
+        </Box>
 
-          {stage === "method" && (
+        {stage === "method" && (
             <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
-              ¿Tienes una cuenta?{' '}
+              {t("register.method.haveAccount")}{' '}
               <Link
                 href="#"
                 underline="none"
                 sx={{ textTransform: 'none', color: theme.colors.lightBlue }}
                 onClick={() => navigate('/login')}
               >
-                Ingresar
+                {t("register.method.login")}
               </Link>
             </Typography>
           )}
-        </Box>
 
         {(stage === "email" || stage === "password") && (
           <CustomButton
-            text="Continuar"
+            text={t("register.continue")}
             onClick={handleClick}
             disabled={!canContinue}
           />

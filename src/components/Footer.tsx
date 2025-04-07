@@ -3,10 +3,12 @@ import theme from "../theme"
 import Logo from "../assets/branding/yana.svg"
 import { useLocation } from "react-router-dom"
 import { useScreenSize } from "../hooks/useScreenSize"
+import { useTranslation } from "react-i18next"
 
 export const Footer = () => {
   const location = useLocation().pathname
   const screenSize = useScreenSize()
+  const { t } = useTranslation()
 
   if (location === "/login" || location === "/" || location === "/register") return null
 
@@ -61,11 +63,10 @@ export const Footer = () => {
               </Typography>
             </Box>
             <Typography variant="body2" sx={{ maxWidth: { xs: 400, sm: 300 } }}>
-              ©2025 You are not alone - Todos los derechos reservados
+              {t("footer.copyright")}
             </Typography>
             <Typography variant="body2" sx={{ maxWidth: { xs: 400, sm: 300 }, mt: 2 }}>
-              YANA S. de R.L. de C.V. Renato Peña 490 Sur, Centro. Monterrey, Nuevo León, México.
-              C.P. 6400
+              {t("footer.address")}
             </Typography>
           </Grid>
 
@@ -83,11 +84,11 @@ export const Footer = () => {
               }}
             >
               <Typography variant="h5" sx={{ mb: -1 }} gutterBottom>
-                Productos
+                {t("footer.products")}
               </Typography>
-              <Typography variant="body2">Apoyo</Typography>
-              <Typography variant="body2">Asistencia médica</Typography>
-              <Typography variant="body2">Recursos</Typography>
+              <Typography variant="body2">{t("footer.support")}</Typography>
+              <Typography variant="body2">{t("footer.medicalAssistance")}</Typography>
+              <Typography variant="body2">{t("footer.resources")}</Typography>
             </Box>
           </Grid>
 
@@ -105,11 +106,11 @@ export const Footer = () => {
               }}
             >
               <Typography variant="h5" sx={{ mb: -1 }} gutterBottom>
-                Legal
+                {t("footer.legal")}
               </Typography>
-              <Typography variant="body2">Términos</Typography>
-              <Typography variant="body2">Condiciones</Typography>
-              <Typography variant="body2">Privacidad</Typography>
+              <Typography variant="body2">{t("footer.terms")}</Typography>
+              <Typography variant="body2">{t("footer.conditions")}</Typography>
+              <Typography variant="body2">{t("footer.privacy")}</Typography>
             </Box>
           </Grid>
 
@@ -121,7 +122,7 @@ export const Footer = () => {
               }}
             >
               <Typography variant="h5" gutterBottom>
-                Contacto
+              {t("footer.contact")}
               </Typography>
               <Typography variant="body2">Info@yana.com</Typography>
               <Box sx={{ display: "flex", mt: 2, gap: 2 }}>
