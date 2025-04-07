@@ -1,4 +1,4 @@
-import Google from "../assets/icons/Google.svg"
+// import Google from "../assets/icons/Google.svg"
 import Logo from "../assets/branding/yana.svg"
 import Slogan_ES from "../assets/branding/slogan_es.svg"
 import Slogan_EN from "../assets/branding/slogan_en.svg"
