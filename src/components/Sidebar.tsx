@@ -3,6 +3,7 @@ import { Paper, List, ListItem, ListItemText } from "@mui/material"
 import { useTheme } from "@mui/material/styles"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useLocation, useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 import HomeIcon from "../assets/icons/roofing.svg?react"
 import ResourcesIcon from "../assets/icons/loupe.svg?react"
@@ -19,7 +20,6 @@ const WIDTH = 250
 const PADDING_X: number = Number(theme.sidebar?.paddingX!)
 
 interface NavItem {
-  label: string
   icon: React.ReactNode
   selectedColor: string
   route: string
@@ -59,40 +59,35 @@ const Sidebar: React.FC = () => {
   const screenSize = useScreenSize()
   const navigate = useNavigate()
   const location = useLocation()
+  const { t } = useTranslation()
 
   const navItems: NavItem[] = [
     {
-      label: "Home",
       icon: <HomeIcon width={ICON_SIZE} height={ICON_SIZE} />,
       selectedColor: theme.colors.pink,
       route: "/",
     },
     {
-      label: "Recursos",
       icon: <ResourcesIcon width={ICON_SIZE} height={ICON_SIZE} />,
       selectedColor: theme.colors.lightBlue,
       route: "/resources",
     },
     {
-      label: "Contactos",
       icon: <ContactsIcon width={ICON_SIZE} height={ICON_SIZE} />,
       selectedColor: theme.colors.yellow,
       route: "/contacts",
     },
     {
-      label: "FAQ",
       icon: <FAQIcon width={ICON_SIZE} height={ICON_SIZE} />,
       selectedColor: theme.colors.green,
       route: "/FAQ",
     },
     {
-      label: "Configuración",
       icon: <SettingsIcon width={ICON_SIZE} height={ICON_SIZE} />,
       selectedColor: "white",
       route: "/settings",
     },
     {
-      label: "Exit",
       icon: <ExitIcon width={ICON_SIZE} height={ICON_SIZE} />,
       selectedColor: "white",
       route: "/login",
@@ -130,12 +125,12 @@ const Sidebar: React.FC = () => {
       <List>
         {navItems.slice(0, 4).map((item) => (
           <StyledListItem
-            key={item.label}
+            key={t(`${item.route}.menu` + 'sb')}
             selected={location.pathname === item.route}
             selectedColor={item.selectedColor}
             onClick={() => handleItemClick(item.route)}
           >
-            <ListItemText primary={item.label} />
+            <ListItemText primary={t(`${item.route}.menu`)} />
             {item.icon}
           </StyledListItem>
         ))}
@@ -143,12 +138,12 @@ const Sidebar: React.FC = () => {
       <List>
         {navItems.slice(4).map((item) => (
           <StyledListItem
-            key={item.label}
+            key={t(`${item.route}.menu` + 'sb')}
             selected={location.pathname === item.route}
             selectedColor={item.selectedColor}
             onClick={() => handleItemClick(item.route)}
           >
-            <ListItemText primary={item.label} />
+            <ListItemText primary={t(`${item.route !== "/login" ? item.route : "exit"}.menu`)} />
             {item.icon}
           </StyledListItem>
         ))}

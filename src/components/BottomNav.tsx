@@ -4,6 +4,7 @@ import { useTheme, Theme } from "@mui/material/styles"
 import styled from "@emotion/styled"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useLocation, useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
 import HomeIcon from "../assets/icons/roofing.svg?react"
 import ResourcesIcon from "../assets/icons/loupe.svg?react"
@@ -11,7 +12,6 @@ import ContactsIcon from "../assets/icons/people_outline.svg?react"
 import ProfileIcon from "../assets/icons/sentiment_satisfied_alt.svg?react"
 
 interface NavItem {
-  label: string
   icon: React.ReactNode
   selectedColor: string
   route: string
@@ -59,6 +59,7 @@ const StyledBottomNavAction = styled(BottomNavigationAction, {
 }))
 
 const BottomNav: React.FC = () => {
+  const { t } = useTranslation()
   const theme = useTheme() as Theme
   const screenSize = useScreenSize()
   const navigate = useNavigate()
@@ -66,25 +67,21 @@ const BottomNav: React.FC = () => {
 
   const navItems: NavItem[] = [
     {
-      label: "Home",
       icon: <HomeIcon width={24} height={24} />,
       selectedColor: theme.colors.pink,
       route: "/",
     },
     {
-      label: "Recursos",
       icon: <ResourcesIcon width={24} height={24} />,
       selectedColor: theme.colors.lightBlue,
       route: "/resources",
     },
     {
-      label: "Contactos",
       icon: <ContactsIcon width={24} height={24} />,
       selectedColor: theme.colors.yellow,
       route: "/contacts",
     },
     {
-      label: "Perfil",
       icon: <ProfileIcon width={24} height={24} />,
       selectedColor: theme.colors.green,
       route: "/profile",
@@ -125,8 +122,8 @@ const BottomNav: React.FC = () => {
       >
         {navItems.map((item, index) => (
           <StyledBottomNavAction
-            key={item.label}
-            label={item.label}
+            key={t(`${item.route}.menu` + 'bn')}
+            label={t(`${item.route}.menu`)}
             icon={item.icon}
             selected={currentIndex === index}
             selectedColor={item.selectedColor}

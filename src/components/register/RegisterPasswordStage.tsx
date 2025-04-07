@@ -1,5 +1,6 @@
 import { Typography, Box } from "@mui/material";
 import CustomTextField from "../../commons/CommonTextField";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   password: string;
@@ -18,23 +19,25 @@ export default function RegisterPasswordStage({
   passwordError, passwordStrength,
   handlePasswordBlur, handleRepeatPasswordBlur
 }: Props) {
+  const { t } = useTranslation();
+
   return (
     <>
       <CustomTextField
-        label="Contraseña"
+        label={t("register.password.passwordField.label")}
         type="password"
         value={password}
         setValue={setPassword}
-        placeholder="Crea tu contraseña (mínimo 8 caracteres)"
+        placeholder={t("register.password.passwordField.placeholder")}
         error={!!passwordError}
         onBlur={handlePasswordBlur}
       />
       {password && (
         <Typography fontSize={13} sx={{ color: "#fff", fontWeight: "light" }}>
-          Seguridad de la contraseña:{" "}
+          {t("register.password.passwordStrength.text")}:{" "}
           <Box component="span" sx={{
-            color: passwordStrength === "Fuerte" ? "limegreen"
-              : passwordStrength === "Media" ? "orange"
+            color: passwordStrength === t("register.password.passwordStrength.strong") ? "limegreen"
+              : passwordStrength === t("register.password.passwordStrength.medium") ? "orange"
                 : "red",
             fontWeight: "bold"
           }}>
@@ -43,11 +46,11 @@ export default function RegisterPasswordStage({
         </Typography>
       )}
       <CustomTextField
-        label="Repetir contraseña"
+        label={t("register.password.repeatPasswordField.label")}
         type="password"
         value={repeatPassword}
         setValue={setRepeatPassword}
-        placeholder="Repite tu contraseña"
+        placeholder={t("register.password.repeatPasswordField.placeholder")}
         error={!!passwordError}
         helperText={passwordError}
         onBlur={handleRepeatPasswordBlur}
