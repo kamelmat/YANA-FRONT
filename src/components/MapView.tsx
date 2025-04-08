@@ -5,10 +5,15 @@ import { useEffect } from "react"
 import { useUserLocationStore } from "../store/userLocationStore"
 import marker from "../assets/icons/marker.svg"
 import { useRef } from "react"
+import { useLocation } from "react-router-dom"
+
 
 export const MapView = () => {
+  const location = useLocation()
   const { userLocation, setUserLocation } = useUserLocationStore()
   const mapRef = useRef<maplibregl.Map | null>(null)
+
+  const isVisible = location.pathname === "/"
 
   useEffect(() => {
     getUserLocation()
@@ -62,7 +67,16 @@ export const MapView = () => {
       {!userLocation || userLocation.latitude === null || userLocation.longitude === null ? (
         <div>Obteniendo ubicación...</div>
       ) : null}
-      <div id="map" style={{ width: "100vw", height: "100vh" }} />
+      <div
+        id="map"
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "fixed",
+          zIndex: -1,
+          display: isVisible ? "block" : "none",
+        }}
+      />
     </div>
   )
 }
