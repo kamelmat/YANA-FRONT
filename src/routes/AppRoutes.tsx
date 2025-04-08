@@ -17,10 +17,10 @@ const AppRoutes: React.FC = () => (
       <Route path="/resources" element={<Resources />} />
       <Route path="/contacts" element={<Contacts />} />
       <Route path="/FAQ" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/register" element={<Register />} />
     </Route>
-    <Route path="/login" element={<Login />} />
-    <Route path="/profile" element={<Profile />} />
-    <Route path="/register" element={<Register />} />
   </Routes>
 )
 
