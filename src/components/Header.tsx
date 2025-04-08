@@ -47,20 +47,20 @@ export default function Header() {
         width: "100%",
         height: "8vh",
         backgroundColor: theme.colors.blackBackground,
-        padding: "0 20px",
+        padding: "0 1.25rem",
         position: "fixed",
         top: 0,
         left: 0,
         zIndex: 1000,
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
         {screenSize !== "sm" && (
           <>
             <img
               src={Logo}
               alt="Logo"
-              style={{ height: "4.5vh", cursor: "pointer" }}
+              style={{ width: "3rem", cursor: "pointer" }}
               onClick={() => navigate("/")}
             />
             {screenSize === "lg" && <img src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN} alt="Slogan" style={{ height: "4.5vh" }} />}

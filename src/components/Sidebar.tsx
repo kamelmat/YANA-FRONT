@@ -13,11 +13,10 @@ import SettingsIcon from "../assets/icons/settings.svg?react"
 import ExitIcon from "../assets/icons/exit.svg?react"
 
 import styled from "@emotion/styled"
-import theme from "../theme"
 
-const ICON_SIZE = theme.sidebar?.iconSize!
+const ICON_SIZE = "2rem"
 const WIDTH = 250
-const PADDING_X: number = Number(theme.sidebar?.paddingX!)
+const PADDING_X = "1.75rem"
 
 interface NavItem {
   icon: React.ReactNode
@@ -34,7 +33,7 @@ const StyledListItem = styled(ListItem, {
   shouldForwardProp: (prop) => prop !== "selectedColor",
 })<StyledListItemProps>(({ selectedColor, selected }) => ({
   color: "#fff",
-  padding: `12px ${PADDING_X}px`,
+  padding: `12px ${PADDING_X}`,
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
@@ -106,7 +105,7 @@ const Sidebar: React.FC = () => {
       sx={{
         position: "fixed",
         top: 0,
-        left: -WIDTH + PADDING_X * 2 + ICON_SIZE + "px",
+        left: `calc(${-WIDTH}px + ${PADDING_X} * 2 + ${ICON_SIZE})`,
         bottom: 0,
         width: WIDTH + "px",
         backgroundColor: theme.colors.blackBackground,
