@@ -23,8 +23,8 @@ export const Footer = () => {
         padding: 2,
         py: 4,
         pb: 10,
-        width: `calc(100% - ${sidebarWidth}px)`,
-        marginLeft: `${sidebarWidth}px`,
+        width: `calc(100% - ${sidebarWidth})`,
+        marginLeft: `${sidebarWidth}`,
         position: "relative",
         ...(screenSize === "sm" && {
           width: "100%",
