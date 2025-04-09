@@ -8,8 +8,9 @@ export const validateEmail = (value: string): string => {
 }
 
 export const validatePassword = (value: string): string => {
+  const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/
   if (!value) return i18n.t("register.password.passwordField.error.required")
-  if (value.length < 8) return i18n.t("register.password.passwordField.error.invalid")
+  if (!regex.test(value)) return i18n.t("register.password.passwordField.error.invalid")
   return ""
 }
 
