@@ -169,14 +169,15 @@ i18n.use(initReactI18next).init({
             subtitle: "Por favor, crea una contraseña segura para tu cuenta.",
             passwordField: {
               label: "Contraseña",
-              placeholder: "Crea tu contraseña (mínimo 8 caracteres)",
+              placeholder: "Crea tu contraseña (mínimo 8 caracteres, número y carácter especial)",
               error: {
                 required: "Por favor, introduce la contraseña.",
-                invalid: "La contraseña debe tener al menos 8 caracteres.",
+                invalid:
+                  "La contraseña debe incluir al menos 8 caracteres, un número y un carácter especial.",
               },
             },
             passwordStrength: {
-              text: "Seguridad de la contraseña:",
+              text: "Seguridad de la contraseña",
               weak: "Débil",
               medium: "Media",
               strong: "Fuerte",
