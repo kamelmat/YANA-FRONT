@@ -21,8 +21,6 @@ declare module "@mui/material/styles" {
       borderRadius?: string
     }
     sidebar?: {
-      iconSize: string
-      paddingX: string
       width: string
     }
   }
@@ -47,9 +45,7 @@ declare module "@mui/material/styles" {
       borderRadius?: string
     }
     sidebar?: {
-      iconSize: number
-      paddingX: number
-      width: number
+      width: string
     }
   }
 }
@@ -77,9 +73,7 @@ const theme = createTheme({
     borderRadius: "20px",
   },
   sidebar: {
-    iconSize: 30,
-    paddingX: 24,
-    width: 78,
+    width: "5.5rem",
   },
 })
 
