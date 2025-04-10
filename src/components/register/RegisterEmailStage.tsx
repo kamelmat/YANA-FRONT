@@ -4,13 +4,15 @@ import { useTranslation } from "react-i18next";
 interface Props {
   name: string;
   setName: (val: string) => void;
+  lastName: string;
+  setLastName: (val: string) => void;
   email: string;
   setEmail: (val: string) => void;
   emailError: string;
   handleEmailBlur: () => void;
 }
 
-export default function RegisterEmailStage({ name, setName, email, setEmail, emailError, handleEmailBlur }: Props) {
+export default function RegisterEmailStage({ name, setName, lastName, setLastName, email, setEmail, emailError, handleEmailBlur }: Props) {
   const { t } = useTranslation();
 
   return (
@@ -20,6 +22,12 @@ export default function RegisterEmailStage({ name, setName, email, setEmail, ema
         value={name}
         setValue={setName}
         placeholder={t("register.email.nameField.placeholder")}
+      />
+      <CustomTextField
+        label={t("register.email.lastNameField.label")}
+        value={lastName}
+        setValue={setLastName}
+        placeholder={t("register.email.lastNameField.placeholder")}
       />
       <CustomTextField
         label={t("register.email.emailField.label")}
