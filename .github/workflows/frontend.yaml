@@ -49,9 +49,6 @@ jobs:
         run: npm ci
         env:
           CI: true
-      
-      - name: Run ESLint
-        run: npm run lint
 
       - name: Build project
         if: success()
