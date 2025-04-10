@@ -62,4 +62,4 @@ jobs:
 
       - name: Upload to GCS bucket
         run: |
-          gsutil -m rsync -r ./dist gs://yana_front
+          gsutil -m rsync -r ./dist gs://yana-front
