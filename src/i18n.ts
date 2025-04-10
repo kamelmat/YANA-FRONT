@@ -10,7 +10,7 @@ i18n.use(initReactI18next).init({
       translation: {
         login: {
           access: "Access",
-          username: "Username",
+          email: "Email",
           password: "Password",
           remember: "Remember me",
           forgot: "Forgot my password",
@@ -130,7 +130,7 @@ i18n.use(initReactI18next).init({
         // login
         login: {
           access: "Acceder",
-          username: "Usuario",
+          email: "Email",
           password: "Contraseña",
           remember: "Recorderme",
           forgot: "Olvidé la contraseña",

@@ -11,34 +11,38 @@ import { useState, useEffect } from "react"
 import { Box, Checkbox, Link, Stack, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { useLogin } from "../hooks/useLogin"
 
 export default function LoginComponent() {
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const { mutate: login, isError, error } = useLogin()
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
     if (rememberMe) {
-      localStorage.setItem("username", username)
+      localStorage.setItem("email", email)
       localStorage.setItem("password", password)
       localStorage.setItem("rememberMe", "true")
     } else {
-      localStorage.removeItem("username")
+      localStorage.removeItem("email")
       localStorage.removeItem("password")
       localStorage.removeItem("rememberMe")
     }
+
+    login({ email, password })
   }
 
   useEffect(() => {
-    const savedUsername = localStorage.getItem("username")
+    const savedEmail = localStorage.getItem("email")
     const savedPassword = localStorage.getItem("password")
     const savedRememberMe = localStorage.getItem("rememberMe") === "true"
 
     if (savedRememberMe) {
-      setUsername(savedUsername || "")
+      setEmail(savedEmail || "")
       setPassword(savedPassword || "")
       setRememberMe(savedRememberMe)
     }
@@ -70,7 +74,7 @@ export default function LoginComponent() {
         <Typography>{t("login.access")}</Typography>
 
         <Stack spacing={2} direction="column" sx={{ marginTop: 1 }}>
-          <CustomTextField label={t("login.username")} value={username} setValue={setUsername} />
+          <CustomTextField label={t("login.email")} value={email} setValue={setEmail} />
 
           <CustomTextField
             label={t("login.password")}
@@ -110,6 +114,8 @@ export default function LoginComponent() {
             sx={{ marginBottom: 2 }}
           /> */}
         </Stack>
+
+        {isError && <Typography color="error">{error?.message || "Login failed"}</Typography>}
 
         <Typography variant="body2" align="center" sx={{ mt: 4 }}>
           {t("login.dontHaveAccount")}{" "}
