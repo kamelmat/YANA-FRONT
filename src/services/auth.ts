@@ -7,6 +7,11 @@ export interface RegisterData {
   password: string
 }
 
+export interface LoginData {
+  email: string
+  password: string
+}
+
 export const authService = {
   register: async (data: RegisterData) => {
     try {
@@ -33,6 +38,27 @@ export const authService = {
       return responseData
     } catch (error) {
       console.error("Register error:", error)
+      throw error
+    }
+  },
+
+  login: async (data: LoginData) => {
+    try {
+      const response = await fetch(`${API_URL}/usuario/api/login/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+
+      const responseData = await response.json()
+
+      if (!response.ok) {
+        throw new Error(responseData.message || "Login failed")
+      }
+
+      return responseData
+    } catch (error) {
+      console.error(`Login error: ${error}`)
       throw error
     }
   },
