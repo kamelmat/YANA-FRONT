@@ -20,6 +20,7 @@ import CustomButton from "../../commons/CommonButton"
 import deleteIcon from "../../assets/icons/cancel.svg"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
+import { useScreenSize } from "../../hooks/useScreenSize"
 
 // Constants
 const AVATAR_IMAGES = {
@@ -32,6 +33,7 @@ const AVATAR_IMAGES = {
 
 const ProfileDesktop: React.FC = () => {
   const { t } = useTranslation()
+  const screenSize = useScreenSize()
 
   return (
     <Box
@@ -56,10 +58,22 @@ const ProfileDesktop: React.FC = () => {
         backgroundColor: theme.colors.blackBackground,
       }}
     >
+      { screenSize === "lg" &&
+        <Typography variant="h4"
+          sx={{
+            gridRow: 1,
+            gridColumn: "1 / 3",
+            justifySelf: "start",
+            color: "white",
+          }}
+        >
+          {t("/profile.title")}
+        </Typography>
+      }
       <Avatar
         sx={{
           gridRow: {
-            lg: "4 / 8",
+            lg: "4 / 7",
             md: "1 / 4"
           },
           gridColumn: {
