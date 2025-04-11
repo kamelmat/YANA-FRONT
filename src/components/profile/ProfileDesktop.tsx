@@ -19,19 +19,13 @@ import avatarIcon32 from "../../assets/avatars/avatar_32.svg"
 import avatarIcon33 from "../../assets/avatars/avatar_33.svg"
 import avatarIcon34 from "../../assets/avatars/avatar_34.svg"
 import avatarIcon35 from "../../assets/avatars/avatar_35.svg"
-import blue from "../../assets/icons/blue.svg"
-import green from "../../assets/icons/green.svg"
-import pink from "../../assets/icons/pink.svg"
-import orange from "../../assets/icons/orange.svg"
-import yellow from "../../assets/icons/yellow.svg"
-
 const ProfileDesktop: React.FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
-  const handleNavigation = (path: string) => {
-    navigate(path)
-  }
+  // const handleNavigation = (path: string) => {
+  //   navigate(path)
+  // }
 
   return (
     <Box
@@ -169,11 +163,11 @@ const ProfileDesktop: React.FC = () => {
             gap: "0.5rem",
           }}
         >
-          <img src={blue} style={{ width: "1.5rem", height: "1.5rem" }} />
-          <img src={green} style={{ width: "1.5rem", height: "1.5rem" }} />
-          <img src={pink} style={{ width: "1.5rem", height: "1.5rem" }} />
-          <img src={orange} style={{ width: "1.5rem", height: "1.5rem" }} />
-          <img src={yellow} style={{ width: "1.5rem", height: "1.5rem" }} />
+          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.lightBlue, borderRadius: "50%" }} />
+          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.green, borderRadius: "50%" }} />
+          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.pink, borderRadius: "50%" }} />
+          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.orange, borderRadius: "50%" }} />
+          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.yellow, borderRadius: "50%" }} />
         </div>
       </Box>
 
