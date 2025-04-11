@@ -121,7 +121,7 @@ i18n.use(initReactI18next).init({
             "YANA S. de R.L. de C.V. Renato Peña 490 Sur, Centro. Monterrey, Nuevo León, México. C.P. 6400",
         },
         header: {
-          welcome: "Welcome, {{name}}",
+          welcome: "Hello, {{name}}",
         },
       },
     },
@@ -246,7 +246,7 @@ i18n.use(initReactI18next).init({
             "YANA S. de R.L. de C.V. Renato Peña 490 Sur, Centro. Monterrey, Nuevo León, México. C.P. 6400",
         },
         header: {
-          welcome: "Bienvenid@, {{name}}",
+          welcome: "Hola, {{name}}",
         },
       },
     },
