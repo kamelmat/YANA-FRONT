@@ -11,6 +11,7 @@ declare module "@mui/material/styles" {
       blueExtraLight: string
       green: string
       lightGray: string
+      orange: string
     }
     gradients: {
       gradientBlack?: string
@@ -35,6 +36,7 @@ declare module "@mui/material/styles" {
       blueExtraLight?: string
       green?: string
       lightGray?: string
+      orange?: string
     }
     gradients?: {
       gradientBlack?: string
@@ -62,6 +64,7 @@ const theme = createTheme({
     blueExtraLight: "#B1C9FF",
     green: "#92E3A9",
     lightGray: "#d9d9d9",
+    orange: "#F5A180",
   },
   gradients: {
     gradientBlack: "linear-gradient(to top, #262626, #3E4044)",
