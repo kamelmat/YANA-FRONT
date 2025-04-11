@@ -107,6 +107,7 @@ i18n.use(initReactI18next).init({
           saveHistory: "Save interaction history",
           hideStatus: "Hide my status or activity",
           mute: "Mute interactions",
+          deleteAccount: "Delete account",
         },
         "/contacts": {
           menu: "Contacts",
@@ -251,6 +252,7 @@ i18n.use(initReactI18next).init({
           saveHistory: "Guardar historia de interacciones",
           hideStatus: "Ocultar mi estado o actividad",
           mute: "Silenciar interacciones",
+          deleteAccount: "Eliminar cuenta",
         },
         "/contacts": {
           menu: "Contactos",
