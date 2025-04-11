@@ -1,0 +1,89 @@
+name: Deploy React to GCP
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20.x'
+  PROJECT_ID: 'training-batch-05'
+  GCS_BUCKET: 'gs://yana-front'
+
+jobs:
+  build:
+    name: Build Vite React App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          check-latest: true
+
+      - name: Cache Dependencies
+        id: npm-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm ci --prefer-offline --no-audit
+        env:
+          CI: true
+
+      - name: Build Project
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: ./dist
+
+  deploy:
+    name: Deploy Vite React App to GCP
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: ./dist
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Upload to GCS Bucket
+        run: |
+          gsutil -m rsync -r -d ./dist ${{ env.GCS_BUCKET }}
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000" ${{ env.GCS_BUCKET }}/**/*.js
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000" ${{ env.GCS_BUCKET }}/**/*.css
+          gsutil -m setmeta -h "Cache-Control:no-cache" ${{ env.GCS_BUCKET }}/index.html
+
+      - name: Invalidate Cloud CDN Cache
+        run: |
+          gcloud compute url-maps invalidate-cdn-cache web-map \
+            --path "/*" \
+            --project ${{ env.PROJECT_ID }} \
+            --quiet
