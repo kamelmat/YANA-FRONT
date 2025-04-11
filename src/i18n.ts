@@ -10,7 +10,7 @@ i18n.use(initReactI18next).init({
       translation: {
         login: {
           access: "Access",
-          username: "Username",
+          email: "Email",
           password: "Password",
           remember: "Remember me",
           forgot: "Forgot my password",
@@ -31,11 +31,15 @@ i18n.use(initReactI18next).init({
             login: "Log in",
           },
           email: {
-            title: "Create a perfile with your email",
+            title: "Create a profile with your email",
             subtitle: "Complete the data and receive the registration code by email.",
             nameField: {
               label: "Name",
               placeholder: "Enter your name",
+            },
+            lastNameField: {
+              label: "Last name",
+              placeholder: "Enter your last name",
             },
             emailField: {
               label: "Email",
@@ -126,7 +130,7 @@ i18n.use(initReactI18next).init({
         // login
         login: {
           access: "Acceder",
-          username: "Usuario",
+          email: "Email",
           password: "Contraseña",
           remember: "Recorderme",
           forgot: "Olvidé la contraseña",
@@ -154,6 +158,10 @@ i18n.use(initReactI18next).init({
             nameField: {
               label: "Nombre",
               placeholder: "Ingresa tu nombre",
+            },
+            lastNameField: {
+              label: "Apellido(s)",
+              placeholder: "Ingresa tu apellido(s)",
             },
             emailField: {
               label: "Correo electrónico",

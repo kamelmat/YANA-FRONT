@@ -18,6 +18,8 @@ import {
   getPasswordStrength
 } from "../utils/registerUtils";
 
+import { useRegister } from "../hooks/useRegister";
+
 type Stage = "email" | "password" | "done" | "method";
 
 const NEXT_STAGE = {
@@ -33,6 +35,7 @@ export default function Register() {
 
   const [stage, setStage] = useState<Stage>("method");
   const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -40,6 +43,8 @@ export default function Register() {
   const [passwordError, setPasswordError] = useState('');
   const [passwordStrength, setPasswordStrength] = useState("");
   const [canContinue, setCanContinue] = useState(false);
+
+  const { mutate } = useRegister();
 
   useEffect(() => {
     if (stage === "email") {
@@ -62,8 +67,20 @@ export default function Register() {
   const handleClick = () => {
     if (stage === "done") {
       navigate('/login');
-    } else {
+      return;
+    }
+
+    if (stage === "email") {
       setStage(NEXT_STAGE[stage] as Stage);
+    }
+
+    if (stage === "password") {
+      mutate({
+        name,
+        last_name: lastName,
+        email,
+        password,
+      });
     }
   };
 
@@ -108,6 +125,8 @@ export default function Register() {
               <RegisterEmailStage
                 name={name}
                 setName={setName}
+                lastName={lastName}
+                setLastName={setLastName}
                 email={email}
                 setEmail={(val: string) => {
                   setEmail(val);
