@@ -32,14 +32,14 @@ export default function CustomButton({
       {...rest}
       sx={{
         textTransform: 'none',
-        fontWeight: '400',
+        fontWeight: '600',
         padding: isSquare || isGhost ? '0 1em' : '0',
         borderRadius: isSquare ? '10px' : '35px',
         color: isPrimary
           ? 'black'
           : isSecondary
           ? theme.colors.lightBlue
-          : '#fff',
+          : theme.colors.lightPink,
         backgroundColor: isPrimary
           ? '#fff'
           : 'transparent',
@@ -48,8 +48,9 @@ export default function CustomButton({
         '&:hover': {
           backgroundColor: isPrimary
             ? theme.colors.lightGray
-            : `${theme.colors.lightBlue}20`,
-          color: isGhost ? theme.colors.lightGray : 'inherit',
+            : isSecondary 
+            ? `${theme.colors.lightBlue}20`
+            : `${theme.colors.lightPink}20`,
         },
         '&:disabled' : {
           backgroundColor: isPrimary ? `${theme.colors.lightGray}90` : '',
