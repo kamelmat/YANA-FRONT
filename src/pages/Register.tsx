@@ -14,6 +14,7 @@ import method from "../assets/register/create.svg";
 import email from "../assets/register/mail.svg";
 import password from "../assets/register/password.svg";
 import done from "../assets/register/done.webp";
+import back from "../assets/icons/back.svg";
 
 import {
   validateEmail,
@@ -29,9 +30,18 @@ import { useCheckEmail } from "../hooks/useCheckEmail";
 
 export type Stage = "email" | "password" | "done" | "method";
 
-const NEXT_STAGE = {
-  email: "password",
-  method: "email",
+const STAGE = {
+  email: {
+    next: "password",
+    back: "method"
+  },
+  password: {
+    next: "done",
+    back: "email"
+  },
+  method: {
+    next: "email",
+  },
 };
 
 const IMGS = {
@@ -91,7 +101,7 @@ export default function Register() {
       checkEmail(email, {
         onSuccess: (isInUse) => {
           if (!isInUse) {
-            setStage(NEXT_STAGE[stage] as Stage);
+            setStage(STAGE[stage].next as Stage);
           } else {
             setEmailError(t("register.email.emailField.error.taken"));
             setCanContinue(false);
@@ -110,93 +120,129 @@ export default function Register() {
     }
   };
 
+  const handleBackClick = () => {
+    if (stage === "method") navigate(-1);
+    else if (stage === "done") return;
+    else setStage(STAGE[stage].back as Stage);
+  };
+
   return (
     <AuthContainer screenSize={screenSize}>
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent="center"
+        justifyContent={ (screenSize === "sm" || !(stage === "email" || stage === "password")) ? "center" : "space-between"}
         alignItems="center"
-        sx={{ height: "100%", width: "100%", my: 6, px: 1.5 }}
+        position="relative"
+        sx={{ height: "100%", width: "100%", mt: 2, mb: { xs: 6, md: 2 }, px: 1.5 }}
       >  
+        { stage !== "done" &&
+          <Box
+            component="img"
+            src={back}
+            alt="back"
+            sx={{
+              height: "30px",
+              width: "30px",
+              alignSelf: "flex-start",
+              cursor: "pointer",
+              transition: "transform 0.2s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.15)"
+              },
+              position: "absolute",
+              top: "1em",
+              left: "1em"
+            }}
+            onClick={handleBackClick}
+          />
+        }
         <Box
-          sx={{
-            width: screenSize === "sm" ? "35%" : "40%",
-            aspectRatio: "1/1",
-            mb: 3
-          }}
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          width="100%"
+          mt={(stage === "method" || stage === "done") || screenSize === "sm" ? 0 : 10 }
         >
-          <img src={IMGS[stage]} alt={stage} style={{ height: "100%", width: "100%" }} />
+          <Box
+            sx={{
+              width: screenSize === "sm" ? "35%" : "40%",
+              aspectRatio: "1/1",
+              mb: 3
+            }}
+          >
+            <img src={IMGS[stage]} alt={stage} style={{ height: "100%", width: "100%" }} />
+          </Box>
+          <Typography variant="h5" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+            {t(`register.${stage}.title`)}
+          </Typography>
+          <Typography variant="body1" fontSize={13} align="center" mt={1} sx={{ color: "#fff", fontWeight: "light" }}>
+            {t(`register.${stage}.subtitle`)}
+          </Typography>
+
+          <Stack sx={{ width: "100%", gap: 2, my: 3 }}>
+            {stage === "method" && (
+              <RegisterMethodStage onEmailClick={() => setStage("email")} />
+            )}
+
+            {stage === "email" && (
+              <RegisterEmailStage
+                name={name}
+                setName={setName}
+                lastName={lastName}
+                setLastName={setLastName}
+                email={email}
+                setEmail={setEmail}
+                emailError={emailError}
+                setEmailError={setEmailError}
+                nameError={nameError}
+                lastNameError={lastNameError}
+                handleNameBlur={() => setNameError(validateName(name))}
+                handleLastNameBlur={() => setLastNameError(validateLastName(lastName))}
+                onEmailChecked={setEmailChecked}
+                isEmailChecked={emailChecked}
+              />
+            )}
+
+            {stage === "password" && (
+              <RegisterPasswordStage
+                password={password}
+                setPassword={setPassword}
+                repeatPassword={repeatPassword}
+                setRepeatPassword={setRepeatPassword}
+                passwordError={passwordError}
+                setPasswordError={setPasswordError}
+                passwordStrength={passwordStrength}
+                handlePasswordBlur={() => setPasswordError(validatePassword(password))}
+                handleRepeatPasswordBlur={() => setPasswordError(validateRepeatPassword(repeatPassword, password))}
+              />
+            )}
+
+            {stage === "done" && <RegisterDoneStage onContinue={handleClick} />}
+
+            {stage === "method" && (
+              <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+                {t("register.method.haveAccount")}{' '}
+                <Link
+                  underline="none"
+                  sx={{ textTransform: 'none', color: theme.colors.lightBlue }}
+                  onClick={() => navigate('/login')}
+                >
+                  {t("register.method.login")}
+                </Link>
+              </Typography>
+            )}
+          </Stack>
         </Box>
-        <Typography variant="h5" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
-          {t(`register.${stage}.title`)}
-        </Typography>
-        <Typography variant="body1" fontSize={13} align="center" mt={1} sx={{ color: "#fff", fontWeight: "light" }}>
-          {t(`register.${stage}.subtitle`)}
-        </Typography>
-
-        <Stack sx={{ width: "100%", gap: 2, my: 3 }}>
-          {stage === "method" && (
-            <RegisterMethodStage onEmailClick={() => setStage("email")} />
-          )}
-
-          {stage === "email" && (
-            <RegisterEmailStage
-              name={name}
-              setName={setName}
-              lastName={lastName}
-              setLastName={setLastName}
-              email={email}
-              setEmail={setEmail}
-              emailError={emailError}
-              setEmailError={setEmailError}
-              nameError={nameError}
-              lastNameError={lastNameError}
-              handleNameBlur={() => setNameError(validateName(name))}
-              handleLastNameBlur={() => setLastNameError(validateLastName(lastName))}
-              onEmailChecked={setEmailChecked}
-              isEmailChecked={emailChecked}
-            />
-          )}
-
-          {stage === "password" && (
-            <RegisterPasswordStage
-              password={password}
-              setPassword={setPassword}
-              repeatPassword={repeatPassword}
-              setRepeatPassword={setRepeatPassword}
-              passwordError={passwordError}
-              setPasswordError={setPasswordError}
-              passwordStrength={passwordStrength}
-              handlePasswordBlur={() => setPasswordError(validatePassword(password))}
-              handleRepeatPasswordBlur={() => setPasswordError(validateRepeatPassword(repeatPassword, password))}
-            />
-          )}
-
-          {stage === "done" && <RegisterDoneStage onContinue={handleClick} />}
-
-          {stage === "method" && (
-            <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
-              {t("register.method.haveAccount")}{' '}
-              <Link
-                underline="none"
-                sx={{ textTransform: 'none', color: theme.colors.lightBlue }}
-                onClick={() => navigate('/login')}
-              >
-                {t("register.method.login")}
-              </Link>
-            </Typography>
-          )}
-
-          {(stage === "email" || stage === "password") && (
-            <CustomButton
-              text={t("register.continue")}
-              onClick={handleClick}
-              disabled={!canContinue || isCheckingEmail || isRegistering}
-              icon={(isCheckingEmail || isRegistering) ? <CircularProgress size={20} sx={{ color: 'white' }} /> : undefined}
-            />
-          )}
-        </Stack>
+        {(stage === "email" || stage === "password") && (
+          <CustomButton
+            text={t("register.continue")}
+            onClick={handleClick}
+            disabled={!canContinue || isCheckingEmail || isRegistering}
+            icon={(isCheckingEmail || isRegistering) ? <CircularProgress size={20} sx={{ color: 'white' }} /> : undefined}
+          />
+        )}
       </Box>
     </AuthContainer>
   );
