@@ -1,9 +1,11 @@
 import React from "react"
-import { Paper, List, ListItem, ListItemText } from "@mui/material"
+import { Box, List, ListItem, ListItemText, Typography } from "@mui/material"
 import { useTheme } from "@mui/material/styles"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { useUserStore } from "../store/useUserStore"
+import { getFormattedDate } from "../utils/getFormattedDate"
 
 import HomeIcon from "../assets/icons/roofing.svg?react"
 import ResourcesIcon from "../assets/icons/loupe.svg?react"
@@ -32,13 +34,16 @@ interface StyledListItemProps {
 const StyledListItem = styled(ListItem, {
   shouldForwardProp: (prop) => prop !== "selectedColor",
 })<StyledListItemProps>(({ selectedColor, selected }) => ({
-  color: "#fff",
+  color: selected ? selectedColor : "#fff",
   padding: `12px ${PADDING_X}`,
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-start",
   transition: "all 0.3s ease",
+  "&:hover": {
+    color: selectedColor,
+  },
   "& svg": {
     "& path": {
       fill: selected ? selectedColor : "#ffffff",
@@ -59,6 +64,8 @@ const Sidebar: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { t } = useTranslation()
+  const { username } = useUserStore()
+  const date = getFormattedDate()
 
   const navItems: NavItem[] = [
     {
@@ -83,12 +90,12 @@ const Sidebar: React.FC = () => {
     },
     {
       icon: <SettingsIcon width={ICON_SIZE} height={ICON_SIZE} />,
-      selectedColor: "white",
-      route: "/settings",
+      selectedColor: theme.colors.pink,
+      route: "/profile",
     },
     {
       icon: <ExitIcon width={ICON_SIZE} height={ICON_SIZE} />,
-      selectedColor: "white",
+      selectedColor: theme.colors.pink,
       route: "/login",
     },
   ]
@@ -100,7 +107,7 @@ const Sidebar: React.FC = () => {
   }
 
   return (
-    <Paper
+    <Box
       component="nav"
       sx={{
         position: "fixed",
@@ -110,7 +117,7 @@ const Sidebar: React.FC = () => {
         width: WIDTH + "px",
         backgroundColor: theme.colors.blackBackground,
         zIndex: 900,
-        paddingTop: "15vh",
+        paddingTop: "10vh",
         borderRadius: 0,
         display: "flex",
         flexDirection: "column",
@@ -121,19 +128,38 @@ const Sidebar: React.FC = () => {
         },
       }}
     >
-      <List>
-        {navItems.slice(0, 4).map((item) => (
-          <StyledListItem
-            key={t(`${item.route}.menu` + 'sb')}
-            selected={location.pathname === item.route}
-            selectedColor={item.selectedColor}
-            onClick={() => handleItemClick(item.route)}
+      <Box>
+        <Box sx={{ paddingLeft: PADDING_X }}>
+          <Typography
+            variant="h6"
+            fontSize={22}
+            sx={{
+              color: "white",
+              fontWeight: "bold",
+              lineHeight: 1,
+              fontFamily: "League Spartan",
+            }}
           >
-            <ListItemText primary={t(`${item.route}.menu`)} />
-            {item.icon}
-          </StyledListItem>
-        ))}
-      </List>
+            {t("header.welcome", { name: username })}
+          </Typography>
+          <Typography fontSize={18} sx={{ color: "white", fontFamily: "League Spartan" }}>
+            {date}
+          </Typography>
+        </Box>
+        <List>
+          {navItems.slice(0, 4).map((item) => (
+            <StyledListItem
+              key={t(`${item.route}.menu` + 'sb')}
+              selected={location.pathname === item.route}
+              selectedColor={item.selectedColor}
+              onClick={() => handleItemClick(item.route)}
+            >
+              <ListItemText primary={t(`${item.route}.menu`)} />
+              {item.icon}
+            </StyledListItem>
+          ))}
+        </List>
+      </Box>
       <List>
         {navItems.slice(4).map((item) => (
           <StyledListItem
@@ -147,7 +173,7 @@ const Sidebar: React.FC = () => {
           </StyledListItem>
         ))}
       </List>
-    </Paper>
+    </Box>
   )
 }
 
