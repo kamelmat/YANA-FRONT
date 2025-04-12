@@ -36,10 +36,18 @@ i18n.use(initReactI18next).init({
             nameField: {
               label: "Name",
               placeholder: "Enter your name",
+              error: {
+                required: "Name is required.",
+                tooShort: "Name must be at least 2 characters long.",
+              },
             },
             lastNameField: {
               label: "Last name",
               placeholder: "Enter your last name",
+              error: {
+                required: "Last name is required.",
+                tooShort: "Last name must be at least 2 characters long.",
+              },
             },
             emailField: {
               label: "Email",
@@ -47,6 +55,7 @@ i18n.use(initReactI18next).init({
               error: {
                 required: "The email is required.",
                 invalid: "Please enter a valid email address.",
+                taken: "This email is already registered.",
               },
             },
           },
@@ -177,10 +186,18 @@ i18n.use(initReactI18next).init({
             nameField: {
               label: "Nombre",
               placeholder: "Ingresa tu nombre",
+              error: {
+                required: "El nombre es requerido.",
+                tooShort: "El nombre debe tener al menos 2 caracteres.",
+              },
             },
             lastNameField: {
               label: "Apellido(s)",
               placeholder: "Ingresa tu apellido(s)",
+              error: {
+                required: "El apellido es requerido.",
+                tooShort: "El apellido debe tener al menos 2 caracteres.",
+              },
             },
             emailField: {
               label: "Correo electrónico",
@@ -188,6 +205,7 @@ i18n.use(initReactI18next).init({
               error: {
                 required: "El correo es requerido.",
                 invalid: "Por favor, introduce un correo electrónico válido.",
+                taken: "Este correo electrónico ya está registrado.",
               },
             },
           },
