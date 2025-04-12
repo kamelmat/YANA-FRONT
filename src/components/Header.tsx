@@ -104,7 +104,7 @@ export default function Header() {
           textAlign: "center",
         }}
       >
-        {location !== "/"  && 
+        {location !== "/" && screenSize !== "lg" && 
           <Typography variant="h5" sx={{ color: "white" }}>
             {t(`${location}.title`)}
           </Typography>
