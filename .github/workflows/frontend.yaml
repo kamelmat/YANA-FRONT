@@ -81,9 +81,9 @@ jobs:
           gsutil -m setmeta -h "Cache-Control:public, max-age=31536000" ${{ env.GCS_BUCKET }}/**/*.css
           gsutil -m setmeta -h "Cache-Control:no-cache" ${{ env.GCS_BUCKET }}/index.html
 
-      - name: Invalidate Cloud CDN Cache
-        run: |
-          gcloud compute url-maps invalidate-cdn-cache web-map \
-            --path "/*" \
-            --project ${{ env.PROJECT_ID }} \
-            --quiet
+      # - name: Invalidate Cloud CDN Cache
+      #   run: |
+      #     gcloud compute url-maps invalidate-cdn-cache web-map \
+      #       --path "/*" \
+      #       --project ${{ env.PROJECT_ID }} \
+      #       --quiet
