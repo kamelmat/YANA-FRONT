@@ -94,7 +94,6 @@ export default function LoginComponent() {
             </Typography>
           </Box>
           <Link
-            href="#"
             variant="body2"
             sx={{ color: theme.colors.lightBlue, textDecoration: "none" }}
           >
@@ -111,7 +110,6 @@ export default function LoginComponent() {
         <Typography variant="body2" align="center" sx={{ mt: 4 }}>
           {t("login.dontHaveAccount")}{" "}
           <Link
-            href="#"
             underline="none"
             sx={{ textTransform: "none", color: theme.colors.lightBlue }}
             onClick={() => navigate("/register")}

@@ -21,7 +21,7 @@ export default function RegisterMethodStage({ onEmailClick }: { onEmailClick: ()
         sx={{ color: "#fff", fontWeight: "light" }}
       >
         {t("register.method.privacyText")}{" "}
-        <Link href="#" underline="none" sx={{ color: theme.colors.lightBlue }}>
+        <Link underline="none" sx={{ color: theme.colors.lightBlue }}>
           {t("register.method.privacyLink")}
         </Link>
       </Typography>

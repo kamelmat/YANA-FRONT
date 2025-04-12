@@ -179,7 +179,6 @@ export default function Register() {
             <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
               {t("register.method.haveAccount")}{' '}
               <Link
-                href="#"
                 underline="none"
                 sx={{ textTransform: 'none', color: theme.colors.lightBlue }}
                 onClick={() => navigate('/login')}
