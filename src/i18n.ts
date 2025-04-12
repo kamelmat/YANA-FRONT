@@ -32,7 +32,8 @@ i18n.use(initReactI18next).init({
           },
           email: {
             title: "Create a profile with your email",
-            subtitle: "Complete the data and receive the registration code by email.",
+            subtitle:
+              "Complete the data and receive a verification code by email to validate your account.",
             nameField: {
               label: "Name",
               placeholder: "Enter your name",
@@ -87,7 +88,7 @@ i18n.use(initReactI18next).init({
           },
           done: {
             title: "Done",
-            subtitle: "Welcome to You are not alone.",
+            subtitle: "Thank you for being part of the You are not alone community!",
           },
           continue: "Continue",
         },
@@ -176,13 +177,14 @@ i18n.use(initReactI18next).init({
             useEmail: "Registrarse con correo electrónico",
             useGoogle: "Crear una cuenta con Google",
             privacyText: "Al crear una cuenta, aceptas los",
-            privacyLink: "Términos de uso y políticas de privacidad",
+            privacyLink: "Términos de uso y políticas de privacidad.",
             haveAccount: "¿Tienes una cuenta?",
             login: "Ingresar",
           },
           email: {
             title: "Crea un perfil con tu email",
-            subtitle: "Completa los datos y recibe el código de registro por correo electrónico.",
+            subtitle:
+              "Completa los datos y recibe un código por correo electrónico para validar tu cuenta.",
             nameField: {
               label: "Nombre",
               placeholder: "Ingresa tu nombre",
@@ -238,7 +240,7 @@ i18n.use(initReactI18next).init({
           },
           done: {
             title: "¡Listo!",
-            subtitle: "Te damos la bienvenida a You are not alone.",
+            subtitle: "¡Gracias por ser parte de la comunidad You are not alone!",
           },
           continue: "Continuar",
         },
