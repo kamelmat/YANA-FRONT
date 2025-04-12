@@ -1,4 +1,3 @@
-// components/containers/AuthContainer.tsx
 import { Box } from '@mui/material';
 import theme from '../theme';
 import { useLocation } from 'react-router-dom';
