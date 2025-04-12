@@ -68,11 +68,23 @@ i18n.use(initReactI18next).init({
               placeholder: "Create a password (minimum 8 characters)",
               error: {
                 required: "Please enter the password.",
-                invalid: "The password must be at least 8 characters long.",
+                invalid: {
+                  tooShort: "The password must be at least 8 characters long.",
+                  noNumber: "The password must contain at least one number.",
+                  noSpecialChar: "The password must contain at least one special character.",
+                  noNumberAndSpecial:
+                    "The password must contain at least one number and one special character.",
+                  tooShortAndNoNumber:
+                    "The password must be at least 8 characters long and contain at least one number.",
+                  tooShortAndNoSpecial:
+                    "The password must be at least 8 characters long and contain at least one special character.",
+                  tooShortAndNoNumberAndSpecial:
+                    "The password must be at least 8 characters long and contain at least one number and one special character.",
+                },
               },
             },
             passwordStrength: {
-              text: "Password strength:",
+              text: "Password strength",
               weak: "Weak",
               medium: "Medium",
               strong: "Strong",
@@ -219,8 +231,19 @@ i18n.use(initReactI18next).init({
               placeholder: "Crea tu contraseña (mínimo 8 caracteres, número y carácter especial)",
               error: {
                 required: "Por favor, introduce la contraseña.",
-                invalid:
-                  "La contraseña debe incluir al menos 8 caracteres, un número y un carácter especial.",
+                invalid: {
+                  tooShort: "La contraseña debe incluir al menos 8 caracteres.",
+                  noNumber: "La contraseña debe incluir al menos un número.",
+                  noSpecialChar: "La contraseña debe incluir al menos un carácter especial.",
+                  noNumberAndSpecial:
+                    "La contraseña debe incluir al menos un número y uno especial.",
+                  tooShortAndNoNumber:
+                    "La contraseña debe tener al menos 8 caracteres y al menos un número.",
+                  tooShortAndNoSpecial:
+                    "La contraseña debe tener al menos 8 caracteres y al menos un carácter especial.",
+                  tooShortAndNoNumberAndSpecial:
+                    "La contraseña debe tener al menos 8 caracteres, al menos un número y al menos uno especial.",
+                },
               },
             },
             passwordStrength: {
