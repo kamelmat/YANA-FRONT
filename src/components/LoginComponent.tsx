@@ -1,4 +1,3 @@
-// import Google from "../assets/icons/Google.svg"
 import Logo from "../assets/branding/yana.svg"
 import Slogan_ES from "../assets/branding/slogan_es.svg"
 import Slogan_EN from "../assets/branding/slogan_en.svg"
@@ -105,14 +104,6 @@ export default function LoginComponent() {
 
         <Stack spacing={1.5} direction="column" sx={{ marginTop: 4 }}>
           <CustomButton type="submit" text={t("login.login")} variantType="primary" />
-
-          {/* <CustomButton
-            text={t("login.loginGoogle")}
-            icon={<img src={Google} alt="Google Icon" style={{ width: '35px', height: '35px' }} />}
-            variantType="secondary"
-            onClick={() => console.log('Google login')}
-            sx={{ marginBottom: 2 }}
-          /> */}
         </Stack>
 
         {isError && <Typography color="error">{error?.message || "Login failed"}</Typography>}
