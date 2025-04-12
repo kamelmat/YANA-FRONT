@@ -20,6 +20,18 @@ export const validateRepeatPassword = (value: string, original: string): string 
   return ""
 }
 
+export const validateName = (value: string): string => {
+  if (!value) return i18n.t("register.email.nameField.error.required")
+  if (value.trim().length < 2) return i18n.t("register.email.nameField.error.tooShort")
+  return ""
+}
+
+export const validateLastName = (value: string): string => {
+  if (!value) return i18n.t("register.email.lastNameField.error.required")
+  if (value.trim().length < 2) return i18n.t("register.email.lastNameField.error.tooShort")
+  return ""
+}
+
 export const getPasswordStrength = (value: string): string => {
   if (!value) return ""
   const hasLetters = /[a-zA-Z]/.test(value)
