@@ -158,7 +158,7 @@ const Sidebar: React.FC = () => {
         <List>
           {navItems.slice(0, 4).map((item) => (
             <StyledListItem
-              key={t(`${item.route}.menu` + 'sb')}
+              key={item.route}
               selected={location.pathname === item.route}
               selectedColor={item.selectedColor}
               onClick={() => handleItemClick(item.route)}
@@ -172,7 +172,7 @@ const Sidebar: React.FC = () => {
       <List>
         {navItems.slice(4).map((item) => (
           <StyledListItem
-            key={t(`${item.route}.menu` + 'sb')}
+            key={item.route}
             selected={location.pathname === item.route}
             selectedColor={item.selectedColor}
             onClick={() => handleItemClick(item.route)}
