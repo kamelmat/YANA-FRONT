@@ -117,14 +117,14 @@ const Sidebar: React.FC = () => {
         width: WIDTH + "px",
         backgroundColor: theme.colors.blackBackground,
         zIndex: 900,
-        paddingTop: "10vh",
         borderRadius: 0,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        transition: "left 0.3s ease",
+        transition: "left 0.3s ease, background-color 0.3s ease",
         "&:hover": {
           left: 0,
+          background: `linear-gradient(to bottom, ${theme.colors.blackBackground}, ${theme.colors.darkPurple} 15%)`,
         },
       }}
     >
@@ -133,6 +133,7 @@ const Sidebar: React.FC = () => {
           <Typography
             variant="h6"
             fontSize={22}
+            paddingTop="12vh"
             sx={{
               color: "white",
               fontWeight: "bold",

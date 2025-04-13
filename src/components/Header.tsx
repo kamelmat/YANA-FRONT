@@ -46,7 +46,7 @@ export default function Header() {
         justifyContent: "space-between",
         width: "100%",
         height: "8vh",
-        backgroundColor: theme.colors.blackBackground,
+        backgroundColor: screenSize === "sm" ? theme.colors.darkPurple : theme.colors.blackBackground,
         padding: "0 1.25rem",
         position: "fixed",
         top: 0,
