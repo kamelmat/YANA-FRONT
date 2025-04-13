@@ -6,12 +6,14 @@ import { useAuthStore } from "../store/authStore"
 export const useLogin = () => {
   const navigate = useNavigate()
   const setAccessToken = useAuthStore((state) => state.setAccessToken)
+  const setRefreshToken = useAuthStore((state) => state.setRefreshToken)
 
   return useMutation({
     mutationFn: async (data: LoginData) => {
       const response = await authService.login(data)
-      if (response.access_token) {
-        setAccessToken(response.access_token)
+      if (response.access) {
+        setAccessToken(response.access)
+        setRefreshToken(response.refresh)
       }
       return response
     },

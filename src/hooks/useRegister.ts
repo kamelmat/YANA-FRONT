@@ -4,19 +4,19 @@ import { authService, RegisterData } from "../services/auth"
 import { useNavigate } from "react-router-dom"
 import { useAuthStore } from "../store/authStore"
 
-export const useRegister = () => {
-  const navigate = useNavigate()
-  const setAccessToken = useAuthStore((state) => state.setAccessToken)
-
 import { Stage } from "../pages/Register"
 
-
 export const useRegister = (setStage: (stage: Stage) => void) => {
+  const navigate = useNavigate()
+  const setAccessToken = useAuthStore((state) => state.setAccessToken)
+  const setRefreshToken = useAuthStore((state) => state.setRefreshToken)
+
   return useMutation({
     mutationFn: async (data: RegisterData) => {
       const response = await authService.register(data)
-      if (response.access_token) {
-        setAccessToken(response.access_token)
+      if (response.access) {
+        setAccessToken(response.access)
+        setRefreshToken(response.refresh)
       }
       return response
     },

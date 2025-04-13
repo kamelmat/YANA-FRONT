@@ -63,12 +63,15 @@ export const authService = {
     }
   },
 
-
-  logout: async () => {
+  logout: async (accessToken: string, refreshToken: string) => {
     try {
       const response = await fetch(`${API_URL}/usuario/api/logout/`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ refresh: refreshToken }),
         credentials: "include",
       })
 
@@ -79,6 +82,9 @@ export const authService = {
       return response.json()
     } catch (error) {
       console.error(`Logout error: ${error}`)
+      throw error
+    }
+  },
 
   checkEmail: async (email: string): Promise<boolean> => {
     try {
@@ -86,6 +92,7 @@ export const authService = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
+        credentials: "include",
       })
 
       const responseData = await response.json()
