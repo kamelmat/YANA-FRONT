@@ -1,4 +1,4 @@
-import { Typography, Box, Stack, Link } from "@mui/material";
+import { Typography, Box, Stack, Link, CircularProgress } from "@mui/material";
 import AuthContainer from "../commons/AuthContainer";
 import { useScreenSize } from '../hooks/useScreenSize';
 import theme from "../theme";
@@ -10,23 +10,46 @@ import RegisterMethodStage from "../components/register/RegisterMethodStage";
 import RegisterEmailStage from "../components/register/RegisterEmailStage";
 import RegisterPasswordStage from "../components/register/RegisterPasswordStage";
 import RegisterDoneStage from "../components/register/RegisterDoneStage";
+import method from "../assets/register/create.svg";
+import email from "../assets/register/mail.svg";
+import password from "../assets/register/password.svg";
+import done from "../assets/register/done.webp";
+import back from "../assets/icons/back.svg";
 
 import {
   validateEmail,
   validatePassword,
   validateRepeatPassword,
-  getPasswordStrength
+  getPasswordStrength,
+  validateName,
+  validateLastName
 } from "../utils/registerUtils";
 
 import { useRegister } from "../hooks/useRegister";
+import { useCheckEmail } from "../hooks/useCheckEmail";
 
-type Stage = "email" | "password" | "done" | "method";
+export type Stage = "email" | "password" | "done" | "method";
 
-const NEXT_STAGE = {
-  email: "password",
-  password: "done",
-  method: "email",
+const STAGE = {
+  email: {
+    next: "password",
+    back: "method"
+  },
+  password: {
+    next: "done",
+    back: "email"
+  },
+  method: {
+    next: "email",
+  },
 };
+
+const IMGS = {
+  method,
+  email,
+  password,
+  done
+}
 
 export default function Register() {
   const screenSize = useScreenSize();
@@ -41,15 +64,19 @@ export default function Register() {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
   const [passwordStrength, setPasswordStrength] = useState("");
   const [canContinue, setCanContinue] = useState(false);
+  const [emailChecked, setEmailChecked] = useState(false);
 
-  const { mutate } = useRegister();
+  const { mutate: register, isPending: isRegistering } = useRegister(setStage);
+  const { mutate: checkEmail, isPending: isCheckingEmail } = useCheckEmail();
 
   useEffect(() => {
     if (stage === "email") {
-      const valid = !validateEmail(email);
-      setCanContinue(valid && !!name.trim());
+      const valid = !validateEmail(email) && !validateName(name) && !validateLastName(lastName);
+      setCanContinue(valid);
     }
 
     if (stage === "password") {
@@ -62,20 +89,29 @@ export default function Register() {
     if (stage === "done") {
       setCanContinue(true);
     }
-  }, [stage, email, password, repeatPassword, name]);
+  }, [stage, email, password, repeatPassword, name, lastName]);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (stage === "done") {
       navigate('/login');
       return;
     }
 
     if (stage === "email") {
-      setStage(NEXT_STAGE[stage] as Stage);
+      checkEmail(email, {
+        onSuccess: (isInUse) => {
+          if (!isInUse) {
+            setStage(STAGE[stage].next as Stage);
+          } else {
+            setEmailError(t("register.email.emailField.error.taken"));
+            setCanContinue(false);
+          }
+        },
+      });
     }
 
     if (stage === "password") {
-      mutate({
+      register({
         name,
         last_name: lastName,
         email,
@@ -84,35 +120,64 @@ export default function Register() {
     }
   };
 
+  const handleBackClick = () => {
+    if (stage === "method") navigate(-1);
+    else if (stage === "done") return;
+    else setStage(STAGE[stage].back as Stage);
+  };
+
   return (
     <AuthContainer screenSize={screenSize}>
       <Box
         display="flex"
         flexDirection="column"
-        justifyContent={stage === "done" ? "center" : "space-between"}
+        justifyContent={ (screenSize === "sm" || !(stage === "email" || stage === "password")) ? "center" : "space-between"}
         alignItems="center"
-        sx={{ height: "100%", width: "100%", my: 6, px: 1 }}
-      >
+        position="relative"
+        sx={{ height: "100%", width: "100%", mt: 2, mb: { xs: 6, md: 2 }, px: 1.5 }}
+      >  
+        { stage !== "done" &&
+          <Box
+            component="img"
+            src={back}
+            alt="back"
+            sx={{
+              height: "30px",
+              width: "30px",
+              alignSelf: "flex-start",
+              cursor: "pointer",
+              transition: "transform 0.2s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.15)"
+              },
+              position: "absolute",
+              top: "1em",
+              left: "1em"
+            }}
+            onClick={handleBackClick}
+          />
+        }
         <Box
           display="flex"
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          sx={{ width: "100%" }}
+          width="100%"
+          mt={(stage === "method" || stage === "done") || screenSize === "sm" ? 0 : 10 }
         >
           <Box
             sx={{
-              width: screenSize === "sm" ? "50%" : "40%",
+              width: screenSize === "sm" ? "35%" : "40%",
               aspectRatio: "1/1",
-              backgroundColor: theme.colors.lightGray,
-              borderRadius: '50%',
               mb: 3
             }}
-          />
-          <Typography variant="h4" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+          >
+            <img src={IMGS[stage]} alt={stage} style={{ height: "100%", width: "100%" }} />
+          </Box>
+          <Typography variant="h5" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
             {t(`register.${stage}.title`)}
           </Typography>
-          <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+          <Typography variant="body1" fontSize={13} align="center" mt={1} sx={{ color: "#fff", fontWeight: "light" }}>
             {t(`register.${stage}.subtitle`)}
           </Typography>
 
@@ -128,12 +193,15 @@ export default function Register() {
                 lastName={lastName}
                 setLastName={setLastName}
                 email={email}
-                setEmail={(val: string) => {
-                  setEmail(val);
-                  setEmailError(validateEmail(val));
-                }}
+                setEmail={setEmail}
                 emailError={emailError}
-                handleEmailBlur={() => setEmailError(validateEmail(email))}
+                setEmailError={setEmailError}
+                nameError={nameError}
+                lastNameError={lastNameError}
+                handleNameBlur={() => setNameError(validateName(name))}
+                handleLastNameBlur={() => setLastNameError(validateLastName(lastName))}
+                onEmailChecked={setEmailChecked}
+                isEmailChecked={emailChecked}
               />
             )}
 
@@ -144,6 +212,7 @@ export default function Register() {
                 repeatPassword={repeatPassword}
                 setRepeatPassword={setRepeatPassword}
                 passwordError={passwordError}
+                setPasswordError={setPasswordError}
                 passwordStrength={passwordStrength}
                 handlePasswordBlur={() => setPasswordError(validatePassword(password))}
                 handleRepeatPasswordBlur={() => setPasswordError(validateRepeatPassword(repeatPassword, password))}
@@ -151,28 +220,27 @@ export default function Register() {
             )}
 
             {stage === "done" && <RegisterDoneStage onContinue={handleClick} />}
+
+            {stage === "method" && (
+              <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+                {t("register.method.haveAccount")}{' '}
+                <Link
+                  underline="none"
+                  sx={{ textTransform: 'none', color: theme.colors.lightBlue }}
+                  onClick={() => navigate('/login')}
+                >
+                  {t("register.method.login")}
+                </Link>
+              </Typography>
+            )}
           </Stack>
         </Box>
-
-        {stage === "method" && (
-            <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
-              {t("register.method.haveAccount")}{' '}
-              <Link
-                href="#"
-                underline="none"
-                sx={{ textTransform: 'none', color: theme.colors.lightBlue }}
-                onClick={() => navigate('/login')}
-              >
-                {t("register.method.login")}
-              </Link>
-            </Typography>
-          )}
-
         {(stage === "email" || stage === "password") && (
           <CustomButton
             text={t("register.continue")}
             onClick={handleClick}
-            disabled={!canContinue}
+            disabled={!canContinue || isCheckingEmail || isRegistering}
+            icon={(isCheckingEmail || isRegistering) ? <CircularProgress size={20} sx={{ color: 'white' }} /> : undefined}
           />
         )}
       </Box>
