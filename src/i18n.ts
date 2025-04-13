@@ -121,7 +121,7 @@ i18n.use(initReactI18next).init({
           menu: "Settings",
           title: "Settings",
         },
-        exit: {
+        "/logout": {
           menu: "Exit",
           title: "Exit",
         },
@@ -266,8 +266,9 @@ i18n.use(initReactI18next).init({
           menu: "Configuración",
           title: "Configuración",
         },
-        exit: {
+        "/logout": {
           menu: "Cerrar sesión",
+          title: "Cerrar sesión",
         },
         footer: {
           products: "Productos",

@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+import { useLogout } from "../hooks/useLogout"
 
 import HomeIcon from "../assets/icons/roofing.svg?react"
 import ResourcesIcon from "../assets/icons/loupe.svg?react"
@@ -59,6 +60,7 @@ const Sidebar: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { t } = useTranslation()
+  const { mutate: logout } = useLogout()
 
   const navItems: NavItem[] = [
     {
@@ -89,14 +91,18 @@ const Sidebar: React.FC = () => {
     {
       icon: <ExitIcon width={ICON_SIZE} height={ICON_SIZE} />,
       selectedColor: "white",
-      route: "/login",
+      route: "/logout",
     },
   ]
 
   if (screenSize === "sm" || location.pathname === "/login" || location.pathname === "/register") return null
 
   const handleItemClick = (route: string) => {
-    navigate(route)
+    if (route === "/logout") {
+      logout()
+    } else {
+      navigate(route)
+    }
   }
 
   return (
