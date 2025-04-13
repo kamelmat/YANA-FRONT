@@ -1,6 +1,7 @@
 import { Typography, Box } from "@mui/material";
 import CustomTextField from "../../commons/CommonTextField";
 import { useTranslation } from "react-i18next";
+import { validateRepeatPassword } from "../../utils/registerUtils";
 
 interface Props {
   password: string;
@@ -8,6 +9,7 @@ interface Props {
   repeatPassword: string;
   setRepeatPassword: (val: string) => void;
   passwordError: string;
+  setPasswordError: (val: string) => void;
   passwordStrength: string;
   handlePasswordBlur: () => void;
   handleRepeatPasswordBlur: () => void;
@@ -16,7 +18,8 @@ interface Props {
 export default function RegisterPasswordStage({
   password, setPassword,
   repeatPassword, setRepeatPassword,
-  passwordError, passwordStrength,
+  passwordError, setPasswordError,
+  passwordStrength,
   handlePasswordBlur, handleRepeatPasswordBlur
 }: Props) {
   const { t } = useTranslation();
@@ -49,7 +52,10 @@ export default function RegisterPasswordStage({
         label={t("register.password.repeatPasswordField.label")}
         type="password"
         value={repeatPassword}
-        setValue={setRepeatPassword}
+        setValue={(val: string) => {
+          setRepeatPassword(val);
+          setPasswordError(validateRepeatPassword(val, password));
+        }}
         placeholder={t("register.password.repeatPasswordField.placeholder")}
         error={!!passwordError}
         helperText={passwordError}

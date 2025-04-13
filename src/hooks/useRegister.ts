@@ -1,14 +1,12 @@
 import { useMutation } from "@tanstack/react-query"
 import { authService, RegisterData } from "../services/auth"
-import { useNavigate } from "react-router-dom"
+import { Stage } from "../pages/Register"
 
-export const useRegister = () => {
-  const navigate = useNavigate()
-
+export const useRegister = (setStage: (stage: Stage) => void) => {
   return useMutation({
     mutationFn: (data: RegisterData) => authService.register(data),
     onSuccess: () => {
-      navigate("/login")
+      setStage("done")
     },
     onError: (error: Error) => {
       console.error("Registration error:", error.message)

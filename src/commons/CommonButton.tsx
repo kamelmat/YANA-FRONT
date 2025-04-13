@@ -27,8 +27,6 @@ export default function CustomButton({
   return (
     <Button
       fullWidth
-      startIcon={iconPosition === 'start' ? icon : undefined}
-      endIcon={iconPosition === 'end' ? icon : undefined}
       {...rest}
       sx={{
         textTransform: 'none',
@@ -61,11 +59,14 @@ export default function CustomButton({
     >
       <Box
         display="flex"
-        justifyContent={icon ? 'space-between' : 'center'}
         alignItems="center"
+        justifyContent={icon && iconPosition === 'end' ? 'space-between' : 'center'}
         width="100%"
-        padding='1em 0'
+        padding="1em 0"
+        gap={icon ? '0.5em' : 0}
+        flexDirection={iconPosition === 'end' ? 'row-reverse' : 'row'}
       >
+        {icon && <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }} component="span">{icon}</Box>}
         <span>{text}</span>
       </Box>
     </Button>

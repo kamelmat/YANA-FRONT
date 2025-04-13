@@ -63,6 +63,7 @@ export const authService = {
     }
   },
 
+
   logout: async () => {
     try {
       const response = await fetch(`${API_URL}/usuario/api/logout/`, {
@@ -78,6 +79,24 @@ export const authService = {
       return response.json()
     } catch (error) {
       console.error(`Logout error: ${error}`)
+
+  checkEmail: async (email: string): Promise<boolean> => {
+    try {
+      const response = await fetch(`${API_URL}/usuario/api/check-email/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      })
+
+      const responseData = await response.json()
+
+      if (!response.ok) {
+        throw new Error(responseData.message || "Email check failed")
+      }
+
+      return responseData.email_exists
+    } catch (error) {
+      console.error(`Email check error: ${error}`)
       throw error
     }
   },
