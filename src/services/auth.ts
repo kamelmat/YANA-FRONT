@@ -62,4 +62,23 @@ export const authService = {
       throw error
     }
   },
+
+  logout: async () => {
+    try {
+      const response = await fetch(`${API_URL}/usuario/api/logout/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      })
+
+      if (!response.ok) {
+        throw new Error("Logout failed")
+      }
+
+      return response.json()
+    } catch (error) {
+      console.error(`Logout error: ${error}`)
+      throw error
+    }
+  },
 }
