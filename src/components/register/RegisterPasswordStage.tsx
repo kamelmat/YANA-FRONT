@@ -1,4 +1,4 @@
-import { Typography, Box, FormControl } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import CustomTextField from "../../commons/CommonTextField";
 import { useTranslation } from "react-i18next";
 import { validateRepeatPassword } from "../../utils/registerUtils";
