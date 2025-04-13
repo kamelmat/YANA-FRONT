@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Avatar, Box } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
@@ -11,13 +11,20 @@ import logoutIcon from "../../assets/icons/logout_blue.svg"
 import helpIcon from "../../assets/icons/emergency.svg"
 import deleteIcon from "../../assets/icons/cancel.svg"
 import CustomButton from "../../commons/CommonButton"
+import Modal from "../../commons/DeleteModal"
 
 const ProfileMobile: React.FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 
   const handleNavigation = (path: string) => {
     navigate(path)
+  }
+
+  const handleDeleteAccount = () => {
+    console.log('Account deleted')
+    setIsDeleteModalOpen(false)
   }
 
   return (
@@ -82,7 +89,13 @@ const ProfileMobile: React.FC = () => {
         icon={<img src={deleteIcon} alt={t("/profile.deleteAccount")} />}
         iconPosition="end"
         variantType="ghost"
-        onClick={() => handleNavigation("/login")}
+        onClick={() => setIsDeleteModalOpen(true)}
+      />
+
+      <Modal
+        open={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onPasswordSubmit={handleDeleteAccount}
       />
     </Box>
   )
