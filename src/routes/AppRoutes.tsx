@@ -8,18 +8,19 @@ import Resources from "../pages/Resources"
 import Contacts from "../pages/Contacts"
 import { Routes, Route } from "react-router-dom"
 import MapLayout from "./MapLayout"
+import ProtectedRoute from "../components/ProtectedRoute"
 
 const AppRoutes: React.FC = () => (
   <Routes>
-    <Route element={<MapLayout />}>
+    <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Register />} />
+    <Route element={<ProtectedRoute><MapLayout /></ProtectedRoute>}>
       <Route path="/" element={<Home />} />
       <Route path="/map" element={<Map />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/contacts" element={<Contacts />} />
       <Route path="/FAQ" element={<Home />} />
-      <Route path="/login" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/register" element={<Register />} />
     </Route>
   </Routes>
 )
