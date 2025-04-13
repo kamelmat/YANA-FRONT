@@ -164,6 +164,13 @@ i18n.use(initReactI18next).init({
         header: {
           welcome: "Hello, {{name}}",
         },
+        common: {
+          cancel: "Cancel",
+          confirm: "Confirm",
+          delete: "Delete",
+          deleteAccount: "Delete Account",
+          deleteAccountMessage: "Are you sure you want to delete your account?",
+        },
       },
     },
     es: {
@@ -328,6 +335,13 @@ i18n.use(initReactI18next).init({
         },
         header: {
           welcome: "Hola, {{name}}",
+        },
+        common: {
+          cancel: "Cancelar",
+          confirm: "Confirmar",
+          delete: "Eliminar",
+          deleteAccount: "Eliminar cuenta",
+          deleteAccountMessage: "¿Estás seguro de querer eliminar tu cuenta?",
         },
       },
     },

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   Avatar,
   Box,
@@ -21,6 +21,8 @@ import deleteIcon from "../../assets/icons/cancel.svg"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
 import { useScreenSize } from "../../hooks/useScreenSize"
+import Modal from "../../commons/DeleteModal"
+import { useDeleteAccount } from '../../hooks/useDeleteAccount';
 
 // Constants
 const AVATAR_IMAGES = {
@@ -34,6 +36,19 @@ const AVATAR_IMAGES = {
 const ProfileDesktop: React.FC = () => {
   const { t } = useTranslation()
   const screenSize = useScreenSize()
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const deleteAccount = useDeleteAccount()
+
+  const handleDeleteAccount = (password: string) => {
+    deleteAccount.mutate(password, {
+      onSuccess: () => {
+        setIsDeleteModalOpen(false)
+      },
+      onError: (error) => {
+        console.error('Error deleting account:', error)
+      }
+    })
+  }
 
   return (
     <Box
@@ -325,7 +340,6 @@ const ProfileDesktop: React.FC = () => {
         </FormControl>
       </CommonBox>
 
-      {/* Delete Account Button */}
       <CommonBox
         sx={{
           gridRow: {
@@ -345,9 +359,16 @@ const ProfileDesktop: React.FC = () => {
           icon={<img src={deleteIcon} alt={t("/profile.deleteAccount")} />}
           iconPosition="end"
           variantType="ghost"
+          onClick={() => setIsDeleteModalOpen(true)}
           sx={{ border: `3px solid ${theme.colors.lightPink}`, borderRadius: "0.75rem", height: "4rem" }}
         />
       </CommonBox>
+
+      <Modal
+        open={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onPasswordSubmit={handleDeleteAccount}
+      />
 
       {/* Interactions Section */}
       <Typography
