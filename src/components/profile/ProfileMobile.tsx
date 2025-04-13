@@ -12,19 +12,26 @@ import helpIcon from "../../assets/icons/emergency.svg"
 import deleteIcon from "../../assets/icons/cancel.svg"
 import CustomButton from "../../commons/CommonButton"
 import Modal from "../../commons/DeleteModal"
+import { useDeleteAccount } from '../../hooks/useDeleteAccount';
 
 const ProfileMobile: React.FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-
+  const deleteAccount = useDeleteAccount()
   const handleNavigation = (path: string) => {
     navigate(path)
   }
 
-  const handleDeleteAccount = () => {
-    console.log('Account deleted')
-    setIsDeleteModalOpen(false)
+  const handleDeleteAccount = (password: string) => {
+    deleteAccount.mutate(password, {
+      onSuccess: () => {
+        setIsDeleteModalOpen(false)
+      },
+      onError: (error) => {
+        console.error('Error deleting account:', error)
+      }
+    })
   }
 
   return (

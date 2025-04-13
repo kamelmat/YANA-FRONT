@@ -25,7 +25,15 @@ export default function RegisterPasswordStage({
   const { t } = useTranslation();
 
   return (
-    <>
+    <form onSubmit={(e) => e.preventDefault()}>
+      {/* username for accessibility warning */}
+      <input
+        type="text"
+        name="username"
+        autoComplete="username"
+        style={{ display: 'none' }}
+      />
+
       <CustomTextField
         label={t("register.password.passwordField.label")}
         type="password"
@@ -34,6 +42,7 @@ export default function RegisterPasswordStage({
         placeholder={t("register.password.passwordField.placeholder")}
         error={!!passwordError}
         onBlur={handlePasswordBlur}
+        autoComplete="new-password"
       />
       {password && (
         <Typography fontSize={13} sx={{ color: "#fff", fontWeight: "light" }}>
@@ -60,7 +69,9 @@ export default function RegisterPasswordStage({
         error={!!passwordError}
         helperText={passwordError}
         onBlur={handleRepeatPasswordBlur}
+        autoComplete="new-password"
+        sx={{ marginTop: 2 }}
       />
-    </>
+    </form>
   );
 }

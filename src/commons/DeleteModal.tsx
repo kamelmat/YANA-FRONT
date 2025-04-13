@@ -78,12 +78,29 @@ export default function Modal({
         mb: 4,
         px: 1
       }}>
-        <CustomTextField
-          label={t('login.password')}
-          value={password}
-          setValue={setPassword}
-          type="password"
-        />
+        <form onSubmit={(e) => e.preventDefault()} style={{ width: '100%' }}>
+          {/* username for accessibility warning */}
+          <input
+            type="text"
+            name="username"
+            autoComplete="username"
+            style={{ display: 'none' }}
+          />
+          <CustomTextField
+            label={t('login.password')}
+            value={password}
+            setValue={setPassword}
+            type="password"
+            slotProps={{
+              input: {
+                autoComplete: "current-password"
+              }
+            }}
+            sx={{
+              width: '100%'
+            }}
+          />
+        </form>
         <Box sx={{ 
           display: 'flex', 
           flexDirection: 'column',

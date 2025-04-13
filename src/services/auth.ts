@@ -15,7 +15,6 @@ export interface LoginData {
 export const authService = {
   register: async (data: RegisterData) => {
     try {
-      console.log("Sending register request:", data)
       const response = await fetch(`${API_URL}/usuario/api/register/`, {
         method: "POST",
         headers: {
@@ -27,10 +26,7 @@ export const authService = {
         mode: "cors",
       })
 
-      console.log("Response status:", response.status)
       const responseData = await response.json()
-      console.log("Response data:", responseData)
-
       if (!response.ok) {
         throw new Error(responseData.message || "Registration failed")
       }

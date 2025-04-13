@@ -16,14 +16,16 @@ export const MapView = () => {
   const isVisible = location.pathname === "/"
 
   useEffect(() => {
-    getUserLocation()
-      .then(([latitude, longitude]) => {
-        setUserLocation(latitude, longitude)
-      })
-      .catch((error) => {
-        console.error("Error al obtener la ubicación:", error)
-      })
-  }, [setUserLocation])
+    if (isVisible) {
+      getUserLocation()
+        .then(([latitude, longitude]) => {
+          setUserLocation(latitude, longitude)
+        })
+        .catch((error) => {
+          console.error("Error al obtener la ubicación:", error)
+        })
+    }
+  }, [setUserLocation, isVisible])
 
   useEffect(() => {
     if (
@@ -64,9 +66,6 @@ export const MapView = () => {
 
   return (
     <div>
-      {!userLocation || userLocation.latitude === null || userLocation.longitude === null ? (
-        <div>Obteniendo ubicación...</div>
-      ) : null}
       <div
         id="map"
         style={{
