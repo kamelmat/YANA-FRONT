@@ -73,13 +73,27 @@ export default function LoginComponent() {
         <Typography>{t("login.access")}</Typography>
 
         <Stack spacing={2} direction="column" sx={{ marginTop: 1 }}>
-          <CustomTextField label={t("login.email")} value={email} setValue={setEmail} />
+          <CustomTextField 
+            label={t("login.email")} 
+            value={email} 
+            setValue={setEmail}
+            slotProps={{
+              input: {
+                autoComplete: "email"
+              }
+            }}
+          />
 
           <CustomTextField
             label={t("login.password")}
             type="password"
             value={password}
             setValue={setPassword}
+            slotProps={{
+              input: {
+                autoComplete: "current-password"
+              }
+            }}
           />
         </Stack>
 
