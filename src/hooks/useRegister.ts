@@ -14,9 +14,9 @@ export const useRegister = (setStage: (stage: Stage) => void) => {
   return useMutation({
     mutationFn: async (data: RegisterData) => {
       const response = await authService.register(data)
-      if (response.access) {
-        setAccessToken(response.access)
-        setRefreshToken(response.refresh)
+      if (response.access_token && response.refresh_token) {
+        setAccessToken(response.access_token)
+        setRefreshToken(response.refresh_token)
       }
       return response
     },
