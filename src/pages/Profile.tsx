@@ -5,7 +5,7 @@ import { useScreenSize } from "../hooks/useScreenSize";
 export default function Profile() {
   const screenSize = useScreenSize();
 
-  if (screenSize === "md" || screenSize === "lg") {
+  if (screenSize !== "sm") {
     return <ProfileDesktop />;
   } else {
     return <ProfileMobile />;

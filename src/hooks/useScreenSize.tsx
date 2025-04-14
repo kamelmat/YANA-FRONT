@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 
+type ScreenSize = "sm" | "md" | "lg" | "xl";
 
-const getSize = () => {
+const getSize = (): ScreenSize => {
   const width = window.innerWidth;
   if (width < 640) return "sm";
   if (width < 1024) return "md";
-  return "lg";
+  if (width < 1920) return "lg";
+  return "xl";
 }
 
-export const useScreenSize = () => {
-  const [screenSize, setScreenSize] = useState(getSize);
+export const useScreenSize = (): ScreenSize => {
+  const [screenSize, setScreenSize] = useState<ScreenSize>(getSize);
 
   useEffect(() => {
     const handleResize = () => {

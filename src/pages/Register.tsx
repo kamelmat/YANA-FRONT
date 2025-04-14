@@ -142,8 +142,8 @@ export default function Register() {
             src={back}
             alt="back"
             sx={{
-              height: "30px",
-              width: "30px",
+              height: "2em",
+              width: "2em",
               alignSelf: "flex-start",
               cursor: "pointer",
               transition: "transform 0.2s ease-in-out",
@@ -151,7 +151,7 @@ export default function Register() {
                 transform: "scale(1.15)"
               },
               position: "absolute",
-              top: "1em",
+              top: 0,
               left: "1em"
             }}
             onClick={handleBackClick}
@@ -163,11 +163,11 @@ export default function Register() {
           justifyContent="center"
           alignItems="center"
           width="100%"
-          mt={(stage === "method" || stage === "done") || screenSize === "sm" ? 0 : 10 }
+          mt={(stage === "method" || stage === "done") || screenSize === "sm" || screenSize === "lg" ? 0 : 10 }
         >
           <Box
             sx={{
-              width: screenSize === "sm" ? "35%" : "40%",
+              width: screenSize === "sm" ? "35%" : screenSize !== "lg" ? "40%" : "25%",
               aspectRatio: "1/1",
               mb: 3
             }}

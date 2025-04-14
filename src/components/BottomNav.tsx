@@ -122,7 +122,7 @@ const BottomNav: React.FC = () => {
       >
         {navItems.map((item, index) => (
           <StyledBottomNavAction
-            key={t(`${item.route}.menu` + 'bn')}
+            key={t(`${item.route}.menu`)}
             label={t(`${item.route}.menu`)}
             icon={item.icon}
             selected={currentIndex === index}

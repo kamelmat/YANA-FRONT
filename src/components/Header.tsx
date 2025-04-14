@@ -35,6 +35,7 @@ export default function Header() {
   const { t } = useTranslation()
 
   const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh"
+  const isDesktop = screenSize === "lg" || screenSize === "xl"
 
   if (location === "/login" || location === "/register") return
 
@@ -63,7 +64,7 @@ export default function Header() {
               style={{ width: "3rem", cursor: "pointer" }}
               onClick={() => navigate("/")}
             />
-            {screenSize === "lg" && <img src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN} alt="Slogan" style={{ height: "4.5vh" }} />}
+            {isDesktop && <img src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN} alt="Slogan" style={{ height: "4.5vh" }} />}
           </>
         )}
         {screenSize === "sm" && (
@@ -104,7 +105,7 @@ export default function Header() {
           textAlign: "center",
         }}
       >
-        {location !== "/" && screenSize !== "lg" && 
+        {location !== "/" && !isDesktop && 
           <Typography variant="h5" sx={{ color: "white" }}>
             {t(`${location}.title`)}
           </Typography>

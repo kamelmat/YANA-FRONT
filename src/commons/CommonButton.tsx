@@ -1,7 +1,7 @@
 import { Box, Button, ButtonProps } from '@mui/material';
 import { ReactNode } from 'react';
 import theme from '../theme';
-
+import { useScreenSize } from '../hooks/useScreenSize';
 type VariantType = 'primary' | 'secondary' | 'square-primary' | 'square-secondary' | 'ghost';
 type IconPosition = 'start' | 'end';
 
@@ -23,6 +23,7 @@ export default function CustomButton({
   const isSecondary = variantType.includes('secondary');
   const isSquare = variantType.includes('square');
   const isGhost = variantType === 'ghost';
+  const screenSize = useScreenSize()
 
   return (
     <Button
@@ -62,7 +63,7 @@ export default function CustomButton({
         alignItems="center"
         justifyContent={icon && iconPosition === 'end' ? 'space-between' : 'center'}
         width="100%"
-        padding="1em 0"
+        padding={screenSize === "lg" ? "0.5em 0" : "1em 0"}
         gap={icon ? '0.5em' : 0}
         flexDirection={iconPosition === 'end' ? 'row-reverse' : 'row'}
       >
