@@ -1,12 +1,10 @@
 import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
 import { authService } from "../services/auth"
-import { useUserStore } from "../store/useUserStore"
 import { useAuthStore } from "../store/authStore"
 
 export const useLogout = () => {
   const navigate = useNavigate()
-  const clearUsername = useUserStore((state) => state.clearUsername)
   const accessToken = useAuthStore((state) => state.accessToken)
   const refreshToken = useAuthStore((state) => state.refreshToken)
 
@@ -18,7 +16,7 @@ export const useLogout = () => {
       return authService.logout(accessToken, refreshToken)
     },
     onSuccess: () => {
-      clearUsername()
+      useAuthStore.getState().clearAuth()
       navigate("/login")
     },
     onError: (error) => {
