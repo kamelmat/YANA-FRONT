@@ -2,7 +2,7 @@ import { Box, IconButton, Typography } from "@mui/material"
 import { useLocation, useNavigate } from "react-router-dom"
 import styled from "@emotion/styled"
 import { useScreenSize } from "../hooks/useScreenSize"
-import { useUserStore } from "../store/useUserStore"
+import { useAuthStore } from "../store/authStore"
 import { getFormattedDate } from "../utils/getFormattedDate"
 import { useTranslation } from "react-i18next"
 
@@ -28,13 +28,14 @@ const CustomIconButton = styled(IconButton)(() => ({
 
 export default function Header() {
   const screenSize = useScreenSize()
-  const { username } = useUserStore()
+  const name = useAuthStore((state) => state.name)
   const date = getFormattedDate()
   const location = useLocation().pathname
   const navigate = useNavigate()
   const { t } = useTranslation()
 
   const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh"
+  const isDesktop = screenSize === "lg" || screenSize === "xl"
 
   if (location === "/login" || location === "/register") return
 
@@ -46,7 +47,7 @@ export default function Header() {
         justifyContent: "space-between",
         width: "100%",
         height: "8vh",
-        backgroundColor: theme.colors.blackBackground,
+        backgroundColor: screenSize === "sm" ? theme.colors.darkPurple : theme.colors.blackBackground,
         padding: "0 1.25rem",
         position: "fixed",
         top: 0,
@@ -63,7 +64,7 @@ export default function Header() {
               style={{ width: "3rem", cursor: "pointer" }}
               onClick={() => navigate("/")}
             />
-            {screenSize === "lg" && <img src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN} alt="Slogan" style={{ height: "4.5vh" }} />}
+            {isDesktop && <img src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN} alt="Slogan" style={{ height: "4.5vh" }} />}
           </>
         )}
         {screenSize === "sm" && (
@@ -80,7 +81,7 @@ export default function Header() {
                     fontFamily: "League Spartan",
                   }}
                 >
-                  {t("header.welcome", { name: username })}
+                  {t("header.welcome", { name })}
                 </Typography>
                 <Typography fontSize={14} sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
                   {date}
@@ -104,7 +105,7 @@ export default function Header() {
           textAlign: "center",
         }}
       >
-        {location !== "/"  && 
+        {location !== "/" && !isDesktop && 
           <Typography variant="h5" sx={{ color: "white" }}>
             {t(`${location}.title`)}
           </Typography>

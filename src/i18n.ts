@@ -32,14 +32,23 @@ i18n.use(initReactI18next).init({
           },
           email: {
             title: "Create a profile with your email",
-            subtitle: "Complete the data and receive the registration code by email.",
+            subtitle:
+              "Complete the data and receive a verification code by email to validate your account.",
             nameField: {
               label: "Name",
               placeholder: "Enter your name",
+              error: {
+                required: "Name is required.",
+                tooShort: "Name must be at least 2 characters long.",
+              },
             },
             lastNameField: {
               label: "Last name",
               placeholder: "Enter your last name",
+              error: {
+                required: "Last name is required.",
+                tooShort: "Last name must be at least 2 characters long.",
+              },
             },
             emailField: {
               label: "Email",
@@ -47,6 +56,7 @@ i18n.use(initReactI18next).init({
               error: {
                 required: "The email is required.",
                 invalid: "Please enter a valid email address.",
+                taken: "This email is already registered.",
               },
             },
           },
@@ -58,11 +68,23 @@ i18n.use(initReactI18next).init({
               placeholder: "Create a password (minimum 8 characters)",
               error: {
                 required: "Please enter the password.",
-                invalid: "The password must be at least 8 characters long.",
+                invalid: {
+                  tooShort: "The password must be at least 8 characters long.",
+                  noNumber: "The password must contain at least one number.",
+                  noSpecialChar: "The password must contain at least one special character.",
+                  noNumberAndSpecial:
+                    "The password must contain at least one number and one special character.",
+                  tooShortAndNoNumber:
+                    "The password must be at least 8 characters long and contain at least one number.",
+                  tooShortAndNoSpecial:
+                    "The password must be at least 8 characters long and contain at least one special character.",
+                  tooShortAndNoNumberAndSpecial:
+                    "The password must be at least 8 characters long and contain at least one number and one special character.",
+                },
               },
             },
             passwordStrength: {
-              text: "Password strength:",
+              text: "Password strength",
               weak: "Weak",
               medium: "Medium",
               strong: "Strong",
@@ -78,7 +100,7 @@ i18n.use(initReactI18next).init({
           },
           done: {
             title: "Done",
-            subtitle: "Welcome to You are not alone.",
+            subtitle: "Thank you for being part of the You are not alone community!",
           },
           continue: "Continue",
         },
@@ -89,6 +111,25 @@ i18n.use(initReactI18next).init({
         "/profile": {
           menu: "Profile",
           title: "My Profile",
+          account: "Edit Profile",
+          interactions: "My interactions",
+          configuration: "Configuration",
+          help: "Emergency: I need help",
+          logout: "Log out",
+          avatar: "Choose avatar",
+          notifications: "Notifications",
+          personification: "Customize background",
+          mode: "Mode",
+          light: "Light",
+          dark: "Dark",
+          appSounds: "App sounds",
+          fontsize: "Font size",
+          small: "Small",
+          large: "Large",
+          saveHistory: "Save interaction history",
+          hideStatus: "Hide my status or activity",
+          mute: "Mute interactions",
+          deleteAccount: "Delete account",
         },
         "/contacts": {
           menu: "Contacts",
@@ -102,7 +143,7 @@ i18n.use(initReactI18next).init({
           menu: "Settings",
           title: "Settings",
         },
-        exit: {
+        "/logout": {
           menu: "Exit",
           title: "Exit",
         },
@@ -121,7 +162,14 @@ i18n.use(initReactI18next).init({
             "YANA S. de R.L. de C.V. Renato Peña 490 Sur, Centro. Monterrey, Nuevo León, México. C.P. 6400",
         },
         header: {
-          welcome: "Welcome, {{name}}",
+          welcome: "Hello, {{name}}",
+        },
+        common: {
+          cancel: "Cancel",
+          confirm: "Confirm",
+          delete: "Delete",
+          deleteAccount: "Delete Account",
+          deleteAccountMessage: "Are you sure you want to delete your account?",
         },
       },
     },
@@ -148,20 +196,29 @@ i18n.use(initReactI18next).init({
             useEmail: "Registrarse con correo electrónico",
             useGoogle: "Crear una cuenta con Google",
             privacyText: "Al crear una cuenta, aceptas los",
-            privacyLink: "Términos de uso y políticas de privacidad",
+            privacyLink: "Términos de uso y políticas de privacidad.",
             haveAccount: "¿Tienes una cuenta?",
             login: "Ingresar",
           },
           email: {
             title: "Crea un perfil con tu email",
-            subtitle: "Completa los datos y recibe el código de registro por correo electrónico.",
+            subtitle:
+              "Completa los datos y recibe un código por correo electrónico para validar tu cuenta.",
             nameField: {
               label: "Nombre",
               placeholder: "Ingresa tu nombre",
+              error: {
+                required: "El nombre es requerido.",
+                tooShort: "El nombre debe tener al menos 2 caracteres.",
+              },
             },
             lastNameField: {
               label: "Apellido(s)",
               placeholder: "Ingresa tu apellido(s)",
+              error: {
+                required: "El apellido es requerido.",
+                tooShort: "El apellido debe tener al menos 2 caracteres.",
+              },
             },
             emailField: {
               label: "Correo electrónico",
@@ -169,6 +226,7 @@ i18n.use(initReactI18next).init({
               error: {
                 required: "El correo es requerido.",
                 invalid: "Por favor, introduce un correo electrónico válido.",
+                taken: "Este correo electrónico ya está registrado.",
               },
             },
           },
@@ -180,8 +238,19 @@ i18n.use(initReactI18next).init({
               placeholder: "Crea tu contraseña (mínimo 8 caracteres, número y carácter especial)",
               error: {
                 required: "Por favor, introduce la contraseña.",
-                invalid:
-                  "La contraseña debe incluir al menos 8 caracteres, un número y un carácter especial.",
+                invalid: {
+                  tooShort: "La contraseña debe incluir al menos 8 caracteres.",
+                  noNumber: "La contraseña debe incluir al menos un número.",
+                  noSpecialChar: "La contraseña debe incluir al menos un carácter especial.",
+                  noNumberAndSpecial:
+                    "La contraseña debe incluir al menos un número y uno especial.",
+                  tooShortAndNoNumber:
+                    "La contraseña debe tener al menos 8 caracteres y al menos un número.",
+                  tooShortAndNoSpecial:
+                    "La contraseña debe tener al menos 8 caracteres y al menos un carácter especial.",
+                  tooShortAndNoNumberAndSpecial:
+                    "La contraseña debe tener al menos 8 caracteres, al menos un número y al menos uno especial.",
+                },
               },
             },
             passwordStrength: {
@@ -201,7 +270,7 @@ i18n.use(initReactI18next).init({
           },
           done: {
             title: "¡Listo!",
-            subtitle: "Te damos la bienvenida a You are not alone.",
+            subtitle: "¡Gracias por ser parte de la comunidad You are not alone!",
           },
           continue: "Continuar",
         },
@@ -215,6 +284,25 @@ i18n.use(initReactI18next).init({
         "/profile": {
           menu: "Perfil",
           title: "Mi Perfil",
+          account: "Editar Perfil",
+          interactions: "Mis interacciones",
+          configuration: "Configuración",
+          help: "Emergencia: necesito ayuda",
+          logout: "Cerrar sesión",
+          notifications: "Notificaciones",
+          avatar: "Elegir avatar",
+          personification: "Personalizar fondo",
+          mode: "Modo",
+          light: "Claro",
+          dark: "Oscuro",
+          appSounds: "Sonidos de la app",
+          fontsize: "Tamaño de fuente",
+          small: "Pequeño",
+          large: "Grande",
+          saveHistory: "Guardar historia de interacciones",
+          hideStatus: "Ocultar mi estado o actividad",
+          mute: "Silenciar interacciones",
+          deleteAccount: "Eliminar cuenta",
         },
         "/contacts": {
           menu: "Contactos",
@@ -228,8 +316,9 @@ i18n.use(initReactI18next).init({
           menu: "Configuración",
           title: "Configuración",
         },
-        exit: {
+        "/logout": {
           menu: "Cerrar sesión",
+          title: "Cerrar sesión",
         },
         footer: {
           products: "Productos",
@@ -246,7 +335,14 @@ i18n.use(initReactI18next).init({
             "YANA S. de R.L. de C.V. Renato Peña 490 Sur, Centro. Monterrey, Nuevo León, México. C.P. 6400",
         },
         header: {
-          welcome: "Bienvenid@, {{name}}",
+          welcome: "Hola, {{name}}",
+        },
+        common: {
+          cancel: "Cancelar",
+          confirm: "Confirmar",
+          delete: "Eliminar",
+          deleteAccount: "Eliminar cuenta",
+          deleteAccountMessage: "¿Estás seguro de querer eliminar tu cuenta?",
         },
       },
     },

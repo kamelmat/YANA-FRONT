@@ -1,4 +1,3 @@
-// import Google from "../assets/icons/Google.svg"
 import Logo from "../assets/branding/yana.svg"
 import Slogan_ES from "../assets/branding/slogan_es.svg"
 import Slogan_EN from "../assets/branding/slogan_en.svg"
@@ -12,7 +11,7 @@ import { Box, Checkbox, Link, Stack, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { useLogin } from "../hooks/useLogin"
-
+import { useScreenSize } from "../hooks/useScreenSize"
 export default function LoginComponent() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -20,6 +19,7 @@ export default function LoginComponent() {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const { mutate: login, isError, error } = useLogin()
+  const screenSize = useScreenSize()
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
@@ -53,12 +53,12 @@ export default function LoginComponent() {
       <img
         src={Logo}
         alt="Logo"
-        style={{ width: "25%", height: "auto", marginBottom: "0.75rem" }}
+        style={{ width: screenSize === "lg" ? "15%" : "25%", height: "auto", marginBottom: "0.75rem" }}
       />
       <img
         src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN}
         alt="Slogan"
-        style={{ width: "55%", height: "auto", marginBottom: "2rem" }}
+        style={{ width: screenSize === "lg" ? "45%" : "55%", height: "auto", marginBottom: "2rem" }}
       />
 
       <Box
@@ -74,13 +74,27 @@ export default function LoginComponent() {
         <Typography>{t("login.access")}</Typography>
 
         <Stack spacing={2} direction="column" sx={{ marginTop: 1 }}>
-          <CustomTextField label={t("login.email")} value={email} setValue={setEmail} />
+          <CustomTextField 
+            label={t("login.email")} 
+            value={email} 
+            setValue={setEmail}
+            slotProps={{
+              input: {
+                autoComplete: "email"
+              }
+            }}
+          />
 
           <CustomTextField
             label={t("login.password")}
             type="password"
             value={password}
             setValue={setPassword}
+            slotProps={{
+              input: {
+                autoComplete: "current-password"
+              }
+            }}
           />
         </Stack>
 
@@ -95,7 +109,6 @@ export default function LoginComponent() {
             </Typography>
           </Box>
           <Link
-            href="#"
             variant="body2"
             sx={{ color: theme.colors.lightBlue, textDecoration: "none" }}
           >
@@ -105,14 +118,6 @@ export default function LoginComponent() {
 
         <Stack spacing={1.5} direction="column" sx={{ marginTop: 4 }}>
           <CustomButton type="submit" text={t("login.login")} variantType="primary" />
-
-          {/* <CustomButton
-            text={t("login.loginGoogle")}
-            icon={<img src={Google} alt="Google Icon" style={{ width: '35px', height: '35px' }} />}
-            variantType="secondary"
-            onClick={() => console.log('Google login')}
-            sx={{ marginBottom: 2 }}
-          /> */}
         </Stack>
 
         {isError && <Typography color="error">{error?.message || "Login failed"}</Typography>}
@@ -120,7 +125,6 @@ export default function LoginComponent() {
         <Typography variant="body2" align="center" sx={{ mt: 4 }}>
           {t("login.dontHaveAccount")}{" "}
           <Link
-            href="#"
             underline="none"
             sx={{ textTransform: "none", color: theme.colors.lightBlue }}
             onClick={() => navigate("/register")}

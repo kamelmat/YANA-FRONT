@@ -1,9 +1,13 @@
 import React from "react"
-import { Paper, List, ListItem, ListItemText } from "@mui/material"
+import { Box, List, ListItem, ListItemText, Typography } from "@mui/material"
 import { useTheme } from "@mui/material/styles"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
+
+import { useLogout } from "../hooks/useLogout"
+import { useAuthStore } from "../store/authStore"
+import { getFormattedDate } from "../utils/getFormattedDate"
 
 import HomeIcon from "../assets/icons/roofing.svg?react"
 import ResourcesIcon from "../assets/icons/loupe.svg?react"
@@ -32,13 +36,16 @@ interface StyledListItemProps {
 const StyledListItem = styled(ListItem, {
   shouldForwardProp: (prop) => prop !== "selectedColor",
 })<StyledListItemProps>(({ selectedColor, selected }) => ({
-  color: "#fff",
+  color: selected ? selectedColor : "#fff",
   padding: `12px ${PADDING_X}`,
   cursor: "pointer",
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-start",
   transition: "all 0.3s ease",
+  "&:hover": {
+    color: selectedColor,
+  },
   "& svg": {
     "& path": {
       fill: selected ? selectedColor : "#ffffff",
@@ -59,6 +66,9 @@ const Sidebar: React.FC = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const { t } = useTranslation()
+  const { mutate: logout } = useLogout()
+  const name = useAuthStore((state) => state.name)
+  const date = getFormattedDate()
 
   const navItems: NavItem[] = [
     {
@@ -83,24 +93,28 @@ const Sidebar: React.FC = () => {
     },
     {
       icon: <SettingsIcon width={ICON_SIZE} height={ICON_SIZE} />,
-      selectedColor: "white",
-      route: "/settings",
+      selectedColor: theme.colors.pink,
+      route: "/profile",
     },
     {
       icon: <ExitIcon width={ICON_SIZE} height={ICON_SIZE} />,
-      selectedColor: "white",
-      route: "/login",
+      route: "/logout",
+      selectedColor: theme.colors.pink,
     },
   ]
 
   if (screenSize === "sm" || location.pathname === "/login" || location.pathname === "/register") return null
 
   const handleItemClick = (route: string) => {
-    navigate(route)
+    if (route === "/logout") {
+      logout()
+    } else {
+      navigate(route)
+    }
   }
 
   return (
-    <Paper
+    <Box
       component="nav"
       sx={{
         position: "fixed",
@@ -108,36 +122,56 @@ const Sidebar: React.FC = () => {
         left: `calc(${-WIDTH}px + ${PADDING_X} * 2 + ${ICON_SIZE})`,
         bottom: 0,
         width: WIDTH + "px",
-        backgroundColor: theme.colors.blackBackground,
+        background: `linear-gradient(to bottom, ${theme.colors.blackBackground}, ${theme.colors.blackBackground})`,
         zIndex: 900,
-        paddingTop: "15vh",
         borderRadius: 0,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        transition: "left 0.3s ease",
+        transition: "left 0.3s ease, background 0.3s ease",
         "&:hover": {
           left: 0,
+          background: `linear-gradient(to bottom, ${theme.colors.blackBackground}, ${theme.colors.darkPurple} 35%)`,
         },
       }}
     >
-      <List>
-        {navItems.slice(0, 4).map((item) => (
-          <StyledListItem
-            key={t(`${item.route}.menu` + 'sb')}
-            selected={location.pathname === item.route}
-            selectedColor={item.selectedColor}
-            onClick={() => handleItemClick(item.route)}
+      <Box>
+        <Box sx={{ paddingLeft: PADDING_X }}>
+          <Typography
+            variant="h6"
+            fontSize={22}
+            paddingTop="12vh"
+            sx={{
+              color: "white",
+              fontWeight: "bold",
+              lineHeight: 1,
+              fontFamily: "League Spartan",
+            }}
           >
-            <ListItemText primary={t(`${item.route}.menu`)} />
-            {item.icon}
-          </StyledListItem>
-        ))}
-      </List>
+            {t("header.welcome", { name })}
+          </Typography>
+          <Typography fontSize={18} sx={{ color: "white", fontFamily: "League Spartan" }}>
+            {date}
+          </Typography>
+        </Box>
+        <List>
+          {navItems.slice(0, 4).map((item) => (
+            <StyledListItem
+              key={item.route}
+              selected={location.pathname === item.route}
+              selectedColor={item.selectedColor}
+              onClick={() => handleItemClick(item.route)}
+            >
+              <ListItemText primary={t(`${item.route}.menu`)} />
+              {item.icon}
+            </StyledListItem>
+          ))}
+        </List>
+      </Box>
       <List>
         {navItems.slice(4).map((item) => (
           <StyledListItem
-            key={t(`${item.route}.menu` + 'sb')}
+            key={item.route}
             selected={location.pathname === item.route}
             selectedColor={item.selectedColor}
             onClick={() => handleItemClick(item.route)}
@@ -147,7 +181,7 @@ const Sidebar: React.FC = () => {
           </StyledListItem>
         ))}
       </List>
-    </Paper>
+    </Box>
   )
 }
 

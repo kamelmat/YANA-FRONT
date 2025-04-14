@@ -15,7 +15,6 @@ export interface LoginData {
 export const authService = {
   register: async (data: RegisterData) => {
     try {
-      console.log("Sending register request:", data)
       const response = await fetch(`${API_URL}/usuario/api/register/`, {
         method: "POST",
         headers: {
@@ -27,10 +26,7 @@ export const authService = {
         mode: "cors",
       })
 
-      console.log("Response status:", response.status)
       const responseData = await response.json()
-      console.log("Response data:", responseData)
-
       if (!response.ok) {
         throw new Error(responseData.message || "Registration failed")
       }
@@ -59,6 +55,72 @@ export const authService = {
       return responseData
     } catch (error) {
       console.error(`Login error: ${error}`)
+      throw error
+    }
+  },
+
+  logout: async (accessToken: string, refreshToken: string) => {
+    try {
+      const response = await fetch(`${API_URL}/usuario/api/logout/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ refresh: refreshToken }),
+        credentials: "include",
+      })
+
+      if (!response.ok) {
+        throw new Error("Logout failed")
+      }
+
+      return response.json()
+    } catch (error) {
+      console.error(`Logout error: ${error}`)
+      throw error
+    }
+  },
+
+  checkEmail: async (email: string): Promise<boolean> => {
+    try {
+      const response = await fetch(`${API_URL}/usuario/api/check-email/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+        credentials: "include",
+      })
+
+      const responseData = await response.json()
+
+      if (!response.ok) {
+        throw new Error(responseData.message || "Email check failed")
+      }
+
+      return responseData.email_exists
+    } catch (error) {
+      console.error(`Email check error: ${error}`)
+      throw error
+    }
+  },
+
+  refreshToken: async (refreshToken: string) => {
+    try {
+      const response = await fetch(`${API_URL}/usuario/api/token/refresh/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refresh: refreshToken }),
+      })
+
+      const responseData = await response.json()
+
+      if (!response.ok) {
+        throw new Error(responseData.message || "Token refresh failed")
+      }
+
+      return responseData
+    } catch (error) {
+      console.error(`Token refresh error: ${error}`)
       throw error
     }
   },
