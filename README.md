@@ -1,3 +1,5 @@
+[![Deploy React to GCP](https://github.com/IgrowkerTraining/i005-yana-front/actions/workflows/frontend.yaml/badge.svg)](https://github.com/IgrowkerTraining/i005-yana-front/actions/workflows/frontend.yaml)
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
