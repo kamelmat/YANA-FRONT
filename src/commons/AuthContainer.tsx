@@ -10,15 +10,16 @@ interface AuthContainerProps {
 
 export default function AuthContainer({ screenSize, children }: AuthContainerProps) {
   const location = useLocation();
-  const isLargeScreen = screenSize === "md" || screenSize === "lg";
-  const width = screenSize === "lg" ? "27%" : "80%";
+  const isLargeScreen = screenSize === "md" || screenSize === "lg" || screenSize === "xl";
+  const isDesktop = screenSize === "lg" || screenSize === "xl";
+  const width = isDesktop ? "27%" : "80%";
   const isRegisterPage = location.pathname === "/register";
 
   if (isLargeScreen) {
     return (
       <Box sx={{ 
         height: '100vh', 
-        width: '100vw', 
+        width: '100vw',
         background: isRegisterPage ? `url(${registerBackground})` : theme.gradients.gradientPurpleToBottom,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -36,11 +37,12 @@ export default function AuthContainer({ screenSize, children }: AuthContainerPro
             alignItems: 'center',
             justifyContent: 'center',
             background: "black",
-            height: '80%',
+            height: screenSize === "lg" ? '90%' : '80%',
             width,
+            minWidth: '450px',
             position: 'absolute',
-            left: (screenSize === "lg" && isRegisterPage) ? '10%' : '50%',
-            transform: (screenSize === "lg" && isRegisterPage) ? 'translateX(0)' : 'translateX(-50%)',
+            left: (isDesktop && isRegisterPage) ? '10%' : '50%',
+            transform: (isDesktop && isRegisterPage) ? 'translateX(0)' : 'translateX(-50%)',
             borderRadius: '50px',
             boxShadow: '0px 15px 20px rgba(0, 0, 0, 0.5)',
             padding: '2em',
