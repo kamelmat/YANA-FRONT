@@ -2,7 +2,7 @@ import { Box, IconButton, Typography } from "@mui/material"
 import { useLocation, useNavigate } from "react-router-dom"
 import styled from "@emotion/styled"
 import { useScreenSize } from "../hooks/useScreenSize"
-import { useUserStore } from "../store/useUserStore"
+import { useAuthStore } from "../store/authStore"
 import { getFormattedDate } from "../utils/getFormattedDate"
 import { useTranslation } from "react-i18next"
 
@@ -28,7 +28,7 @@ const CustomIconButton = styled(IconButton)(() => ({
 
 export default function Header() {
   const screenSize = useScreenSize()
-  const { username } = useUserStore()
+  const name = useAuthStore((state) => state.name)
   const date = getFormattedDate()
   const location = useLocation().pathname
   const navigate = useNavigate()
@@ -80,7 +80,7 @@ export default function Header() {
                     fontFamily: "League Spartan",
                   }}
                 >
-                  {t("header.welcome", { name: username })}
+                  {t("header.welcome", { name })}
                 </Typography>
                 <Typography fontSize={14} sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
                   {date}

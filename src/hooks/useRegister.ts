@@ -10,13 +10,15 @@ export const useRegister = (setStage: (stage: Stage) => void) => {
   const navigate = useNavigate()
   const setAccessToken = useAuthStore((state) => state.setAccessToken)
   const setRefreshToken = useAuthStore((state) => state.setRefreshToken)
+  const setName = useAuthStore((state) => state.setName)
 
   return useMutation({
     mutationFn: async (data: RegisterData) => {
       const response = await authService.register(data)
-      if (response.access_token && response.refresh_token) {
+      if (response.access_token && response.refresh_token && response.name) {
         setAccessToken(response.access_token)
         setRefreshToken(response.refresh_token)
+        setName(response.name)
       }
       return response
     },
