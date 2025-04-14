@@ -6,9 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 
 import { useLogout } from "../hooks/useLogout"
-import { useUserStore } from "../store/useUserStore"
+import { useAuthStore } from "../store/authStore"
 import { getFormattedDate } from "../utils/getFormattedDate"
-
 
 import HomeIcon from "../assets/icons/roofing.svg?react"
 import ResourcesIcon from "../assets/icons/loupe.svg?react"
@@ -68,7 +67,7 @@ const Sidebar: React.FC = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const { mutate: logout } = useLogout()
-  const { username } = useUserStore()
+  const name = useAuthStore((state) => state.name)
   const date = getFormattedDate()
 
   const navItems: NavItem[] = [
@@ -149,7 +148,7 @@ const Sidebar: React.FC = () => {
               fontFamily: "League Spartan",
             }}
           >
-            {t("header.welcome", { name: username })}
+            {t("header.welcome", { name })}
           </Typography>
           <Typography fontSize={18} sx={{ color: "white", fontFamily: "League Spartan" }}>
             {date}
