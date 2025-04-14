@@ -103,4 +103,25 @@ export const authService = {
       throw error
     }
   },
+
+  refreshToken: async (refreshToken: string) => {
+    try {
+      const response = await fetch(`${API_URL}/usuario/api/token/refresh/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refresh: refreshToken }),
+      })
+
+      const responseData = await response.json()
+
+      if (!response.ok) {
+        throw new Error(responseData.message || "Token refresh failed")
+      }
+
+      return responseData
+    } catch (error) {
+      console.error(`Token refresh error: ${error}`)
+      throw error
+    }
+  },
 }
