@@ -12,10 +12,11 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: async (data: LoginData) => {
       const response = await authService.login(data)
-      if (response.access && response.refresh && response.name) {
+      console.log(response)
+      if (response.access && response.refresh) {
         setAccessToken(response.access)
         setRefreshToken(response.refresh)
-        setName(response.name)
+        // setName(response.user.name)
       }
       return response
     },
