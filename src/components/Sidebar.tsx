@@ -122,16 +122,16 @@ const Sidebar: React.FC = () => {
         left: `calc(${-WIDTH}px + ${PADDING_X} * 2 + ${ICON_SIZE})`,
         bottom: 0,
         width: WIDTH + "px",
-        backgroundColor: theme.colors.blackBackground,
+        background: `linear-gradient(to bottom, ${theme.colors.blackBackground}, ${theme.colors.blackBackground})`,
         zIndex: 900,
         borderRadius: 0,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        transition: "left 0.3s ease, background-color 0.3s ease",
+        transition: "left 0.3s ease, background 0.3s ease",
         "&:hover": {
           left: 0,
-          background: `linear-gradient(to bottom, ${theme.colors.blackBackground}, ${theme.colors.darkPurple} 15%)`,
+          background: `linear-gradient(to bottom, ${theme.colors.blackBackground}, ${theme.colors.darkPurple} 35%)`,
         },
       }}
     >
