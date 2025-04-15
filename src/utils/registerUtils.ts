@@ -11,28 +11,30 @@ export const validatePassword = (value: string): string => {
   if (!value) return i18n.t("register.password.passwordField.error.required")
 
   const requirements = {
-    LENGTH: 1 << 0,
-    NUMBER: 1 << 1,
-    SPECIAL: 1 << 2,
+    LENGTH: value.length < 8,
+    NUMBER: !/[0-9]/.test(value),
+    SPECIAL: !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value),
+    UPPERCASE: !/[A-Z]/.test(value),
+    LOWERCASE: !/[a-z]/.test(value),
   }
 
-  let missing = 0
-  if (value.length < 8) missing |= requirements.LENGTH
-  if (!/[0-9]/.test(value)) missing |= requirements.NUMBER
-  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value)) missing |= requirements.SPECIAL
-
-  const errorMap = {
-    [requirements.LENGTH]: "tooShort",
-    [requirements.NUMBER]: "noNumber",
-    [requirements.SPECIAL]: "noSpecialChar",
-    [requirements.LENGTH | requirements.NUMBER]: "tooShortAndNoNumber",
-    [requirements.LENGTH | requirements.SPECIAL]: "tooShortAndNoSpecial",
-    [requirements.NUMBER | requirements.SPECIAL]: "noNumberAndSpecial",
-    [requirements.LENGTH | requirements.NUMBER | requirements.SPECIAL]:
-      "tooShortAndNoNumberAndSpecial",
+  const requirementNames = {
+    LENGTH: i18n.t("register.password.requirements.length"),
+    NUMBER: i18n.t("register.password.requirements.number"),
+    SPECIAL: i18n.t("register.password.requirements.special"),
+    UPPERCASE: i18n.t("register.password.requirements.uppercase"),
+    LOWERCASE: i18n.t("register.password.requirements.lowercase"),
   }
 
-  return missing ? i18n.t(`register.password.passwordField.error.invalid.${errorMap[missing]}`) : ""
+  const missingRequirements = Object.entries(requirements)
+    .filter(([_, isMissing]) => isMissing)
+    .map(([key]) => requirementNames[key as keyof typeof requirementNames])
+
+  if (missingRequirements.length === 0) return ""
+
+  return i18n.t("register.password.passwordField.error.invalid", {
+    requirements: missingRequirements.join(", "),
+  })
 }
 
 export const validateRepeatPassword = (value: string, original: string): string => {
