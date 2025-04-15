@@ -1,7 +1,7 @@
 import { Typography, Box } from "@mui/material";
 import CustomTextField from "../../commons/CommonTextField";
 import { useTranslation } from "react-i18next";
-import { validateRepeatPassword } from "../../utils/registerUtils";
+import { validateRepeatPassword, validatePassword } from "../../utils/registerUtils";
 
 interface Props {
   password: string;
@@ -10,17 +10,17 @@ interface Props {
   setRepeatPassword: (val: string) => void;
   passwordError: string;
   setPasswordError: (val: string) => void;
+  repeatPasswordError: string;
+  setRepeatPasswordError: (val: string) => void;
   passwordStrength: string;
-  handlePasswordBlur: () => void;
-  handleRepeatPasswordBlur: () => void;
 }
 
 export default function RegisterPasswordStage({
   password, setPassword,
   repeatPassword, setRepeatPassword,
   passwordError, setPasswordError,
-  passwordStrength,
-  handlePasswordBlur, handleRepeatPasswordBlur
+  repeatPasswordError, setRepeatPasswordError,
+  passwordStrength
 }: Props) {
   const { t } = useTranslation();
 
@@ -38,10 +38,13 @@ export default function RegisterPasswordStage({
         label={t("register.password.passwordField.label")}
         type="password"
         value={password}
-        setValue={setPassword}
+        setValue={(val: string) => {
+          setPassword(val);
+          setPasswordError(validatePassword(val));
+        }}
         placeholder={t("register.password.passwordField.placeholder")}
         error={!!passwordError}
-        onBlur={handlePasswordBlur}
+        helperText={passwordError}
         autoComplete="new-password"
       />
       {password && (
@@ -63,12 +66,13 @@ export default function RegisterPasswordStage({
         value={repeatPassword}
         setValue={(val: string) => {
           setRepeatPassword(val);
-          setPasswordError(validateRepeatPassword(val, password));
+          if (val && password) {
+            setRepeatPasswordError(validateRepeatPassword(val, password));
+          }
         }}
         placeholder={t("register.password.repeatPasswordField.placeholder")}
-        error={!!passwordError}
-        helperText={passwordError}
-        onBlur={handleRepeatPasswordBlur}
+        error={!!repeatPasswordError}
+        helperText={repeatPasswordError}
         autoComplete="new-password"
         sx={{ marginTop: 2 }}
       />

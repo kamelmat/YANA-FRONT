@@ -1,9 +1,5 @@
 import { useMutation } from "@tanstack/react-query"
 import { authService, RegisterData } from "../services/auth"
-
-import { useNavigate } from "react-router-dom"
-import { useAuthStore } from "../store/authStore"
-
 import { Stage } from "../pages/Register"
 
 export const useRegister = (setStage: (stage: Stage) => void) => {
@@ -25,7 +21,6 @@ export const useRegister = (setStage: (stage: Stage) => void) => {
       return response
     },
     onSuccess: () => {
-      navigate("/")
       setStage("done")
     },
     onError: (error: Error) => {
