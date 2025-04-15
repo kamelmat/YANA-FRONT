@@ -1,7 +1,9 @@
-import { Box, Button, ButtonProps } from '@mui/material';
-import { ReactNode } from 'react';
+import { Box, Button } from '@mui/material';
+import type { ButtonProps } from '@mui/material';
+import type { ReactNode } from 'react';
 import theme from '../theme';
 import { useScreenSize } from '../hooks/useScreenSize';
+
 type VariantType = 'primary' | 'secondary' | 'square-primary' | 'square-secondary' | 'ghost';
 type IconPosition = 'start' | 'end';
 

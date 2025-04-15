@@ -1,5 +1,6 @@
-import { Box, BoxProps, SxProps, Theme } from '@mui/material';
-import { ReactNode } from 'react';
+import { Box } from '@mui/material';
+import type { BoxProps, SxProps, Theme } from '@mui/material';
+import type { ReactNode } from 'react';
 
 interface CommonBoxProps extends BoxProps {
   children: ReactNode;

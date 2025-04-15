@@ -58,7 +58,8 @@ export default function Header() {
       <Box sx={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
         {screenSize !== "sm" && (
           <>
-            <img
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: not needed */}
+<img
               src={Logo}
               alt="Logo"
               style={{ width: "3rem", cursor: "pointer" }}

@@ -7,7 +7,7 @@ export default function Profile() {
 
   if (screenSize !== "sm") {
     return <ProfileDesktop />;
-  } else {
-    return <ProfileMobile />;
   }
+  
+  return <ProfileMobile />;
 }

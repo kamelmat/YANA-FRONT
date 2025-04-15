@@ -121,7 +121,7 @@ const Sidebar: React.FC = () => {
         top: 0,
         left: `calc(${-WIDTH}px + ${PADDING_X} * 2 + ${ICON_SIZE})`,
         bottom: 0,
-        width: WIDTH + "px",
+        width: `${WIDTH}px`,
         background: `linear-gradient(to bottom, ${theme.colors.blackBackground}, ${theme.colors.blackBackground})`,
         zIndex: 900,
         borderRadius: 0,

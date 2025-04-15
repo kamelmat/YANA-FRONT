@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import type { FC } from "react"
+import { useState } from "react"
 import {
   Avatar,
   Box,
@@ -33,7 +34,7 @@ const AVATAR_IMAGES = {
   35: avatarIcon35,
 }
 
-const ProfileDesktop: React.FC = () => {
+const ProfileDesktop: FC = () => {
   const { t } = useTranslation()
   const screenSize = useScreenSize()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
@@ -159,8 +160,8 @@ const ProfileDesktop: React.FC = () => {
       >
         <Typography variant="body1">{t("/profile.account")}</Typography>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-          {Object.values(AVATAR_IMAGES).map((avatar, index) => (
-            <img key={index} src={avatar} style={{ width: "1.5rem", height: "1.5rem" }} alt={`Avatar ${index + 31}`} />
+          {Object.values(AVATAR_IMAGES).map((avatar) => (
+            <img key={avatar} src={avatar} style={{ width: "1.5rem", height: "1.5rem" }} alt={`Avatar ${avatar}`} />
           ))}
         </div>
       </CommonBox>

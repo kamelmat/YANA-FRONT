@@ -1,4 +1,5 @@
-import { Switch, SwitchProps } from '@mui/material';
+import { Switch } from '@mui/material';
+import type { SwitchProps } from '@mui/material';
 import theme from '../theme';
 
 const commonSwitchStyles = {

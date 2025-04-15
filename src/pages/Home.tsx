@@ -1,5 +1,9 @@
-// import { MapView } from "../components/MapView"
+import { MapView } from "../components/MapView"
 
 export default function Home() {
-  return <></>
+  return (
+    <>
+      <MapView />
+    </>
+  )
 }
