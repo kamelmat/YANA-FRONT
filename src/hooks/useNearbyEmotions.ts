@@ -7,8 +7,10 @@ interface Props {
   radius: string
 }
 
+const urlCore = "http://127.0.0.1:8000"
+
 const fetchNearbyEmotions = async ({ latitude, longitude, radius }: Props) => {
-  const url = new URL("http://127.0.0.1:8000/emociones/api/nearby-emotions")
+  const url = new URL(`${urlCore}/emociones/api/nearby-emotions`)
   url.searchParams.set("latitude", latitude)
   url.searchParams.set("longitude", longitude)
   url.searchParams.set("radius", radius)
@@ -16,7 +18,7 @@ const fetchNearbyEmotions = async ({ latitude, longitude, radius }: Props) => {
   const res = await fetch(url.toString())
 
   if (!res.ok) {
-    throw new Error("Error al obtener las emociones")
+    throw new Error("Error getting emotions")
   }
 
   return res.json()
