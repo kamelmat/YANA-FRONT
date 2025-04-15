@@ -63,7 +63,7 @@ export const authService = {
       const responseData = await response.json()
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Login failed")
+        throw new Error(responseData.detail || "Login failed")
       }
 
       return responseData
