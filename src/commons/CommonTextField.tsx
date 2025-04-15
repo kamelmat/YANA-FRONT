@@ -1,5 +1,6 @@
-import { TextField, TextFieldProps } from '@mui/material';
-import { ChangeEvent } from 'react';
+import { TextField } from '@mui/material';
+import type { TextFieldProps } from '@mui/material';
+import type { ChangeEvent } from 'react';
 import theme from '../theme';
 
 interface CustomTextFieldProps extends Omit<TextFieldProps, 'value' | 'onChange' | 'label'> {

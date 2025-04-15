@@ -55,9 +55,6 @@ export default function Register() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const accessToken = useAuthStore((state) => state.accessToken);
-  const setAccessToken = useAuthStore((state) => state.setAccessToken);
-  const setRefreshToken = useAuthStore((state) => state.setRefreshToken);
-  const setAuthName = useAuthStore((state) => state.setName);
 
   const [stage, setStage] = useState<Stage>("method");
   const [name, setName] = useState('');
@@ -74,12 +71,7 @@ export default function Register() {
   const [canContinue, setCanContinue] = useState(false);
   const [emailChecked, setEmailChecked] = useState(false);
 
-  const { mutate: register, isPending: isRegistering } = useRegister(
-    setStage,
-    setAccessToken,
-    setRefreshToken,
-    setAuthName
-  );
+  const { mutate: register, isPending: isRegistering } = useRegister(setStage);
   const { mutate: checkEmail, isPending: isCheckingEmail } = useCheckEmail();
 
   useEffect(() => {
@@ -98,7 +90,7 @@ export default function Register() {
     if (stage === "done") {
       setCanContinue(true);
     }
-  }, [stage, email, password, repeatPassword, name, lastName, passwordError, repeatPasswordError]);
+  }, [stage, email, password, name, lastName, passwordError, repeatPasswordError]);
 
   const handleClick = async () => {
     if (stage === "done" && accessToken) {

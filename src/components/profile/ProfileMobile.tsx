@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import type { FC } from "react"
+import { useState } from "react"
 import { Avatar, Box } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
@@ -14,7 +15,7 @@ import CustomButton from "../../commons/CommonButton"
 import Modal from "../../commons/DeleteModal"
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
 
-const ProfileMobile: React.FC = () => {
+const ProfileMobile: FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)

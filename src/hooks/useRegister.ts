@@ -1,13 +1,20 @@
 import { useMutation } from "@tanstack/react-query"
-import { authService, RegisterData } from "../services/auth"
-import { Stage } from "../pages/Register"
+import { authService } from "../services/auth"
+import type { RegisterData } from "../services/auth"
+import type { Stage } from "../pages/Register"
+import { useAuthStore } from "../store/authStore"
 
 export const useRegister = (setStage: (stage: Stage) => void) => {
-  const navigate = useNavigate()
-  const setAccessToken = useAuthStore((state) => state.setAccessToken)
-  const setRefreshToken = useAuthStore((state) => state.setRefreshToken)
-  const setName = useAuthStore((state) => state.setName)
-  const setAvatarId = useAuthStore((state) => state.setAvatarId)
+  const setAccessToken = useAuthStore(
+    (state: { setAccessToken: (token: string | null) => void }) => state.setAccessToken
+  )
+  const setRefreshToken = useAuthStore(
+    (state: { setRefreshToken: (token: string | null) => void }) => state.setRefreshToken
+  )
+  const setName = useAuthStore((state: { setName: (name: string | null) => void }) => state.setName)
+  const setAvatarId = useAuthStore(
+    (state: { setAvatarId: (id: string | null) => void }) => state.setAvatarId
+  )
 
   return useMutation({
     mutationFn: async (data: RegisterData) => {

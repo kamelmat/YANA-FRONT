@@ -1,5 +1,4 @@
-import React from "react"
-import Map from "../pages/Map"
+import type React from "react"
 import Home from "../pages/Home"
 import Login from "../pages/Login"
 import Profile from "../pages/Profile"
@@ -22,7 +21,6 @@ const AppRoutes: React.FC = () => {
       <Route path="/register" element={<Register />} />
       <Route element={<ProtectedRoute><MapLayout /></ProtectedRoute>}>
         <Route path="/" element={<Home />} />
-        <Route path="/map" element={<Map />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/FAQ" element={<Home />} />
