@@ -6,13 +6,15 @@ import Profile from "../pages/Profile"
 import Register from "../pages/Register"
 import Resources from "../pages/Resources"
 import Contacts from "../pages/Contacts"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 import MapLayout from "./MapLayout"
 import ProtectedRoute from "../components/ProtectedRoute"
 import { useTokenRefresh } from "../hooks/useTokenRefresh"
+import { useAuthStore } from "../store/authStore"
 
 const AppRoutes: React.FC = () => {
   useTokenRefresh();
+  const accessToken = useAuthStore((state) => state.accessToken);
 
   return (
     <Routes>
@@ -26,6 +28,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/FAQ" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
+      <Route path="*" element={<Navigate to={accessToken ? "/" : "/login"} replace />} />
     </Routes>
   )
 }
