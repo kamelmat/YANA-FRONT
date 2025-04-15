@@ -18,8 +18,6 @@ import back from "../assets/icons/back.svg";
 
 import {
   validateEmail,
-  validatePassword,
-  validateRepeatPassword,
   getPasswordStrength,
   validateName,
   validateLastName
@@ -27,6 +25,7 @@ import {
 
 import { useRegister } from "../hooks/useRegister";
 import { useCheckEmail } from "../hooks/useCheckEmail";
+import { useAuthStore } from "../store/authStore";
 
 export type Stage = "email" | "password" | "done" | "method";
 
@@ -55,6 +54,10 @@ export default function Register() {
   const screenSize = useScreenSize();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const accessToken = useAuthStore((state) => state.accessToken);
+  const setAccessToken = useAuthStore((state) => state.setAccessToken);
+  const setRefreshToken = useAuthStore((state) => state.setRefreshToken);
+  const setAuthName = useAuthStore((state) => state.setName);
 
   const [stage, setStage] = useState<Stage>("method");
   const [name, setName] = useState('');
@@ -64,13 +67,19 @@ export default function Register() {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [repeatPasswordError, setRepeatPasswordError] = useState('');
   const [nameError, setNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
   const [passwordStrength, setPasswordStrength] = useState("");
   const [canContinue, setCanContinue] = useState(false);
   const [emailChecked, setEmailChecked] = useState(false);
 
-  const { mutate: register, isPending: isRegistering } = useRegister(setStage);
+  const { mutate: register, isPending: isRegistering } = useRegister(
+    setStage,
+    setAccessToken,
+    setRefreshToken,
+    setAuthName
+  );
   const { mutate: checkEmail, isPending: isCheckingEmail } = useCheckEmail();
 
   useEffect(() => {
@@ -80,8 +89,8 @@ export default function Register() {
     }
 
     if (stage === "password") {
-      const passValid = !validatePassword(password);
-      const matchValid = !validateRepeatPassword(repeatPassword, password);
+      const passValid = !passwordError;
+      const matchValid = !repeatPasswordError;
       setCanContinue(passValid && matchValid);
       setPasswordStrength(getPasswordStrength(password));
     }
@@ -89,11 +98,11 @@ export default function Register() {
     if (stage === "done") {
       setCanContinue(true);
     }
-  }, [stage, email, password, repeatPassword, name, lastName]);
+  }, [stage, email, password, repeatPassword, name, lastName, passwordError, repeatPasswordError]);
 
   const handleClick = async () => {
-    if (stage === "done") {
-      navigate('/login');
+    if (stage === "done" && accessToken) {
+      navigate('/');
       return;
     }
 
@@ -213,9 +222,9 @@ export default function Register() {
                 setRepeatPassword={setRepeatPassword}
                 passwordError={passwordError}
                 setPasswordError={setPasswordError}
+                repeatPasswordError={repeatPasswordError}
+                setRepeatPasswordError={setRepeatPasswordError}
                 passwordStrength={passwordStrength}
-                handlePasswordBlur={() => setPasswordError(validatePassword(password))}
-                handleRepeatPasswordBlur={() => setPasswordError(validateRepeatPassword(repeatPassword, password))}
               />
             )}
 

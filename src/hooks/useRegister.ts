@@ -1,17 +1,13 @@
 import { useMutation } from "@tanstack/react-query"
 import { authService, RegisterData } from "../services/auth"
-
-import { useNavigate } from "react-router-dom"
-import { useAuthStore } from "../store/authStore"
-
 import { Stage } from "../pages/Register"
 
-export const useRegister = (setStage: (stage: Stage) => void) => {
-  const navigate = useNavigate()
-  const setAccessToken = useAuthStore((state) => state.setAccessToken)
-  const setRefreshToken = useAuthStore((state) => state.setRefreshToken)
-  const setName = useAuthStore((state) => state.setName)
-
+export const useRegister = (
+  setStage: (stage: Stage) => void,
+  setAccessToken: (token: string | null) => void,
+  setRefreshToken: (token: string | null) => void,
+  setName: (name: string | null) => void
+) => {
   return useMutation({
     mutationFn: async (data: RegisterData) => {
       const response = await authService.register(data)
@@ -23,7 +19,6 @@ export const useRegister = (setStage: (stage: Stage) => void) => {
       return response
     },
     onSuccess: () => {
-      navigate("/")
       setStage("done")
     },
     onError: (error: Error) => {
