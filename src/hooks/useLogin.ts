@@ -8,16 +8,17 @@ export const useLogin = () => {
   const setAccessToken = useAuthStore((state) => state.setAccessToken)
   const setRefreshToken = useAuthStore((state) => state.setRefreshToken)
   const setName = useAuthStore((state) => state.setName)
+  const setAvatarId = useAuthStore((state) => state.setAvatarId)
 
   return useMutation({
     mutationFn: async (data: LoginData) => {
       const response = await authService.login(data)
-      console.log(response)
-      if (response.access && response.refresh) {
-        setAccessToken(response.access)
-        setRefreshToken(response.refresh)
-        // setName(response.user.name)
-      }
+
+      if (response.access) setAccessToken(response.access)
+      if (response.refresh) setRefreshToken(response.refresh)
+      if (response.name) setName(response.name)
+      if (response.avatar_id) setAvatarId(response.avatar_id)
+
       return response
     },
     onSuccess: () => navigate("/"),

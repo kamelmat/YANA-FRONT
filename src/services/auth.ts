@@ -12,8 +12,22 @@ export interface LoginData {
   password: string
 }
 
+export interface RegisterResponse {
+  access_token: string
+  refresh_token: string
+  name: string
+  avatar_id: string
+}
+
+export interface LoginResponse {
+  access: string
+  refresh: string
+  name: string
+  avatar_id: string
+}
+
 export const authService = {
-  register: async (data: RegisterData) => {
+  register: async (data: RegisterData): Promise<RegisterResponse> => {
     try {
       const response = await fetch(`${API_URL}/usuario/api/register/`, {
         method: "POST",
