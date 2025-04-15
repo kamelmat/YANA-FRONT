@@ -17,12 +17,11 @@ export const useLogin = () => {
 
       if (response.access) setAccessToken(response.access)
       if (response.refresh) setRefreshToken(response.refresh)
-      if (response.name) setName(response.name)
-      if (response.avatar_id) setAvatarId(response.avatar_id)
+      if (response.user.name) setName(response.user.name)
+      if (response.user.avatar_id) setAvatarId(response.user.avatar_id)
 
       return response
     },
     onSuccess: () => navigate("/"),
-    onError: (error) => console.log(error),
   })
 }
