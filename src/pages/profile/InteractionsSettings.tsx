@@ -6,6 +6,7 @@ import SettingsSection from "../../components/profile/SettingsSection"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
 import { useScreenSize } from "../../hooks/useScreenSize"
+import theme from "../../theme"
 
 export default function InteractionsSettings() {
   const { t } = useTranslation()
@@ -56,13 +57,13 @@ export default function InteractionsSettings() {
           >
             <FormControlLabel
               value="1h"
-              control={<Radio />}
+              control={<Radio sx={{ color: "black", "&.Mui-checked": { color: theme.colors.lightBlue } }} />}
               label="1h"
               sx={{ margin: 0, color: "black", "&.Mui-checked": { color: "black" } }}
             />
             <FormControlLabel
               value="24h"
-              control={<Radio />}
+              control={<Radio sx={{ color: "black", "&.Mui-checked": { color: theme.colors.lightBlue } }} />}
               label="24h"
               sx={{ margin: 0, color: "black", "&.Mui-checked": { color: "black" } }}
             />

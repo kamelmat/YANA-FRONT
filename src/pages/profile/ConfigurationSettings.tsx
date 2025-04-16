@@ -6,6 +6,7 @@ import SettingsSection from "../../components/profile/SettingsSection"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
 import { useScreenSize } from "../../hooks/useScreenSize"
+import theme from "../../theme"
 
 export default function ConfigurationSettings() {
   const { t } = useTranslation()
@@ -46,13 +47,23 @@ export default function ConfigurationSettings() {
           >
             <FormControlLabel
               value="dark"
-              control={<Radio />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label={t("/profile.dark")}
               sx={{ margin: 0 }}
             />
             <FormControlLabel
               value="light"
-              control={<Radio />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label={t("/profile.light")}
               sx={{ margin: 0 }}
             />
@@ -87,13 +98,23 @@ export default function ConfigurationSettings() {
           >
             <FormControlLabel
               value="small"
-              control={<Radio />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label={t("/profile.small")}
               sx={{ margin: 0 }}
             />
             <FormControlLabel
               value="large"
-              control={<Radio />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label={t("/profile.large")}
               sx={{ margin: 0 }}
             />
