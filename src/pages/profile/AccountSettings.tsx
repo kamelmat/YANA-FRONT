@@ -104,7 +104,7 @@ export default function AccountSettings() {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              onClick={() => updateSetting("customization", name)}
+              onClick={() => updateSetting("customization", settings.customization === name ? "" : name)}
             >
               <div
                 style={{
