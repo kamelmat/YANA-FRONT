@@ -17,6 +17,8 @@ import { useDeleteAccount } from '../../hooks/useDeleteAccount'
 import AccountSettings from "../../pages/profile/AccountSettings"
 import ConfigurationSettings from "../../pages/profile/ConfigurationSettings"
 import InteractionsSettings from "../../pages/profile/InteractionsSettings"
+import SettingsSection from "./SettingsSection"
+import CommonBox from "../../commons/CommonBox"
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,
@@ -57,13 +59,13 @@ const ProfileDesktop: FC = () => {
         display: "grid",
         gridTemplateRows: {
           lg: "repeat(9, 1fr)",
-          sm: "repeat(16, 4em)",
+          sm: "repeat(17, 4em)",
         },
         gridTemplateColumns: "repeat(12, 1fr)",
         margin: 0,
         padding:{
           sm: "8em",
-          lg: "10em 20em"
+          lg: "5% 10%"
         },
         gap: "1em",
         backgroundColor: theme.colors.blackBackground,
@@ -149,30 +151,16 @@ const ProfileDesktop: FC = () => {
       {/* Interactions Section */}
       <InteractionsSettings />
 
-      {/* Delete Account Button */}
-      <Box
-        sx={{
-          gridRow: {
-            lg: "9 / 10",
-            sm: "16 / 17"
-          },
-          gridColumn: {
-            lg: "9 / 13",
-            sm: "1 / 13"
-          },
-          backgroundColor: "transparent",
-          padding: 0,
-        }}
-      >
+      {/* Others Section */}
+      <SettingsSection title="/profile/others.title" gridRow={{ lg: "6 / 10", sm: "16 / 17" }} gridColumn={{ lg: "9 / 13", sm: "1 / 13" }}>
         <CustomButton
           text={t("/profile.deleteAccount")}
           icon={<img src={deleteIcon} alt={t("/profile.deleteAccount")} />}
           iconPosition="end"
           variantType="ghost"
           onClick={() => setIsDeleteModalOpen(true)}
-          sx={{ border: `3px solid ${theme.colors.lightPink}`, borderRadius: "0.75rem", height: "100%" }}
         />
-      </Box>
+      </SettingsSection>
 
       <Modal
         open={isDeleteModalOpen}
