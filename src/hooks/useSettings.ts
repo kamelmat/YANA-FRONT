@@ -13,7 +13,8 @@ interface Settings {
   hideStatus: boolean
   mute: MuteSettings | null
   notifications: boolean
-  personification: string
+  customization: string
+  avatar: number
 }
 
 const defaultSettings: Settings = {
@@ -24,7 +25,8 @@ const defaultSettings: Settings = {
   hideStatus: false,
   mute: null,
   notifications: true,
-  personification: "lightBlue",
+  customization: "lightBlue",
+  avatar: 34,
 }
 
 const getMuteEndTime = (mute: MuteSettings): number => {
