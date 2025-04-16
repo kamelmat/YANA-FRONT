@@ -56,20 +56,25 @@ export default function SettingsSection({ title, children, gridRow, gridColumn }
         gridColumn: gridColumn,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        gap: "1em",
+        height: "100%",
       }}
     >
-      <Typography
-        sx={{
-          fontSize: "2rem",
-          color: "white",
-          minHeight: "4rem",
-        }}
-      >
-        {t(title)}
-      </Typography>
-      {children}
+      <Box sx={{
+        display: "grid",
+        gridTemplateRows: "repeat(4, 1fr)",
+        height: "100%",
+        gap: "1em",
+      }}>
+        <Typography
+          sx={{
+            fontSize: "2rem",
+            color: "white",
+          }}
+        >
+          {t(title)}
+        </Typography>
+        {children}
+      </Box>
     </Box>
   )
 } 
