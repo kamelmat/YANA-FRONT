@@ -56,7 +56,7 @@ export default function Modal({
         color: 'white', 
         textAlign: 'center',
         fontSize: '1.5rem',
-        fontWeight: 'light',
+        fontWeight: 'bold',
         p: 0,
       }}>
         {t('common.deleteAccount')}
@@ -118,6 +118,7 @@ export default function Modal({
               backgroundColor: theme.colors.red,
               color: 'white',
               border: 'none',
+              fontWeight: 'light',
               '&:hover': {
                 backgroundColor: `${theme.colors.red}CC`
               }
@@ -127,6 +128,9 @@ export default function Modal({
             text={t('common.cancel')}
             variantType="primary"
             onClick={onClose}
+            sx={{
+              fontWeight: 'light',
+            }}
           />
         </Box>
       </DialogContent>
