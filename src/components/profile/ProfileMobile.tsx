@@ -69,7 +69,7 @@ const ProfileMobile: FC = () => {
         icon={<img src={intaractionsIcon} alt={t("/profile.interactions")} />}
         iconPosition="end"
         variantType="square-primary"
-        onClick={() => handleNavigation("/profile/intaractions")}
+        onClick={() => handleNavigation("/profile/interactions")}
       />
       <CustomButton
         text={t("/profile.configuration")}
