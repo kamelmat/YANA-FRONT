@@ -93,6 +93,7 @@ export default function Modal({
             value={password}
             setValue={setPassword}
             type="password"
+            placeholder={t('common.passwordPlaceholder')}
             slotProps={{
               input: {
                 autoComplete: "current-password"
