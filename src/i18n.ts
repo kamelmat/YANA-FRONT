@@ -151,6 +151,9 @@ i18n.use(initReactI18next).init({
         "/profile/interactions": {
           title: "My interactions",
         },
+        "/profile/others": {
+          title: "Others",
+        },
         footer: {
           products: "Products",
           support: "Support",
@@ -327,6 +330,9 @@ i18n.use(initReactI18next).init({
         },
         "/profile/interactions": {
           title: "Mis interacciones",
+        },
+        "/profile/others": {
+          title: "Otros",
         },
         footer: {
           products: "Productos",
