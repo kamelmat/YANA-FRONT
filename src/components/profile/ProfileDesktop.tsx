@@ -1,9 +1,14 @@
 import type { FC } from "react"
-import { useState } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Avatar, Box, Typography } from "@mui/material"
 import { useTranslation } from "react-i18next"
 import theme from "../../theme"
+import { useSettingsStore } from "../../store/useSettingsStore"
+import avatarIcon31 from "../../assets/avatars/avatar_31.svg"
+import avatarIcon32 from "../../assets/avatars/avatar_32.svg"
+import avatarIcon33 from "../../assets/avatars/avatar_33.svg"
 import avatarIcon34 from "../../assets/avatars/avatar_34.svg"
+import avatarIcon35 from "../../assets/avatars/avatar_35.svg"
 import CustomButton from "../../commons/CommonButton"
 import deleteIcon from "../../assets/icons/cancel.svg"
 import { useScreenSize } from "../../hooks/useScreenSize"
@@ -13,9 +18,18 @@ import AccountSettings from "../../pages/profile/AccountSettings"
 import ConfigurationSettings from "../../pages/profile/ConfigurationSettings"
 import InteractionsSettings from "../../pages/profile/InteractionsSettings"
 
+const AVATAR_IMAGES = {
+  31: avatarIcon31,
+  32: avatarIcon32,
+  33: avatarIcon33,
+  34: avatarIcon34,
+  35: avatarIcon35,
+}
+
 const ProfileDesktop: FC = () => {
   const { t } = useTranslation()
   const screenSize = useScreenSize()
+  const { settings } = useSettingsStore()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const deleteAccount = useDeleteAccount()
 
@@ -29,6 +43,12 @@ const ProfileDesktop: FC = () => {
       }
     })
   }
+
+  const avatarSrc = useMemo(() => AVATAR_IMAGES[settings.avatar as keyof typeof AVATAR_IMAGES], [settings.avatar])
+
+  useEffect(() => {
+    console.log(settings.avatar)
+  }, [settings.avatar])
 
   return (
     <Box
@@ -67,7 +87,7 @@ const ProfileDesktop: FC = () => {
         </Typography>
       )}
       
-      <Avatar
+      <Box
         sx={{
           gridRow: {
             lg: "1 / 10",
@@ -77,21 +97,29 @@ const ProfileDesktop: FC = () => {
             lg: "1 / 3",
             sm: "1 / 13"
           },
-          justifySelf: "center",
-          alignSelf: "center",
-          width: {
-            lg: "100%",
-            sm: "auto"
-          },
-          height: {
-            lg: "auto",
-            sm: "100%"
-          },
-          aspectRatio: "1/1",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 2
         }}
-        src={avatarIcon34}
-        alt="User Avatar"
-      />
+      >
+        <Avatar
+          sx={{
+            width: {
+              lg: "100%",
+              sm: "auto"
+            },
+            height: {
+              lg: "auto",
+              sm: "100%"
+            },
+            aspectRatio: "1/1",
+          }}
+          src={avatarSrc}
+          alt="User Avatar"
+        />
+      </Box>
 
       {/* White line */}
       <Box

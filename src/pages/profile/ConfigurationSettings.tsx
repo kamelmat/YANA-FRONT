@@ -4,11 +4,11 @@ import SettingsSection from "../../components/profile/SettingsSection"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
 import theme from "../../theme"
-import { useSettings } from "../../hooks/useSettings"
+import { useSettingsStore } from "../../store/useSettingsStore"
 
 export default function ConfigurationSettings() {
   const { t } = useTranslation()
-  const { settings, updateSetting } = useSettings()
+  const { settings, updateSetting } = useSettingsStore()
 
   return (
     <SettingsSection title="/profile.configuration" gridRow={{ lg: "6 / 10", sm: "8 / 12" }} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
