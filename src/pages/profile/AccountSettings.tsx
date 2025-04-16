@@ -11,6 +11,7 @@ import avatarIcon33 from "../../assets/avatars/avatar_33.svg"
 import avatarIcon34 from "../../assets/avatars/avatar_34.svg"
 import avatarIcon35 from "../../assets/avatars/avatar_35.svg"
 import { useSettingsStore } from "../../store/useSettingsStore"
+import { useUpdateAvatar } from "../../hooks/useUpdateAvatar"
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,
@@ -24,6 +25,18 @@ export default function AccountSettings() {
   useProfileRedirect()
   const { t } = useTranslation()
   const { settings, updateSetting } = useSettingsStore()
+  const updateAvatar = useUpdateAvatar()
+
+  const handleAvatarChange = (avatarId: number) => {
+    updateSetting("avatar", avatarId)
+    
+    updateAvatar.mutate(avatarId, {
+      onError: (error) => {
+        console.error("Error updating avatar:", error)
+        updateSetting("avatar", settings.avatar)
+      }
+    })
+  }
 
   return (
     <SettingsSection title="/profile.account" gridRow={{ lg: "1 / 5", sm: "4 / 8"}} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
@@ -44,7 +57,7 @@ export default function AccountSettings() {
                 alignItems: "center",
                 justifyContent: "center",
               }}
-              onClick={() => updateSetting("avatar", Number.parseInt(id, 10))}
+              onClick={() => handleAvatarChange(Number.parseInt(id, 10))}
             >
               <img
                 src={avatar}
