@@ -24,6 +24,7 @@ import CommonSwitch from "../../commons/CommonSwitch"
 import { useScreenSize } from "../../hooks/useScreenSize"
 import Modal from "../../commons/DeleteModal"
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
+import { useSettings } from "../../hooks/useSettings"
 
 // Constants
 const AVATAR_IMAGES = {
@@ -39,6 +40,7 @@ const ProfileDesktop: FC = () => {
   const screenSize = useScreenSize()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const deleteAccount = useDeleteAccount()
+  const { settings, updateSetting } = useSettings()
 
   const handleDeleteAccount = (password: string) => {
     deleteAccount.mutate(password, {
@@ -179,7 +181,10 @@ const ProfileDesktop: FC = () => {
         }}
       >
         <Typography variant="body1">{t("/profile.notifications")}</Typography>
-        <CommonSwitch defaultChecked />
+        <CommonSwitch 
+          checked={settings.notifications}
+          onChange={(e) => updateSetting("notifications", e.target.checked)}
+        />
       </CommonBox>
       <CommonBox
         sx={{
@@ -248,19 +253,30 @@ const ProfileDesktop: FC = () => {
           <FormLabel id="mode-radio-group-label" sx={{ margin: 0, color: "black" }}>{t("/profile.mode")}</FormLabel>
           <RadioGroup
             aria-labelledby="mode-radio-group-label"
-            defaultValue="dark"
+            value={settings.mode}
+            onChange={(e) => updateSetting("mode", e.target.value as "dark" | "light")}
             name="mode-radio-group"
             sx={{ display: "flex", flexDirection: "row" }}
           >
             <FormControlLabel
               value="dark"
-              control={<Radio />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label={t("/profile.dark")}
               sx={{ margin: 0 }}
             />
             <FormControlLabel
               value="light"
-              control={<Radio />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label={t("/profile.light")}
               sx={{ margin: 0 }}
             />
@@ -281,7 +297,10 @@ const ProfileDesktop: FC = () => {
         }}
       >
         <Typography variant="body1">{t("/profile.appSounds")}</Typography>
-        <CommonSwitch defaultChecked />
+        <CommonSwitch 
+          checked={settings.appSounds}
+          onChange={(e) => updateSetting("appSounds", e.target.checked)}
+        />
       </CommonBox>
       <CommonBox
         sx={{
@@ -305,37 +324,37 @@ const ProfileDesktop: FC = () => {
             alignItems: "center",
             color: "black",
             backgroundColor: "white",
-            fontSize: "1rem",
           }}
         >
           <FormLabel id="fontsize-radio-group-label" sx={{ margin: 0, color: "black" }}>{t("/profile.fontsize")}</FormLabel>
           <RadioGroup
             aria-labelledby="fontsize-radio-group-label"
-            defaultValue="small"
+            value={settings.fontSize}
+            onChange={(e) => updateSetting("fontSize", e.target.value as "small" | "large")}
             name="fontsize-radio-group"
             sx={{ display: "flex", flexDirection: "row" }}
           >
             <FormControlLabel
               value="small"
-              control={<Radio />}
-              label={t("/profile.small")}
-              sx={{
+              control={<Radio sx={{
                 color: "black",
-                fontSize: "0.69rem",
-                margin: 0,
-                "&.Mui-checked": { color: "black" },
-              }}
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
+              label={t("/profile.small")}
+              sx={{ margin: 0 }}
             />
             <FormControlLabel
               value="large"
-              control={<Radio />}
-              label={t("/profile.large")}
-              sx={{
+              control={<Radio sx={{
                 color: "black",
-                fontSize: "0.69rem",
-                margin: 0,
-                "&.Mui-checked": { color: "black" },
-              }}
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
+              label={t("/profile.large")}
+              sx={{ margin: 0 }}
             />
           </RadioGroup>
         </FormControl>
@@ -402,7 +421,10 @@ const ProfileDesktop: FC = () => {
         }}
       >
         <Typography variant="body1">{t("/profile.saveHistory")}</Typography>
-        <CommonSwitch defaultChecked />
+        <CommonSwitch 
+          checked={settings.saveHistory}
+          onChange={(e) => updateSetting("saveHistory", e.target.checked)}
+        />
       </CommonBox>
       <CommonBox
         sx={{
@@ -418,7 +440,10 @@ const ProfileDesktop: FC = () => {
         }}
       >
         <Typography variant="body1">{t("/profile.hideStatus")}</Typography>
-        <CommonSwitch defaultChecked />
+        <CommonSwitch 
+          checked={settings.hideStatus}
+          onChange={(e) => updateSetting("hideStatus", e.target.checked)}
+        />
       </CommonBox>
       <CommonBox
         sx={{
@@ -447,21 +472,35 @@ const ProfileDesktop: FC = () => {
           <FormLabel id="mute-radio-group-label" sx={{ margin: 0, color: "black" }}>{t("/profile.mute")}</FormLabel>
           <RadioGroup
             aria-labelledby="mute-radio-group-label"
-            defaultValue={t("/profile.mute")}
+            value={settings.mute?.duration || ""}
+            onChange={(e) => {
+              const duration = e.target.value as "1h" | "24h"
+              updateSetting("mute", { duration, createdAt: Date.now() })
+            }}
             name="mute-radio-group"
             sx={{ display: "flex", flexDirection: "row" }}
           >
             <FormControlLabel
               value="1h"
-              control={<Radio />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label="1h"
-              sx={{ margin: 0, color: "black", "&.Mui-checked": { color: "black" } }}
+              sx={{ margin: 0 }}
             />
             <FormControlLabel
               value="24h"
-              control={<Radio />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label="24h"
-              sx={{ margin: 0, color: "black", "&.Mui-checked": { color: "black" } }}
+              sx={{ margin: 0 }}
             />
           </RadioGroup>
         </FormControl>
