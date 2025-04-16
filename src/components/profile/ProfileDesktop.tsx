@@ -46,10 +46,6 @@ const ProfileDesktop: FC = () => {
 
   const avatarSrc = useMemo(() => AVATAR_IMAGES[settings.avatar as keyof typeof AVATAR_IMAGES], [settings.avatar])
 
-  useEffect(() => {
-    console.log(settings.avatar)
-  }, [settings.avatar])
-
   return (
     <Box
       sx={{
