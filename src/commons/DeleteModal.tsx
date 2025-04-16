@@ -37,7 +37,7 @@ export default function Modal({
           sx: {
             backgroundColor: 'black',
             color: 'white',
-            borderRadius: '20px',
+            borderRadius: { md: '50px', xs: '25px' },
             padding: {
               xs: '1rem',
               md: '2rem',
