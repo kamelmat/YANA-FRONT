@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import CustomButton from './CommonButton';
 import CustomTextField from './CommonTextField';
 import { useState } from 'react';
+import theme from '../theme';
 
 interface ModalProps {
   open: boolean;
@@ -39,12 +40,13 @@ export default function Modal({
             borderRadius: '20px',
             padding: {
               xs: '1rem',
-              lg: '2rem'
+              md: '2rem',
             },
-            minWidth: '300px',
+            minWidth: { md: '400px' },
             width: {
               xs: '80%',
-              lg: '25%'
+              md: '50%',
+              lg: '20%'
             }
           }
         }
@@ -62,7 +64,7 @@ export default function Modal({
       <DialogTitle sx={{ 
         color: 'white', 
         textAlign: 'center',
-        fontSize: '1rem',
+        fontSize: '0.75rem',
         fontWeight: 'light',
         p: 0,
       }}>
@@ -113,11 +115,11 @@ export default function Modal({
             variantType="secondary"
             onClick={handleConfirm}
             sx={{
-              backgroundColor: '#d32f2f',
+              backgroundColor: theme.colors.red,
               color: 'white',
               border: 'none',
               '&:hover': {
-                backgroundColor: '#b71c1c'
+                backgroundColor: `${theme.colors.red}CC`
               }
             }}
           />
