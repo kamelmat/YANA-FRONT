@@ -1,38 +1,31 @@
 import { Typography, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material"
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
-import { useEffect } from "react"
 import SettingsSection from "../../components/profile/SettingsSection"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
-import { useScreenSize } from "../../hooks/useScreenSize"
 import theme from "../../theme"
+import { useSettings } from "../../hooks/useSettings"
 
 export default function InteractionsSettings() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const screenSize = useScreenSize()
-
-  useEffect(() => {
-    if (screenSize !== "sm") {
-      navigate("/profile")
-    }
-  }, [screenSize, navigate])
-
-  if (screenSize !== "sm") {
-    return null
-  }
+  const { settings, updateSetting } = useSettings()
 
   return (
-    <SettingsSection title="/profile.interactions">
+    <SettingsSection title="/profile.interactions" gridRow={{ lg: "1 / 5", sm: "12 / 16" }} gridColumn={{ lg: "9 / 13", sm: "1 / 13" }}>
       <CommonBox sx={{ justifyContent: "space-between" }}>
-        <Typography variant="body1">{t("/profile.saveHistory")}</Typography>
-        <CommonSwitch defaultChecked />
+        <Typography variant="body1" fontWeight="bold" width="40%">{t("/profile.saveHistory")}</Typography>
+        <CommonSwitch 
+          checked={settings.saveHistory}
+          onChange={(e) => updateSetting("saveHistory", e.target.checked)}
+        />
       </CommonBox>
 
       <CommonBox sx={{ justifyContent: "space-between" }}>
-        <Typography variant="body1">{t("/profile.hideStatus")}</Typography>
-        <CommonSwitch defaultChecked />
+        <Typography variant="body1" fontWeight="bold" width="40%">{t("/profile.hideStatus")}</Typography>
+        <CommonSwitch 
+          checked={settings.hideStatus}
+          onChange={(e) => updateSetting("hideStatus", e.target.checked)}
+        />
       </CommonBox>
 
       <CommonBox>
@@ -48,24 +41,38 @@ export default function InteractionsSettings() {
             backgroundColor: "white",
           }}
         >
-          <FormLabel id="mute-radio-group-label" sx={{ margin: 0, color: "black" }}>{t("/profile.mute")}</FormLabel>
+          <FormLabel id="mute-radio-group-label" sx={{ margin: 0, color: "black", fontWeight: "bold" }}>{t("/profile.mute")}</FormLabel>
           <RadioGroup
             aria-labelledby="mute-radio-group-label"
-            defaultValue={t("/profile.mute")}
+            value={settings.mute?.duration || ""}
+            onChange={(e) => {
+              const duration = e.target.value as "1h" | "24h"
+              updateSetting("mute", { duration, createdAt: Date.now() })
+            }}
             name="mute-radio-group"
             sx={{ display: "flex", flexDirection: "row" }}
           >
             <FormControlLabel
               value="1h"
-              control={<Radio sx={{ color: "black", "&.Mui-checked": { color: theme.colors.lightBlue } }} />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label="1h"
-              sx={{ margin: 0, color: "black", "&.Mui-checked": { color: "black" } }}
+              sx={{ margin: 0 }}
             />
             <FormControlLabel
               value="24h"
-              control={<Radio sx={{ color: "black", "&.Mui-checked": { color: theme.colors.lightBlue } }} />}
+              control={<Radio sx={{
+                color: "black",
+                '&.Mui-checked': {
+                  color: theme.colors.lightBlue,
+                },
+              }} />}
               label="24h"
-              sx={{ margin: 0, color: "black", "&.Mui-checked": { color: "black" } }}
+              sx={{ margin: 0 }}
             />
           </RadioGroup>
         </FormControl>

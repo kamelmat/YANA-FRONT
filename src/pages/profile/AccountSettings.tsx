@@ -1,7 +1,5 @@
 import { Typography } from "@mui/material"
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
 import SettingsSection from "../../components/profile/SettingsSection"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
@@ -11,8 +9,8 @@ import avatarIcon32 from "../../assets/avatars/avatar_32.svg"
 import avatarIcon33 from "../../assets/avatars/avatar_33.svg"
 import avatarIcon34 from "../../assets/avatars/avatar_34.svg"
 import avatarIcon35 from "../../assets/avatars/avatar_35.svg"
-import { useScreenSize } from "../../hooks/useScreenSize"
 import { useSettings } from "../../hooks/useSettings"
+import { useState } from "react"
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,
@@ -24,26 +22,14 @@ const AVATAR_IMAGES = {
 
 export default function AccountSettings() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const screenSize = useScreenSize()
   const { settings, updateSetting } = useSettings()
   const [selectedAvatar, setSelectedAvatar] = useState<number>(34)
   const [selectedColor, setSelectedColor] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (screenSize !== "sm") {
-      navigate("/profile")
-    }
-  }, [screenSize, navigate])
-
-  if (screenSize !== "sm") {
-    return null
-  }
-
   return (
-    <SettingsSection title="/profile.account">
+    <SettingsSection title="/profile.account" gridRow={{ lg: "1 / 5", sm: "4 / 8"}} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
       <CommonBox sx={{ justifyContent: "space-between" }}>
-        <Typography variant="body1">{t("/profile.account")}</Typography>
+        <Typography variant="body1" fontWeight="bold">{t("/profile.account")}</Typography>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
           {Object.entries(AVATAR_IMAGES).map(([id, avatar]) => (
             <button
@@ -78,7 +64,7 @@ export default function AccountSettings() {
       </CommonBox>
 
       <CommonBox sx={{ justifyContent: "space-between" }}>
-        <Typography variant="body1">{t("/profile.notifications")}</Typography>
+        <Typography variant="body1" fontWeight="bold">{t("/profile.notifications")}</Typography>
         <CommonSwitch 
           checked={settings.notifications}
           onChange={(e) => updateSetting("notifications", e.target.checked)}
@@ -86,7 +72,7 @@ export default function AccountSettings() {
       </CommonBox>
 
       <CommonBox sx={{ justifyContent: "space-between" }}>
-        <Typography variant="body1">{t("/profile.personification")}</Typography>
+        <Typography variant="body1" fontWeight="bold" width="40%" >{t("/profile.customization")}</Typography>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
           {[
             { name: "lightBlue", color: theme.colors.lightBlue },

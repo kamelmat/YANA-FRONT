@@ -1,30 +1,17 @@
 import { Typography, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material"
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
-import { useEffect } from "react"
 import SettingsSection from "../../components/profile/SettingsSection"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
-import { useScreenSize } from "../../hooks/useScreenSize"
 import theme from "../../theme"
+import { useSettings } from "../../hooks/useSettings"
 
 export default function ConfigurationSettings() {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const screenSize = useScreenSize()
-
-  useEffect(() => {
-    if (screenSize !== "sm") {
-      navigate("/profile")
-    }
-  }, [screenSize, navigate])
-
-  if (screenSize !== "sm") {
-    return null
-  }
+  const { settings, updateSetting } = useSettings()
 
   return (
-    <SettingsSection title="/profile.configuration">
+    <SettingsSection title="/profile.configuration" gridRow={{ lg: "6 / 10", sm: "8 / 12" }} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
       <CommonBox>
         <FormControl
           sx={{
@@ -38,10 +25,11 @@ export default function ConfigurationSettings() {
             backgroundColor: "white",
           }}
         >
-          <FormLabel id="mode-radio-group-label" sx={{ margin: 0, color: "black" }}>{t("/profile.mode")}</FormLabel>
+          <FormLabel id="mode-radio-group-label" sx={{ margin: 0, color: "black", fontWeight: "bold" }}>{t("/profile.mode")}</FormLabel>
           <RadioGroup
             aria-labelledby="mode-radio-group-label"
-            defaultValue="dark"
+            value={settings.mode}
+            onChange={(e) => updateSetting("mode", e.target.value as "dark" | "light")}
             name="mode-radio-group"
             sx={{ display: "flex", flexDirection: "row" }}
           >
@@ -72,8 +60,11 @@ export default function ConfigurationSettings() {
       </CommonBox>
 
       <CommonBox sx={{ justifyContent: "space-between" }}>
-        <Typography variant="body1">{t("/profile.appSounds")}</Typography>
-        <CommonSwitch defaultChecked />
+        <Typography variant="body1" fontWeight="bold">{t("/profile.appSounds")}</Typography>
+        <CommonSwitch 
+          checked={settings.appSounds}
+          onChange={(e) => updateSetting("appSounds", e.target.checked)}
+        />
       </CommonBox>
 
       <CommonBox>
@@ -89,10 +80,11 @@ export default function ConfigurationSettings() {
             backgroundColor: "white",
           }}
         >
-          <FormLabel id="fontsize-radio-group-label" sx={{ margin: 0, color: "black" }}>{t("/profile.fontsize")}</FormLabel>
+          <FormLabel id="fontsize-radio-group-label" sx={{ margin: 0, color: "black", fontWeight: "bold" }}>{t("/profile.fontsize")}</FormLabel>
           <RadioGroup
             aria-labelledby="fontsize-radio-group-label"
-            defaultValue="small"
+            value={settings.fontSize}
+            onChange={(e) => updateSetting("fontSize", e.target.value as "small" | "large")}
             name="fontsize-radio-group"
             sx={{ display: "flex", flexDirection: "row" }}
           >
