@@ -1,5 +1,5 @@
 import type { FC } from "react"
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo } from "react"
 import { Avatar, Box, Typography } from "@mui/material"
 import { useTranslation } from "react-i18next"
 import theme from "../../theme"

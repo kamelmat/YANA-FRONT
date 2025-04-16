@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next"
 import SettingsSection from "../../components/profile/SettingsSection"
 import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
+import { useProfileRedirect } from "../../hooks/useProfileRedirect"
 import theme from "../../theme"
 import avatarIcon31 from "../../assets/avatars/avatar_31.svg"
 import avatarIcon32 from "../../assets/avatars/avatar_32.svg"
@@ -20,6 +21,7 @@ const AVATAR_IMAGES = {
 }
 
 export default function AccountSettings() {
+  useProfileRedirect()
   const { t } = useTranslation()
   const { settings, updateSetting } = useSettingsStore()
 

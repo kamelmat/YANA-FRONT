@@ -5,8 +5,9 @@ import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
 import theme from "../../theme"
 import { useSettingsStore } from "../../store/useSettingsStore"
-
+import { useProfileRedirect } from "../../hooks/useProfileRedirect"
 export default function InteractionsSettings() {
+  useProfileRedirect()
   const { t } = useTranslation()
   const { settings, updateSetting } = useSettingsStore()
 
