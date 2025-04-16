@@ -1,10 +1,14 @@
 import type { FC } from "react"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Avatar, Box } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import theme from "../../theme"
-import avatarImage from "../../assets/avatars/avatar_34.svg"
+import avatarIcon31 from "../../assets/avatars/avatar_31.svg"
+import avatarIcon32 from "../../assets/avatars/avatar_32.svg"
+import avatarIcon33 from "../../assets/avatars/avatar_33.svg"
+import avatarIcon34 from "../../assets/avatars/avatar_34.svg"
+import avatarIcon35 from "../../assets/avatars/avatar_35.svg"
 import accountIcon from "../../assets/icons/account_circle.svg"
 import intaractionsIcon from "../../assets/icons/groups.svg"
 import configurationIcon from "../../assets/icons/settings2.svg"
@@ -14,15 +18,27 @@ import deleteIcon from "../../assets/icons/cancel.svg"
 import CustomButton from "../../commons/CommonButton"
 import Modal from "../../commons/DeleteModal"
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
+import { useSettingsStore } from "../../store/useSettingsStore"
+
+const AVATAR_IMAGES = {
+  31: avatarIcon31,
+  32: avatarIcon32,
+  33: avatarIcon33,
+  34: avatarIcon34,
+  35: avatarIcon35,
+}
 
 const ProfileMobile: FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const { settings } = useSettingsStore()
   const deleteAccount = useDeleteAccount()
   const handleNavigation = (path: string) => {
     navigate(path)
   }
+  
+  const avatarSrc = useMemo(() => AVATAR_IMAGES[settings.avatar as keyof typeof AVATAR_IMAGES], [settings.avatar])
 
   const handleDeleteAccount = (password: string) => {
     deleteAccount.mutate(password, {
@@ -54,7 +70,7 @@ const ProfileMobile: FC = () => {
           height: "10.81rem",
           marginBottom: "3.44rem",
         }}
-        src={avatarImage}
+        src={avatarSrc}
         alt="User Avatar"
       />
       <CustomButton
