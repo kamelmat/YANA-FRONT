@@ -13,7 +13,8 @@ const commonBoxStyles: SxProps<Theme> = {
   borderRadius: "0.75rem",
   textTransform: "none",
   padding: "1em",
-  height: "4rem",
+  height: "100%",
+  minHeight: "4rem",
   display: "flex",
   alignItems: "center",
 };
