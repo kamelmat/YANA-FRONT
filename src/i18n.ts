@@ -143,6 +143,15 @@ i18n.use(initReactI18next).init({
           menu: "Exit",
           title: "Exit",
         },
+        "/profile/account": {
+          title: "Edit Profile",
+        },
+        "/profile/configuration": {
+          title: "Configuration",
+        },
+        "/profile/interactions": {
+          title: "My interactions",
+        },
         footer: {
           products: "Products",
           support: "Support",
@@ -311,6 +320,15 @@ i18n.use(initReactI18next).init({
         "/logout": {
           menu: "Cerrar sesión",
           title: "Cerrar sesión",
+        },
+        "/profile/account": {
+          title: "Editar Perfil",
+        },
+        "/profile/configuration": {
+          title: "Configuración",
+        },
+        "/profile/interactions": {
+          title: "Mis interacciones",
         },
         footer: {
           products: "Productos",
