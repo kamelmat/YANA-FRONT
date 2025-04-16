@@ -27,7 +27,7 @@ import { useDeleteAccount } from '../../hooks/useDeleteAccount';
 import { useSettings } from "../../hooks/useSettings"
 
 // Constants
-const AVATAR_IMAGES = {
+const AVATAR_IMAGES: Record<number, string> = {
   31: avatarIcon31,
   32: avatarIcon32,
   33: avatarIcon33,
@@ -41,6 +41,8 @@ const ProfileDesktop: FC = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const deleteAccount = useDeleteAccount()
   const { settings, updateSetting } = useSettings()
+  const [selectedAvatar, setSelectedAvatar] = useState<number>(34)
+  const [selectedColor, setSelectedColor] = useState<string | null>(null)
 
   const handleDeleteAccount = (password: string) => {
     deleteAccount.mutate(password, {
@@ -51,6 +53,10 @@ const ProfileDesktop: FC = () => {
         console.error('Error deleting account:', error)
       }
     })
+  }
+
+  const handleColorClick = (color: string) => {
+    setSelectedColor(selectedColor === color ? null : color)
   }
 
   return (
@@ -103,7 +109,7 @@ const ProfileDesktop: FC = () => {
           height: "auto",
           aspectRatio: "1/1",
         }}
-        src={AVATAR_IMAGES[34]}
+        src={AVATAR_IMAGES[selectedAvatar]}
         alt="User Avatar"
       />
 
@@ -162,8 +168,29 @@ const ProfileDesktop: FC = () => {
       >
         <Typography variant="body1">{t("/profile.account")}</Typography>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-          {Object.values(AVATAR_IMAGES).map((avatar) => (
-            <img key={avatar} src={avatar} style={{ width: "1.5rem", height: "1.5rem" }} alt={`Avatar ${avatar}`} />
+          {Object.entries(AVATAR_IMAGES).map(([id, avatar]) => (
+            <button
+              type="button"
+              key={id}
+              style={{
+                padding: 0,
+                border: selectedAvatar === Number.parseInt(id, 10) ? `4px solid ${theme.colors.blackBackground}` : "none",
+                borderRadius: "50%",
+                background: "none",
+                cursor: "pointer",
+              }}
+              onClick={() => setSelectedAvatar(Number.parseInt(id, 10))}
+            >
+              <img
+                src={avatar}
+                style={{
+                  width: selectedAvatar === Number.parseInt(id, 10) ? "2rem" : "1.5rem",
+                  height: selectedAvatar === Number.parseInt(id, 10) ? "2rem" : "1.5rem",
+                  display: "block",
+                }}
+                alt={`Avatar ${id}`}
+              />
+            </button>
           ))}
         </div>
       </CommonBox>
@@ -201,11 +228,40 @@ const ProfileDesktop: FC = () => {
       >
         <Typography variant="body1">{t("/profile.personification")}</Typography>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.lightBlue, borderRadius: "50%" }} />
-          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.green, borderRadius: "50%" }} />
-          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.pink, borderRadius: "50%" }} />
-          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.orange, borderRadius: "50%" }} />
-          <div style={{ width: "1.5rem", height: "1.5rem", backgroundColor: theme.colors.yellow, borderRadius: "50%" }} />
+          {[
+            { name: "lightBlue", color: theme.colors.lightBlue },
+            { name: "green", color: theme.colors.green },
+            { name: "pink", color: theme.colors.pink },
+            { name: "orange", color: theme.colors.orange },
+            { name: "yellow", color: theme.colors.yellow },
+          ].map(({ name, color }) => (
+            <button
+              type="button"
+              key={name}
+              style={{
+                padding: 0,
+                border: selectedColor === name ? `4px solid ${theme.colors.blackBackground}` : "none",
+                borderRadius: "50%",
+                background: "none",
+                cursor: "pointer",
+                width: selectedColor === name ? "2rem" : "1.5rem",
+                height: selectedColor === name ? "2rem" : "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onClick={() => handleColorClick(name)}
+            >
+              <div
+                style={{
+                  width: selectedColor === name ? "1.5rem" : "1.5rem",
+                  height: selectedColor === name ? "1.5rem" : "1.5rem",
+                  backgroundColor: color,
+                  borderRadius: "50%",
+                }}
+              />
+            </button>
+          ))}
         </div>
       </CommonBox>
 
