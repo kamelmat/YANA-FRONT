@@ -187,6 +187,8 @@ i18n.use(initReactI18next).init({
             subtitle:
               "Access contacts and resources to feel better. Remember that you are part of a community that supports you.",
           },
+          deleteAccountMessage: "Do you confirm that you want to delete your account?",
+          passwordPlaceholder: "Enter your password",
         },
       },
     },
@@ -377,6 +379,8 @@ i18n.use(initReactI18next).init({
             subtitle:
               "Accede a contactos y recursos para sentirte mejor. Recuerda que eres parte de una comunidad que te acompaña.",
           },
+          deleteAccountMessage: "¿Confirmas que quieres eliminar tu cuenta?",
+          passwordPlaceholder: "Ingresa tu contraseña",
         },
       },
     },
