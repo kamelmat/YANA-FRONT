@@ -15,6 +15,7 @@ import lonelinessIcon from "../assets/icons/soledad.svg?url"
 import reluctanceIcon from "../assets/icons/desgano.svg?url"
 import tranquilityIcon from "../assets/icons/tranquilidad.svg?url"
 import { useState } from "react"
+import theme from "../theme"
 
 interface StyledEmotionButtonProps {
   selected?: boolean
@@ -26,6 +27,14 @@ const EMOTIONS_ICONS = {
   loneliness: lonelinessIcon,
   reluctance: reluctanceIcon,
   tranquility: tranquilityIcon,
+}
+
+const EMOTIONS_COLORS = {
+  sadness: theme.colors.lightBlue,
+  distress: theme.colors.pink,
+  loneliness: theme.colors.green,
+  reluctance: theme.colors.orange,
+  tranquility: theme.colors.yellow,
 }
 
 const StyledEmotionButton = styled(IconButton)<StyledEmotionButtonProps>(({ selected }) => ({
@@ -42,7 +51,7 @@ const StyledEmotionButton = styled(IconButton)<StyledEmotionButtonProps>(({ sele
     width: "2.5rem",
     height: "2.5rem",
     color: "#FFFFFF",
-    filter: selected ? "drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))" : "none",
+    filter: selected ? "drop-shadow(0 0 10px var(--emotion-color))" : "none",
     transition: "filter 0.3s ease-in-out",
   },
 }))
@@ -150,6 +159,7 @@ const Emotions: React.FC = () => {
             sx={{
               flex: 1,
               minWidth: 0,
+              "--emotion-color": EMOTIONS_COLORS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_COLORS],
               "& svg, & img": {
                 width: iconSize,
                 height: iconSize,
