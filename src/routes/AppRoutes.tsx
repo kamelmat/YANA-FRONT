@@ -10,7 +10,7 @@ import MapLayout from "./MapLayout"
 import ProtectedRoute from "../components/ProtectedRoute"
 import { useTokenRefresh } from "../hooks/useTokenRefresh"
 import { useAuthStore } from "../store/authStore"
-
+import Onboarding from "../pages/Onboarding"
 const AppRoutes: React.FC = () => {
   useTokenRefresh();
   const accessToken = useAuthStore((state) => state.accessToken);
@@ -19,6 +19,7 @@ const AppRoutes: React.FC = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/onboarding" element={<Onboarding />} />
       <Route element={<ProtectedRoute><MapLayout /></ProtectedRoute>}>
         <Route path="/" element={<Home />} />
         <Route path="/resources" element={<Resources />} />
