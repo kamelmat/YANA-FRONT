@@ -48,7 +48,7 @@ export default function RegisterPasswordStage({
         autoComplete="new-password"
       />
       {password && (
-        <Typography fontSize={13} sx={{ color: "#fff", fontWeight: "light" }}>
+        <Typography variant="body2" sx={{ color: "#fff", fontWeight: "light" }}>
           {t("register.password.passwordStrength.text")}:{" "}
           <Box component="span" sx={{
             color: passwordStrength === t("register.password.passwordStrength.strong") ? "limegreen"

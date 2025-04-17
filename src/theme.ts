@@ -15,6 +15,7 @@ declare module "@mui/material/styles" {
       lightPink: string
       darkPurple: string
       red: string
+      defaultBackground: string
     }
     gradients: {
       gradientBlack?: string
@@ -43,6 +44,7 @@ declare module "@mui/material/styles" {
       lightPink?: string
       darkPurple?: string
       red?: string
+      defaultBackground?: string
     }
     gradients?: {
       gradientBlack?: string
@@ -56,11 +58,56 @@ declare module "@mui/material/styles" {
       width: string
     }
   }
+
+  interface TypographyVariants {
+    body3: React.CSSProperties
+  }
+
+  interface TypographyVariantsOptions {
+    body3?: React.CSSProperties
+  }
+}
+
+declare module "@mui/material/Typography" {
+  interface TypographyPropsVariantOverrides {
+    body3: true
+  }
 }
 
 const theme = createTheme({
   typography: {
     fontFamily: "Roboto, sans-serif",
+    fontSize: 16,
+    h1: {
+      fontSize: "2.5rem",
+    },
+    h2: {
+      fontSize: "2rem",
+    },
+    h3: {
+      fontSize: "1.75rem",
+    },
+    h4: {
+      fontSize: "1.5rem",
+    },
+    h5: {
+      fontSize: "1.25rem",
+    },
+    h6: {
+      fontSize: "1rem",
+    },
+    body1: {
+      fontSize: "1rem",
+    },
+    body2: {
+      fontSize: "0.875rem",
+    },
+    body3: {
+      fontSize: "0.75rem",
+    },
+    button: {
+      fontSize: "1rem",
+    },
   },
   colors: {
     blackBackground: "#1E1E1E",
@@ -74,6 +121,7 @@ const theme = createTheme({
     lightPink: "#F9DEDC",
     darkPurple: "#1D1B20",
     red: "#B3261E",
+    defaultBackground: "#1B201B",
   },
   gradients: {
     gradientBlack: "linear-gradient(to top, #262626, #3E4044)",

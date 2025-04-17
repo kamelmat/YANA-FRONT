@@ -37,7 +37,7 @@ export default function Header() {
   const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh"
   const isDesktop = screenSize === "lg" || screenSize === "xl"
 
-  if (location === "/login" || location === "/register") return
+  if (location === "/login" || location === "/register" || location === "/onboarding") return
 
   return (
     <Box
@@ -59,7 +59,7 @@ export default function Header() {
         {screenSize !== "sm" && (
           <>
             {/* biome-ignore lint/a11y/useKeyWithClickEvents: not needed */}
-<img
+            <img
               src={Logo}
               alt="Logo"
               style={{ width: "3rem", cursor: "pointer" }}
@@ -74,7 +74,6 @@ export default function Header() {
               <>
                 <Typography
                   variant="h6"
-                  fontSize={18}
                   sx={{
                     color: "white",
                     fontWeight: "bold",
@@ -84,7 +83,7 @@ export default function Header() {
                 >
                   {t("header.welcome", { name })}
                 </Typography>
-                <Typography fontSize={14} sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
+                <Typography variant="body1" sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
                   {date}
                 </Typography>
               </>

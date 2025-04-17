@@ -1,9 +1,10 @@
 import type { FC } from "react"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Avatar, Box } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import theme from "../../theme"
+
 import avatarImage from "../../assets/avatars/avatar_34.svg?url"
 import accountIcon from "../../assets/icons/account_circle.svg?url"
 import intaractionsIcon from "../../assets/icons/groups.svg?url"
@@ -11,18 +12,31 @@ import configurationIcon from "../../assets/icons/settings2.svg?url"
 import logoutIcon from "../../assets/icons/logout_blue.svg?url"
 import helpIcon from "../../assets/icons/emergency.svg?url"
 import deleteIcon from "../../assets/icons/cancel.svg?url"
+
 import CustomButton from "../../commons/CommonButton"
 import Modal from "../../commons/DeleteModal"
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
+import { useSettingsStore } from "../../store/useSettingsStore"
+
+const AVATAR_IMAGES = {
+  31: avatarIcon31,
+  32: avatarIcon32,
+  33: avatarIcon33,
+  34: avatarIcon34,
+  35: avatarIcon35,
+}
 
 const ProfileMobile: FC = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const { settings } = useSettingsStore()
   const deleteAccount = useDeleteAccount()
   const handleNavigation = (path: string) => {
     navigate(path)
   }
+  
+  const avatarSrc = useMemo(() => AVATAR_IMAGES[settings.avatar as keyof typeof AVATAR_IMAGES], [settings.avatar])
 
   const handleDeleteAccount = (password: string) => {
     deleteAccount.mutate(password, {
@@ -45,7 +59,7 @@ const ProfileMobile: FC = () => {
         margin: 0,
         padding: "6em 1em",
         gap: "1.25rem",
-        backgroundColor: theme.colors.blackBackground,
+        backgroundColor: settings.customization ? theme.colors[settings.customization as keyof typeof theme.colors] : theme.colors.defaultBackground,
       }}
     >
       <Avatar
@@ -54,7 +68,7 @@ const ProfileMobile: FC = () => {
           height: "10.81rem",
           marginBottom: "3.44rem",
         }}
-        src={avatarImage}
+        src={avatarSrc}
         alt="User Avatar"
       />
       <CustomButton
@@ -69,7 +83,7 @@ const ProfileMobile: FC = () => {
         icon={<img src={intaractionsIcon} alt={t("/profile.interactions")} />}
         iconPosition="end"
         variantType="square-primary"
-        onClick={() => handleNavigation("/profile/intaractions")}
+        onClick={() => handleNavigation("/profile/interactions")}
       />
       <CustomButton
         text={t("/profile.configuration")}
