@@ -117,8 +117,6 @@ const Emotions: React.FC<{
       sx={{
         position: "fixed",
         bottom: {
-          lg: "2vh",
-          md: "2vh",
           sm: "2vh",
           xs: 0,
         },
@@ -126,14 +124,12 @@ const Emotions: React.FC<{
         transform: "translateX(-50%)",
         width: {
           lg: "814px",
-          md: "48rem",
           sm: "40rem",
           xs: "100%",
         },
         height: { lg: "auto", md: "auto", sm: "auto", xs: "auto" },
         maxHeight: "238.78px",
         padding: {
-          lg: "1.5rem",
           md: "1.5rem",
           sm: "1rem",
           xs: "1rem 1rem 6.375rem 1rem",
@@ -144,12 +140,10 @@ const Emotions: React.FC<{
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "1.875rem",
-        borderWidth: "1px",
-        borderStyle: "solid",
-        borderColor: "#FFFFFF",
+        border: {
+          sm: "1px solid #FFFFFF",
+        },
         backgroundColor: {
-          lg: "#3E3E3ECC",
-          md: "#3E3E3ECC",
           sm: "#3E3E3ECC",
           xs: theme.colors.blackBackground,
         },
@@ -163,7 +157,6 @@ const Emotions: React.FC<{
           fontSize: {
             lg: "2rem",
             md: "1.5rem",
-            sm: "1rem",
             xs: "1rem",
           },
         }}
