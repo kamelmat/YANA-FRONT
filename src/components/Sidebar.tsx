@@ -93,7 +93,7 @@ const Sidebar: React.FC = () => {
     },
     {
       icon: <SettingsIcon width={ICON_SIZE} height={ICON_SIZE} />,
-      selectedColor: theme.colors.pink,
+      selectedColor: theme.colors.yellow,
       route: "/profile",
     },
     {
@@ -132,6 +132,9 @@ const Sidebar: React.FC = () => {
         "&:hover": {
           left: 0,
           background: `linear-gradient(to bottom, ${theme.colors.blackBackground}, ${theme.colors.darkPurple} 35%)`,
+          "& .welcome-text, & .date-text": {
+            opacity: 1,
+          },
         },
       }}
     >
@@ -140,16 +143,30 @@ const Sidebar: React.FC = () => {
           <Typography
             variant="h4"
             paddingTop="12vh"
+            className="welcome-text"
             sx={{
               color: "white",
               fontWeight: "bold",
               lineHeight: 1,
               fontFamily: "League Spartan",
+              opacity: 0,
+              transition: "opacity 0.3s ease",
             }}
           >
             {t("header.welcome", { name })}
           </Typography>
-          <Typography variant="body1" sx={{ color: "white", fontFamily: "League Spartan" }}>
+
+          <Typography 
+            fontSize={18} 
+            className="date-text"
+            sx={{ 
+              color: "white", 
+              fontFamily: "League Spartan",
+              opacity: 0,
+              transition: "opacity 0.3s ease",
+            }}
+          >
+
             {date}
           </Typography>
         </Box>
