@@ -1,26 +1,34 @@
 import type React from "react"
 import { Box, Typography, IconButton } from "@mui/material"
 import type { Theme } from "@mui/material/styles"
+import { useTheme } from "@mui/material/styles"
 import styled from "@emotion/styled"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useTranslation } from "react-i18next"
+import { useEmotionsStore } from "../store/emotionsStore"
+import type { AvailableEmotion } from "../services/emotions"
+import { useCreateEmotion } from "../hooks/useCreateEmotion"
+import { useUserLocationStore } from "../store/userLocationStore"
 import sadnessIcon from "../assets/icons/tristeza.svg?url"
 import distressIcon from "../assets/icons/angustia.svg?url"
 import lonelinessIcon from "../assets/icons/soledad.svg?url"
 import reluctanceIcon from "../assets/icons/desgano.svg?url"
-import tranquillityIcon from "../assets/icons/tranquilidad.svg?url"
-import { useTheme } from "@mui/material"
-
-export type Emotion = {
-  name: string
-  icon: React.ReactNode
-}
+import tranquilityIcon from "../assets/icons/tranquilidad.svg?url"
+import { useState } from "react"
 
 interface StyledEmotionButtonProps {
   selected?: boolean
 }
 
-const StyledEmotionButton = styled(IconButton)<StyledEmotionButtonProps>({
+const EMOTIONS_ICONS = {
+  sadness: sadnessIcon,
+  distress: distressIcon,
+  loneliness: lonelinessIcon,
+  reluctance: reluctanceIcon,
+  tranquility: tranquilityIcon,
+}
+
+const StyledEmotionButton = styled(IconButton)<StyledEmotionButtonProps>(({ selected }) => ({
   display: "flex",
   flexDirection: "column" as const,
   alignItems: "center",
@@ -34,15 +42,19 @@ const StyledEmotionButton = styled(IconButton)<StyledEmotionButtonProps>({
     width: "2.5rem",
     height: "2.5rem",
     color: "#FFFFFF",
+    filter: selected ? "drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))" : "none",
+    transition: "filter 0.3s ease-in-out",
   },
-})
+}))
 
-const Emotions: React.FC<{
-  onEmotionClick?: (emotion: string) => void
-}> = ({ onEmotionClick }) => {
+const Emotions: React.FC = () => {
   const theme = useTheme() as Theme
   const screenSize = useScreenSize()
   const { t } = useTranslation()
+  const emotions = useEmotionsStore((state: { emotions: AvailableEmotion[] }) => state.emotions)
+  const { mutate: createEmotion } = useCreateEmotion()
+  const userLocation = useUserLocationStore((state) => state.userLocation)
+  const [selectedEmotion, setSelectedEmotion] = useState<string | null>(null)
 
   const getIconSize = () => {
     switch (screenSize) {
@@ -59,58 +71,16 @@ const Emotions: React.FC<{
 
   const iconSize = getIconSize()
 
-  const emotions: Emotion[] = [
-    {
-      name: t("emotions.sadness"),
-      icon: (
-        <img
-          src={sadnessIcon}
-          alt={t("emotions.sadness")}
-          style={{ width: iconSize, height: iconSize }}
-        />
-      ),
-    },
-    {
-      name: t("emotions.distress"),
-      icon: (
-        <img
-          src={distressIcon}
-          alt={t("emotions.distress")}
-          style={{ width: iconSize, height: iconSize }}
-        />
-      ),
-    },
-    {
-      name: t("emotions.loneliness"),
-      icon: (
-        <img
-          src={lonelinessIcon}
-          alt={t("emotions.loneliness")}
-          style={{ width: iconSize, height: iconSize }}
-        />
-      ),
-    },
-    {
-      name: t("emotions.reluctance"),
-      icon: (
-        <img
-          src={reluctanceIcon}
-          alt={t("emotions.reluctance")}
-          style={{ width: iconSize, height: iconSize }}
-        />
-      ),
-    },
-    {
-      name: t("emotions.tranquillity"),
-      icon: (
-        <img
-          src={tranquillityIcon}
-          alt={t("emotions.tranquillity")}
-          style={{ width: iconSize, height: iconSize }}
-        />
-      ),
-    },
-  ]
+  const handleEmotionClick = (emotionId: string) => {
+    setSelectedEmotion(emotionId)
+    if (userLocation.latitude && userLocation.longitude) {
+      createEmotion({
+        emotion_id: emotionId,
+        latitude: userLocation.latitude,
+        longitude: userLocation.longitude,
+      })
+    }
+  }
 
   return (
     <Box
@@ -172,10 +142,11 @@ const Emotions: React.FC<{
           gap: "1rem",
         }}
       >
-        {emotions.map((emotion) => (
+        {emotions.map((emotion: AvailableEmotion) => (
           <StyledEmotionButton
-            key={emotion.name}
-            onClick={() => onEmotionClick?.(emotion.name)}
+            key={emotion.id}
+            selected={selectedEmotion === emotion.id}
+            onClick={() => handleEmotionClick(emotion.id)}
             sx={{
               flex: 1,
               minWidth: 0,
@@ -185,7 +156,11 @@ const Emotions: React.FC<{
               },
             }}
           >
-            {emotion.icon}
+            <img
+              src={EMOTIONS_ICONS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_ICONS]}
+              alt={emotion.name}
+              style={{ width: iconSize, height: iconSize }}
+            />
             <Typography variant="body2" sx={{ marginTop: "0.5rem", color: "#FFFFFF" }}>
               {emotion.name}
             </Typography>
