@@ -12,10 +12,11 @@ const commonBoxStyles: SxProps<Theme> = {
   backgroundColor: "white",
   borderRadius: "0.75rem",
   textTransform: "none",
-  padding: "1em",
-  height: "4rem",
+  padding: "0.5em 1em",
+  height: "100%",
   display: "flex",
   alignItems: "center",
+  justifyContent: "space-between",
 };
 
 export default function CommonBox({ children, sx, ...rest }: CommonBoxProps) {

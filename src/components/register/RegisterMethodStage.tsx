@@ -15,8 +15,7 @@ export default function RegisterMethodStage({ onEmailClick }: { onEmailClick: ()
         onClick={onEmailClick}
       />
       <Typography
-        variant="body1"
-        fontSize={13}
+        variant="body2"
         align="center"
         sx={{ color: "#fff", fontWeight: "light" }}
       >

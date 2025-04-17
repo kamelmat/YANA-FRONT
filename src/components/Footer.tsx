@@ -58,8 +58,8 @@ export const Footer = () => {
               }}
             >
               <img src={Logo} alt="Logo YouAreNotAlone" style={{ width: 40, height: 40 }} />
-              <Typography variant="h4" fontSize={32}>
-                You are not alone
+              <Typography variant="h2" >
+                {t("footer.title")}
               </Typography>
             </Box>
             <Typography variant="body2" sx={{ maxWidth: { xs: 400, sm: 300 } }}>

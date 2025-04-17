@@ -141,8 +141,7 @@ const Sidebar: React.FC = () => {
       <Box>
         <Box sx={{ paddingLeft: PADDING_X }}>
           <Typography
-            variant="h6"
-            fontSize={22}
+            variant="h4"
             paddingTop="12vh"
             className="welcome-text"
             sx={{
@@ -156,6 +155,7 @@ const Sidebar: React.FC = () => {
           >
             {t("header.welcome", { name })}
           </Typography>
+
           <Typography 
             fontSize={18} 
             className="date-text"
@@ -166,6 +166,7 @@ const Sidebar: React.FC = () => {
               transition: "opacity 0.3s ease",
             }}
           >
+
             {date}
           </Typography>
         </Box>
