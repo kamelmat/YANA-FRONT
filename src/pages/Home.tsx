@@ -1,5 +1,5 @@
-// import { MapView } from "../components/MapView"
+import Emotions from "../components/Emotions";
 
 export default function Home() {
-  return <></>
+  return <Emotions onEmotionClick={(emotion) => console.log(`Elegiste: ${emotion}`)} />
 }

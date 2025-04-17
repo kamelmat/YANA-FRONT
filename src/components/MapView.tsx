@@ -1,17 +1,24 @@
 import maplibregl from "maplibre-gl"
 import "maplibre-gl/dist/maplibre-gl.css"
 import { getUserLocation } from "../utils/getUserLocation"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useUserLocationStore } from "../store/userLocationStore"
-import marker from "../assets/icons/marker.svg"
-import { useRef } from "react"
+import marker from "../assets/icons/marker.svg?url"
 import { useLocation } from "react-router-dom"
-
+import { useNearbyEmotions } from "../hooks/useNearbyEmotions"
+import { renderEmotionMarkers } from "../utils/renderEmotionMarkers"
 
 export const MapView = () => {
   const location = useLocation()
   const { userLocation, setUserLocation } = useUserLocationStore()
   const mapRef = useRef<maplibregl.Map | null>(null)
+  const markersRef = useRef<maplibregl.Marker[]>([])
+
+  const { data, isLoading, isError, error } = useNearbyEmotions({
+    latitude: userLocation?.latitude?.toString() || "",
+    longitude: userLocation?.longitude?.toString() || "",
+    radius: "20000000000",
+  })
 
   const isVisible = location.pathname === "/"
 
@@ -32,7 +39,8 @@ export const MapView = () => {
       userLocation &&
       userLocation.latitude !== null &&
       userLocation.longitude !== null &&
-      !mapRef.current
+      !mapRef.current &&
+      isVisible
     ) {
       mapRef.current = new maplibregl.Map({
         container: "map",
@@ -42,10 +50,14 @@ export const MapView = () => {
         zoom: 14,
       })
 
+      mapRef.current.on("styleimagemissing", (e) => {
+        console.warn(`Style image missing: ${e.id}`)
+      })
+
       new maplibregl.Marker({
         element: (() => {
           const el = document.createElement("div")
-          el.innerHTML = `<img src="${marker}" alt="marker" />`
+          el.innerHTML = `<img src="${marker}" alt="marker" style="width: 32px; height: 32px;" />`
           return el
         })(),
         anchor: "bottom",
@@ -53,7 +65,11 @@ export const MapView = () => {
         .setLngLat([userLocation.longitude, userLocation.latitude])
         .addTo(mapRef.current)
     }
-  }, [userLocation])
+
+    if (data && mapRef.current) {
+      renderEmotionMarkers(data, mapRef, markersRef)
+    }
+  }, [userLocation, data, isVisible])
 
   useEffect(() => {
     return () => {
@@ -61,6 +77,7 @@ export const MapView = () => {
         mapRef.current.remove()
         mapRef.current = null
       }
+      markersRef.current = []
     }
   }, [])
 
@@ -76,6 +93,44 @@ export const MapView = () => {
           display: isVisible ? "block" : "none",
         }}
       />
+      {isLoading && (
+        <p
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            fontSize: "1.25rem",
+            fontWeight: "bold",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            padding: "1rem 2rem",
+            borderRadius: "8px",
+            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+            zIndex: 999,
+          }}
+        >
+          Cargando emociones cercanas...
+        </p>
+      )}
+      {isError && (
+        <p
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            fontSize: "1.25rem",
+            fontWeight: "bold",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            padding: "1rem 2rem",
+            borderRadius: "8px",
+            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+            zIndex: 999,
+          }}
+        >
+          Error cargando emociones: {error?.message}
+        </p>
+      )}
     </div>
   )
 }

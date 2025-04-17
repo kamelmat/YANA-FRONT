@@ -6,13 +6,13 @@ import { useAuthStore } from "../store/authStore"
 import { getFormattedDate } from "../utils/getFormattedDate"
 import { useTranslation } from "react-i18next"
 
-import Logo from "../assets/branding/yana.svg"
-import Slogan_ES from "../assets/branding/slogan_es.svg"
-import Slogan_EN from "../assets/branding/slogan_en.svg"
-import NotificationsIcon from "../assets/icons/notifications.svg"
-import HamburgerIcon from "../assets/icons/hamburger.svg"
-import BackIcon from "../assets/icons/back.svg"
-import ProfileIcon from "../assets/icons/profile.svg"
+import Logo from "../assets/branding/yana.svg?url"
+import Slogan_ES from "../assets/branding/slogan_es.svg?url"
+import Slogan_EN from "../assets/branding/slogan_en.svg?url"
+import NotificationsIcon from "../assets/icons/notifications.svg?url"
+import HamburgerIcon from "../assets/icons/hamburger.svg?url"
+import BackIcon from "../assets/icons/back.svg?url"
+import ProfileIcon from "../assets/icons/profile.svg?url"
 
 import theme from "../theme"
 
@@ -37,7 +37,7 @@ export default function Header() {
   const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh"
   const isDesktop = screenSize === "lg" || screenSize === "xl"
 
-  if (location === "/login" || location === "/register") return
+  if (location === "/login" || location === "/register" || location === "/onboarding") return
 
   return (
     <Box
@@ -58,6 +58,7 @@ export default function Header() {
       <Box sx={{ display: "flex", alignItems: "center", gap: "1.25rem" }}>
         {screenSize !== "sm" && (
           <>
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: not needed */}
             <img
               src={Logo}
               alt="Logo"
@@ -73,7 +74,6 @@ export default function Header() {
               <>
                 <Typography
                   variant="h6"
-                  fontSize={18}
                   sx={{
                     color: "white",
                     fontWeight: "bold",
@@ -83,7 +83,7 @@ export default function Header() {
                 >
                   {t("header.welcome", { name })}
                 </Typography>
-                <Typography fontSize={14} sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
+                <Typography variant="body1" sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
                   {date}
                 </Typography>
               </>

@@ -18,6 +18,7 @@ i18n.use(initReactI18next).init({
           loginGoogle: "Log in with Google",
           dontHaveAccount: "Don't have an account?",
           register: "Register",
+          failed: "No active account found with the credentials provided.",
         },
         register: {
           method: {
@@ -68,20 +69,15 @@ i18n.use(initReactI18next).init({
               placeholder: "Create a password (minimum 8 characters)",
               error: {
                 required: "Please enter the password.",
-                invalid: {
-                  tooShort: "The password must be at least 8 characters long.",
-                  noNumber: "The password must contain at least one number.",
-                  noSpecialChar: "The password must contain at least one special character.",
-                  noNumberAndSpecial:
-                    "The password must contain at least one number and one special character.",
-                  tooShortAndNoNumber:
-                    "The password must be at least 8 characters long and contain at least one number.",
-                  tooShortAndNoSpecial:
-                    "The password must be at least 8 characters long and contain at least one special character.",
-                  tooShortAndNoNumberAndSpecial:
-                    "The password must be at least 8 characters long and contain at least one number and one special character.",
-                },
+                invalid: "The password is missing the following requirements: {{requirements}}",
               },
+            },
+            requirements: {
+              length: "minimum 8 characters",
+              number: "at least one number",
+              special: "at least one special character",
+              uppercase: "at least one uppercase letter",
+              lowercase: "at least one lowercase letter",
             },
             passwordStrength: {
               text: "Password strength",
@@ -118,7 +114,7 @@ i18n.use(initReactI18next).init({
           logout: "Log out",
           avatar: "Choose avatar",
           notifications: "Notifications",
-          personification: "Customize background",
+          customization: "Customize background",
           mode: "Mode",
           light: "Light",
           dark: "Dark",
@@ -147,6 +143,18 @@ i18n.use(initReactI18next).init({
           menu: "Exit",
           title: "Exit",
         },
+        "/profile/account": {
+          title: "Edit Profile",
+        },
+        "/profile/configuration": {
+          title: "Configuration",
+        },
+        "/profile/interactions": {
+          title: "My interactions",
+        },
+        "/profile/others": {
+          title: "Others",
+        },
         footer: {
           products: "Products",
           support: "Support",
@@ -170,6 +178,37 @@ i18n.use(initReactI18next).init({
           delete: "Delete",
           deleteAccount: "Delete Account",
           deleteAccountMessage: "Are you sure you want to delete your account?",
+          start: "Start",
+        },
+        onboarding: {
+          step1: {
+            title: "Start your journey",
+            subtitle: "Discover everything you can do on this platform.",
+          },
+          step2: {
+            title: "Share your emotions in a safe space",
+            subtitle: "Choose an emotion every day, express it and connect with other people.",
+          },
+          step3: {
+            title: "Participate in a shared emotions map",
+            subtitle:
+              "Discover how other people feel in an interactive interface. Send and receive support through predefined messages. Explore links with empathy.",
+          },
+          step4: {
+            title: "Get help whenever you need it",
+            subtitle:
+              "Access contacts and resources to feel better. Remember that you are part of a community that supports you.",
+          },
+          deleteAccountMessage: "Do you confirm that you want to delete your account?",
+          passwordPlaceholder: "Enter your password",
+        },
+        emotions: {
+          sadness: "Sadness",
+          distress: "Distress",
+          loneliness: "Loneliness",
+          reluctance: "Reluctance",
+          tranquillity: "Tranquillity",
+          questionEmotion: "What are you feeling today?",
         },
       },
     },
@@ -186,6 +225,7 @@ i18n.use(initReactI18next).init({
           loginGoogle: "Iniciar sesión con Google",
           dontHaveAccount: "¿No tienes una cuenta?",
           register: "Regístrate",
+          failed: "No se encontró una cuenta activa con las credenciales proporcionadas.",
         },
 
         // register stages
@@ -238,20 +278,15 @@ i18n.use(initReactI18next).init({
               placeholder: "Crea tu contraseña (mínimo 8 caracteres, número y carácter especial)",
               error: {
                 required: "Por favor, introduce la contraseña.",
-                invalid: {
-                  tooShort: "La contraseña debe incluir al menos 8 caracteres.",
-                  noNumber: "La contraseña debe incluir al menos un número.",
-                  noSpecialChar: "La contraseña debe incluir al menos un carácter especial.",
-                  noNumberAndSpecial:
-                    "La contraseña debe incluir al menos un número y uno especial.",
-                  tooShortAndNoNumber:
-                    "La contraseña debe tener al menos 8 caracteres y al menos un número.",
-                  tooShortAndNoSpecial:
-                    "La contraseña debe tener al menos 8 caracteres y al menos un carácter especial.",
-                  tooShortAndNoNumberAndSpecial:
-                    "La contraseña debe tener al menos 8 caracteres, al menos un número y al menos uno especial.",
-                },
+                invalid: "La contraseña no cumple con los siguientes requisitos: {{requirements}}",
               },
+            },
+            requirements: {
+              length: "mínimo 8 caracteres",
+              number: "al menos un número",
+              special: "al menos un carácter especial",
+              uppercase: "al menos una letra mayúscula",
+              lowercase: "al menos una letra minúscula",
             },
             passwordStrength: {
               text: "Seguridad de la contraseña",
@@ -289,14 +324,14 @@ i18n.use(initReactI18next).init({
           configuration: "Configuración",
           help: "Emergencia: necesito ayuda",
           logout: "Cerrar sesión",
-          notifications: "Notificaciones",
           avatar: "Elegir avatar",
-          personification: "Personalizar fondo",
+          notifications: "Notificaciones",
+          customization: "Personalizar fondo",
           mode: "Modo",
           light: "Claro",
           dark: "Oscuro",
           appSounds: "Sonidos de la app",
-          fontsize: "Tamaño de fuente",
+          fontsize: "Tamaño fuente",
           small: "Pequeño",
           large: "Grande",
           saveHistory: "Guardar historia de interacciones",
@@ -319,6 +354,18 @@ i18n.use(initReactI18next).init({
         "/logout": {
           menu: "Cerrar sesión",
           title: "Cerrar sesión",
+        },
+        "/profile/account": {
+          title: "Editar Perfil",
+        },
+        "/profile/configuration": {
+          title: "Configuración",
+        },
+        "/profile/interactions": {
+          title: "Mis interacciones",
+        },
+        "/profile/others": {
+          title: "Otros",
         },
         footer: {
           products: "Productos",
@@ -343,6 +390,37 @@ i18n.use(initReactI18next).init({
           delete: "Eliminar",
           deleteAccount: "Eliminar cuenta",
           deleteAccountMessage: "¿Estás seguro de querer eliminar tu cuenta?",
+          start: "Comenzar",
+        },
+        onboarding: {
+          step1: {
+            title: "Comienza tu recorrido",
+            subtitle: "Descubre todo lo que puedes hacer en esta plataforma.",
+          },
+          step2: {
+            title: "Comparte tus emociones en un espacio seguro",
+            subtitle: "Elige un estado de ánimo cada día, exprésalo y conecta con otras personas.",
+          },
+          step3: {
+            title: "Participa en un mapa de emociones compartidas",
+            subtitle:
+              "Conoce cómo se sienten otras personas en una interfaz interactiva. Envía y recibe apoyo a través de mensajes predeterminados. Explora vínculos con empatía.",
+          },
+          step4: {
+            title: "Obtén ayuda cada vez que la necesites",
+            subtitle:
+              "Accede a contactos y recursos para sentirte mejor. Recuerda que eres parte de una comunidad que te acompaña.",
+          },
+          deleteAccountMessage: "¿Confirmas que quieres eliminar tu cuenta?",
+          passwordPlaceholder: "Ingresa tu contraseña",
+        },
+        emotions: {
+          sadness: "Tristeza",
+          distress: "Angustia",
+          loneliness: "Soledad",
+          reluctance: "Desgano",
+          tranquillity: "Tranquilidad",
+          questionEmotion: "¿Qué sientes hoy?",
         },
       },
     },

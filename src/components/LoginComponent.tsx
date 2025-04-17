@@ -1,24 +1,26 @@
-import Logo from "../assets/branding/yana.svg"
-import Slogan_ES from "../assets/branding/slogan_es.svg"
-import Slogan_EN from "../assets/branding/slogan_en.svg"
+import Logo from "../assets/branding/yana.svg?url"
+import Slogan_ES from "../assets/branding/slogan_es.svg?url"
+import Slogan_EN from "../assets/branding/slogan_en.svg?url"
 import theme from "../theme"
 
 import CustomButton from "../commons/CommonButton"
 import CustomTextField from "../commons/CommonTextField"
 
 import { useState, useEffect } from "react"
-import { Box, Checkbox, Link, Stack, Typography } from "@mui/material"
+import { Box, Checkbox, Link, Stack, Typography, CircularProgress } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { useLogin } from "../hooks/useLogin"
 import { useScreenSize } from "../hooks/useScreenSize"
+
 export default function LoginComponent() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const { mutate: login, isError, error } = useLogin()
+  const { mutate: login, isError } = useLogin()
   const screenSize = useScreenSize()
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
@@ -33,8 +35,15 @@ export default function LoginComponent() {
       localStorage.removeItem("rememberMe")
     }
 
-    login({ email, password })
+    setIsLoading(true)
+    login({ email, password }, {
+      onSettled: () => {
+        setIsLoading(false)
+      }
+    })
   }
+
+  const isButtonDisabled = !email || !password || isLoading
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("email")
@@ -116,11 +125,16 @@ export default function LoginComponent() {
           </Link>
         </Stack>
 
-        <Stack spacing={1.5} direction="column" sx={{ marginTop: 4 }}>
-          <CustomButton type="submit" text={t("login.login")} variantType="primary" />
-        </Stack>
+        {isError && <Typography color="error">{t("login.failed")}</Typography>}
 
-        {isError && <Typography color="error">{error?.message || "Login failed"}</Typography>}
+        <Stack spacing={1.5} direction="column" sx={{ marginTop: 4 }}>
+          <CustomButton 
+            type="submit" 
+            text={t("login.login")}
+            disabled={isButtonDisabled}
+            icon={isLoading ? <CircularProgress size={20} sx={{ color: 'white' }} /> : undefined}
+          />
+        </Stack>
 
         <Typography variant="body2" align="center" sx={{ mt: 4 }}>
           {t("login.dontHaveAccount")}{" "}

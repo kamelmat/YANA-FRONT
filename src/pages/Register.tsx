@@ -10,16 +10,14 @@ import RegisterMethodStage from "../components/register/RegisterMethodStage";
 import RegisterEmailStage from "../components/register/RegisterEmailStage";
 import RegisterPasswordStage from "../components/register/RegisterPasswordStage";
 import RegisterDoneStage from "../components/register/RegisterDoneStage";
-import method from "../assets/register/create.svg";
-import email from "../assets/register/mail.svg";
-import password from "../assets/register/password.svg";
+import method from "../assets/register/create.svg?url";
+import email from "../assets/register/mail.svg?url";
+import password from "../assets/register/password.svg?url";
 import done from "../assets/register/done.webp";
-import back from "../assets/icons/back.svg";
+import back from "../assets/icons/back.svg?url";
 
 import {
   validateEmail,
-  validatePassword,
-  validateRepeatPassword,
   getPasswordStrength,
   validateName,
   validateLastName
@@ -27,6 +25,7 @@ import {
 
 import { useRegister } from "../hooks/useRegister";
 import { useCheckEmail } from "../hooks/useCheckEmail";
+import { useAuthStore } from "../store/authStore";
 
 export type Stage = "email" | "password" | "done" | "method";
 
@@ -55,6 +54,7 @@ export default function Register() {
   const screenSize = useScreenSize();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const accessToken = useAuthStore((state) => state.accessToken);
 
   const [stage, setStage] = useState<Stage>("method");
   const [name, setName] = useState('');
@@ -64,6 +64,7 @@ export default function Register() {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [repeatPasswordError, setRepeatPasswordError] = useState('');
   const [nameError, setNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
   const [passwordStrength, setPasswordStrength] = useState("");
@@ -80,8 +81,8 @@ export default function Register() {
     }
 
     if (stage === "password") {
-      const passValid = !validatePassword(password);
-      const matchValid = !validateRepeatPassword(repeatPassword, password);
+      const passValid = !passwordError;
+      const matchValid = !repeatPasswordError;
       setCanContinue(passValid && matchValid);
       setPasswordStrength(getPasswordStrength(password));
     }
@@ -89,11 +90,11 @@ export default function Register() {
     if (stage === "done") {
       setCanContinue(true);
     }
-  }, [stage, email, password, repeatPassword, name, lastName]);
+  }, [stage, email, password, name, lastName, passwordError, repeatPasswordError]);
 
   const handleClick = async () => {
-    if (stage === "done") {
-      navigate('/login');
+    if (stage === "done" && accessToken) {
+      navigate('/onboarding');
       return;
     }
 
@@ -174,10 +175,10 @@ export default function Register() {
           >
             <img src={IMGS[stage]} alt={stage} style={{ height: "100%", width: "100%" }} />
           </Box>
-          <Typography variant="h5" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+          <Typography variant="h3" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
             {t(`register.${stage}.title`)}
           </Typography>
-          <Typography variant="body1" fontSize={13} align="center" mt={1} sx={{ color: "#fff", fontWeight: "light" }}>
+          <Typography variant="body2" align="center" mt={1} sx={{ color: "#fff", fontWeight: "light" }}>
             {t(`register.${stage}.subtitle`)}
           </Typography>
 
@@ -213,16 +214,16 @@ export default function Register() {
                 setRepeatPassword={setRepeatPassword}
                 passwordError={passwordError}
                 setPasswordError={setPasswordError}
+                repeatPasswordError={repeatPasswordError}
+                setRepeatPasswordError={setRepeatPasswordError}
                 passwordStrength={passwordStrength}
-                handlePasswordBlur={() => setPasswordError(validatePassword(password))}
-                handleRepeatPasswordBlur={() => setPasswordError(validateRepeatPassword(repeatPassword, password))}
               />
             )}
 
             {stage === "done" && <RegisterDoneStage onContinue={handleClick} />}
 
             {stage === "method" && (
-              <Typography variant="body1" fontSize={13} align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+              <Typography variant="body2" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
                 {t("register.method.haveAccount")}{' '}
                 <Link
                   underline="none"

@@ -1,6 +1,7 @@
 import React from "react"
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material"
-import { useTheme, Theme } from "@mui/material/styles"
+import { useTheme } from "@mui/material/styles"
+import type { Theme } from "@mui/material/styles"
 import styled from "@emotion/styled"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useLocation, useNavigate } from "react-router-dom"
@@ -38,10 +39,10 @@ const StyledBottomNavAction = styled(BottomNavigationAction, {
     },
   },
   "& .MuiBottomNavigationAction-label": {
-    fontSize: "0.75rem",
+    fontSize: "inherit",
     marginTop: "2px",
     "&.Mui-selected": {
-      fontSize: "0.75rem",
+      fontSize: "inherit",
     },
   },
   "& svg": {
@@ -88,7 +89,7 @@ const BottomNav: React.FC = () => {
     },
   ]
 
-  if (screenSize !== "sm" || location.pathname === "/login" || location.pathname === "/register") return
+  if (screenSize !== "sm" || location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/onboarding") return
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     navigate(navItems[newValue].route)
@@ -118,6 +119,12 @@ const BottomNav: React.FC = () => {
         sx={{
           background: "transparent",
           height: "100%",
+          "& .MuiBottomNavigationAction-label": {
+            fontSize: theme.typography.body3.fontSize,
+            "&.Mui-selected": {
+              fontSize: theme.typography.body3.fontSize,
+            },
+          },
         }}
       >
         {navItems.map((item, index) => (

@@ -1,8 +1,11 @@
-import { Box, Button, ButtonProps } from '@mui/material';
-import { ReactNode } from 'react';
+import { Box, Button } from '@mui/material';
+import type { ButtonProps } from '@mui/material';
+import type { ReactNode } from 'react';
+import { darken } from '@mui/material/styles';
 import theme from '../theme';
 import { useScreenSize } from '../hooks/useScreenSize';
-type VariantType = 'primary' | 'secondary' | 'square-primary' | 'square-secondary' | 'ghost';
+
+type VariantType = 'primary' | 'secondary' | 'square-primary' | 'square-secondary' | 'ghost' | 'secondary-fill';
 type IconPosition = 'start' | 'end';
 
 interface CustomButtonProps extends ButtonProps {
@@ -23,6 +26,7 @@ export default function CustomButton({
   const isSecondary = variantType.includes('secondary');
   const isSquare = variantType.includes('square');
   const isGhost = variantType === 'ghost';
+  const isSecondaryFill = variantType === 'secondary-fill';
   const screenSize = useScreenSize()
 
   return (
@@ -34,25 +38,29 @@ export default function CustomButton({
         fontWeight: '600',
         padding: isSquare || isGhost ? '0 1em' : '0',
         borderRadius: isSquare ? '10px' : '35px',
-        color: isPrimary
+        color: isPrimary || isSecondaryFill
           ? 'black'
           : isSecondary
           ? theme.colors.lightBlue
           : theme.colors.lightPink,
         backgroundColor: isPrimary
           ? '#fff'
+          : isSecondaryFill
+          ? theme.colors.lightBlue
           : 'transparent',
         borderColor: isSecondary ? theme.colors.lightBlue : undefined,
         border: isSecondary ? '1px solid' : isGhost ? 'none' : undefined,
         '&:hover': {
           backgroundColor: isPrimary
             ? theme.colors.lightGray
-            : isSecondary 
+            : isSecondary
             ? `${theme.colors.lightBlue}20`
+            : isSecondaryFill
+            ? darken(theme.colors.lightBlue, 0.2)
             : `${theme.colors.lightPink}20`,
         },
         '&:disabled' : {
-          backgroundColor: isPrimary ? `${theme.colors.lightGray}90` : '',
+          backgroundColor: isPrimary || isSecondaryFill ? `${theme.colors.lightGray}90` : '',
         },
         ...rest.sx,
       }}
