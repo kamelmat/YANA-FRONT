@@ -12,8 +12,22 @@ export interface LoginData {
   password: string
 }
 
+export interface RegisterResponse {
+  access_token: string
+  refresh_token: string
+  name: string
+  avatar_id: string
+}
+
+export interface LoginResponse {
+  access: string
+  refresh: string
+  name: string
+  avatar_id: string
+}
+
 export const authService = {
-  register: async (data: RegisterData) => {
+  register: async (data: RegisterData): Promise<RegisterResponse> => {
     try {
       const response = await fetch(`${API_URL}/usuario/api/register/`, {
         method: "POST",
@@ -49,7 +63,7 @@ export const authService = {
       const responseData = await response.json()
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Login failed")
+        throw new Error(responseData.detail || "Login failed")
       }
 
       return responseData
