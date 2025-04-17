@@ -294,7 +294,7 @@ i18n.use(initReactI18next).init({
           configuration: "Configuración",
           help: "Emergencia: necesito ayuda",
           logout: "Cerrar sesión",
-          avatar: "Elige avatar",
+          avatar: "Elegir avatar",
           notifications: "Notificaciones",
           customization: "Personalizar fondo",
           mode: "Modo",
