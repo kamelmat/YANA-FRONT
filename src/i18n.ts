@@ -114,7 +114,7 @@ i18n.use(initReactI18next).init({
           logout: "Log out",
           avatar: "Choose avatar",
           notifications: "Notifications",
-          personification: "Customize background",
+          customization: "Customize background",
           mode: "Mode",
           light: "Light",
           dark: "Dark",
@@ -142,6 +142,18 @@ i18n.use(initReactI18next).init({
         "/logout": {
           menu: "Exit",
           title: "Exit",
+        },
+        "/profile/account": {
+          title: "Edit Profile",
+        },
+        "/profile/configuration": {
+          title: "Configuration",
+        },
+        "/profile/interactions": {
+          title: "My interactions",
+        },
+        "/profile/others": {
+          title: "Others",
         },
         footer: {
           products: "Products",
@@ -282,14 +294,14 @@ i18n.use(initReactI18next).init({
           configuration: "Configuración",
           help: "Emergencia: necesito ayuda",
           logout: "Cerrar sesión",
-          notifications: "Notificaciones",
           avatar: "Elegir avatar",
-          personification: "Personalizar fondo",
+          notifications: "Notificaciones",
+          customization: "Personalizar fondo",
           mode: "Modo",
           light: "Claro",
           dark: "Oscuro",
           appSounds: "Sonidos de la app",
-          fontsize: "Tamaño de fuente",
+          fontsize: "Tamaño fuente",
           small: "Pequeño",
           large: "Grande",
           saveHistory: "Guardar historia de interacciones",
@@ -312,6 +324,18 @@ i18n.use(initReactI18next).init({
         "/logout": {
           menu: "Cerrar sesión",
           title: "Cerrar sesión",
+        },
+        "/profile/account": {
+          title: "Editar Perfil",
+        },
+        "/profile/configuration": {
+          title: "Configuración",
+        },
+        "/profile/interactions": {
+          title: "Mis interacciones",
+        },
+        "/profile/others": {
+          title: "Otros",
         },
         footer: {
           products: "Productos",

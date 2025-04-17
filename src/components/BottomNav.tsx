@@ -39,10 +39,10 @@ const StyledBottomNavAction = styled(BottomNavigationAction, {
     },
   },
   "& .MuiBottomNavigationAction-label": {
-    fontSize: "0.75rem",
+    fontSize: "inherit",
     marginTop: "2px",
     "&.Mui-selected": {
-      fontSize: "0.75rem",
+      fontSize: "inherit",
     },
   },
   "& svg": {
@@ -119,6 +119,12 @@ const BottomNav: React.FC = () => {
         sx={{
           background: "transparent",
           height: "100%",
+          "& .MuiBottomNavigationAction-label": {
+            fontSize: theme.typography.body3.fontSize,
+            "&.Mui-selected": {
+              fontSize: theme.typography.body3.fontSize,
+            },
+          },
         }}
       >
         {navItems.map((item, index) => (
