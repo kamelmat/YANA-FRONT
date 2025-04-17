@@ -59,7 +59,7 @@ export default function Header() {
         {screenSize !== "sm" && (
           <>
             {/* biome-ignore lint/a11y/useKeyWithClickEvents: not needed */}
-<img
+            <img
               src={Logo}
               alt="Logo"
               style={{ width: "3rem", cursor: "pointer" }}
