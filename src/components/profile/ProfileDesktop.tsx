@@ -18,7 +18,6 @@ import AccountSettings from "../../pages/profile/AccountSettings"
 import ConfigurationSettings from "../../pages/profile/ConfigurationSettings"
 import InteractionsSettings from "../../pages/profile/InteractionsSettings"
 import SettingsSection from "./SettingsSection"
-import CommonBox from "../../commons/CommonBox"
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,
@@ -71,7 +70,7 @@ const ProfileDesktop: FC = () => {
         backgroundColor: theme.colors.blackBackground,
       }}
     >
-      {(screenSize === "lg" || screenSize === "xl") && (
+      {(screenSize === "xl") && (
         <Typography
           variant="h4"
           sx={{
