@@ -94,7 +94,7 @@ export default function Register() {
 
   const handleClick = async () => {
     if (stage === "done" && accessToken) {
-      navigate('/');
+      navigate('/onboarding');
       return;
     }
 
