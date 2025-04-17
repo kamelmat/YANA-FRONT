@@ -60,7 +60,7 @@ export default function Modal({
       }}>
         {t('common.deleteAccount')}
       </DialogTitle>
-      <DialogTitle variant="h6" sx={{ 
+      <DialogTitle variant="body2" sx={{ 
         color: 'white', 
         textAlign: 'center',
         fontWeight: 'light',
