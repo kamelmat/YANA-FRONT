@@ -72,7 +72,7 @@ const ProfileDesktop: FC = () => {
     >
       {(screenSize === "xl") && (
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             gridRow: 1,
             gridColumn: "1 / 3",
@@ -87,24 +87,19 @@ const ProfileDesktop: FC = () => {
       <Box
         sx={{
           gridRow: {
-            lg: "1 / 10",
+            lg: "2 / 10",
             sm: "1 / 4"
           },
           gridColumn: {
             lg: "1 / 3",
             sm: "1 / 13"
           },
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 2
         }}
       >
         <Avatar
           sx={{
             width: {
-              lg: "100%",
+              lg: "80%",
               sm: "auto"
             },
             height: {
@@ -138,6 +133,8 @@ const ProfileDesktop: FC = () => {
             lg: "3",
             sm: "1 / 13"
           },
+          justifySelf: "center",
+          alignSelf: "center"
         }}
       />
 
