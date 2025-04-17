@@ -1,6 +1,6 @@
-import React from "react"
+import type React from "react"
 import { Box, Typography, IconButton } from "@mui/material"
-import { useTheme, Theme } from "@mui/material/styles"
+import type { Theme } from "@mui/material/styles"
 import styled from "@emotion/styled"
 import { useScreenSize } from "../hooks/useScreenSize"
 import { useTranslation } from "react-i18next"
@@ -9,6 +9,7 @@ import distressIcon from "../assets/icons/angustia.svg"
 import lonelinessIcon from "../assets/icons/soledad.svg"
 import reluctanceIcon from "../assets/icons/desgano.svg"
 import tranquillityIcon from "../assets/icons/tranquilidad.svg"
+import { useTheme } from "@mui/material"
 
 export type Emotion = {
   name: string
@@ -19,9 +20,9 @@ interface StyledEmotionButtonProps {
   selected?: boolean
 }
 
-const StyledEmotionButton = styled(IconButton)<StyledEmotionButtonProps>(({ theme }) => ({
+const StyledEmotionButton = styled(IconButton)<StyledEmotionButtonProps>({
   display: "flex",
-  flexDirection: "column",
+  flexDirection: "column" as const,
   alignItems: "center",
   justifyContent: "center",
   color: "#FFFFFF",
@@ -34,7 +35,7 @@ const StyledEmotionButton = styled(IconButton)<StyledEmotionButtonProps>(({ them
     height: "2.5rem",
     color: "#FFFFFF",
   },
-}))
+})
 
 const Emotions: React.FC<{
   onEmotionClick?: (emotion: string) => void
