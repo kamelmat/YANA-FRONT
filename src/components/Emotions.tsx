@@ -167,8 +167,9 @@ const Emotions: React.FC<{
         sx={{
           display: "flex",
           width: "100%",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
           alignItems: "center",
+          gap: "1rem",
         }}
       >
         {emotions.map((emotion) => (
@@ -176,6 +177,8 @@ const Emotions: React.FC<{
             key={emotion.name}
             onClick={() => onEmotionClick?.(emotion.name)}
             sx={{
+              flex: 1,
+              minWidth: 0,
               "& svg, & img": {
                 width: iconSize,
                 height: iconSize,
