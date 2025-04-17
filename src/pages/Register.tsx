@@ -175,7 +175,7 @@ export default function Register() {
           >
             <img src={IMGS[stage]} alt={stage} style={{ height: "100%", width: "100%" }} />
           </Box>
-          <Typography variant="h5" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+          <Typography variant="h3" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
             {t(`register.${stage}.title`)}
           </Typography>
           <Typography variant="body1" fontSize={13} align="center" mt={1} sx={{ color: "#fff", fontWeight: "light" }}>

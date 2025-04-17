@@ -68,7 +68,7 @@ export default function SettingsSection({ title, children, gridRow, gridColumn }
         gap: "1em",
       }}>
         <Typography
-          variant="h4"
+          variant="h2"
           sx={{
             color: "white",
           }}

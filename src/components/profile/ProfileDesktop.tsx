@@ -72,7 +72,7 @@ const ProfileDesktop: FC = () => {
     >
       {(screenSize === "xl") && (
         <Typography
-          variant="h3"
+          variant="h1"
           sx={{
             gridRow: 1,
             gridColumn: "1 / 3",

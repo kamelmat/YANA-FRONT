@@ -50,19 +50,17 @@ export default function Modal({
         }
       }}
     >
-      <DialogTitle sx={{ 
+      <DialogTitle variant="h4" sx={{ 
         color: 'white', 
         textAlign: 'center',
-        fontSize: '1.5rem',
         fontWeight: 'light',
         p: 0,
       }}>
         {t('common.deleteAccount')}
       </DialogTitle>
-      <DialogTitle sx={{ 
+      <DialogTitle variant="h6" sx={{ 
         color: 'white', 
         textAlign: 'center',
-        fontSize: '1rem',
         fontWeight: 'light',
         p: 0,
       }}>
