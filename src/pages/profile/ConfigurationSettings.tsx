@@ -32,7 +32,7 @@ export default function ConfigurationSettings() {
             value={settings.mode}
             onChange={(e) => updateSetting("mode", e.target.value as "dark" | "light")}
             name="mode-radio-group"
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{ display: "flex", flexDirection: "row", gap: 4 }}
           >
             <FormControlLabel
               value="dark"
@@ -87,7 +87,7 @@ export default function ConfigurationSettings() {
             value={settings.fontSize}
             onChange={(e) => updateSetting("fontSize", e.target.value as "small" | "large")}
             name="fontsize-radio-group"
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{ display: "flex", flexDirection: "row", gap: 4 }}
           >
             <FormControlLabel
               value="small"

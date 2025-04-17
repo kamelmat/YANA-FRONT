@@ -51,7 +51,7 @@ export default function InteractionsSettings() {
               updateSetting("mute", { duration, createdAt: Date.now() })
             }}
             name="mute-radio-group"
-            sx={{ display: "flex", flexDirection: "row" }}
+            sx={{ display: "flex", flexDirection: "row", gap: 4 }}
           >
             <FormControlLabel
               value="1h"
