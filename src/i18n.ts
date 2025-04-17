@@ -300,7 +300,7 @@ i18n.use(initReactI18next).init({
           light: "Claro",
           dark: "Oscuro",
           appSounds: "Sonidos de la app",
-          fontsize: "Tamaño de fuente",
+          fontsize: "Tamaño fuente",
           small: "Pequeño",
           large: "Grande",
           saveHistory: "Guardar historia de interacciones",
