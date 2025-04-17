@@ -10,11 +10,11 @@ import RegisterMethodStage from "../components/register/RegisterMethodStage";
 import RegisterEmailStage from "../components/register/RegisterEmailStage";
 import RegisterPasswordStage from "../components/register/RegisterPasswordStage";
 import RegisterDoneStage from "../components/register/RegisterDoneStage";
-import method from "../assets/register/create.svg";
-import email from "../assets/register/mail.svg";
-import password from "../assets/register/password.svg";
+import method from "../assets/register/create.svg?url";
+import email from "../assets/register/mail.svg?url";
+import password from "../assets/register/password.svg?url";
 import done from "../assets/register/done.webp";
-import back from "../assets/icons/back.svg";
+import back from "../assets/icons/back.svg?url";
 
 import {
   validateEmail,

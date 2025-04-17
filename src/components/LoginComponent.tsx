@@ -1,6 +1,6 @@
-import Logo from "../assets/branding/yana.svg"
-import Slogan_ES from "../assets/branding/slogan_es.svg"
-import Slogan_EN from "../assets/branding/slogan_en.svg"
+import Logo from "../assets/branding/yana.svg?url"
+import Slogan_ES from "../assets/branding/slogan_es.svg?url"
+import Slogan_EN from "../assets/branding/slogan_en.svg?url"
 import theme from "../theme"
 
 import CustomButton from "../commons/CommonButton"
