@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import theme from "../../theme"
 
-import avatarImage from "../../assets/avatars/avatar_34.svg?url"
+import avatarIcon31 from "../../assets/avatars/avatar_31.svg?url"
+import avatarIcon32 from "../../assets/avatars/avatar_32.svg?url"
+import avatarIcon33 from "../../assets/avatars/avatar_33.svg?url"
+import avatarIcon34 from "../../assets/avatars/avatar_34.svg?url"
+import avatarIcon35 from "../../assets/avatars/avatar_35.svg?url"
+
 import accountIcon from "../../assets/icons/account_circle.svg?url"
 import intaractionsIcon from "../../assets/icons/groups.svg?url"
 import configurationIcon from "../../assets/icons/settings2.svg?url"
