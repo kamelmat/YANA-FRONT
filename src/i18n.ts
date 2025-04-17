@@ -18,7 +18,7 @@ i18n.use(initReactI18next).init({
           loginGoogle: "Log in with Google",
           dontHaveAccount: "Don't have an account?",
           register: "Register",
-          failed: "No active account found with the given credentials.",
+          failed: "No active account found with the credentials provided.",
         },
         register: {
           method: {
@@ -201,6 +201,14 @@ i18n.use(initReactI18next).init({
           },
           deleteAccountMessage: "Do you confirm that you want to delete your account?",
           passwordPlaceholder: "Enter your password",
+        },
+        emotions: {
+          sadness: "Sadness",
+          distress: "Distress",
+          loneliness: "Loneliness",
+          reluctance: "Reluctance",
+          tranquillity: "Tranquillity",
+          questionEmotion: "What are you feeling today?",
         },
       },
     },
@@ -405,6 +413,14 @@ i18n.use(initReactI18next).init({
           },
           deleteAccountMessage: "¿Confirmas que quieres eliminar tu cuenta?",
           passwordPlaceholder: "Ingresa tu contraseña",
+        },
+        emotions: {
+          sadness: "Tristeza",
+          distress: "Angustia",
+          loneliness: "Soledad",
+          reluctance: "Desgano",
+          tranquillity: "Tranquilidad",
+          questionEmotion: "¿Qué sientes hoy?",
         },
       },
     },
