@@ -67,7 +67,7 @@ const ProfileDesktop: FC = () => {
           lg: "5% 10%"
         },
         gap: "1em",
-        backgroundColor: theme.colors.blackBackground,
+        backgroundColor: settings.customization ? theme.colors[settings.customization as keyof typeof theme.colors] : theme.colors.defaultBackground,
       }}
     >
       {(screenSize === "xl") && (

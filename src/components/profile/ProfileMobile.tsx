@@ -61,7 +61,7 @@ const ProfileMobile: FC = () => {
         margin: 0,
         padding: "6em 1em",
         gap: "1.25rem",
-        backgroundColor: theme.colors.blackBackground,
+        backgroundColor: settings.customization ? theme.colors[settings.customization as keyof typeof theme.colors] : theme.colors.defaultBackground,
       }}
     >
       <Avatar
