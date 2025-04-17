@@ -11,8 +11,6 @@ import avatarIcon34 from "../../assets/avatars/avatar_34.svg?url"
 import avatarIcon35 from "../../assets/avatars/avatar_35.svg?url"
 import CustomButton from "../../commons/CommonButton"
 import deleteIcon from "../../assets/icons/cancel.svg?url"
-import CommonBox from "../../commons/CommonBox"
-import CommonSwitch from "../../commons/CommonSwitch"
 
 import { useScreenSize } from "../../hooks/useScreenSize"
 import Modal from "../../commons/DeleteModal"
@@ -21,6 +19,7 @@ import AccountSettings from "../../pages/profile/AccountSettings"
 import ConfigurationSettings from "../../pages/profile/ConfigurationSettings"
 import InteractionsSettings from "../../pages/profile/InteractionsSettings"
 import SettingsSection from "./SettingsSection"
+import { useSettingsStore } from "../../store/useSettingsStore"
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,
