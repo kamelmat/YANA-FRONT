@@ -158,7 +158,7 @@ const ProfileDesktop: FC = () => {
           iconPosition="end"
           variantType="ghost"
           onClick={() => setIsDeleteModalOpen(true)}
-          sx={{  borderRadius: "0.75rem" }}
+          sx={{  borderRadius: "0.75rem", fontSize: "1rem" }}
         />
       </SettingsSection>
 
