@@ -10,6 +10,7 @@ import CustomButton from '../commons/CommonButton';
 import theme from '../theme';
 import { useScreenSize } from '../hooks/useScreenSize';
 import backIcon from '../assets/icons/back.svg';
+import nextIcon from '../assets/onboarding/next.svg';
 
 const ONBOARDING_IMAGES = {
   1: onboarding1,
@@ -70,12 +71,12 @@ const Onboarding = () => {
   }, [navigate]);
 
   const handleBack = useCallback(() => {
-    if (currentStep === 1) {
+    if (currentStep === 1 || screenSize === "lg" || screenSize === "xl") {
       navigate(-1);
     } else {
       setCurrentStep(prev => prev - 1);
     }
-  }, [currentStep, navigate]);
+  }, [currentStep, navigate, screenSize]);
 
   const getStepTransform = (step: number) => {
     const offset = step - currentStep;
@@ -91,167 +92,299 @@ const Onboarding = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
-        width: '100vw',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#1E1E1E',
-        position: 'relative',
-        overflow: 'hidden',
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        flexDirection: { xs: "column", lg: "row" },
+        backgroundColor: "#1E1E1E",
+        position: "relative",
+        overflow: "hidden",
       }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       <Box
+        component="img"
+        src={backIcon}
+        alt="back"
         sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          padding: '1em',
+          height: "2em",
+          width: "2em",
+          alignSelf: "flex-start",
+          cursor: "pointer",
+          transition: "transform 0.2s ease-in-out",
+          "&:hover": {
+            transform: "scale(1.15)",
+          },
+          position: "absolute",
+          top: "1em",
+          left: "1em",
+          zIndex: 1,
         }}
-      >
-        <Box
-          component="img"
-          src={backIcon}
-          alt="back"
-            sx={{
-              height: "2em",
-              width: "2em",
-              alignSelf: "flex-start",
-              cursor: "pointer",
-              transition: "transform 0.2s ease-in-out",
-              "&:hover": {
-                transform: "scale(1.15)"
-              },
-              position: "absolute",
-              top: "1em",
-              left: "1em"
-          }}
-          onClick={handleBack}
-        />  
-      </Box>
+        onClick={handleBack}
+      />
 
       <Box
         sx={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          overflow: 'hidden',
+          width: { xs: "100%", lg: "50%" },
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: { xs: "0", lg: "4em" },
+          position: "relative",
         }}
       >
-        {[1, 2, 3, 4].map((step) => (
-          <Box
-            key={step}
-            sx={{
-              position: 'absolute',
-              top: {
-                xs: '15%',
-                sm: '25%',
-              },
-              left: 0,
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              transform: getStepTransform(step),
-              transition: 'transform 0.3s ease-in-out',
-              padding: {
-                xs: '0 1em',
-                sm: '0 10%',
-              },
-            }}
-          >
-            {/* Image */}
-            <Box
-              sx={{
-                width: screenSize === 'sm' ? '60vw' : screenSize === 'md' ? '80%' : '40%',
-                maxWidth: '400px',
-                aspectRatio: '1/1',
-                mb: 4,
-              }}
-            >
-              <img
-                src={ONBOARDING_IMAGES[step as keyof typeof ONBOARDING_IMAGES]}
-                alt={`Onboarding step ${step}`}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            </Box>
-
-            {/* Title */}
-            <Typography
-              variant="h4"
-              align="center"
-              sx={{
-                color: '#fff',
-                fontWeight: 'bold',
-                mb: 2,
-                px: 2,
-              }}
-            >
-              {t(`onboarding.step${step}.title`)}
-            </Typography>
-
-            {/* Subtitle */}
-            <Typography
-              variant="body1"
-              align="center"
-              sx={{
-                color: '#fff',
-                px: 2,
-                mb: 4,
-              }}
-            >
-              {t(`onboarding.step${step}.subtitle`)}
-            </Typography>
-
-            {/* Start Button */}
-            {step === 4 && (
-              <CustomButton
-                sx={{
-                  mt: 5,
-                }}
-                text={t("common.start")}
-                onClick={handleStart}
-                variantType="secondary-fill"
-              />
-            )}
-          </Box>
-        ))}
-      </Box>
-
-      {/* Dots */}
-      {currentStep !== 4 && !(direction === "left" && currentStep === 3) && (
+        {/* Navigation buttons (desktop only) */}
         <Box
           sx={{
-            display: "flex",
+            display: { xs: "none", lg: "flex" },
+            alignItems: "center",
+            justifyContent: "center",
             gap: 2,
+            width: "100%",
             position: "absolute",
-            bottom: {
-              xs: '15%',
-              sm: '22.5%',
-            },
-            left: "50%",
-            transform: "translateX(-50%)",
+            top: "50%",
+            left: 0,
+            right: 0,
+            transform: "translateY(-50%)",
+            zIndex: 1,
           }}
         >
-          {[1, 2, 3].map((step) => (
+          {currentStep > 1 && (
+            <Box
+              component="img"
+              src={nextIcon}
+              alt="prev"
+              sx={{
+                width: "1.5rem",
+                height: "1.5rem",
+                cursor: "pointer",
+                transform: "rotate(180deg)",
+                transition: "transform 0.2s ease-in-out",
+                position: "absolute",
+                left: "10%",
+                "&:hover": {
+                  transform: "rotate(180deg) scale(1.15)",
+                },
+              }}
+              onClick={() => {
+                if (currentStep > 1) {
+                  setIsAnimating(true);
+                  setDirection("right");
+                  setTimeout(() => {
+                    setCurrentStep((prev) => prev - 1);
+                    setDirection(null);
+                    setIsAnimating(false);
+                  }, 300);
+                }
+              }}
+            />
+          )}
+          {currentStep < 4 && (
+            <Box
+              component="img"
+              src={nextIcon}
+              alt="next"
+              sx={{
+                width: "1.5rem",
+                height: "1.5rem",
+                cursor: "pointer",
+                transition: "transform 0.2s ease-in-out",
+                position: "absolute",
+                right: "10%",
+                "&:hover": {
+                  transform: "scale(1.15)",
+                },
+              }}
+              onClick={() => {
+                if (currentStep < 4) {
+                  setIsAnimating(true);
+                  setDirection("left");
+                  setTimeout(() => {
+                    setCurrentStep((prev) => prev + 1);
+                    setDirection(null);
+                    setIsAnimating(false);
+                  }, 300);
+                }
+              }}
+            />
+          )}
+        </Box>
+
+        <Box
+          sx={{
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {[1, 2, 3, 4].map((step) => (
             <Box
               key={step}
               sx={{
-                width: 15,
-                height: 15,
-                borderRadius: "50%",
-                backgroundColor: currentStep === step ? theme.colors.lightBlue : "#fff",
-                transition: "all 0.3s ease-in-out",
-                transform: currentStep === step ? "scale(1.2)" : "scale(1)",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                transform: getStepTransform(step),
+                transition: "transform 0.3s ease-in-out",
+                padding: {
+                  xs: "0 1em",
+                  md: "0 10%",
+                },
               }}
-            />
+            >
+              {/* Image for mobile and tablet */}
+              <Box
+                sx={{
+                  display: { xs: "block", lg: "none" },
+                  width: screenSize === "sm" ? "60vw" : "80%",
+                  maxWidth: "400px",
+                  aspectRatio: "1/1",
+                  mb: 4,
+                }}
+              >
+                <img
+                  src={ONBOARDING_IMAGES[step as keyof typeof ONBOARDING_IMAGES]}
+                  alt={`Onboarding step ${step}`}
+                  style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                />
+              </Box>
+
+              {/* Title */}
+              <Typography
+                variant="h4"
+                align="center"
+                sx={{
+                  color: "#fff",
+                  fontWeight: "bold",
+                  mb: 2,
+                  width: screenSize === "sm" || screenSize === "md" ? "100%" : "60%",
+                }}
+              >
+                {t(`onboarding.step${step}.title`)}
+              </Typography>
+
+              {/* Subtitle */}
+              <Typography
+                variant="body1"
+                align="center"
+                sx={{
+                  color: "#fff",
+                  mb: 4,
+                  width: screenSize === "sm" || screenSize === "md" ? "100%" : "60%",
+                }}
+              >
+                {t(`onboarding.step${step}.subtitle`)}
+              </Typography>
+
+              {/* Start Button */}
+              {step === 4 && (
+                <CustomButton
+                  text={t("common.start")}
+                  onClick={handleStart}
+                  variantType={screenSize === "sm" || screenSize === "md" ? "secondary-fill" : "primary"}
+                  sx={{
+                    mt: 5,
+                    width: screenSize === "sm" || screenSize === "md" ? "100%" : "60%",
+                  }}
+                />
+              )}
+            </Box>
           ))}
         </Box>
-      )}
+
+        {/* Dots */}
+        {currentStep !== 4 && !(direction === "left" && currentStep === 3) && (
+          <Box
+            sx={{
+              display: "flex",
+              gap: 2,
+              position: "absolute",
+              bottom: {
+                xs: "15%",
+                sm: "22.5%",
+              },
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          >
+            {[1, 2, 3].map((step) => (
+              <Box
+                key={step}
+                sx={{
+                  width: 15,
+                  height: 15,
+                  borderRadius: "50%",
+                  backgroundColor: currentStep === step ? theme.colors.lightBlue : "#fff",
+                  opacity: currentStep === step ? 1 : 0.5,
+                  transition: "all 0.3s ease-in-out",
+                  transform: currentStep === step ? "scale(1.2)" : "scale(1)",
+                }}
+              />
+            ))}
+          </Box>
+        )}
+      </Box>
+
+      {/* Right side image container (desktop only) */}
+      <Box
+        sx={{
+          width: { xs: "100%", lg: "50%" },
+          height: "100%",
+          display: { xs: "none", lg: "flex" },
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          sx={{
+            width: "90%",
+            height: "100%",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {[1, 2, 3, 4].map((step) => (
+            <Box
+              key={step}
+              sx={{
+                position: "absolute",
+                top: '5%',
+                left: 0,
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                opacity: currentStep === step ? 1 : 0,
+                transition: "opacity 0.3s ease-in-out",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "75%",
+                  aspectRatio: "1/1",
+                }}
+              >
+                <img
+                  src={ONBOARDING_IMAGES[step as keyof typeof ONBOARDING_IMAGES]}
+                  alt={`Onboarding step ${step}`}
+                  style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                />
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      </Box>
     </Box>
   );
 };
