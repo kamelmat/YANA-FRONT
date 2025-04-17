@@ -74,7 +74,6 @@ export default function Header() {
               <>
                 <Typography
                   variant="h6"
-                  fontSize={18}
                   sx={{
                     color: "white",
                     fontWeight: "bold",
@@ -84,7 +83,7 @@ export default function Header() {
                 >
                   {t("header.welcome", { name })}
                 </Typography>
-                <Typography fontSize={14} sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
+                <Typography variant="body1" sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
                   {date}
                 </Typography>
               </>

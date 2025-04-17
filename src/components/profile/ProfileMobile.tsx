@@ -79,9 +79,6 @@ const ProfileMobile: FC = () => {
         iconPosition="end"
         variantType="square-primary"
         onClick={() => handleNavigation("/profile/account")}
-        sx={{
-          fontSize: "1rem",
-        }}
       />
       <CustomButton
         text={t("/profile.interactions")}
@@ -89,9 +86,6 @@ const ProfileMobile: FC = () => {
         iconPosition="end"
         variantType="square-primary"
         onClick={() => handleNavigation("/profile/interactions")}
-        sx={{
-          fontSize: "1rem",
-        }}
       />
       <CustomButton
         text={t("/profile.configuration")}
@@ -99,9 +93,6 @@ const ProfileMobile: FC = () => {
         iconPosition="end"
         variantType="square-primary"
         onClick={() => handleNavigation("/profile/configuration")}
-        sx={{
-          fontSize: "1rem",
-        }}
       />
       <CustomButton
         text={t("/profile.help")}
@@ -109,9 +100,6 @@ const ProfileMobile: FC = () => {
         iconPosition="end"
         variantType="square-primary"
         onClick={() => handleNavigation("/profile/help")}
-        sx={{
-          fontSize: "1rem",
-        }}
       />
       <CustomButton
         text={t("/profile.logout")}
@@ -119,9 +107,6 @@ const ProfileMobile: FC = () => {
         iconPosition="end"
         variantType="square-secondary"
         onClick={() => handleNavigation("/login")}
-        sx={{
-          fontSize: "1rem",
-        }}
       />
       <CustomButton
         text={t("/profile.deleteAccount")}
@@ -129,9 +114,6 @@ const ProfileMobile: FC = () => {
         iconPosition="end"
         variantType="ghost"
         onClick={() => setIsDeleteModalOpen(true)}
-        sx={{
-          fontSize: "1rem",
-        }}
       />
 
       <Modal
