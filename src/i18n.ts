@@ -18,7 +18,7 @@ i18n.use(initReactI18next).init({
           loginGoogle: "Log in with Google",
           dontHaveAccount: "Don't have an account?",
           register: "Register",
-          failedLogin: "No active account found with the credentials provided.",
+          failed: "No active account found with the credentials provided.",
         },
         register: {
           method: {
@@ -190,7 +190,7 @@ i18n.use(initReactI18next).init({
           loginGoogle: "Iniciar sesión con Google",
           dontHaveAccount: "¿No tienes una cuenta?",
           register: "Regístrate",
-          failedLogin: "No se encontró una cuenta activa con las credenciales proporcionadas.",
+          failed: "No se encontró una cuenta activa con las credenciales proporcionadas.",
         },
 
         // register stages
