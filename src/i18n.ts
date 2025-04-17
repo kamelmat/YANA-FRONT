@@ -166,6 +166,27 @@ i18n.use(initReactI18next).init({
           delete: "Delete",
           deleteAccount: "Delete Account",
           deleteAccountMessage: "Are you sure you want to delete your account?",
+          start: "Start",
+        },
+        onboarding: {
+          step1: {
+            title: "Start your journey",
+            subtitle: "Discover everything you can do on this platform.",
+          },
+          step2: {
+            title: "Share your emotions in a safe space",
+            subtitle: "Choose an emotion every day, express it and connect with other people.",
+          },
+          step3: {
+            title: "Participate in a shared emotions map",
+            subtitle:
+              "Discover how other people feel in an interactive interface. Send and receive support through predefined messages. Explore links with empathy.",
+          },
+          step4: {
+            title: "Get help whenever you need it",
+            subtitle:
+              "Access contacts and resources to feel better. Remember that you are part of a community that supports you.",
+          },
         },
       },
     },
@@ -335,6 +356,27 @@ i18n.use(initReactI18next).init({
           delete: "Eliminar",
           deleteAccount: "Eliminar cuenta",
           deleteAccountMessage: "¿Estás seguro de querer eliminar tu cuenta?",
+          start: "Comenzar",
+        },
+        onboarding: {
+          step1: {
+            title: "Comienza tu recorrido",
+            subtitle: "Descubre todo lo que puedes hacer en esta plataforma.",
+          },
+          step2: {
+            title: "Comparte tus emociones en un espacio seguro",
+            subtitle: "Elige un estado de ánimo cada día, exprésalo y conecta con otras personas.",
+          },
+          step3: {
+            title: "Participa en un mapa de emociones compartidas",
+            subtitle:
+              "Conoce cómo se sienten otras personas en una interfaz interactiva. Envía y recibe apoyo a través de mensajes predeterminados. Explora vínculos con empatía.",
+          },
+          step4: {
+            title: "Obtén ayuda cada vez que la necesites",
+            subtitle:
+              "Accede a contactos y recursos para sentirte mejor. Recuerda que eres parte de una comunidad que te acompaña.",
+          },
         },
       },
     },
