@@ -9,6 +9,7 @@ import onboarding4 from '../assets/onboarding/4.webp';
 import CustomButton from '../commons/CommonButton';
 import theme from '../theme';
 import { useScreenSize } from '../hooks/useScreenSize';
+import backIcon from '../assets/icons/back.svg';
 
 const ONBOARDING_IMAGES = {
   1: onboarding1,
@@ -68,6 +69,14 @@ const Onboarding = () => {
     navigate('/');
   }, [navigate]);
 
+  const handleBack = useCallback(() => {
+    if (currentStep === 1) {
+      navigate(-1);
+    } else {
+      setCurrentStep(prev => prev - 1);
+    }
+  }, [currentStep, navigate]);
+
   const getStepTransform = (step: number) => {
     const offset = step - currentStep;
     if (direction === "left") {
@@ -88,11 +97,42 @@ const Onboarding = () => {
         flexDirection: 'column',
         backgroundColor: '#1E1E1E',
         position: 'relative',
+        overflow: 'hidden',
       }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          padding: '1em',
+        }}
+      >
+        <Box
+          component="img"
+          src={backIcon}
+          alt="back"
+            sx={{
+              height: "2em",
+              width: "2em",
+              alignSelf: "flex-start",
+              cursor: "pointer",
+              transition: "transform 0.2s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.15)"
+              },
+              position: "absolute",
+              top: "1em",
+              left: "1em"
+          }}
+          onClick={handleBack}
+        />  
+      </Box>
+
       <Box
         sx={{
           width: '100%',
