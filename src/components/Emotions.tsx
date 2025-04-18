@@ -172,7 +172,7 @@ const Emotions: React.FC = () => {
               style={{ width: iconSize, height: iconSize }}
             />
             <Typography variant="body2" sx={{ marginTop: "0.5rem", color: "#FFFFFF" }}>
-              {emotion.name}
+              {t(`emotions.${emotion.name.toLowerCase()}`)}
             </Typography>
           </StyledEmotionButton>
         ))}
