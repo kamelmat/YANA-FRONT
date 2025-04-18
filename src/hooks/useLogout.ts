@@ -15,7 +15,7 @@ export const useLogout = () => {
       }
       return authService.logout(accessToken, refreshToken)
     },
-    onSuccess: () => {
+    onMutate: () => {
       useAuthStore.getState().clearAuth()
       navigate("/login")
     },
