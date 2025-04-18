@@ -56,8 +56,8 @@ i18n.use(initReactI18next).init({
               placeholder: "Complete your email",
               error: {
                 required: "The email is required.",
-                invalid: "Please enter a valid email address.",
-                taken: "This email is already registered.",
+                invalid: "The email entered is not valid. Please try again.",
+                taken: "This email is already registered. Please try another or log in.",
               },
             },
           },
@@ -265,8 +265,9 @@ i18n.use(initReactI18next).init({
               placeholder: "Completa tu email",
               error: {
                 required: "El correo es requerido.",
-                invalid: "Por favor, introduce un correo electrónico válido.",
-                taken: "Este correo electrónico ya está registrado.",
+                invalid: "El email ingresado no es válido. Por favor, íntentalo de nuevo.",
+                taken:
+                  "Este correo electrónico ya está registrado. Por favor, intenta con otro o inicia sesión.",
               },
             },
           },
