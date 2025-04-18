@@ -9,11 +9,11 @@ import { useEmotionsStore } from "../store/emotionsStore"
 import type { AvailableEmotion } from "../services/emotions"
 import { useCreateEmotion } from "../hooks/useCreateEmotion"
 import { useUserLocationStore } from "../store/userLocationStore"
-import angustiaIcon from "../assets/emotions/angustia.svg?url"
-import desganoIcon from "../assets/emotions/desgano.svg?url"
-import soledadIcon from "../assets/emotions/soledad.svg?url"
-import tranquilidadIcon from "../assets/emotions/tranquilidad.svg?url"
-import tristezaIcon from "../assets/emotions/tristeza.svg?url"
+import distressIcon from "../assets/emotions/distress.svg?url"
+import lonelinessIcon from "../assets/emotions/loneliness.svg?url"
+import reluctanceIcon from "../assets/emotions/reluctance.svg?url"
+import tranquilityIcon from "../assets/emotions/tranquility.svg?url"
+import sadnessIcon from "../assets/emotions/sadness.svg?url"
 import { useState } from "react"
 import theme from "../theme"
 
@@ -22,11 +22,11 @@ interface StyledEmotionButtonProps {
 }
 
 const EMOTIONS_ICONS = {
-  sadness: tristezaIcon,
-  distress: angustiaIcon,
-  loneliness: soledadIcon,
-  reluctance: desganoIcon,
-  tranquility: tranquilidadIcon,
+  sadness: sadnessIcon,
+  distress: distressIcon,
+  loneliness: lonelinessIcon,
+  reluctance: reluctanceIcon,
+  tranquility: tranquilityIcon,
 }
 
 const EMOTIONS_COLORS = {
