@@ -49,11 +49,22 @@ export default function CustomTextField({
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: theme.colors.lightBlue,
           },
+          "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+            borderColor: theme.colors.lightRed,
+          },
         },
         "& .MuiInputLabel-root": {
           color: theme.colors.lightGray,
           "&.Mui-focused": {
             color: theme.colors.lightBlue,
+          },
+          "&.Mui-error": {
+            color: theme.colors.lightRed,
+          },
+        },
+        "& .MuiFormHelperText-root": {
+          "&.Mui-error": {
+            color: theme.colors.lightRed,
           },
         },
         "& input": {

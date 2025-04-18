@@ -124,7 +124,7 @@ const theme = createTheme({
     darkPurple: "#1D1B20",
     red: "#B3261E",
     defaultBackground: "#1B201B",
-    lightRed: "#FFDEDC",
+    lightRed: "#FF8D98",
   },
   gradients: {
     gradientBlack: "linear-gradient(to top, #262626, #3E4044)",
