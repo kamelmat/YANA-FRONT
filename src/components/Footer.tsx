@@ -127,12 +127,12 @@ export const Footer = () => {
               <Typography variant="body2">Info@yana.com</Typography>
               <Box sx={{ display: "flex", mt: 2, gap: 2 }}>
                 <img
-                  src="src/assets/icons/Instagram.svg"
+                  src="src/assets/icons/Instagram.svg?url"
                   alt="Instagram"
                   style={{ width: 52, height: 40 }}
                 />
                 <img
-                  src="src/assets/icons/Linkedin.svg"
+                  src="src/assets/icons/Linkedin.svg?url"
                   alt="LinkedIn"
                   style={{ width: 52, height: 40 }}
                 />
