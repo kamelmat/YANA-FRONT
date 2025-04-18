@@ -31,14 +31,5 @@ export const useNearbyEmotions = ({ latitude, longitude, radius }: Props) => {
     enabled: !!latitude && !!longitude,
   })
 
-  useEffect(() => {
-    if (query.data) {
-      console.log("Emociones cercanas:", query.data)
-    }
-    if (query.error) {
-      console.error("Error al obtener emociones cercanas:", query.error)
-    }
-  }, [query.data, query.error])
-
   return query
 }

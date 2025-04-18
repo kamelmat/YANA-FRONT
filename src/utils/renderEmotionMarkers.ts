@@ -1,7 +1,6 @@
 import maplibregl from "maplibre-gl"
 import "maplibre-gl/dist/maplibre-gl.css"
 import type { RefObject } from "react"
-
 interface Emotion {
   latitude: string | number
   longitude: string | number
@@ -31,7 +30,6 @@ export const clearMarkers = (markersRef: RefObject<maplibregl.Marker[]>) => {
     markersRef.current = []
   }
 }
-
 export const renderEmotionMarkers = (
   data: Emotion[],
   mapRef: RefObject<maplibregl.Map | null>,
@@ -46,11 +44,9 @@ export const renderEmotionMarkers = (
         console.warn(`No icon found for emotion: ${checked_emotion.emotion}`)
         continue
       }
-
       const coords = `${checked_emotion.latitude},${checked_emotion.longitude}`
       markerOffsets[coords] = (markerOffsets[coords] || 0) + 0.0001
       const offset = markerOffsets[coords]
-
       const marker = new maplibregl.Marker({
         element: (() => {
           const el = document.createElement("div")
@@ -58,15 +54,15 @@ export const renderEmotionMarkers = (
           return el
         })(),
         anchor: "bottom",
-      })
-        .setLngLat([
-          Number.parseFloat(checked_emotion.longitude.toString()) + offset,
-          Number.parseFloat(checked_emotion.latitude.toString()) + offset,
-        ])
-        // biome-ignore lint/style/noNonNullAssertion: <explanation>
-        .addTo(mapRef.current!)
-      markersRef.current = markersRef.current || []
-      markersRef.current.push(marker)
+      }).setLngLat([
+        Number.parseFloat(checked_emotion.longitude.toString()) + offset,
+        Number.parseFloat(checked_emotion.latitude.toString()) + offset,
+      ])
+      if (mapRef.current) {
+        marker.addTo(mapRef.current)
+        markersRef.current = markersRef.current || []
+        markersRef.current.push(marker)
+      }
     }
   }
 }
