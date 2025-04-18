@@ -14,27 +14,32 @@ import ProtectedRoute from "../components/ProtectedRoute"
 import { useTokenRefresh } from "../hooks/useTokenRefresh"
 import { useAuthStore } from "../store/authStore"
 import Onboarding from "../pages/Onboarding"
+import TrailingSlashRedirect from "../components/TrailingSlashRedirect"
+
 const AppRoutes: React.FC = () => {
   useTokenRefresh();
   const accessToken = useAuthStore((state) => state.accessToken);
 
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/onboarding" element={<Onboarding />} />
-      <Route element={<ProtectedRoute><MapLayout /></ProtectedRoute>}>
-        <Route path="/" element={<Home />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/FAQ" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/account" element={<AccountSettings />} />
-        <Route path="/profile/configuration" element={<ConfigurationSettings />} />
-        <Route path="/profile/interactions" element={<InteractionsSettings />} />
-      </Route>
-      <Route path="*" element={<Navigate to={accessToken ? "/" : "/login"} replace />} />
-    </Routes>
+    <>
+      <TrailingSlashRedirect />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route element={<ProtectedRoute><MapLayout /></ProtectedRoute>}>
+          <Route path="/" element={<Home />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/FAQ" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/account" element={<AccountSettings />} />
+          <Route path="/profile/configuration" element={<ConfigurationSettings />} />
+          <Route path="/profile/interactions" element={<InteractionsSettings />} />
+        </Route>
+        <Route path="*" element={<Navigate to={accessToken ? "/" : "/login"} replace />} />
+      </Routes>
+    </>
   )
 }
 
