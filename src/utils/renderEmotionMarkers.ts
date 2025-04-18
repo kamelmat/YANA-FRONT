@@ -10,14 +10,16 @@ interface Emotion {
 }
 
 const emotionModules = import.meta.glob("../assets/emotions/*.svg", {
-  as: "url",
+  query: "?url",
+  import: "default",
   eager: true,
 })
 
 const emotionIcons: Record<string, string> = {}
 for (const [path, url] of Object.entries(emotionModules)) {
-  // biome-ignore lint/style/noNonNullAssertion: <explanation>
-  const emotionName = path.split("/").pop()!.replace(".svg", "").toLowerCase()
+  const fileName = path.split("/").pop()
+  if (!fileName) continue
+  const emotionName = fileName.replace(".svg", "").toLowerCase()
   emotionIcons[emotionName] = url as string
 }
 
