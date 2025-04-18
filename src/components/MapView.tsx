@@ -17,7 +17,7 @@ export const MapView = () => {
   const { data, isLoading, isError, error } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
-    radius: "20000000000",
+    radius: "10000",
   })
 
   const isVisible = location.pathname === "/"
@@ -47,7 +47,7 @@ export const MapView = () => {
         style:
           "https://api.maptiler.com/maps/0195fe03-6eea-79e3-a9d3-d4531a0a351b/style.json?key=S27siZckn8M30xtrFfEn",
         center: [userLocation.longitude, userLocation.latitude],
-        zoom: 14,
+        zoom: 15,
       })
 
       mapRef.current.on("styleimagemissing", (e) => {

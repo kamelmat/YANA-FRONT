@@ -9,11 +9,11 @@ import { useEmotionsStore } from "../store/emotionsStore"
 import type { AvailableEmotion } from "../services/emotions"
 import { useCreateEmotion } from "../hooks/useCreateEmotion"
 import { useUserLocationStore } from "../store/userLocationStore"
-import sadnessIcon from "../assets/icons/tristeza.svg?url"
-import distressIcon from "../assets/icons/angustia.svg?url"
-import lonelinessIcon from "../assets/icons/soledad.svg?url"
-import reluctanceIcon from "../assets/icons/desgano.svg?url"
-import tranquilityIcon from "../assets/icons/tranquilidad.svg?url"
+import distressIcon from "../assets/emotions/distress.svg?url"
+import lonelinessIcon from "../assets/emotions/loneliness.svg?url"
+import reluctanceIcon from "../assets/emotions/reluctance.svg?url"
+import tranquilityIcon from "../assets/emotions/tranquility.svg?url"
+import sadnessIcon from "../assets/emotions/sadness.svg?url"
 import { useState } from "react"
 import theme from "../theme"
 
@@ -172,7 +172,7 @@ const Emotions: React.FC = () => {
               style={{ width: iconSize, height: iconSize }}
             />
             <Typography variant="body2" sx={{ marginTop: "0.5rem", color: "#FFFFFF" }}>
-              {emotion.name}
+              {t(`emotions.${emotion.name.toLowerCase()}`)}
             </Typography>
           </StyledEmotionButton>
         ))}
