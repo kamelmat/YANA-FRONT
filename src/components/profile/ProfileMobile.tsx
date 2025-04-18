@@ -22,6 +22,7 @@ import CustomButton from "../../commons/CommonButton"
 import Modal from "../../commons/DeleteModal"
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
 import { useSettingsStore } from "../../store/useSettingsStore"
+import { useLogout } from "../../hooks/useLogout"
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,
@@ -37,6 +38,8 @@ const ProfileMobile: FC = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const { settings } = useSettingsStore()
   const deleteAccount = useDeleteAccount()
+  const { mutate: logout } = useLogout()
+
   const handleNavigation = (path: string) => {
     navigate(path)
   }
@@ -109,7 +112,7 @@ const ProfileMobile: FC = () => {
         icon={<img src={logoutIcon} alt={t("/profile.logout")} />}
         iconPosition="end"
         variantType="square-secondary"
-        onClick={() => handleNavigation("/login")}
+        onClick={() => logout()}
       />
       <CustomButton
         text={t("/profile.deleteAccount")}

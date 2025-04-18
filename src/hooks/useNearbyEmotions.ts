@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query"
-import { useEffect } from "react"
 
 interface Props {
   latitude: string
@@ -30,15 +29,6 @@ export const useNearbyEmotions = ({ latitude, longitude, radius }: Props) => {
     queryFn: () => fetchNearbyEmotions({ latitude, longitude, radius }),
     enabled: !!latitude && !!longitude,
   })
-
-  useEffect(() => {
-    if (query.data) {
-      console.log("Emociones cercanas:", query.data)
-    }
-    if (query.error) {
-      console.error("Error al obtener emociones cercanas:", query.error)
-    }
-  }, [query.data, query.error])
 
   return query
 }

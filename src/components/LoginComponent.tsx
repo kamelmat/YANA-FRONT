@@ -125,7 +125,7 @@ export default function LoginComponent() {
           </Link>
         </Stack>
 
-        {isError && <Typography color="error">{t("login.failed")}</Typography>}
+        {isError && <Typography color={theme.colors.lightRed} >{t("login.failed")}</Typography>}
 
         <Stack spacing={1.5} direction="column" sx={{ marginTop: 4 }}>
           <CustomButton 
