@@ -11,9 +11,9 @@ on:
   workflow_dispatch:
 
 env:
-  NODE_VERSION: '20.x'
-  PROJECT_ID: 'training-batch-05'
-  GCS_BUCKET: 'gs://yana-front'
+  NODE_VERSION: "20.x"
+  PROJECT_ID: "training-batch-05"
+  GCS_BUCKET: "gs://yana-front"
 
 jobs:
   build:
@@ -36,7 +36,7 @@ jobs:
           path: |
             node_modules
             ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}-v2
           restore-keys: ${{ runner.os }}-node-
 
       - name: Install Dependencies
@@ -50,7 +50,7 @@ jobs:
           CI: true
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: ./dist
@@ -64,7 +64,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download Build Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: ./dist

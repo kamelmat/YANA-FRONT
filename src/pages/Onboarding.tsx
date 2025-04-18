@@ -108,6 +108,7 @@ const Onboarding = () => {
         top:{
           xs: "12.5%",
           md: "22.5%",
+          lg: "45%"
         },
         left: 0,
         width: "100%",
