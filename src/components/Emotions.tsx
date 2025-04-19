@@ -110,7 +110,7 @@ const Emotions: React.FC = () => {
           sm: "2vh",
           xs: 0,
         },
-        left: { lg: "50%", md: "55%", sm: "55%", xs: "50%" },
+        left: "50%",
         transform: "translateX(-50%)",
         width: {
           lg: "814px",
