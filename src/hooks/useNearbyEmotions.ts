@@ -28,6 +28,8 @@ export const useNearbyEmotions = ({ latitude, longitude, radius }: Props) => {
     queryKey: ["nearbyEmotions", latitude, longitude, radius],
     queryFn: () => fetchNearbyEmotions({ latitude, longitude, radius }),
     enabled: !!latitude && !!longitude,
+    refetchInterval: 600000, // Refetch every 10 minutes
+    refetchIntervalInBackground: true, // Continue refetching even when tab is not active
   })
 
   return query
