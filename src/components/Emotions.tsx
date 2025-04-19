@@ -1,5 +1,5 @@
 import type React from "react"
-import { Box, Typography, IconButton } from "@mui/material"
+import { Box, Typography, IconButton, CircularProgress } from "@mui/material"
 import type { Theme } from "@mui/material/styles"
 import { useTheme } from "@mui/material/styles"
 import styled from "@emotion/styled"
@@ -17,6 +17,7 @@ import sadnessIcon from "../assets/emotions/sadness.svg?url"
 import { useState, useEffect } from "react"
 import theme from "../theme"
 import { useLastEmotion } from "../hooks/useLastEmotion"
+import { useAvailableEmotions } from "../hooks/useAvailableEmotions"
 
 interface StyledEmotionButtonProps {
   selected?: boolean
@@ -67,6 +68,7 @@ const Emotions: React.FC = () => {
   const { mutate: createEmotion } = useCreateEmotion()
   const userLocation = useUserLocationStore((state) => state.userLocation)
   const [selectedEmotion, setSelectedEmotion] = useState<string | null>(lastSelectedEmotion)
+  const { isLoading } = useAvailableEmotions()
   useLastEmotion()
 
   useEffect(() => {
@@ -151,41 +153,45 @@ const Emotions: React.FC = () => {
       >
         {t("emotions.questionEmotion")}
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "1rem",
-        }}
-      >
-        {emotions.map((emotion: AvailableEmotion) => (
-          <StyledEmotionButton
-            key={emotion.id}
-            selected={selectedEmotion === emotion.id}
-            onClick={() => handleEmotionClick(emotion.id)}
-            sx={{
-              flex: 1,
-              minWidth: 0,
-              "--emotion-color": EMOTIONS_COLORS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_COLORS],
-              "& svg, & img": {
-                width: iconSize,
-                height: iconSize,
-              },
-            }}
-          >
-            <img
-              src={EMOTIONS_ICONS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_ICONS]}
-              alt={emotion.name}
-              style={{ width: iconSize, height: iconSize }}
-            />
-            <Typography variant="body2" sx={{ marginTop: "0.5rem", color: "#FFFFFF" }}>
-              {t(`emotions.${emotion.name.toLowerCase()}`)}
-            </Typography>
-          </StyledEmotionButton>
-        ))}
-      </Box>
+      {isLoading && emotions.length === 0 ? (
+        <CircularProgress sx={{ color: "#FFFFFF" }} />
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          {emotions.map((emotion: AvailableEmotion) => (
+            <StyledEmotionButton
+              key={emotion.id}
+              selected={selectedEmotion === emotion.id}
+              onClick={() => handleEmotionClick(emotion.id)}
+              sx={{
+                flex: 1,
+                minWidth: 0,
+                "--emotion-color": EMOTIONS_COLORS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_COLORS],
+                "& svg, & img": {
+                  width: iconSize,
+                  height: iconSize,
+                },
+              }}
+            >
+              <img
+                src={EMOTIONS_ICONS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_ICONS]}
+                alt={emotion.name}
+                style={{ width: iconSize, height: iconSize }}
+              />
+              <Typography variant="body2" sx={{ marginTop: "0.5rem", color: "#FFFFFF" }}>
+                {t(`emotions.${emotion.name.toLowerCase()}`)}
+              </Typography>
+            </StyledEmotionButton>
+          ))}
+        </Box>
+      )}
     </Box>
   )
 }
