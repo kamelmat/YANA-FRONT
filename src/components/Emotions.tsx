@@ -14,8 +14,9 @@ import lonelinessIcon from "../assets/emotions/loneliness.svg?url"
 import reluctanceIcon from "../assets/emotions/reluctance.svg?url"
 import tranquilityIcon from "../assets/emotions/tranquility.svg?url"
 import sadnessIcon from "../assets/emotions/sadness.svg?url"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import theme from "../theme"
+import { useLastEmotion } from "../hooks/useLastEmotion"
 
 interface StyledEmotionButtonProps {
   selected?: boolean
@@ -60,10 +61,17 @@ const Emotions: React.FC = () => {
   const theme = useTheme() as Theme
   const screenSize = useScreenSize()
   const { t } = useTranslation()
-  const emotions = useEmotionsStore((state: { emotions: AvailableEmotion[] }) => state.emotions)
+  const emotions = useEmotionsStore((state) => state.emotions)
+  const lastSelectedEmotion = useEmotionsStore((state) => state.lastSelectedEmotion)
+  const setLastSelectedEmotion = useEmotionsStore((state) => state.setLastSelectedEmotion)
   const { mutate: createEmotion } = useCreateEmotion()
   const userLocation = useUserLocationStore((state) => state.userLocation)
-  const [selectedEmotion, setSelectedEmotion] = useState<string | null>(null)
+  const [selectedEmotion, setSelectedEmotion] = useState<string | null>(lastSelectedEmotion)
+  useLastEmotion()
+
+  useEffect(() => {
+    setSelectedEmotion(lastSelectedEmotion)
+  }, [lastSelectedEmotion])
 
   const getIconSize = () => {
     switch (screenSize) {
@@ -82,6 +90,7 @@ const Emotions: React.FC = () => {
 
   const handleEmotionClick = (emotionId: string) => {
     setSelectedEmotion(emotionId)
+    setLastSelectedEmotion(emotionId)
     if (userLocation.latitude && userLocation.longitude) {
       createEmotion({
         emotion_id: emotionId,

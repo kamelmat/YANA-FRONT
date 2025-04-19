@@ -21,6 +21,14 @@ export interface AvailableEmotion {
   name: string
 }
 
+export interface LastEmotionResponse {
+  emotion: string
+  latitude: number
+  longitude: number
+  created_at: string
+  is_active: boolean
+}
+
 export const emotionsService = {
   createEmotion: async (
     data: CreateEmotionRequest,
@@ -66,6 +74,31 @@ export const emotionsService = {
       return responseData
     } catch (error) {
       console.error("Get available emotions error:", error)
+      throw error
+    }
+  },
+
+  getLastEmotion: async (accessToken: string): Promise<LastEmotionResponse | null> => {
+    try {
+      const response = await fetch(`${API_URL}/emociones/user/emotions/last/`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+
+      if (response.status === 404) {
+        return null
+      }
+
+      const responseData = await response.json()
+
+      if (!response.ok) {
+        throw new Error(responseData.message || "Failed to get last emotion")
+      }
+
+      return responseData
+    } catch (error) {
+      console.error("Get last emotion error:", error)
       throw error
     }
   },
