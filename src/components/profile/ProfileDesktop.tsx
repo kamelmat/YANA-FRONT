@@ -12,7 +12,7 @@ import avatarIcon35 from "../../assets/avatars/avatar_35.svg?url"
 import CustomButton from "../../commons/CommonButton"
 import deleteIcon from "../../assets/icons/cancel.svg?url"
 
-import { useScreenSize } from "../../hooks/useScreenSize"
+import useScreenSize from "../../hooks/useScreenSize"
 import Modal from "../../commons/DeleteModal"
 import { useDeleteAccount } from '../../hooks/useDeleteAccount'
 import AccountSettings from "../../pages/profile/AccountSettings"

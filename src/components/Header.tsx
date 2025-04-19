@@ -1,7 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material"
 import { useLocation, useNavigate } from "react-router-dom"
 import styled from "@emotion/styled"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 import { useAuthStore } from "../store/authStore"
 import { getFormattedDate } from "../utils/getFormattedDate"
 import { useTranslation } from "react-i18next"

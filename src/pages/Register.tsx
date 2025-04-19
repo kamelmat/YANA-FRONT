@@ -1,6 +1,6 @@
 import { Typography, Box, Stack, Link, CircularProgress } from "@mui/material";
 import AuthContainer from "../commons/AuthContainer";
-import { useScreenSize } from '../hooks/useScreenSize';
+import useScreenSize from '../hooks/useScreenSize';
 import theme from "../theme";
 import CustomButton from "../commons/CommonButton";
 import { useNavigate } from 'react-router-dom';
