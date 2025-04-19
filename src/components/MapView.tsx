@@ -7,14 +7,18 @@ import marker from "../assets/icons/marker.svg?url"
 import { useLocation } from "react-router-dom"
 import { useNearbyEmotions } from "../hooks/useNearbyEmotions"
 import { renderEmotionMarkers } from "../utils/renderEmotionMarkers"
+import { Box, CircularProgress, Typography } from "@mui/material"
+import { useTranslation } from "react-i18next"
+import theme from "../theme"
 
 export const MapView = () => {
   const location = useLocation()
+  const { t } = useTranslation()
   const { userLocation, setUserLocation } = useUserLocationStore()
   const mapRef = useRef<maplibregl.Map | null>(null)
   const markersRef = useRef<maplibregl.Marker[]>([])
 
-  const { data, isLoading, isError, error } = useNearbyEmotions({
+  const { data, isLoading, isError } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
     radius: "10000",
@@ -93,43 +97,66 @@ export const MapView = () => {
           display: isVisible ? "block" : "none",
         }}
       />
-      {isLoading && (
-        <p
-          style={{
+      {isVisible && isLoading && (
+        <Box
+          sx={{
             position: "fixed",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            fontSize: "1.25rem",
-            fontWeight: "bold",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            padding: "1rem 2rem",
-            borderRadius: "8px",
-            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 2,
+            backgroundColor: "rgba(62, 62, 62, 0.8)",
+            padding: "2rem",
+            borderRadius: "1.875rem",
+            border: "1px solid #FFFFFF",
             zIndex: 999,
           }}
         >
-          Cargando emociones cercanas...
-        </p>
+          <CircularProgress sx={{ color: "#FFFFFF" }} />
+          <Typography
+            variant="h6"
+            sx={{
+              color: "#FFFFFF",
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {t("map.loadingEmotions")}
+          </Typography>
+        </Box>
       )}
-      {isError && (
-        <p
-          style={{
+      {isVisible && isError && (
+        <Box
+          sx={{
             position: "fixed",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            fontSize: "1.25rem",
-            fontWeight: "bold",
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-            padding: "1rem 2rem",
-            borderRadius: "8px",
-            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 2,
+            backgroundColor: "rgba(62, 62, 62, 0.8)",
+            padding: "2rem",
+            borderRadius: "1.875rem",
+            border: "1px solid #FFFFFF",
             zIndex: 999,
           }}
         >
-          Error cargando emociones: {error?.message}
-        </p>
+          <Typography
+            variant="h6"
+            sx={{
+              color: theme.colors.lightRed,
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            {t("map.errorLoadingEmotions")}
+          </Typography>
+        </Box>
       )}
     </div>
   )
