@@ -5,18 +5,17 @@ import { useTheme } from "@mui/material/styles"
 import styled from "@emotion/styled"
 import useScreenSize from "../hooks/useScreenSize"
 import { useTranslation } from "react-i18next"
-import { useEmotionsStore } from "../store/emotionsStore"
+import { usePersistentEmotionsStore, useNonPersistentEmotionsStore } from "../store/emotionsStore"
 import type { AvailableEmotion } from "../services/emotions"
 import { useCreateEmotion } from "../hooks/useCreateEmotion"
 import { useUserLocationStore } from "../store/userLocationStore"
+import { useNearbyEmotions } from "../hooks/useNearbyEmotions"
 import distressIcon from "../assets/emotions/distress.svg?url"
 import lonelinessIcon from "../assets/emotions/loneliness.svg?url"
 import reluctanceIcon from "../assets/emotions/reluctance.svg?url"
 import tranquilityIcon from "../assets/emotions/tranquility.svg?url"
 import sadnessIcon from "../assets/emotions/sadness.svg?url"
-import { useState, useEffect } from "react"
 import theme from "../theme"
-import { useLastEmotion } from "../hooks/useLastEmotion"
 import { useAvailableEmotions } from "../hooks/useAvailableEmotions"
 
 interface StyledEmotionButtonProps {
@@ -62,18 +61,19 @@ const Emotions: React.FC = () => {
   const theme = useTheme() as Theme
   const screenSize = useScreenSize()
   const { t } = useTranslation()
-  const emotions = useEmotionsStore((state) => state.emotions)
-  const lastSelectedEmotion = useEmotionsStore((state) => state.lastSelectedEmotion)
-  const setLastSelectedEmotion = useEmotionsStore((state) => state.setLastSelectedEmotion)
+  const emotions = usePersistentEmotionsStore((state) => state.emotions)
+  const { lastSelectedEmotion, setLastSelectedEmotion } = useNonPersistentEmotionsStore()
   const { mutate: createEmotion } = useCreateEmotion()
   const userLocation = useUserLocationStore((state) => state.userLocation)
-  const [selectedEmotion, setSelectedEmotion] = useState<string | null>(lastSelectedEmotion)
   const { isLoading } = useAvailableEmotions()
-  useLastEmotion()
 
-  useEffect(() => {
-    setSelectedEmotion(lastSelectedEmotion)
-  }, [lastSelectedEmotion])
+  const { isRefetching, refetch: refetchNearbyEmotions } = useNearbyEmotions({
+    latitude: userLocation?.latitude?.toString() || "",
+    longitude: userLocation?.longitude?.toString() || "",
+    radius: "10000",
+  })
+
+  const isDisabled = isRefetching
 
   const getIconSize = () => {
     switch (screenSize) {
@@ -91,7 +91,6 @@ const Emotions: React.FC = () => {
   const iconSize = getIconSize()
 
   const handleEmotionClick = (emotionId: string) => {
-    setSelectedEmotion(emotionId)
     setLastSelectedEmotion(emotionId)
     if (userLocation.latitude && userLocation.longitude) {
       createEmotion({
@@ -99,6 +98,7 @@ const Emotions: React.FC = () => {
         latitude: userLocation.latitude,
         longitude: userLocation.longitude,
       })
+      refetchNearbyEmotions()
     }
   }
 
@@ -138,6 +138,8 @@ const Emotions: React.FC = () => {
           xs: theme.colors.blackBackground,
         },
         color: "#FFFFFF",
+        opacity: isDisabled ? 0.5 : 1,
+        transition: "opacity 0.3s ease-in-out",
       }}
     >
       <Typography
@@ -168,8 +170,9 @@ const Emotions: React.FC = () => {
           {emotions.map((emotion: AvailableEmotion) => (
             <StyledEmotionButton
               key={emotion.id}
-              selected={selectedEmotion === emotion.id}
+              selected={lastSelectedEmotion === emotion.id}
               onClick={() => handleEmotionClick(emotion.id)}
+              disabled={isDisabled}
               sx={{
                 flex: 1,
                 minWidth: 0,
@@ -177,6 +180,9 @@ const Emotions: React.FC = () => {
                 "& svg, & img": {
                   width: iconSize,
                   height: iconSize,
+                },
+                "&.Mui-disabled": {
+                  opacity: 0.5,
                 },
               }}
             >
