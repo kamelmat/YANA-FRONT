@@ -95,13 +95,6 @@ export const MapView = () => {
     }
   }, [data, lastSelectedEmotion])
 
-  // Clear markers when refetching
-  useEffect(() => {
-    if (isRefetching) {
-      clearMarkers(markersRef)
-    }
-  }, [isRefetching])
-
   useEffect(() => {
     return () => {
       if (mapRef.current) {
