@@ -34,9 +34,10 @@ const FAQ = () => {
       minHeight: '100vh',
       backgroundColor: settings.customization 
         ? theme.colors[settings.customization as keyof typeof theme.colors] 
-        : theme.colors.defaultBackground 
+        : theme.colors.defaultBackground ,
+      pl: { xs: 0, sm: theme.sidebar?.width ?? 0, lg: 0 },
     }}>
-      <Box sx={{ maxWidth: 800, mx: 'auto', px: 3, pt: { xs: 8, sm: 12 }, pb: useScreenSize() === "sm" ? 10 : 0 }}>
+      <Box display="flex" flexDirection="column" alignItems="center" sx={{ maxWidth: 1000, mx: 'auto', px: 3, pt: { xs: 8, sm: "5%" }, pb: useScreenSize() === "sm" ? 10 : 0 }}>
         {useScreenSize() !== "sm" && 
           <Typography variant="h1" component="h1" gutterBottom align="center" color="white">
             {t('/FAQ.title')}
@@ -49,8 +50,9 @@ const FAQ = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           sx={{
-            my: 2.5,
+            my: { xs: 0.5, sm: 2.5 },
             backgroundColor: 'white',
+            width: { xs: '100%', md: '80%' },
             padding: '1% 0',
             borderRadius: 4,
             '& .MuiOutlinedInput-root': {
@@ -74,12 +76,13 @@ const FAQ = () => {
         
         {filteredItems.map((item, index) => (
           <Accordion
-            key={index}
+            key={index + "faq_accordion"}
             expanded={expanded === `panel${index}`}
             onChange={handleChange(`panel${index}`)}
             sx={{
               mb: 2,
               boxShadow: 0,
+              width: '100%',
               '&:before': {
                 display: 'none',
               },
