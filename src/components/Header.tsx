@@ -105,7 +105,7 @@ export default function Header() {
           textAlign: "center",
         }}
       >
-        {location !== "/" && !isDesktop && 
+        {location !== "/" && location !== "/FAQ" && !isDesktop && 
           <Typography variant="h5" sx={{ color: "white" }}>
             {t(`${location}.title`)}
           </Typography>
