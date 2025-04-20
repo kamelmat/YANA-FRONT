@@ -107,7 +107,7 @@ i18n.use(initReactI18next).init({
         "/profile": {
           menu: "Profile",
           title: "My Profile",
-          account: "Edit Profile",
+          account: "Choose avatar",
           interactions: "My interactions",
           configuration: "Configuration",
           help: "Emergency: I need help",
@@ -177,7 +177,8 @@ i18n.use(initReactI18next).init({
           confirm: "Confirm",
           delete: "Delete",
           deleteAccount: "Delete Account",
-          deleteAccountMessage: "Are you sure you want to delete your account?",
+          deleteAccountMessage: "Do you confirm that you want to delete your account?",
+          passwordPlaceholder: "Enter your password",
           start: "Start",
         },
         onboarding: {
@@ -199,8 +200,6 @@ i18n.use(initReactI18next).init({
             subtitle:
               "Access contacts and resources to feel better. Remember that you are part of a community that supports you.",
           },
-          deleteAccountMessage: "Do you confirm that you want to delete your account?",
-          passwordPlaceholder: "Enter your password",
         },
         emotions: {
           sadness: "Sadness",
@@ -324,7 +323,7 @@ i18n.use(initReactI18next).init({
         "/profile": {
           menu: "Perfil",
           title: "Mi Perfil",
-          account: "Editar Perfil",
+          account: "Elegir avatar",
           interactions: "Mis interacciones",
           configuration: "Configuración",
           help: "Emergencia: necesito ayuda",
@@ -394,7 +393,8 @@ i18n.use(initReactI18next).init({
           confirm: "Confirmar",
           delete: "Eliminar",
           deleteAccount: "Eliminar cuenta",
-          deleteAccountMessage: "¿Estás seguro de querer eliminar tu cuenta?",
+          deleteAccountMessage: "¿Confirmas que deseas eliminar tu cuenta?",
+          passwordPlaceholder: "Ingresa tu contraseña",
           start: "Comenzar",
         },
         onboarding: {
@@ -416,8 +416,6 @@ i18n.use(initReactI18next).init({
             subtitle:
               "Accede a contactos y recursos para sentirte mejor. Recuerda que eres parte de una comunidad que te acompaña.",
           },
-          deleteAccountMessage: "¿Confirmas que quieres eliminar tu cuenta?",
-          passwordPlaceholder: "Ingresa tu contraseña",
         },
         emotions: {
           sadness: "Tristeza",
