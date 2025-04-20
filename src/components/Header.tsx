@@ -10,13 +10,13 @@ import Logo from "../assets/branding/yana.svg?url"
 import Slogan_ES from "../assets/branding/slogan_es.svg?url"
 import Slogan_EN from "../assets/branding/slogan_en.svg?url"
 import NotificationsIcon from "../assets/icons/notifications.svg?url"
-import HamburgerIcon from "../assets/icons/hamburger.svg?url"
 import BackIcon from "../assets/icons/back.svg?url"
 import ProfileIcon from "../assets/icons/profile.svg?url"
 
 import theme from "../theme"
 
 import "@fontsource/league-spartan"
+import HamburgerMenu from "./HamburgerMenu"
 
 const CustomIconButton = styled(IconButton)(() => ({
   transition: "transform 0.2s ease-in-out",
@@ -116,11 +116,7 @@ export default function Header() {
         <CustomIconButton>
           <img src={NotificationsIcon} alt="Notifications" style={{ height: iconSize }} />
         </CustomIconButton>
-        {screenSize === "sm" && (
-          <CustomIconButton>
-            <img src={HamburgerIcon} alt="Hamburger" style={{ height: iconSize }} />
-          </CustomIconButton>
-        )}
+        {screenSize === "sm" && <HamburgerMenu />}
         {screenSize !== "sm" && (
           <CustomIconButton onClick={() => navigate("/profile")}>
             <img src={ProfileIcon} alt="Profile" style={{ height: iconSize }} />
