@@ -204,6 +204,7 @@ i18n.use(initReactI18next).init({
           title: "Others",
         },
         footer: {
+          title: "You are not alone",
           products: "Products",
           support: "Support",
           medicalAssistance: "Medical Assistance",
@@ -469,6 +470,7 @@ i18n.use(initReactI18next).init({
           title: "Otros",
         },
         footer: {
+          title: "You are not alone",
           products: "Productos",
           support: "Soporte",
           medicalAssistance: "Asistencia médica",
