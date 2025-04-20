@@ -133,7 +133,7 @@ i18n.use(initReactI18next).init({
         },
         "/FAQ": {
           menu: "FAQ",
-          title: "FAQ",
+          title: "Frequently Asked Questions",
           questions: [
             {
               question: "What is You are not alone?",
@@ -397,7 +397,7 @@ i18n.use(initReactI18next).init({
         },
         "/FAQ": {
           menu: "FAQ",
-          title: "FAQ",
+          title: "Preguntas frecuentes",
           questions: [
             {
               question: "¿Qué es You are not alone?",
