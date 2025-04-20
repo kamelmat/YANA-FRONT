@@ -2,7 +2,7 @@ import { Box, Typography, Container, Grid } from "@mui/material"
 import theme from "../theme"
 import Logo from "../assets/branding/yana.svg?url"
 import { useLocation } from "react-router-dom"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 import { useTranslation } from "react-i18next"
 
 export const Footer = () => {

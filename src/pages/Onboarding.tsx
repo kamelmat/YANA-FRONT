@@ -8,7 +8,7 @@ import onboarding3 from '../assets/onboarding/3.webp';
 import onboarding4 from '../assets/onboarding/4.webp';
 import CustomButton from '../commons/CommonButton';
 import theme from '../theme';
-import { useScreenSize } from '../hooks/useScreenSize';
+import useScreenSize from '../hooks/useScreenSize';
 import backIcon from '../assets/icons/back.svg';
 import nextIcon from '../assets/onboarding/next.svg';
 

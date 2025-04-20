@@ -210,6 +210,10 @@ i18n.use(initReactI18next).init({
           tranquility: "Tranquility",
           questionEmotion: "What are you feeling today?",
         },
+        map: {
+          errorLoadingEmotions: "Error loading emotions",
+          loadingEmotions: "Loading emotions...",
+        },
       },
     },
     es: {
@@ -422,6 +426,10 @@ i18n.use(initReactI18next).init({
           reluctance: "Desgano",
           tranquility: "Tranquilidad",
           questionEmotion: "¿Qué sientes hoy?",
+        },
+        map: {
+          errorLoadingEmotions: "Error al cargar las emociones",
+          loadingEmotions: "Cargando emociones...",
         },
       },
     },

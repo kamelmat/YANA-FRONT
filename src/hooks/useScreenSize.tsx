@@ -9,7 +9,7 @@ const getSize = (width: number): ScreenSize => {
   return "xl";
 }
 
-export const useScreenSize = (): ScreenSize => {
+const useScreenSize = (): ScreenSize => {
   const [screenSize, setScreenSize] = useState<ScreenSize>(() => getSize(window.screen.width));
 
   useEffect(() => {
@@ -23,3 +23,5 @@ export const useScreenSize = (): ScreenSize => {
 
   return screenSize;
 }
+
+export default useScreenSize;
