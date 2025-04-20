@@ -37,7 +37,7 @@ const FAQ = () => {
         : theme.colors.defaultBackground ,
       pl: { xs: 0, sm: theme.sidebar?.width ?? 0, lg: 0 },
     }}>
-      <Box display="flex" flexDirection="column" alignItems="center" sx={{ maxWidth: 1000, mx: 'auto', px: 3, pt: { xs: 8, sm: "5%" }, pb: useScreenSize() === "sm" ? 10 : 0 }}>
+      <Box display="flex" flexDirection="column" alignItems="center" sx={{ maxWidth: 1000, mx: 'auto', px: 3, pt: { xs: 8, sm: "15%", lg: "5%" }, pb: useScreenSize() === "sm" ? 10 : 0 }}>
         {useScreenSize() !== "sm" && 
           <Typography variant="h1" component="h1" gutterBottom align="center" color="white">
             {t('/FAQ.title')}
@@ -50,10 +50,10 @@ const FAQ = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           sx={{
-            my: { xs: 0.5, sm: 2.5 },
+            my: 2.5,
             backgroundColor: 'white',
             width: { xs: '100%', md: '80%' },
-            padding: '1% 0',
+            padding: { xs: 0, sm:'1% 0'},
             borderRadius: 4,
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
