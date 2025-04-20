@@ -8,6 +8,7 @@ import Contacts from "../pages/Contacts"
 import AccountSettings from "../pages/profile/AccountSettings"
 import ConfigurationSettings from "../pages/profile/ConfigurationSettings"
 import InteractionsSettings from "../pages/profile/InteractionsSettings"
+import FAQ from "../pages/FAQ"
 import { Routes, Route, Navigate } from "react-router-dom"
 import MapLayout from "./MapLayout"
 import ProtectedRoute from "../components/ProtectedRoute"
@@ -31,7 +32,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/FAQ" element={<Home />} />
+          <Route path="/FAQ" element={<FAQ />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/account" element={<AccountSettings />} />
           <Route path="/profile/configuration" element={<ConfigurationSettings />} />
