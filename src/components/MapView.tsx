@@ -77,7 +77,7 @@ export const MapView = () => {
       new maplibregl.Marker({
         element: (() => {
           const el = document.createElement("div")
-          el.innerHTML = `<img src="${marker}" alt="marker" style="width: 32px; height: 32px; z-index: 1;" />`
+          el.innerHTML = `<img src="${marker}" alt="marker" style="width: 48px; height: 48px; z-index: 2;" />`
           return el
         })(),
         anchor: "bottom",
