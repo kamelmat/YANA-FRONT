@@ -5,14 +5,12 @@ import { EMOTIONS_ENDPOINTS } from "../config/apiEndpoints"
 interface Props {
   latitude: string
   longitude: string
-  radius: string
 }
 
-const fetchNearbyEmotions = async ({ latitude, longitude, radius }: Props, accessToken: string) => {
+const fetchNearbyEmotions = async ({ latitude, longitude }: Props, accessToken: string) => {
   const url = new URL(EMOTIONS_ENDPOINTS.GET_NEARBY_EMOTIONS)
   url.searchParams.set("latitude", latitude)
   url.searchParams.set("longitude", longitude)
-  url.searchParams.set("radius", radius)
 
   const res = await fetch(url.toString(), {
     headers: {
@@ -27,12 +25,12 @@ const fetchNearbyEmotions = async ({ latitude, longitude, radius }: Props, acces
   return res.json()
 }
 
-export const useNearbyEmotions = ({ latitude, longitude, radius }: Props) => {
+export const useNearbyEmotions = ({ latitude, longitude }: Props) => {
   const accessToken = useAuthStore((state) => state.accessToken)
 
   const query = useQuery({
-    queryKey: ["nearbyEmotions", latitude, longitude, radius],
-    queryFn: () => fetchNearbyEmotions({ latitude, longitude, radius }, accessToken ?? ""),
+    queryKey: ["nearbyEmotions", latitude, longitude],
+    queryFn: () => fetchNearbyEmotions({ latitude, longitude }, accessToken ?? ""),
     enabled: false, // Disable automatic fetching
     gcTime: 0, // Don't cache the results
   })

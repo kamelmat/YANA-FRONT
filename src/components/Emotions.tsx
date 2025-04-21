@@ -70,7 +70,6 @@ const Emotions: React.FC = () => {
   const { refetch: fetchNearbyEmotions, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
-    radius: "10000",
   })
 
   const isDisabled = isRefetching

@@ -25,7 +25,6 @@ export const MapView = () => {
   const { data, isLoading, isError, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
-    radius: "10000",
   })
 
   const isVisible = location.pathname === "/"
