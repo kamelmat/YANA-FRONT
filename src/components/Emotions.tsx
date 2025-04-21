@@ -67,7 +67,7 @@ const Emotions: React.FC = () => {
   const userLocation = useUserLocationStore((state) => state.userLocation)
   const { isLoading } = useAvailableEmotions()
 
-  const { isRefetching, refetch: refetchNearbyEmotions } = useNearbyEmotions({
+  const { refetch: fetchNearbyEmotions, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
     radius: "10000",
@@ -93,12 +93,20 @@ const Emotions: React.FC = () => {
   const handleEmotionClick = (emotionId: string) => {
     setLastSelectedEmotion(emotionId)
     if (userLocation.latitude && userLocation.longitude) {
-      createEmotion({
-        emotion_id: emotionId,
-        latitude: userLocation.latitude,
-        longitude: userLocation.longitude,
-      })
-      refetchNearbyEmotions()
+      createEmotion(
+        {
+          emotion_id: emotionId,
+          latitude: userLocation.latitude,
+          longitude: userLocation.longitude,
+        },
+        {
+          onSuccess: () => {
+            setTimeout(() => {
+              fetchNearbyEmotions()
+            }, 100)
+          },
+        }
+      )
     }
   }
 

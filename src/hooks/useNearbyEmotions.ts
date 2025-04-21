@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
 import { useAuthStore } from "../store/authStore"
-import { useNonPersistentEmotionsStore } from "../store/emotionsStore"
 import { EMOTIONS_ENDPOINTS } from "../config/apiEndpoints"
 
 interface Props {
@@ -30,14 +29,12 @@ const fetchNearbyEmotions = async ({ latitude, longitude, radius }: Props, acces
 
 export const useNearbyEmotions = ({ latitude, longitude, radius }: Props) => {
   const accessToken = useAuthStore((state) => state.accessToken)
-  const lastSelectedEmotion = useNonPersistentEmotionsStore((state) => state.lastSelectedEmotion)
 
   const query = useQuery({
     queryKey: ["nearbyEmotions", latitude, longitude, radius],
     queryFn: () => fetchNearbyEmotions({ latitude, longitude, radius }, accessToken ?? ""),
-    enabled: !!latitude && !!longitude && !!accessToken && !!lastSelectedEmotion,
-    refetchInterval: lastSelectedEmotion ? 600000 : false, // Refetch every 10 minutes if emotion is selected
-    refetchIntervalInBackground: true, // Continue refetching even when tab is not active
+    enabled: false, // Disable automatic fetching
+    gcTime: 0, // Don't cache the results
   })
 
   return query
