@@ -10,15 +10,12 @@ on:
       - main
   workflow_dispatch:
 
-env:
-  NODE_VERSION: "20.x"
-  PROJECT_ID: "training-batch-05"
-  GCS_BUCKET: "gs://yana-front"
-
 jobs:
   build:
     name: Build Vite React App
     runs-on: ubuntu-latest
+    env:
+      NODE_VERSION: "20.x"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -36,7 +33,7 @@ jobs:
           path: |
             node_modules
             ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}-v2
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
 
       - name: Install Dependencies
@@ -48,6 +45,8 @@ jobs:
         run: npm run build
         env:
           CI: true
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_MAP_TILER_KEY: ${{ secrets.VITE_MAP_TILER_KEY }}
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
@@ -59,6 +58,9 @@ jobs:
     name: Deploy Vite React App to GCP
     runs-on: ubuntu-latest
     needs: build
+    env:
+      PROJECT_ID: "training-batch-05"
+      GCS_BUCKET: "gs://yana-front"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
