@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { useAuthStore } from "../store/authStore"
-
-const API_URL = "http://127.0.0.1:8000"
+import { AUTH_ENDPOINTS } from "../config/apiEndpoints"
 
 interface UpdateAvatarResponse {
   success: boolean
@@ -14,7 +13,7 @@ export const useUpdateAvatar = () => {
 
   return useMutation<UpdateAvatarResponse, Error, number>({
     mutationFn: async (avatarId: number) => {
-      const response = await fetch(`${API_URL}/usuario/api/update-avatar/`, {
+      const response = await fetch(AUTH_ENDPOINTS.UPDATE_AVATAR, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
