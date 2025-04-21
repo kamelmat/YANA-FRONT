@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { useAuthStore } from "../store/authStore"
 import { useNonPersistentEmotionsStore } from "../store/emotionsStore"
-import { API_URL } from "../config/env"
+import { EMOTIONS_ENDPOINTS } from "../config/apiEndpoints"
 
 interface Props {
   latitude: string
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const fetchNearbyEmotions = async ({ latitude, longitude, radius }: Props, accessToken: string) => {
-  const url = new URL(`${API_URL}/emociones/api/nearby-emotions`)
+  const url = new URL(EMOTIONS_ENDPOINTS.GET_NEARBY_EMOTIONS)
   url.searchParams.set("latitude", latitude)
   url.searchParams.set("longitude", longitude)
   url.searchParams.set("radius", radius)

@@ -1,4 +1,4 @@
-import { API_URL } from "../config/env"
+import { EMOTIONS_ENDPOINTS } from "../config/apiEndpoints"
 
 export interface CreateEmotionRequest {
   emotion_id: string
@@ -35,7 +35,7 @@ export const emotionsService = {
     accessToken: string
   ): Promise<CreateEmotionResponse> => {
     try {
-      const response = await fetch(`${API_URL}/emociones/user/emotions/create/`, {
+      const response = await fetch(EMOTIONS_ENDPOINTS.CREATE_EMOTION, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const emotionsService = {
 
   getAvailableEmotions: async (accessToken: string): Promise<AvailableEmotion[]> => {
     try {
-      const response = await fetch(`${API_URL}/emociones/emotions/available/`, {
+      const response = await fetch(EMOTIONS_ENDPOINTS.GET_AVAILABLE_EMOTIONS, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -80,7 +80,7 @@ export const emotionsService = {
 
   getLastEmotion: async (accessToken: string): Promise<LastEmotionResponse | null> => {
     try {
-      const response = await fetch(`${API_URL}/emociones/user/emotions/last/`, {
+      const response = await fetch(EMOTIONS_ENDPOINTS.GET_LAST_EMOTION, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

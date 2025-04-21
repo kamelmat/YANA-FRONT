@@ -1,4 +1,4 @@
-import { API_URL } from "../config/env"
+import { AUTH_ENDPOINTS } from "../config/apiEndpoints"
 
 export interface RegisterData {
   name: string
@@ -29,7 +29,7 @@ export interface LoginResponse {
 export const authService = {
   register: async (data: RegisterData): Promise<RegisterResponse> => {
     try {
-      const response = await fetch(`${API_URL}/usuario/api/register/`, {
+      const response = await fetch(AUTH_ENDPOINTS.REGISTER, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export const authService = {
 
   login: async (data: LoginData) => {
     try {
-      const response = await fetch(`${API_URL}/usuario/api/login/`, {
+      const response = await fetch(AUTH_ENDPOINTS.LOGIN, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -75,7 +75,7 @@ export const authService = {
 
   logout: async (accessToken: string, refreshToken: string) => {
     try {
-      const response = await fetch(`${API_URL}/usuario/api/logout/`, {
+      const response = await fetch(AUTH_ENDPOINTS.LOGOUT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +98,7 @@ export const authService = {
 
   checkEmail: async (email: string): Promise<boolean> => {
     try {
-      const response = await fetch(`${API_URL}/usuario/api/check-email/`, {
+      const response = await fetch(AUTH_ENDPOINTS.CHECK_EMAIL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -120,7 +120,7 @@ export const authService = {
 
   refreshToken: async (refreshToken: string) => {
     try {
-      const response = await fetch(`${API_URL}/usuario/api/token/refresh/`, {
+      const response = await fetch(AUTH_ENDPOINTS.REFRESH_TOKEN, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ refresh: refreshToken }),
