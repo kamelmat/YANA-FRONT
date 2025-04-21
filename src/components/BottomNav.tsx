@@ -3,7 +3,7 @@ import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material"
 import { useTheme } from "@mui/material/styles"
 import type { Theme } from "@mui/material/styles"
 import styled from "@emotion/styled"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 

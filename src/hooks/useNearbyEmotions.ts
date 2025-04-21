@@ -1,20 +1,23 @@
 import { useQuery } from "@tanstack/react-query"
+import { useAuthStore } from "../store/authStore"
+import { EMOTIONS_ENDPOINTS } from "../config/apiEndpoints"
 
 interface Props {
   latitude: string
   longitude: string
-  radius: string
 }
 
-const urlCore = "http://127.0.0.1:8000"
-
-const fetchNearbyEmotions = async ({ latitude, longitude, radius }: Props) => {
-  const url = new URL(`${urlCore}/emociones/api/nearby-emotions`)
+const fetchNearbyEmotions = async ({ latitude, longitude }: Props, accessToken: string) => {
+  const url = new URL(EMOTIONS_ENDPOINTS.GET_NEARBY_EMOTIONS)
   url.searchParams.set("latitude", latitude)
   url.searchParams.set("longitude", longitude)
-  url.searchParams.set("radius", radius)
+  url.searchParams.set("radius", "20000")
 
-  const res = await fetch(url.toString())
+  const res = await fetch(url.toString(), {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
 
   if (!res.ok) {
     throw new Error("Error getting emotions")
@@ -23,11 +26,14 @@ const fetchNearbyEmotions = async ({ latitude, longitude, radius }: Props) => {
   return res.json()
 }
 
-export const useNearbyEmotions = ({ latitude, longitude, radius }: Props) => {
+export const useNearbyEmotions = ({ latitude, longitude }: Props) => {
+  const accessToken = useAuthStore((state) => state.accessToken)
+
   const query = useQuery({
-    queryKey: ["nearbyEmotions", latitude, longitude, radius],
-    queryFn: () => fetchNearbyEmotions({ latitude, longitude, radius }),
-    enabled: !!latitude && !!longitude,
+    queryKey: ["nearbyEmotions", latitude, longitude],
+    queryFn: () => fetchNearbyEmotions({ latitude, longitude }, accessToken ?? ""),
+    enabled: false, // Disable automatic fetching
+    gcTime: 0, // Don't cache the results
   })
 
   return query

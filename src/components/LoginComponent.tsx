@@ -11,7 +11,7 @@ import { Box, Checkbox, Link, Stack, Typography, CircularProgress } from "@mui/m
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { useLogin } from "../hooks/useLogin"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 
 export default function LoginComponent() {
   const [email, setEmail] = useState("")

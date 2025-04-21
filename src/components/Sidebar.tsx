@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, List, ListItem, ListItemText, Typography } from "@mui/material"
 import { useTheme } from "@mui/material/styles"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 

@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material"
-import { useScreenSize } from "../../hooks/useScreenSize"
+import useScreenSize from "../../hooks/useScreenSize"
 import theme from "../../theme"
 import { useTranslation } from "react-i18next"
 import { useSettingsStore } from "../../store/useSettingsStore"
