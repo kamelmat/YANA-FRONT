@@ -59,7 +59,7 @@ const Onboarding = () => {
       setIsAnimating(true);
       setDirection("left");
       setTimeout(() => {
-        setCurrentStep((prev) => prev + 1);
+        setCurrentStep((prev) => (prev + 1) <= 4 ? prev + 1 : 4);
         setDirection(null);
         setIsAnimating(false);
       }, 300);
@@ -71,7 +71,7 @@ const Onboarding = () => {
       setIsAnimating(true);
       setDirection("right");
       setTimeout(() => {
-        setCurrentStep((prev) => prev - 1);
+        setCurrentStep((prev) => (prev - 1) >= 1 ? prev - 1 : 1);
         setDirection(null);
         setIsAnimating(false);
       }, 300);
