@@ -17,6 +17,7 @@ import tranquilityIcon from "../assets/emotions/tranquility.svg?url"
 import sadnessIcon from "../assets/emotions/sadness.svg?url"
 import theme from "../theme"
 import { useState } from "react"
+import { useAvailableEmotions } from "../hooks/useAvailableEmotions"
 
 interface StyledEmotionButtonProps {
   selected?: boolean
@@ -66,13 +67,15 @@ const Emotions: React.FC = () => {
   const { mutate: createEmotion } = useCreateEmotion()
   const userLocation = useUserLocationStore((state) => state.userLocation)
   const [isCreatingEmotion, setIsCreatingEmotion] = useState(false)
+  const { isLoading: isLoadingAvailableEmotions } = useAvailableEmotions()
 
   const { refetch: fetchNearbyEmotions, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
   })
 
-  const isDisabled = isRefetching || isCreatingEmotion
+  const isDisabled = isRefetching || isCreatingEmotion || isLoadingAvailableEmotions
+  const showLoading = emotions.length === 0
 
   const getIconSize = () => {
     switch (screenSize) {
@@ -162,11 +165,13 @@ const Emotions: React.FC = () => {
             md: "1.5rem",
             xs: "1rem",
           },
+          opacity: isDisabled ? 0.6 : 1,
+          transition: "opacity 0.3s ease-in-out",
         }}
       >
         {t("emotions.questionEmotion")}
       </Typography>
-      {isCreatingEmotion && emotions.length === 0 ? (
+      {showLoading ? (
         <CircularProgress sx={{ color: "#FFFFFF" }} />
       ) : (
         <Box
