@@ -17,6 +17,7 @@ You Are Not Alone connects people through their emotions to combat unwanted lone
 [![Figma Design](https://img.shields.io/badge/Figma_Design-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/YPCishcwXKg22v2FFeRUPF/YOUARENOTALONE?node-id=34-11&p=f&t=Jde83WfDARLrzAt4-0)
 [![Project's Kanban](https://img.shields.io/badge/Project's_Kanban-0052CC?style=for-the-badge&logo=github&logoColor=white)](https://github.com/orgs/IgrowkerTraining/projects/33/views/1)
 [![YANA's Backend](https://img.shields.io/badge/YANA's_Backend-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/IgrowkerTraining/i005-yana-back)
+[![Workflows Documentation](https://img.shields.io/badge/Workflows-Documentation-007FFF?style=for-the-badge&logo=github&logoColor=white)](https://github.com/IgrowkerTraining/i005-yana-front/blob/main/.github/workflows/README.md)
 
 </div>
 
