@@ -29,17 +29,18 @@ export const MapView = () => {
 
   const isVisible = location.pathname === "/"
 
-  // Show loading state when an emotion is selected
+  // Show loading state when either creating emotion or fetching nearby emotions
   useEffect(() => {
     if (lastSelectedEmotion) {
       setIsCreatingEmotion(true)
-      // Hide loading state after a short delay to ensure smooth transition
-      const timer = setTimeout(() => {
-        setIsCreatingEmotion(false)
-      }, 1000)
-      return () => clearTimeout(timer)
     }
   }, [lastSelectedEmotion])
+
+  useEffect(() => {
+    if (!isRefetching && !isLoading) {
+      setIsCreatingEmotion(false)
+    }
+  }, [isRefetching, isLoading])
 
   useEffect(() => {
     if (isVisible) {

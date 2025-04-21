@@ -72,7 +72,7 @@ const Emotions: React.FC = () => {
     longitude: userLocation?.longitude?.toString() || "",
   })
 
-  const isDisabled = isRefetching
+  const isDisabled = isRefetching || isLoading
 
   const getIconSize = () => {
     switch (screenSize) {
