@@ -22,6 +22,10 @@ export const MapView = () => {
   const markersRef = useRef<maplibregl.Marker[]>([])
   const [isCreatingEmotion, setIsCreatingEmotion] = useState(false)
 
+  useEffect(() => {
+    console.log("API URL:", import.meta.env.VITE_API_URL)
+  }, [])
+
   const { data, isLoading, isError, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
