@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import { useAuthStore } from "../store/authStore"
-
-const API_URL = "http://127.0.0.1:8000"
+import { API_URL } from "../config/env"
 
 interface UpdateAvatarResponse {
   success: boolean

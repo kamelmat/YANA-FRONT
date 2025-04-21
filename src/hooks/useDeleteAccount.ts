@@ -1,8 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
 import { useAuthStore } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
-
-const API_URL = "http://127.0.0.1:8000"
+import { API_URL } from "../config/env"
 
 export function useDeleteAccount() {
   const accessToken = useAuthStore((state) => state.accessToken)

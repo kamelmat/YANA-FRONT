@@ -11,6 +11,7 @@ import { Box, CircularProgress, Typography } from "@mui/material"
 import { useTranslation } from "react-i18next"
 import theme from "../theme"
 import { useNonPersistentEmotionsStore } from "../store/emotionsStore"
+import { MAP_TILER_KEY } from "../config/env"
 
 export const MapView = () => {
   const location = useLocation()
@@ -64,7 +65,7 @@ export const MapView = () => {
       mapRef.current = new maplibregl.Map({
         container: "map",
         style:
-          "https://api.maptiler.com/maps/0195fe03-6eea-79e3-a9d3-d4531a0a351b/style.json?key=S27siZckn8M30xtrFfEn",
+          `https://api.maptiler.com/maps/0195fe03-6eea-79e3-a9d3-d4531a0a351b/style.json?key=${MAP_TILER_KEY}`,
         center: [userLocation.longitude, userLocation.latitude],
         zoom: 15,
       })
