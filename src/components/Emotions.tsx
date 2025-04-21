@@ -16,6 +16,7 @@ import reluctanceIcon from "../assets/emotions/reluctance.svg?url"
 import tranquilityIcon from "../assets/emotions/tranquility.svg?url"
 import sadnessIcon from "../assets/emotions/sadness.svg?url"
 import theme from "../theme"
+import { useState } from "react"
 import { useAvailableEmotions } from "../hooks/useAvailableEmotions"
 
 interface StyledEmotionButtonProps {
@@ -65,15 +66,16 @@ const Emotions: React.FC = () => {
   const { lastSelectedEmotion, setLastSelectedEmotion } = useNonPersistentEmotionsStore()
   const { mutate: createEmotion } = useCreateEmotion()
   const userLocation = useUserLocationStore((state) => state.userLocation)
-  const { isLoading } = useAvailableEmotions()
+  const [isCreatingEmotion, setIsCreatingEmotion] = useState(false)
+  const { isLoading: isLoadingAvailableEmotions } = useAvailableEmotions()
 
-  const { isRefetching, refetch: refetchNearbyEmotions } = useNearbyEmotions({
+  const { refetch: fetchNearbyEmotions, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
-    radius: "10000",
   })
 
-  const isDisabled = isRefetching
+  const isDisabled = isRefetching || isCreatingEmotion || isLoadingAvailableEmotions
+  const showLoading = emotions.length === 0
 
   const getIconSize = () => {
     switch (screenSize) {
@@ -93,12 +95,24 @@ const Emotions: React.FC = () => {
   const handleEmotionClick = (emotionId: string) => {
     setLastSelectedEmotion(emotionId)
     if (userLocation.latitude && userLocation.longitude) {
-      createEmotion({
-        emotion_id: emotionId,
-        latitude: userLocation.latitude,
-        longitude: userLocation.longitude,
-      })
-      refetchNearbyEmotions()
+      setIsCreatingEmotion(true)
+      createEmotion(
+        {
+          emotion_id: emotionId,
+          latitude: userLocation.latitude,
+          longitude: userLocation.longitude,
+        },
+        {
+          onSuccess: () => {
+            fetchNearbyEmotions().then(() => {
+              setIsCreatingEmotion(false)
+            })
+          },
+          onError: () => {
+            setIsCreatingEmotion(false)
+          }
+        }
+      )
     }
   }
 
@@ -138,7 +152,7 @@ const Emotions: React.FC = () => {
           xs: theme.colors.blackBackground,
         },
         color: "#FFFFFF",
-        opacity: isDisabled ? 0.5 : 1,
+        opacity: isDisabled ? 0.9 : 1,
         transition: "opacity 0.3s ease-in-out",
       }}
     >
@@ -151,11 +165,13 @@ const Emotions: React.FC = () => {
             md: "1.5rem",
             xs: "1rem",
           },
+          opacity: isDisabled ? 0.6 : 1,
+          transition: "opacity 0.3s ease-in-out",
         }}
       >
         {t("emotions.questionEmotion")}
       </Typography>
-      {isLoading && emotions.length === 0 ? (
+      {showLoading ? (
         <CircularProgress sx={{ color: "#FFFFFF" }} />
       ) : (
         <Box

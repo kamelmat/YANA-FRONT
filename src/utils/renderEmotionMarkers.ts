@@ -73,7 +73,7 @@ export const renderEmotionMarkers = (
     const marker = new maplibregl.Marker({
       element: (() => {
         const el = document.createElement("div")
-        el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 32px; height: 32px;" />`
+        el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 40px; height: 40px;" />`
         return el
       })(),
       anchor: "bottom",
