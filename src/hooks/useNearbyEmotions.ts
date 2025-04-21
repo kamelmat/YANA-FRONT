@@ -11,6 +11,7 @@ const fetchNearbyEmotions = async ({ latitude, longitude }: Props, accessToken: 
   const url = new URL(EMOTIONS_ENDPOINTS.GET_NEARBY_EMOTIONS)
   url.searchParams.set("latitude", latitude)
   url.searchParams.set("longitude", longitude)
+  url.searchParams.set("radius", "20000")
 
   const res = await fetch(url.toString(), {
     headers: {
