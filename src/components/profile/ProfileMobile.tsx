@@ -80,7 +80,7 @@ const ProfileMobile: FC = () => {
         alt="User Avatar"
       />
       <CustomButton
-        text={t("/profile.account")}
+        text={t("/profile/account.title")}
         icon={<img src={accountIcon} alt={t("/profile.account")} />}
         iconPosition="end"
         variantType="square-primary"
