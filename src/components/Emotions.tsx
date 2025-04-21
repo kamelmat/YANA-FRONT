@@ -16,7 +16,7 @@ import reluctanceIcon from "../assets/emotions/reluctance.svg?url"
 import tranquilityIcon from "../assets/emotions/tranquility.svg?url"
 import sadnessIcon from "../assets/emotions/sadness.svg?url"
 import theme from "../theme"
-import { useAvailableEmotions } from "../hooks/useAvailableEmotions"
+import { useState } from "react"
 
 interface StyledEmotionButtonProps {
   selected?: boolean
@@ -65,14 +65,14 @@ const Emotions: React.FC = () => {
   const { lastSelectedEmotion, setLastSelectedEmotion } = useNonPersistentEmotionsStore()
   const { mutate: createEmotion } = useCreateEmotion()
   const userLocation = useUserLocationStore((state) => state.userLocation)
-  const { isLoading } = useAvailableEmotions()
+  const [isCreatingEmotion, setIsCreatingEmotion] = useState(false)
 
   const { refetch: fetchNearbyEmotions, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
   })
 
-  const isDisabled = isRefetching || isLoading
+  const isDisabled = isRefetching || isCreatingEmotion
 
   const getIconSize = () => {
     switch (screenSize) {
@@ -92,6 +92,7 @@ const Emotions: React.FC = () => {
   const handleEmotionClick = (emotionId: string) => {
     setLastSelectedEmotion(emotionId)
     if (userLocation.latitude && userLocation.longitude) {
+      setIsCreatingEmotion(true)
       createEmotion(
         {
           emotion_id: emotionId,
@@ -100,10 +101,13 @@ const Emotions: React.FC = () => {
         },
         {
           onSuccess: () => {
-            setTimeout(() => {
-              fetchNearbyEmotions()
-            }, 100)
+            fetchNearbyEmotions().then(() => {
+              setIsCreatingEmotion(false)
+            })
           },
+          onError: () => {
+            setIsCreatingEmotion(false)
+          }
         }
       )
     }
@@ -145,7 +149,7 @@ const Emotions: React.FC = () => {
           xs: theme.colors.blackBackground,
         },
         color: "#FFFFFF",
-        opacity: isDisabled ? 0.5 : 1,
+        opacity: isDisabled ? 0.9 : 1,
         transition: "opacity 0.3s ease-in-out",
       }}
     >
@@ -162,7 +166,7 @@ const Emotions: React.FC = () => {
       >
         {t("emotions.questionEmotion")}
       </Typography>
-      {isLoading && emotions.length === 0 ? (
+      {isCreatingEmotion && emotions.length === 0 ? (
         <CircularProgress sx={{ color: "#FFFFFF" }} />
       ) : (
         <Box
