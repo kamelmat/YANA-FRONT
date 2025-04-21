@@ -25,22 +25,22 @@ export const MapView = () => {
   const { data, isLoading, isError, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
     longitude: userLocation?.longitude?.toString() || "",
-    radius: "10000",
   })
 
   const isVisible = location.pathname === "/"
 
-  // Show loading state when an emotion is selected
+  // Show loading state when either creating emotion or fetching nearby emotions
   useEffect(() => {
     if (lastSelectedEmotion) {
       setIsCreatingEmotion(true)
-      // Hide loading state after a short delay to ensure smooth transition
-      const timer = setTimeout(() => {
-        setIsCreatingEmotion(false)
-      }, 1000)
-      return () => clearTimeout(timer)
     }
   }, [lastSelectedEmotion])
+
+  useEffect(() => {
+    if (!isRefetching && !isLoading) {
+      setIsCreatingEmotion(false)
+    }
+  }, [isRefetching, isLoading])
 
   useEffect(() => {
     if (isVisible) {
@@ -77,7 +77,7 @@ export const MapView = () => {
       new maplibregl.Marker({
         element: (() => {
           const el = document.createElement("div")
-          el.innerHTML = `<img src="${marker}" alt="marker" style="width: 32px; height: 32px; z-index: 1;" />`
+          el.innerHTML = `<img src="${marker}" alt="marker" style="width: 48px; height: 48px; z-index: 2;" />`
           return el
         })(),
         anchor: "bottom",

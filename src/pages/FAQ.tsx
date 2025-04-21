@@ -76,9 +76,9 @@ const FAQ = () => {
         
         {filteredItems.map((item, index) => (
           <Accordion
-            key={index + "faq_accordion"}
-            expanded={expanded === `panel${index}`}
-            onChange={handleChange(`panel${index}`)}
+            key={item.question}
+            expanded={expanded === item.question}
+            onChange={handleChange(item.question)}
             sx={{
               mb: 2,
               boxShadow: 0,
