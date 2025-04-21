@@ -39,7 +39,7 @@ export default function AccountSettings() {
   }
 
   return (
-    <SettingsSection title="/profile.account" gridRow={{ lg: "1 / 5", sm: "4 / 8"}} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
+    <SettingsSection title="/profile/account.title" gridRow={{ lg: "1 / 5", sm: "4 / 8"}} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
       <CommonBox sx={{ justifyContent: "space-between" }}>
         <Typography variant="body1" fontWeight="bold">{t("/profile.account")}</Typography>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>

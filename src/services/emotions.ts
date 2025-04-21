@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000"
+import { EMOTIONS_ENDPOINTS } from "../config/apiEndpoints"
 
 export interface CreateEmotionRequest {
   emotion_id: string
@@ -21,13 +21,21 @@ export interface AvailableEmotion {
   name: string
 }
 
+export interface LastEmotionResponse {
+  emotion: string
+  latitude: number
+  longitude: number
+  created_at: string
+  is_active: boolean
+}
+
 export const emotionsService = {
   createEmotion: async (
     data: CreateEmotionRequest,
     accessToken: string
   ): Promise<CreateEmotionResponse> => {
     try {
-      const response = await fetch(`${API_URL}/emociones/user/emotions/create/`, {
+      const response = await fetch(EMOTIONS_ENDPOINTS.CREATE_EMOTION, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +59,7 @@ export const emotionsService = {
 
   getAvailableEmotions: async (accessToken: string): Promise<AvailableEmotion[]> => {
     try {
-      const response = await fetch(`${API_URL}/emociones/emotions/available/`, {
+      const response = await fetch(EMOTIONS_ENDPOINTS.GET_AVAILABLE_EMOTIONS, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -66,6 +74,31 @@ export const emotionsService = {
       return responseData
     } catch (error) {
       console.error("Get available emotions error:", error)
+      throw error
+    }
+  },
+
+  getLastEmotion: async (accessToken: string): Promise<LastEmotionResponse | null> => {
+    try {
+      const response = await fetch(EMOTIONS_ENDPOINTS.GET_LAST_EMOTION, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+
+      if (response.status === 404) {
+        return null
+      }
+
+      const responseData = await response.json()
+
+      if (!response.ok) {
+        throw new Error(responseData.message || "Failed to get last emotion")
+      }
+
+      return responseData
+    } catch (error) {
+      console.error("Get last emotion error:", error)
       throw error
     }
   },

@@ -1,7 +1,7 @@
 import { Box, IconButton, Typography } from "@mui/material"
 import { useLocation, useNavigate } from "react-router-dom"
 import styled from "@emotion/styled"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 import { useAuthStore } from "../store/authStore"
 import { getFormattedDate } from "../utils/getFormattedDate"
 import { useTranslation } from "react-i18next"
@@ -10,13 +10,13 @@ import Logo from "../assets/branding/yana.svg?url"
 import Slogan_ES from "../assets/branding/slogan_es.svg?url"
 import Slogan_EN from "../assets/branding/slogan_en.svg?url"
 import NotificationsIcon from "../assets/icons/notifications.svg?url"
-import HamburgerIcon from "../assets/icons/hamburger.svg?url"
 import BackIcon from "../assets/icons/back.svg?url"
 import ProfileIcon from "../assets/icons/profile.svg?url"
 
 import theme from "../theme"
 
 import "@fontsource/league-spartan"
+import HamburgerMenu from "./HamburgerMenu"
 
 const CustomIconButton = styled(IconButton)(() => ({
   transition: "transform 0.2s ease-in-out",
@@ -105,7 +105,7 @@ export default function Header() {
           textAlign: "center",
         }}
       >
-        {location !== "/" && !isDesktop && 
+        {location !== "/" && location !== "/FAQ" && !isDesktop && 
           <Typography variant="h5" sx={{ color: "white" }}>
             {t(`${location}.title`)}
           </Typography>
@@ -116,11 +116,7 @@ export default function Header() {
         <CustomIconButton>
           <img src={NotificationsIcon} alt="Notifications" style={{ height: iconSize }} />
         </CustomIconButton>
-        {screenSize === "sm" && (
-          <CustomIconButton>
-            <img src={HamburgerIcon} alt="Hamburger" style={{ height: iconSize }} />
-          </CustomIconButton>
-        )}
+        {screenSize === "sm" && <HamburgerMenu />}
         {screenSize !== "sm" && (
           <CustomIconButton onClick={() => navigate("/profile")}>
             <img src={ProfileIcon} alt="Profile" style={{ height: iconSize }} />

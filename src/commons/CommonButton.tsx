@@ -3,7 +3,7 @@ import type { ButtonProps } from '@mui/material';
 import type { ReactNode } from 'react';
 import { darken } from '@mui/material/styles';
 import theme from '../theme';
-import { useScreenSize } from '../hooks/useScreenSize';
+import useScreenSize from '../hooks/useScreenSize';
 
 type VariantType = 'primary' | 'secondary' | 'square-primary' | 'square-secondary' | 'ghost' | 'secondary-fill';
 type IconPosition = 'start' | 'end';

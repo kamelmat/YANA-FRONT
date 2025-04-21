@@ -1,21 +1,22 @@
 import type React from "react"
-import { Box, Typography, IconButton } from "@mui/material"
+import { Box, Typography, IconButton, CircularProgress } from "@mui/material"
 import type { Theme } from "@mui/material/styles"
 import { useTheme } from "@mui/material/styles"
 import styled from "@emotion/styled"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 import { useTranslation } from "react-i18next"
-import { useEmotionsStore } from "../store/emotionsStore"
+import { usePersistentEmotionsStore, useNonPersistentEmotionsStore } from "../store/emotionsStore"
 import type { AvailableEmotion } from "../services/emotions"
 import { useCreateEmotion } from "../hooks/useCreateEmotion"
 import { useUserLocationStore } from "../store/userLocationStore"
+import { useNearbyEmotions } from "../hooks/useNearbyEmotions"
 import distressIcon from "../assets/emotions/distress.svg?url"
 import lonelinessIcon from "../assets/emotions/loneliness.svg?url"
 import reluctanceIcon from "../assets/emotions/reluctance.svg?url"
 import tranquilityIcon from "../assets/emotions/tranquility.svg?url"
 import sadnessIcon from "../assets/emotions/sadness.svg?url"
-import { useState } from "react"
 import theme from "../theme"
+import { useAvailableEmotions } from "../hooks/useAvailableEmotions"
 
 interface StyledEmotionButtonProps {
   selected?: boolean
@@ -60,10 +61,19 @@ const Emotions: React.FC = () => {
   const theme = useTheme() as Theme
   const screenSize = useScreenSize()
   const { t } = useTranslation()
-  const emotions = useEmotionsStore((state: { emotions: AvailableEmotion[] }) => state.emotions)
+  const emotions = usePersistentEmotionsStore((state) => state.emotions)
+  const { lastSelectedEmotion, setLastSelectedEmotion } = useNonPersistentEmotionsStore()
   const { mutate: createEmotion } = useCreateEmotion()
   const userLocation = useUserLocationStore((state) => state.userLocation)
-  const [selectedEmotion, setSelectedEmotion] = useState<string | null>(null)
+  const { isLoading } = useAvailableEmotions()
+
+  const { isRefetching, refetch: refetchNearbyEmotions } = useNearbyEmotions({
+    latitude: userLocation?.latitude?.toString() || "",
+    longitude: userLocation?.longitude?.toString() || "",
+    radius: "10000",
+  })
+
+  const isDisabled = isRefetching
 
   const getIconSize = () => {
     switch (screenSize) {
@@ -81,13 +91,14 @@ const Emotions: React.FC = () => {
   const iconSize = getIconSize()
 
   const handleEmotionClick = (emotionId: string) => {
-    setSelectedEmotion(emotionId)
+    setLastSelectedEmotion(emotionId)
     if (userLocation.latitude && userLocation.longitude) {
       createEmotion({
         emotion_id: emotionId,
         latitude: userLocation.latitude,
         longitude: userLocation.longitude,
       })
+      refetchNearbyEmotions()
     }
   }
 
@@ -99,7 +110,7 @@ const Emotions: React.FC = () => {
           sm: "2vh",
           xs: 0,
         },
-        left: { lg: "50%", md: "55%", sm: "55%", xs: "50%" },
+        left: "50%",
         transform: "translateX(-50%)",
         width: {
           lg: "814px",
@@ -127,6 +138,8 @@ const Emotions: React.FC = () => {
           xs: theme.colors.blackBackground,
         },
         color: "#FFFFFF",
+        opacity: isDisabled ? 0.5 : 1,
+        transition: "opacity 0.3s ease-in-out",
       }}
     >
       <Typography
@@ -142,41 +155,49 @@ const Emotions: React.FC = () => {
       >
         {t("emotions.questionEmotion")}
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "1rem",
-        }}
-      >
-        {emotions.map((emotion: AvailableEmotion) => (
-          <StyledEmotionButton
-            key={emotion.id}
-            selected={selectedEmotion === emotion.id}
-            onClick={() => handleEmotionClick(emotion.id)}
-            sx={{
-              flex: 1,
-              minWidth: 0,
-              "--emotion-color": EMOTIONS_COLORS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_COLORS],
-              "& svg, & img": {
-                width: iconSize,
-                height: iconSize,
-              },
-            }}
-          >
-            <img
-              src={EMOTIONS_ICONS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_ICONS]}
-              alt={emotion.name}
-              style={{ width: iconSize, height: iconSize }}
-            />
-            <Typography variant="body2" sx={{ marginTop: "0.5rem", color: "#FFFFFF" }}>
-              {t(`emotions.${emotion.name.toLowerCase()}`)}
-            </Typography>
-          </StyledEmotionButton>
-        ))}
-      </Box>
+      {isLoading && emotions.length === 0 ? (
+        <CircularProgress sx={{ color: "#FFFFFF" }} />
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          {emotions.map((emotion: AvailableEmotion) => (
+            <StyledEmotionButton
+              key={emotion.id}
+              selected={lastSelectedEmotion === emotion.id}
+              onClick={() => handleEmotionClick(emotion.id)}
+              disabled={isDisabled}
+              sx={{
+                flex: 1,
+                minWidth: 0,
+                "--emotion-color": EMOTIONS_COLORS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_COLORS],
+                "& svg, & img": {
+                  width: iconSize,
+                  height: iconSize,
+                },
+                "&.Mui-disabled": {
+                  opacity: 0.5,
+                },
+              }}
+            >
+              <img
+                src={EMOTIONS_ICONS[emotion.name.toLowerCase() as keyof typeof EMOTIONS_ICONS]}
+                alt={emotion.name}
+                style={{ width: iconSize, height: iconSize }}
+              />
+              <Typography variant="body2" sx={{ marginTop: "0.5rem", color: "#FFFFFF" }}>
+                {t(`emotions.${emotion.name.toLowerCase()}`)}
+              </Typography>
+            </StyledEmotionButton>
+          ))}
+        </Box>
+      )}
     </Box>
   )
 }

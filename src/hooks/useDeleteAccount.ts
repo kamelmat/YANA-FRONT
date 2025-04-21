@@ -1,8 +1,7 @@
 import { useMutation } from "@tanstack/react-query"
 import { useAuthStore } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
-
-const API_URL = "http://127.0.0.1:8000"
+import { AUTH_ENDPOINTS } from "../config/apiEndpoints"
 
 export function useDeleteAccount() {
   const accessToken = useAuthStore((state) => state.accessToken)
@@ -11,7 +10,7 @@ export function useDeleteAccount() {
 
   return useMutation({
     mutationFn: async (password: string) => {
-      const response = await fetch(`${API_URL}/usuario/api/delete-account/`, {
+      const response = await fetch(AUTH_ENDPOINTS.DELETE_ACCOUNT, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
