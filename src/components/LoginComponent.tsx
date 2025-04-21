@@ -23,6 +23,10 @@ export default function LoginComponent() {
   const { mutate: login, isError } = useLogin()
   const screenSize = useScreenSize()
 
+  useEffect(() => {
+    console.log("API URL:", import.meta.env.VITE_API_URL)
+  }, [])
+
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault()
     if (rememberMe) {
