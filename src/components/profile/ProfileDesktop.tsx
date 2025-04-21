@@ -12,7 +12,7 @@ import avatarIcon35 from "../../assets/avatars/avatar_35.svg?url"
 import CustomButton from "../../commons/CommonButton"
 import deleteIcon from "../../assets/icons/cancel.svg?url"
 
-import { useScreenSize } from "../../hooks/useScreenSize"
+import useScreenSize from "../../hooks/useScreenSize"
 import Modal from "../../commons/DeleteModal"
 import { useDeleteAccount } from '../../hooks/useDeleteAccount'
 import AccountSettings from "../../pages/profile/AccountSettings"
@@ -157,7 +157,7 @@ const ProfileDesktop: FC = () => {
           iconPosition="end"
           variantType="ghost"
           onClick={() => setIsDeleteModalOpen(true)}
-          sx={{  borderRadius: "0.75rem" }}
+          sx={{  borderRadius: "0.75rem", border: screenSize !== "sm" ? `0.25rem solid ${theme.colors.red}` : "none" }}
         />
       </SettingsSection>
 

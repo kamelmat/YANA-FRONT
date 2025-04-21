@@ -2,7 +2,7 @@ import { Box, Typography, Container, Grid } from "@mui/material"
 import theme from "../theme"
 import Logo from "../assets/branding/yana.svg?url"
 import { useLocation } from "react-router-dom"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 import { useTranslation } from "react-i18next"
 
 export const Footer = () => {
@@ -10,7 +10,7 @@ export const Footer = () => {
   const screenSize = useScreenSize()
   const { t } = useTranslation()
 
-  if (location === "/login" || location === "/" || location === "/register") return null
+  if (location === "/login" || location === "/" || location === "/register" || location === "/profile" || location === "/profile/account" || location === "/profile/configuration" || location === "/profile/interactions") return null
 
   const sidebarWidth = screenSize === "sm" ? 0 : theme.sidebar?.width
 
@@ -127,12 +127,12 @@ export const Footer = () => {
               <Typography variant="body2">Info@yana.com</Typography>
               <Box sx={{ display: "flex", mt: 2, gap: 2 }}>
                 <img
-                  src="src/assets/icons/Instagram.svg"
+                  src="src/assets/icons/Instagram.svg?url"
                   alt="Instagram"
                   style={{ width: 52, height: 40 }}
                 />
                 <img
-                  src="src/assets/icons/Linkedin.svg"
+                  src="src/assets/icons/Linkedin.svg?url"
                   alt="LinkedIn"
                   style={{ width: 52, height: 40 }}
                 />

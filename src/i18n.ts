@@ -56,8 +56,8 @@ i18n.use(initReactI18next).init({
               placeholder: "Complete your email",
               error: {
                 required: "The email is required.",
-                invalid: "Please enter a valid email address.",
-                taken: "This email is already registered.",
+                invalid: "The email entered is not valid. Please try again.",
+                taken: "This email is already registered. Please try another or log in.",
               },
             },
           },
@@ -107,7 +107,7 @@ i18n.use(initReactI18next).init({
         "/profile": {
           menu: "Profile",
           title: "My Profile",
-          account: "Edit Profile",
+          account: "Choose avatar",
           interactions: "My interactions",
           configuration: "Configuration",
           help: "Emergency: I need help",
@@ -133,7 +133,55 @@ i18n.use(initReactI18next).init({
         },
         "/FAQ": {
           menu: "FAQ",
-          title: "FAQ",
+          title: "Frequently Asked Questions",
+          questions: [
+            {
+              question: "What is You are not alone?",
+              answer:
+                "You are not alone is an app that seeks to build emotional connections between people who are in a situation of loneliness, anxiety, sadness, or disillusionment. It aims to transform isolation and promote empathy and solidarity in a community so that no one feels invisible.",
+            },
+            {
+              question: "What does it mean that my data is anonymous?",
+              answer:
+                "You are not alone treats your provided data confidentially and anonymously and will never share information that allows you to be identified with another user. The data helps improve your experience on the application and provides you with nearby contacts and resources, if you need them.\nYou can select emotions with confidence because the application is secure.",
+            },
+            {
+              question: "Can I use the app without registering?",
+              answer:
+                "To use the application, it is necessary that you create an account, so you have to register with your email.",
+            },
+            {
+              question: "What do I do if I forget my password?",
+              answer:
+                "If you forget your password, you can reset it by clicking on “Forgot my password” when you log in and you will receive an email with the steps to recover your account.",
+            },
+            {
+              question: "Does the app have resources or contacts that can help me?",
+              answer:
+                "Yes, you can use the resources and contacts provided in the app to help you feel better.",
+            },
+            {
+              question: "Can I chat with another person who is in a similar situation to mine?",
+              answer:
+                "No, you cannot chat with another user, but you can send and receive predefined support messages to accompany each other, promote connections, and promote empathy.",
+            },
+            {
+              question:
+                "If I find an incorrect resource (for example, an incorrect address or phone number), can I report it?",
+              answer:
+                "Yes, you can report an incorrect resource by contacting the You are not alone team by email writing to info@yana.com or through social media via a private message.",
+            },
+            {
+              question: "Does the app have any cost?",
+              answer:
+                "You are not alone is a free application. You can create your account and interact with other people without cost.",
+            },
+            {
+              question: "Can I delete my account at any time?",
+              answer:
+                "Yes, you can delete your account. Only you have to do is click on the “Delete account” option. But… we want to accompany you!",
+            },
+          ],
         },
         "/settings": {
           menu: "Settings",
@@ -156,6 +204,7 @@ i18n.use(initReactI18next).init({
           title: "Others",
         },
         footer: {
+          title: "You are not alone",
           products: "Products",
           support: "Support",
           medicalAssistance: "Medical Assistance",
@@ -177,7 +226,8 @@ i18n.use(initReactI18next).init({
           confirm: "Confirm",
           delete: "Delete",
           deleteAccount: "Delete Account",
-          deleteAccountMessage: "Are you sure you want to delete your account?",
+          deleteAccountMessage: "Do you confirm that you want to delete your account?",
+          passwordPlaceholder: "Enter your password",
           start: "Start",
         },
         onboarding: {
@@ -199,16 +249,18 @@ i18n.use(initReactI18next).init({
             subtitle:
               "Access contacts and resources to feel better. Remember that you are part of a community that supports you.",
           },
-          deleteAccountMessage: "Do you confirm that you want to delete your account?",
-          passwordPlaceholder: "Enter your password",
         },
         emotions: {
           sadness: "Sadness",
           distress: "Distress",
           loneliness: "Loneliness",
           reluctance: "Reluctance",
-          tranquillity: "Tranquillity",
+          tranquility: "Tranquility",
           questionEmotion: "What are you feeling today?",
+        },
+        map: {
+          errorLoadingEmotions: "Error loading emotions",
+          loadingEmotions: "Loading emotions...",
         },
       },
     },
@@ -265,8 +317,9 @@ i18n.use(initReactI18next).init({
               placeholder: "Completa tu email",
               error: {
                 required: "El correo es requerido.",
-                invalid: "Por favor, introduce un correo electrónico válido.",
-                taken: "Este correo electrónico ya está registrado.",
+                invalid: "El email ingresado no es válido. Por favor, íntentalo de nuevo.",
+                taken:
+                  "Este correo electrónico ya está registrado. Por favor, intenta con otro o inicia sesión.",
               },
             },
           },
@@ -319,7 +372,7 @@ i18n.use(initReactI18next).init({
         "/profile": {
           menu: "Perfil",
           title: "Mi Perfil",
-          account: "Editar Perfil",
+          account: "Elegir avatar",
           interactions: "Mis interacciones",
           configuration: "Configuración",
           help: "Emergencia: necesito ayuda",
@@ -345,7 +398,56 @@ i18n.use(initReactI18next).init({
         },
         "/FAQ": {
           menu: "FAQ",
-          title: "FAQ",
+          title: "Preguntas frecuentes",
+          questions: [
+            {
+              question: "¿Qué es You are not alone?",
+              answer:
+                "You are not alone es una aplicación que busca construir conexiones emocionales significativas entre personas que están en una situación de soledad, angustia, tristeza o desgano. Se propone transformar el aislamiento e impulsar la empatía y solidaridad en comunidad para que ninguna persona se sienta invisible.",
+            },
+            {
+              question: "¿Qué significa que mis datos son anónimos?",
+              answer:
+                "You are not alone trata de forma confidencial y anónima los datos proporcionados y nunca va a compartir información que permita identificarte con otra persona usuaria. Los datos ayudan a mejorar tu experiencia en la aplicación y a brindarte contactos y recursos cercanos, en caso de que los necesites.\nPuedes seleccionar emociones con tranquilidad porque la aplicación es segura.",
+            },
+            {
+              question: "¿Puedo usar la aplicación sin registrarme?",
+              answer:
+                "Para utilizar la aplicación, es necesario que crees una cuenta, por lo tanto, tienes que registrarte con tu correo electrónico.",
+            },
+            {
+              question: "Si olvido mi contraseña, ¿puedo restablecerla?",
+              answer:
+                "Si necesitas restablecer tu contraseña, al momento de iniciar sesión puedes hacer clic en “Olvidé mi contraseña” y recibirás un correo electrónico con los pasos para recuperar tu cuenta.",
+            },
+            {
+              question: "¿En la app hay recursos o contactos que me puedan ayudar?",
+              answer:
+                "Si necesitas restablecer tu contraseña, al momento de iniciar sesión puedes hacer clic en “Olvidé mi contraseña” y recibirás un correo electrónico con los pasos para recuperar tu cuenta.",
+            },
+            {
+              question:
+                "¿Puedo chatear con otra persona que está en una situación similar a la mía?",
+              answer:
+                "No puedes chatear con otra persona usuaria, pero sí puedes enviar y recibir mensajes predeterminados de apoyo para acompañarse, fomentar conexiones y promover empatía.",
+            },
+            {
+              question:
+                "Si encuentro un recurso incorrecto (por ejemplo, una dirección o un número de teléfono erróneo), ¿puedo reportarlo?",
+              answer:
+                "Sí, te puedes comunicar con el equipo de You are not alone por correo electrónico escribiendo a info@yana.com o por redes sociales a través de un mensaje privado.",
+            },
+            {
+              question: "¿La aplicación tiene algún costo?",
+              answer:
+                "You are not alone es una aplicación gratuita. Puedes crear tu cuenta e interactuar con otras personas sin costo.",
+            },
+            {
+              question: "¿Puedo eliminar mi cuenta en cualquier momento?",
+              answer:
+                "Sí, puedes borrar tu cuenta. Solo debes hacer clic en la opción “Eliminar cuenta”. Pero… ¡queremos acompañarte!",
+            },
+          ],
         },
         "/settings": {
           menu: "Configuración",
@@ -368,6 +470,7 @@ i18n.use(initReactI18next).init({
           title: "Otros",
         },
         footer: {
+          title: "You are not alone",
           products: "Productos",
           support: "Soporte",
           medicalAssistance: "Asistencia médica",
@@ -389,7 +492,8 @@ i18n.use(initReactI18next).init({
           confirm: "Confirmar",
           delete: "Eliminar",
           deleteAccount: "Eliminar cuenta",
-          deleteAccountMessage: "¿Estás seguro de querer eliminar tu cuenta?",
+          deleteAccountMessage: "¿Confirmas que deseas eliminar tu cuenta?",
+          passwordPlaceholder: "Ingresa tu contraseña",
           start: "Comenzar",
         },
         onboarding: {
@@ -411,16 +515,18 @@ i18n.use(initReactI18next).init({
             subtitle:
               "Accede a contactos y recursos para sentirte mejor. Recuerda que eres parte de una comunidad que te acompaña.",
           },
-          deleteAccountMessage: "¿Confirmas que quieres eliminar tu cuenta?",
-          passwordPlaceholder: "Ingresa tu contraseña",
         },
         emotions: {
           sadness: "Tristeza",
           distress: "Angustia",
           loneliness: "Soledad",
           reluctance: "Desgano",
-          tranquillity: "Tranquilidad",
+          tranquility: "Tranquilidad",
           questionEmotion: "¿Qué sientes hoy?",
+        },
+        map: {
+          errorLoadingEmotions: "Error al cargar las emociones",
+          loadingEmotions: "Cargando emociones...",
         },
       },
     },

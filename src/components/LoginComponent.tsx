@@ -11,7 +11,7 @@ import { Box, Checkbox, Link, Stack, Typography, CircularProgress } from "@mui/m
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { useLogin } from "../hooks/useLogin"
-import { useScreenSize } from "../hooks/useScreenSize"
+import useScreenSize from "../hooks/useScreenSize"
 
 export default function LoginComponent() {
   const [email, setEmail] = useState("")
@@ -125,7 +125,7 @@ export default function LoginComponent() {
           </Link>
         </Stack>
 
-        {isError && <Typography color="error">{t("login.failed")}</Typography>}
+        {isError && <Typography color={theme.colors.lightRed} >{t("login.failed")}</Typography>}
 
         <Stack spacing={1.5} direction="column" sx={{ marginTop: 4 }}>
           <CustomButton 

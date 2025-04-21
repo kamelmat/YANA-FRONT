@@ -5,11 +5,11 @@ import CommonBox from "../../commons/CommonBox"
 import CommonSwitch from "../../commons/CommonSwitch"
 import { useProfileRedirect } from "../../hooks/useProfileRedirect"
 import theme from "../../theme"
-import avatarIcon31 from "../../assets/avatars/avatar_31.svg"
-import avatarIcon32 from "../../assets/avatars/avatar_32.svg"
-import avatarIcon33 from "../../assets/avatars/avatar_33.svg"
-import avatarIcon34 from "../../assets/avatars/avatar_34.svg"
-import avatarIcon35 from "../../assets/avatars/avatar_35.svg"
+import avatarIcon31 from "../../assets/avatars/avatar_31.svg?url"
+import avatarIcon32 from "../../assets/avatars/avatar_32.svg?url"
+import avatarIcon33 from "../../assets/avatars/avatar_33.svg?url"
+import avatarIcon34 from "../../assets/avatars/avatar_34.svg?url"
+import avatarIcon35 from "../../assets/avatars/avatar_35.svg?url"
 import { useSettingsStore } from "../../store/useSettingsStore"
 import { useUpdateAvatar } from "../../hooks/useUpdateAvatar"
 
@@ -39,7 +39,7 @@ export default function AccountSettings() {
   }
 
   return (
-    <SettingsSection title="/profile.account" gridRow={{ lg: "1 / 5", sm: "4 / 8"}} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
+    <SettingsSection title="/profile/account.title" gridRow={{ lg: "1 / 5", sm: "4 / 8"}} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
       <CommonBox sx={{ justifyContent: "space-between" }}>
         <Typography variant="body1" fontWeight="bold">{t("/profile.account")}</Typography>
         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
