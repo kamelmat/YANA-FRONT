@@ -3,11 +3,11 @@ import { Dialog, DialogContent, Divider, Box, Typography } from "@mui/material"
 interface MarkerModalProps {
   open: boolean
   onClose: () => void
-  userId: string | null
+  // userId: string | null
   position: { x: number; y: number } | null
 }
 
-export default function MarkerModal({ open, onClose, position, userId }: MarkerModalProps) {
+export default function MarkerModal({ open, onClose, position }: MarkerModalProps) {
   const responses = [
     { text: "Estoy contigo, comparto lo que sientes", icon: "😿" },
     { text: "Cuentas con todo mi apoyo", icon: "😿" },
@@ -29,16 +29,16 @@ export default function MarkerModal({ open, onClose, position, userId }: MarkerM
           maxWidth: "400px",
           padding: 0,
           position: "absolute",
-          top: position?.y !== null ? position?.y + 70 : 500,
-          left: position?.x !== null ? position?.x + 115 : 1000,
+          top: position?.y ? position.y + 70 : 500,
+          left: position?.x ? position.x + 115 : 1000,
           transform: "translate(-50%, -50%)",
           transition: "top 0.3s, left 0.3s",
         },
       }}
     >
       <DialogContent sx={{ padding: 2 }}>
-        {responses.map((response, index) => (
-          <Box key={index}>
+        {responses.map((response) => (
+          <Box key={response.text}>
             <Box
               sx={{
                 display: "flex",
@@ -52,7 +52,7 @@ export default function MarkerModal({ open, onClose, position, userId }: MarkerM
               </Typography>
               <Box sx={{ marginLeft: 1 }}>{response.icon}</Box>
             </Box>
-            {index < responses.length - 1 && <Divider sx={{ borderColor: "gray", marginY: 1 }} />}
+            {responses.indexOf(response) < responses.length - 1 && <Divider sx={{ borderColor: "gray", marginY: 1 }} />}
           </Box>
         ))}
       </DialogContent>

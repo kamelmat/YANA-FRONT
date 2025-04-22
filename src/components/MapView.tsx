@@ -92,8 +92,10 @@ export const MapView = () => {
 
       mapRef.current.on("click", (e) => {
         const { lng, lat } = e.lngLat
-        const pixelPosition = mapRef.current.project([lng, lat])
-        setPosition({ x: pixelPosition.x, y: pixelPosition.y })
+        if (mapRef.current) {
+          const pixelPosition = mapRef.current.project([lng, lat])
+          setPosition({ x: pixelPosition.x, y: pixelPosition.y })
+        }
       })
     }
   }, [userLocation, isVisible])
