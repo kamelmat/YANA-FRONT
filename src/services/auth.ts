@@ -34,10 +34,10 @@ export interface PasswordResetRequest {
 }
 
 export interface PasswordResetConfirmRequest {
-  uid: string
+  uidb64: string
   token: string
   new_password: string
-  re_new_password: string
+  confirm_password: string
 }
 
 export const authService = {
