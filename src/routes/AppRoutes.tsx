@@ -38,7 +38,6 @@ const AppRoutes: React.FC = () => {
           <Route path="/profile/configuration" element={<ConfigurationSettings />} />
           <Route path="/profile/interactions" element={<InteractionsSettings />} />
         </Route>
-        <Route path="*" element={<Navigate to={accessToken ? "/" : "/login"} replace />} />
       </Routes>
     </>
   )
