@@ -33,7 +33,8 @@ export const clearMarkers = (markersRef: RefObject<maplibregl.Marker[]>) => {
 export const renderEmotionMarkers = (
   data: Emotion[],
   mapRef: RefObject<maplibregl.Map | null>,
-  markersRef: RefObject<maplibregl.Marker[]>
+  markersRef: RefObject<maplibregl.Marker[]>,
+  onMarkerClick: () => void // 🆕
 ) => {
   clearMarkers(markersRef)
   const markerOffsets: Record<string, number> = {}
@@ -68,12 +69,15 @@ export const renderEmotionMarkers = (
 
     const coords = `${lat.toFixed(4)},${lng.toFixed(4)}`
     markerOffsets[coords] = (markerOffsets[coords] || 0) + 1
-    const offset = markerOffsets[coords] * 0.0002
+    const offset = markerOffsets[coords] * 0.0001
 
     const marker = new maplibregl.Marker({
       element: (() => {
         const el = document.createElement("div")
         el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 40px; height: 40px;" />`
+        el.addEventListener("click", () => {
+          onMarkerClick()
+        })
         return el
       })(),
       anchor: "bottom",

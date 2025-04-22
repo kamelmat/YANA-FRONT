@@ -1,7 +1,7 @@
 import maplibregl from "maplibre-gl"
 import "maplibre-gl/dist/maplibre-gl.css"
 import { getUserLocation } from "../utils/getUserLocation"
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { useUserLocationStore } from "../store/userLocationStore"
 import marker from "../assets/icons/marker.svg?url"
 import { useLocation } from "react-router-dom"
@@ -12,8 +12,11 @@ import { useTranslation } from "react-i18next"
 import theme from "../theme"
 import { useNonPersistentEmotionsStore } from "../store/emotionsStore"
 import { MAP_TILER_KEY } from "../config/env"
+import MarkerModal from "./MarkerModal"
 
 export const MapView = () => {
+  const [modalOpen, setModalOpen] = useState(false)
+  const closeModal = () => setModalOpen(false)
   const location = useLocation()
   const { t } = useTranslation()
   const { userLocation, setUserLocation } = useUserLocationStore()
@@ -21,6 +24,9 @@ export const MapView = () => {
   const mapRef = useRef<maplibregl.Map | null>(null)
   const markersRef = useRef<maplibregl.Marker[]>([])
   const [isCreatingEmotion, setIsCreatingEmotion] = useState(false)
+  const [position, setPosition] = useState<{ x: number; y: number } | null>(null)
+
+  const openModal = useCallback(() => setModalOpen(true), [])
 
   const { data, isLoading, isError, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || "",
@@ -64,8 +70,7 @@ export const MapView = () => {
     ) {
       mapRef.current = new maplibregl.Map({
         container: "map",
-        style:
-          `https://api.maptiler.com/maps/0195fe03-6eea-79e3-a9d3-d4531a0a351b/style.json?key=${MAP_TILER_KEY}`,
+        style: `https://api.maptiler.com/maps/0195fe03-6eea-79e3-a9d3-d4531a0a351b/style.json?key=${MAP_TILER_KEY}`,
         center: [userLocation.longitude, userLocation.latitude],
         zoom: 15,
       })
@@ -84,17 +89,23 @@ export const MapView = () => {
       })
         .setLngLat([userLocation.longitude, userLocation.latitude])
         .addTo(mapRef.current)
+
+      mapRef.current.on("click", (e) => {
+        const { lng, lat } = e.lngLat
+        const pixelPosition = mapRef.current.project([lng, lat])
+        setPosition({ x: pixelPosition.x, y: pixelPosition.y })
+      })
     }
   }, [userLocation, isVisible])
 
   // Handle data updates and marker rendering
   useEffect(() => {
     if (data && mapRef.current && lastSelectedEmotion) {
-      renderEmotionMarkers(data, mapRef, markersRef)
+      renderEmotionMarkers(data, mapRef, markersRef, openModal)
     } else if (!lastSelectedEmotion) {
       clearMarkers(markersRef)
     }
-  }, [data, lastSelectedEmotion])
+  }, [data, lastSelectedEmotion, openModal])
 
   useEffect(() => {
     return () => {
@@ -116,7 +127,7 @@ export const MapView = () => {
           position: "fixed",
           zIndex: -1,
           display: isVisible ? "block" : "none",
-          filter: (isRefetching || isCreatingEmotion) ? "blur(5px)" : "none",
+          filter: isRefetching || isCreatingEmotion ? "blur(5px)" : "none",
           transition: "filter 0.3s ease-in-out",
         }}
       />
@@ -181,6 +192,8 @@ export const MapView = () => {
           </Typography>
         </Box>
       )}
+
+      <MarkerModal open={modalOpen} onClose={closeModal} position={position} />
     </div>
   )
 }
