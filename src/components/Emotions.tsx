@@ -79,14 +79,13 @@ const Emotions: React.FC = () => {
 
   const getIconSize = () => {
     switch (screenSize) {
-      case "sm":
-        return "3rem"
+      case "xl":
+        return "5.25rem"
       case "md":
-        return "4.5rem"
       case "lg":
-        return "5.25rem"
+        return "4rem"
       default:
-        return "5.25rem"
+        return "3rem"
     }
   }
 
@@ -127,8 +126,9 @@ const Emotions: React.FC = () => {
         left: "50%",
         transform: "translateX(-50%)",
         width: {
-          lg: "814px",
-          sm: "40rem",
+          xl: "30%",
+          md: "40%",
+          sm: "70%",
           xs: "100%",
         },
         height: { lg: "auto", md: "auto", sm: "auto", xs: "auto" },
@@ -157,14 +157,9 @@ const Emotions: React.FC = () => {
       }}
     >
       <Typography
-        variant="h5"
+        variant="h4"
         sx={{
           textAlign: "center",
-          fontSize: {
-            lg: "2rem",
-            md: "1.5rem",
-            xs: "1rem",
-          },
           opacity: isDisabled ? 0.6 : 1,
           transition: "opacity 0.3s ease-in-out",
         }}
