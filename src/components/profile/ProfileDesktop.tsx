@@ -73,7 +73,7 @@ const ProfileDesktop: FC = () => {
         backgroundColor: settings.customization ? theme.colors[settings.customization as keyof typeof theme.colors] : theme.colors.defaultBackground,
       }}
     >
-      {(screenSize === "xl") && (
+      {(screenSize === "xl" || screenSize === "lg") && (
         <Typography
           variant="h1"
           sx={{
@@ -110,6 +110,7 @@ const ProfileDesktop: FC = () => {
               sm: "100%"
             },
             aspectRatio: "1/1",
+            mx: screenSize === "md" ? "auto" : 0
           }}
           src={avatarSrc}
           alt="User Avatar"
