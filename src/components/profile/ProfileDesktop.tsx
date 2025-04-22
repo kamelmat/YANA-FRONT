@@ -155,9 +155,8 @@ const ProfileDesktop: FC = () => {
           text={t("/profile.deleteAccount")}
           icon={<img src={deleteIcon} alt={t("/profile.deleteAccount")} />}
           iconPosition="end"
-          variantType="ghost"
+          variantType="square-cancel"
           onClick={() => setIsDeleteModalOpen(true)}
-          sx={{  borderRadius: "0.75rem", border: screenSize !== "sm" ? `0.25rem solid ${theme.colors.red}` : "none" }}
         />
       </SettingsSection>
 
