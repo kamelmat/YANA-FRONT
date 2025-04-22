@@ -271,7 +271,7 @@ i18n.use(initReactI18next).init({
           access: "Acceder",
           email: "Email",
           password: "Contraseña",
-          remember: "Recorderme",
+          remember: "Recordarme",
           forgot: "Olvidé la contraseña",
           login: "Ingresar",
           loginGoogle: "Iniciar sesión con Google",
