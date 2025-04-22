@@ -17,6 +17,8 @@ import { useAuthStore } from "../store/authStore"
 import Onboarding from "../pages/Onboarding"
 import TrailingSlashRedirect from "../components/TrailingSlashRedirect"
 import ResetPassword from "../pages/ResetPassword"
+import ResetPasswordConfirm from "../pages/ResetPasswordConfirm"
+
 const AppRoutes: React.FC = () => {
   useTokenRefresh();
   const accessToken = useAuthStore((state) => state.accessToken);
@@ -29,6 +31,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/reset-password/:uid/:token" element={<ResetPasswordConfirm />} />
         <Route element={<ProtectedRoute><MapLayout /></ProtectedRoute>}>
           <Route path="/" element={<Home />} />
           <Route path="/resources" element={<Resources />} />
