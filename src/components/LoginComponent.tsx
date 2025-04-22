@@ -120,6 +120,7 @@ export default function LoginComponent() {
           <Link
             variant="body2"
             sx={{ color: theme.colors.lightBlue, textDecoration: "none" }}
+            onClick={() => navigate("/reset-password")}
           >
             {t("login.forgot")}
           </Link>
