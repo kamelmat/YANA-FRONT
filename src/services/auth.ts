@@ -29,6 +29,17 @@ export interface LoginResponse {
   }
 }
 
+export interface PasswordResetRequest {
+  email: string
+}
+
+export interface PasswordResetConfirmRequest {
+  uid: string
+  token: string
+  new_password: string
+  re_new_password: string
+}
+
 export const authService = {
   register: async (data: RegisterData): Promise<RegisterResponse> => {
     try {
@@ -126,6 +137,44 @@ export const authService = {
       return response.json()
     } catch (error) {
       console.error(`Token refresh error: ${error}`)
+      throw error
+    }
+  },
+
+  requestPasswordReset: async (data: PasswordResetRequest) => {
+    try {
+      const response = await fetch(AUTH_ENDPOINTS.PASSWORD_RESET, {
+        method: "POST",
+        headers: getDefaultHeaders(),
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        await handleApiError(response)
+      }
+
+      return response.json()
+    } catch (error) {
+      console.error("Password reset request error:", error)
+      throw error
+    }
+  },
+
+  confirmPasswordReset: async (data: PasswordResetConfirmRequest) => {
+    try {
+      const response = await fetch(AUTH_ENDPOINTS.PASSWORD_RESET_CONFIRM, {
+        method: "POST",
+        headers: getDefaultHeaders(),
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        await handleApiError(response)
+      }
+
+      return response.json()
+    } catch (error) {
+      console.error("Password reset confirmation error:", error)
       throw error
     }
   },
