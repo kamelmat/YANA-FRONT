@@ -262,6 +262,17 @@ i18n.use(initReactI18next).init({
           errorLoadingEmotions: "Error loading emotions",
           loadingEmotions: "Loading emotions...",
         },
+        resetPassword: {
+          subtitle: "Enter your email address and we'll send you a link to reset your password.",
+          email: "Email",
+          emailPlaceholder: "Enter your email",
+          sendResetLink: "Recover password",
+          newPassword: "New Password",
+          newPasswordPlaceholder: "Enter your new password",
+          repeatNewPassword: "Repeat new password",
+          repeatNewPasswordPlaceholder: "Confirm your new password",
+          changePassword: "Change password",
+        },
       },
     },
     es: {
@@ -527,6 +538,18 @@ i18n.use(initReactI18next).init({
         map: {
           errorLoadingEmotions: "Error al cargar las emociones",
           loadingEmotions: "Cargando emociones...",
+        },
+        resetPassword: {
+          subtitle:
+            "Ingresa tu correo electrónico y recibirás un enlace para restablecer tu contraseña.",
+          email: "Correo electrónico",
+          emailPlaceholder: "Ingresa tu email",
+          sendResetLink: "Recuperar contraseña",
+          newPassword: "Nueva contraseña",
+          newPasswordPlaceholder: "Ingresa tu nueva contraseña",
+          repeatNewPassword: "Repetir nueva contraseña",
+          repeatNewPasswordPlaceholder: "Confirma tu nueva contraseña",
+          changePassword: "Cambiar contraseña",
         },
       },
     },

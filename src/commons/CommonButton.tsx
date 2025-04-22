@@ -23,7 +23,7 @@ export default function CustomButton({
   ...rest
 }: CustomButtonProps) {
   const isPrimary = variantType.includes('primary');
-  const isSecondary = variantType.includes('secondary');
+  const isSecondary = variantType.includes('secondary') && !variantType.includes('fill');
   const isSquare = variantType.includes('square');
   const isGhost = variantType === 'ghost';
   const isSecondaryFill = variantType === 'secondary-fill';
@@ -56,7 +56,7 @@ export default function CustomButton({
             : isSecondary
             ? `${theme.colors.lightBlue}20`
             : isSecondaryFill
-            ? darken(theme.colors.lightBlue, 0.2)
+            ? darken(theme.colors.lightBlue, 0.25)
             : `${theme.colors.lightPink}20`,
         },
         '&:disabled' : {

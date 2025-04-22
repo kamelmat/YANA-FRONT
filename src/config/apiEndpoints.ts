@@ -9,6 +9,8 @@ export const AUTH_ENDPOINTS = {
   REFRESH_TOKEN: `${API_URL}/usuario/api/token/refresh/`,
   UPDATE_AVATAR: `${API_URL}/usuario/api/update-avatar/`,
   DELETE_ACCOUNT: `${API_URL}/usuario/api/delete-account/`,
+  PASSWORD_RESET: `${API_URL}/usuario/api/password/reset/`,
+  PASSWORD_RESET_CONFIRM: `${API_URL}/usuario/api/password/reset/confirm/`,
 } as const
 
 // Emotions endpoints
