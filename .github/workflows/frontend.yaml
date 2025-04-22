@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: "20.x"
+      VITE_API_URL: ${{ secrets.VITE_API_URL }}
+      VITE_MAP_TILER_KEY: ${{ secrets.VITE_MAP_TILER_KEY }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -89,7 +91,7 @@ jobs:
 
       - name: Upload to GCS Bucket
         run: |
-          gsutil -m rsync -r -d ./dist ${{ env.GCS_BUCKET }}
+          gsutil -m rsync -r ./dist ${GCS_BUCKET}
           gsutil -m setmeta -h "Cache-Control:public, max-age=3600" ${{ env.GCS_BUCKET }}/**/*.js
           gsutil -m setmeta -h "Cache-Control:public, max-age=3600" ${{ env.GCS_BUCKET }}/**/*.css
           gsutil -m setmeta -h "Cache-Control:no-cache" ${{ env.GCS_BUCKET }}/index.html
