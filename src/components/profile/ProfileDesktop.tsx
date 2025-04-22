@@ -66,6 +66,7 @@ const ProfileDesktop: FC = () => {
         margin: 0,
         padding:{
           sm: "8em",
+          md: "1% 5%",
           lg: "5% 10%"
         },
         gap: "1em",
