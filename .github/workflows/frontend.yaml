@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - main
+      - cicd/pipelines
   workflow_dispatch:
 
 jobs:
