@@ -103,7 +103,7 @@ const Sidebar: React.FC = () => {
     },
   ]
 
-  if (screenSize === "sm" || location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/onboarding") return null
+  if (screenSize === "sm" || location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/onboarding" || location.pathname === "/reset-password") return null
 
   const handleItemClick = (route: string) => {
     if (route === "/logout") {

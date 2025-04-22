@@ -10,7 +10,7 @@ export const Footer = () => {
   const screenSize = useScreenSize()
   const { t } = useTranslation()
 
-  if (location === "/login" || location === "/" || location === "/register" || location === "/profile" || location === "/profile/account" || location === "/profile/configuration" || location === "/profile/interactions" || location === "/onboarding") return null
+  if (location === "/login" || location === "/" || location === "/register" || location === "/profile" || location === "/profile/account" || location === "/profile/configuration" || location === "/profile/interactions" || location === "/onboarding" || location === "/reset-password") return null
 
   const sidebarWidth = screenSize === "sm" ? 0 : theme.sidebar?.width
 
