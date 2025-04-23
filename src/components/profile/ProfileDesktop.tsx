@@ -114,6 +114,7 @@ const ProfileDesktop: FC = () => {
               sm: "100%",
             },
             aspectRatio: "1/1",
+            mx: screenSize === "md" ? "auto" : 0
           }}
           src={avatarSrc}
           alt="User Avatar"
@@ -164,7 +165,7 @@ const ProfileDesktop: FC = () => {
           text={t("/profile.deleteAccount")}
           icon={<img src={deleteIcon} alt={t("/profile.deleteAccount")} />}
           iconPosition="end"
-          variantType="ghost"
+          variantType="square-cancel"
           onClick={() => setIsDeleteModalOpen(true)}
           sx={{
             borderRadius: "0.75rem",
