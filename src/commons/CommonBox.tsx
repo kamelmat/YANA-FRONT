@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
-import type { BoxProps, SxProps, Theme } from "@mui/material";
-import type { ReactNode } from "react";
+import { Box } from '@mui/material';
+import type { BoxProps, SxProps, Theme } from '@mui/material';
+import type { ReactNode } from 'react';
 
 interface CommonBoxProps extends BoxProps {
   children: ReactNode;
@@ -21,8 +21,11 @@ const commonBoxStyles: SxProps<Theme> = {
 
 export default function CommonBox({ children, sx, ...rest }: CommonBoxProps) {
   return (
-    <Box sx={[commonBoxStyles, sx] as SxProps<Theme>} {...rest}>
+    <Box
+      sx={[commonBoxStyles, sx] as SxProps<Theme>}
+      {...rest}
+    >
       {children}
     </Box>
   );
-}
+} 

@@ -1,9 +1,9 @@
-import { TextField } from "@mui/material";
-import type { TextFieldProps } from "@mui/material";
-import type { ChangeEvent } from "react";
-import theme from "../theme";
+import { TextField } from '@mui/material';
+import type { TextFieldProps } from '@mui/material';
+import type { ChangeEvent } from 'react';
+import theme from '../theme';
 
-interface CustomTextFieldProps extends Omit<TextFieldProps, "value" | "onChange" | "label"> {
+interface CustomTextFieldProps extends Omit<TextFieldProps, 'value' | 'onChange' | 'label'> {
   label: string;
   value: string;
   setValue: (val: string) => void;
@@ -75,12 +75,11 @@ export default function CustomTextField({
           WebkitTextFillColor: "#fff !important",
           transition: "background-color 9999s ease-in-out 0s !important",
         },
-        "& input:-webkit-autofill:hover, & input:-webkit-autofill:focus, & input:-webkit-autofill:active":
-          {
-            WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
-            WebkitTextFillColor: "#fff !important",
-            transition: "background-color 9999s ease-in-out 0s !important",
-          },
+        "& input:-webkit-autofill:hover, & input:-webkit-autofill:focus, & input:-webkit-autofill:active": {
+          WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
+          WebkitTextFillColor: "#fff !important",
+          transition: "background-color 9999s ease-in-out 0s !important",
+        },
       }}
     />
   );

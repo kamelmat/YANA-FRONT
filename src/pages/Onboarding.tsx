@@ -1,16 +1,16 @@
-import { Box, Typography } from "@mui/material";
-import { useCallback, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import backIcon from "../assets/icons/back.svg";
-import onboarding1 from "../assets/onboarding/1.webp";
-import onboarding2 from "../assets/onboarding/2.webp";
-import onboarding3 from "../assets/onboarding/3.webp";
-import onboarding4 from "../assets/onboarding/4.webp";
-import nextIcon from "../assets/onboarding/next.svg";
-import CustomButton from "../commons/CommonButton";
-import useScreenSize from "../hooks/useScreenSize";
-import theme from "../theme";
+import { useState, useCallback } from 'react';
+import { Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import onboarding1 from '../assets/onboarding/1.webp';
+import onboarding2 from '../assets/onboarding/2.webp';
+import onboarding3 from '../assets/onboarding/3.webp';
+import onboarding4 from '../assets/onboarding/4.webp';
+import CustomButton from '../commons/CommonButton';
+import theme from '../theme';
+import useScreenSize from '../hooks/useScreenSize';
+import backIcon from '../assets/icons/back.svg';
+import nextIcon from '../assets/onboarding/next.svg';
 
 const ONBOARDING_IMAGES = {
   1: onboarding1,
@@ -59,7 +59,7 @@ const Onboarding = () => {
       setIsAnimating(true);
       setDirection("left");
       setTimeout(() => {
-        setCurrentStep((prev) => (prev + 1 <= 4 ? prev + 1 : 4));
+        setCurrentStep((prev) => (prev + 1) <= 4 ? prev + 1 : 4);
         setDirection(null);
         setIsAnimating(false);
       }, 300);
@@ -71,7 +71,7 @@ const Onboarding = () => {
       setIsAnimating(true);
       setDirection("right");
       setTimeout(() => {
-        setCurrentStep((prev) => (prev - 1 >= 1 ? prev - 1 : 1));
+        setCurrentStep((prev) => (prev - 1) >= 1 ? prev - 1 : 1);
         setDirection(null);
         setIsAnimating(false);
       }, 300);
@@ -79,7 +79,7 @@ const Onboarding = () => {
   }, [currentStep]);
 
   const handleStart = useCallback(() => {
-    navigate("/");
+    navigate('/');
   }, [navigate]);
 
   const handleBack = useCallback(() => {
@@ -105,10 +105,10 @@ const Onboarding = () => {
     <Box
       sx={{
         position: "absolute",
-        top: {
+        top:{
           xs: "12.5%",
           md: "22.5%",
-          lg: "45%",
+          lg: "45%"
         },
         left: 0,
         width: "100%",
@@ -241,9 +241,8 @@ const Onboarding = () => {
     </Box>
   );
 
-  const renderDots = () =>
-    currentStep !== 4 &&
-    !(direction === "left" && currentStep === 3) && (
+  const renderDots = () => (
+    currentStep !== 4 && !(direction === "left" && currentStep === 3) && (
       <Box
         sx={{
           display: "flex",
@@ -271,7 +270,8 @@ const Onboarding = () => {
           />
         ))}
       </Box>
-    );
+    )
+  );
 
   return (
     <Box
@@ -357,7 +357,7 @@ const Onboarding = () => {
               key={step}
               sx={{
                 position: "absolute",
-                top: "5%",
+                top: '5%',
                 left: 0,
                 width: "100%",
                 height: "100%",

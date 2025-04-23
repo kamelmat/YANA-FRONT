@@ -1,28 +1,28 @@
-import { Avatar, Box } from "@mui/material";
-import type { FC } from "react";
-import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import theme from "../../theme";
+import type { FC } from "react"
+import { useState, useMemo } from "react"
+import { Avatar, Box } from "@mui/material"
+import { useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
+import theme from "../../theme"
 
-import avatarIcon31 from "../../assets/avatars/avatar_31.svg?url";
-import avatarIcon32 from "../../assets/avatars/avatar_32.svg?url";
-import avatarIcon33 from "../../assets/avatars/avatar_33.svg?url";
-import avatarIcon34 from "../../assets/avatars/avatar_34.svg?url";
-import avatarIcon35 from "../../assets/avatars/avatar_35.svg?url";
+import avatarIcon31 from "../../assets/avatars/avatar_31.svg?url"
+import avatarIcon32 from "../../assets/avatars/avatar_32.svg?url"
+import avatarIcon33 from "../../assets/avatars/avatar_33.svg?url"
+import avatarIcon34 from "../../assets/avatars/avatar_34.svg?url"
+import avatarIcon35 from "../../assets/avatars/avatar_35.svg?url"
 
-import accountIcon from "../../assets/icons/account_circle.svg?url";
-import deleteIcon from "../../assets/icons/cancel.svg?url";
-import helpIcon from "../../assets/icons/emergency.svg?url";
-import intaractionsIcon from "../../assets/icons/groups.svg?url";
-import logoutIcon from "../../assets/icons/logout_blue.svg?url";
-import configurationIcon from "../../assets/icons/settings2.svg?url";
+import accountIcon from "../../assets/icons/account_circle.svg?url"
+import intaractionsIcon from "../../assets/icons/groups.svg?url"
+import configurationIcon from "../../assets/icons/settings2.svg?url"
+import logoutIcon from "../../assets/icons/logout_blue.svg?url"
+import helpIcon from "../../assets/icons/emergency.svg?url"
+import deleteIcon from "../../assets/icons/cancel.svg?url"
 
-import CustomButton from "../../commons/CommonButton";
-import Modal from "../../commons/DeleteModal";
-import { useDeleteAccount } from "../../hooks/useDeleteAccount";
-import { useLogout } from "../../hooks/useLogout";
-import { useSettingsStore } from "../../store/useSettingsStore";
+import CustomButton from "../../commons/CommonButton"
+import Modal from "../../commons/DeleteModal"
+import { useDeleteAccount } from '../../hooks/useDeleteAccount';
+import { useSettingsStore } from "../../store/useSettingsStore"
+import { useLogout } from "../../hooks/useLogout"
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,
@@ -30,35 +30,32 @@ const AVATAR_IMAGES = {
   33: avatarIcon33,
   34: avatarIcon34,
   35: avatarIcon35,
-};
+}
 
 const ProfileMobile: FC = () => {
-  const navigate = useNavigate();
-  const { t } = useTranslation();
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const { settings } = useSettingsStore();
-  const deleteAccount = useDeleteAccount();
-  const { mutate: logout } = useLogout();
+  const navigate = useNavigate()
+  const { t } = useTranslation()
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
+  const { settings } = useSettingsStore()
+  const deleteAccount = useDeleteAccount()
+  const { mutate: logout } = useLogout()
 
   const handleNavigation = (path: string) => {
-    navigate(path);
-  };
-
-  const avatarSrc = useMemo(
-    () => AVATAR_IMAGES[settings.avatar as keyof typeof AVATAR_IMAGES],
-    [settings.avatar]
-  );
+    navigate(path)
+  }
+  
+  const avatarSrc = useMemo(() => AVATAR_IMAGES[settings.avatar as keyof typeof AVATAR_IMAGES], [settings.avatar])
 
   const handleDeleteAccount = (password: string) => {
     deleteAccount.mutate(password, {
       onSuccess: () => {
-        setIsDeleteModalOpen(false);
+        setIsDeleteModalOpen(false)
       },
       onError: (error) => {
-        console.error("Error deleting account:", error);
-      },
-    });
-  };
+        console.error('Error deleting account:', error)
+      }
+    })
+  }
 
   return (
     <Box
@@ -70,9 +67,7 @@ const ProfileMobile: FC = () => {
         margin: 0,
         padding: "6em 1em",
         gap: "1.25rem",
-        backgroundColor: settings.customization
-          ? theme.colors[settings.customization as keyof typeof theme.colors]
-          : theme.colors.defaultBackground,
+        backgroundColor: settings.customization ? theme.colors[settings.customization as keyof typeof theme.colors] : theme.colors.defaultBackground,
       }}
     >
       <Avatar
@@ -133,7 +128,7 @@ const ProfileMobile: FC = () => {
         onPasswordSubmit={handleDeleteAccount}
       />
     </Box>
-  );
-};
+  )
+}
 
-export default ProfileMobile;
+export default ProfileMobile

@@ -1,43 +1,43 @@
-import { AUTH_ENDPOINTS } from "../config/apiEndpoints";
-import { getAuthHeaders, getDefaultHeaders, handleApiError } from "../utils/apiUtils";
+import { AUTH_ENDPOINTS } from "../config/apiEndpoints"
+import { handleApiError, getAuthHeaders, getDefaultHeaders } from "../utils/apiUtils"
 
 export interface RegisterData {
-  name: string;
-  last_name: string;
-  email: string;
-  password: string;
+  name: string
+  last_name: string
+  email: string
+  password: string
 }
 
 export interface LoginData {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export interface RegisterResponse {
-  access_token: string;
-  refresh_token: string;
-  name: string;
-  avatar_id: string;
+  access_token: string
+  refresh_token: string
+  name: string
+  avatar_id: string
 }
 
 export interface LoginResponse {
-  access: string;
-  refresh: string;
+  access: string
+  refresh: string
   user: {
-    name: string;
-    avatar_id: string;
-  };
+    name: string
+    avatar_id: string
+  }
 }
 
 export interface PasswordResetRequest {
-  email: string;
+  email: string
 }
 
 export interface PasswordResetConfirmRequest {
-  uidb64: string;
-  token: string;
-  new_password: string;
-  confirm_password: string;
+  uidb64: string
+  token: string
+  new_password: string
+  confirm_password: string
 }
 
 export const authService = {
@@ -49,16 +49,16 @@ export const authService = {
         body: JSON.stringify(data),
         credentials: "include",
         mode: "cors",
-      });
+      })
 
       if (!response.ok) {
-        await handleApiError(response);
+        await handleApiError(response)
       }
 
-      return response.json();
+      return response.json()
     } catch (error) {
-      console.error("Register error:", error);
-      throw error;
+      console.error("Register error:", error)
+      throw error
     }
   },
 
@@ -68,16 +68,16 @@ export const authService = {
         method: "POST",
         headers: getDefaultHeaders(),
         body: JSON.stringify(data),
-      });
+      })
 
       if (!response.ok) {
-        await handleApiError(response);
+        await handleApiError(response)
       }
 
-      return response.json();
+      return response.json()
     } catch (error) {
-      console.error(`Login error: ${error}`);
-      throw error;
+      console.error(`Login error: ${error}`)
+      throw error
     }
   },
 
@@ -88,16 +88,16 @@ export const authService = {
         headers: getAuthHeaders(accessToken),
         body: JSON.stringify({ refresh: refreshToken }),
         credentials: "include",
-      });
+      })
 
       if (!response.ok) {
-        await handleApiError(response);
+        await handleApiError(response)
       }
 
-      return response.json();
+      return response.json()
     } catch (error) {
-      console.error(`Logout error: ${error}`);
-      throw error;
+      console.error(`Logout error: ${error}`)
+      throw error
     }
   },
 
@@ -108,17 +108,17 @@ export const authService = {
         headers: getDefaultHeaders(),
         body: JSON.stringify({ email }),
         credentials: "include",
-      });
+      })
 
       if (!response.ok) {
-        await handleApiError(response);
+        await handleApiError(response)
       }
 
-      const responseData = await response.json();
-      return responseData.email_exists;
+      const responseData = await response.json()
+      return responseData.email_exists
     } catch (error) {
-      console.error(`Email check error: ${error}`);
-      throw error;
+      console.error(`Email check error: ${error}`)
+      throw error
     }
   },
 
@@ -128,16 +128,16 @@ export const authService = {
         method: "POST",
         headers: getDefaultHeaders(),
         body: JSON.stringify({ refresh: refreshToken }),
-      });
+      })
 
       if (!response.ok) {
-        await handleApiError(response);
+        await handleApiError(response)
       }
 
-      return response.json();
+      return response.json()
     } catch (error) {
-      console.error(`Token refresh error: ${error}`);
-      throw error;
+      console.error(`Token refresh error: ${error}`)
+      throw error
     }
   },
 
@@ -147,16 +147,16 @@ export const authService = {
         method: "POST",
         headers: getDefaultHeaders(),
         body: JSON.stringify(data),
-      });
+      })
 
       if (!response.ok) {
-        await handleApiError(response);
+        await handleApiError(response)
       }
 
-      return response.json();
+      return response.json()
     } catch (error) {
-      console.error("Password reset request error:", error);
-      throw error;
+      console.error("Password reset request error:", error)
+      throw error
     }
   },
 
@@ -166,16 +166,16 @@ export const authService = {
         method: "POST",
         headers: getDefaultHeaders(),
         body: JSON.stringify(data),
-      });
+      })
 
       if (!response.ok) {
-        await handleApiError(response);
+        await handleApiError(response)
       }
 
-      return response.json();
+      return response.json()
     } catch (error) {
-      console.error("Password reset confirmation error:", error);
-      throw error;
+      console.error("Password reset confirmation error:", error)
+      throw error
     }
   },
-};
+}

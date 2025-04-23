@@ -23,8 +23,7 @@ i18n.use(initReactI18next).init({
         register: {
           method: {
             title: "Create an account",
-            subtitle:
-              "Your information is confidential. We will not share it with anyone.",
+            subtitle: "Your information is confidential. We will not share it with anyone.",
             useEmail: "Register with email",
             useGoogle: "Use Google to register",
             privacyText: "By creating an account, you agree to our",
@@ -58,8 +57,7 @@ i18n.use(initReactI18next).init({
               error: {
                 required: "The email is required.",
                 invalid: "The email entered is not valid. Please try again.",
-                taken:
-                  "This email is already registered. Please try another or log in.",
+                taken: "This email is already registered. Please try another or log in.",
               },
             },
           },
@@ -71,8 +69,7 @@ i18n.use(initReactI18next).init({
               placeholder: "Create a password (minimum 8 characters)",
               error: {
                 required: "Please enter the password.",
-                invalid:
-                  "The password is missing the following requirements: {{requirements}}",
+                invalid: "The password is missing the following requirements: {{requirements}}",
               },
             },
             requirements: {
@@ -99,8 +96,7 @@ i18n.use(initReactI18next).init({
           },
           done: {
             title: "Done",
-            subtitle:
-              "Thank you for being part of the You are not alone community!",
+            subtitle: "Thank you for being part of the You are not alone community!",
           },
           continue: "Continue",
         },
@@ -160,14 +156,12 @@ i18n.use(initReactI18next).init({
                 "If you forget your password, you can reset it by clicking on “Forgot my password” when you log in and you will receive an email with the steps to recover your account.",
             },
             {
-              question:
-                "Does the app have resources or contacts that can help me?",
+              question: "Does the app have resources or contacts that can help me?",
               answer:
                 "Yes, you can use the resources and contacts provided in the app to help you feel better.",
             },
             {
-              question:
-                "Can I chat with another person who is in a similar situation to mine?",
+              question: "Can I chat with another person who is in a similar situation to mine?",
               answer:
                 "No, you cannot chat with another user, but you can send and receive predefined support messages to accompany each other, promote connections, and promote empathy.",
             },
@@ -232,8 +226,7 @@ i18n.use(initReactI18next).init({
           confirm: "Confirm",
           delete: "Delete",
           deleteAccount: "Delete Account",
-          deleteAccountMessage:
-            "Do you confirm that you want to delete your account?",
+          deleteAccountMessage: "Do you confirm that you want to delete your account?",
           passwordPlaceholder: "Enter your password",
           start: "Start",
         },
@@ -244,8 +237,7 @@ i18n.use(initReactI18next).init({
           },
           step2: {
             title: "Share your emotions in a safe space",
-            subtitle:
-              "Choose an emotion every day, express it and connect with other people.",
+            subtitle: "Choose an emotion every day, express it and connect with other people.",
           },
           step3: {
             title: "Participate in a shared emotions map",
@@ -271,8 +263,7 @@ i18n.use(initReactI18next).init({
           loadingEmotions: "Loading emotions...",
         },
         resetPassword: {
-          subtitle:
-            "Enter your email address and we'll send you a link to reset your password.",
+          subtitle: "Enter your email address and we'll send you a link to reset your password.",
           email: "Email",
           emailPlaceholder: "Enter your email",
           sendResetLink: "Recover password",
@@ -284,8 +275,7 @@ i18n.use(initReactI18next).init({
         },
         helpModal: {
           title: "We are here to listen",
-          subtitle:
-            "We have noticed you are feeling unwell.<br />Talking to someone can help.",
+          subtitle: "We have noticed you are feeling unwell.<br />Talking to someone can help.",
           button: "Call",
         },
       },
@@ -303,16 +293,14 @@ i18n.use(initReactI18next).init({
           loginGoogle: "Iniciar sesión con Google",
           dontHaveAccount: "¿No tienes una cuenta?",
           register: "Regístrate",
-          failed:
-            "No se encontró una cuenta activa con las credenciales proporcionadas.",
+          failed: "No se encontró una cuenta activa con las credenciales proporcionadas.",
         },
 
         // register stages
         register: {
           method: {
             title: "Crear una cuenta",
-            subtitle:
-              "Tu información es confidencial. No vamos a compartir tus datos.",
+            subtitle: "Tu información es confidencial. No vamos a compartir tus datos.",
             useEmail: "Registrarse con correo electrónico",
             useGoogle: "Crear una cuenta con Google",
             privacyText: "Al crear una cuenta, aceptas los",
@@ -345,8 +333,7 @@ i18n.use(initReactI18next).init({
               placeholder: "Completa tu email",
               error: {
                 required: "El correo es requerido.",
-                invalid:
-                  "El email ingresado no es válido. Por favor, íntentalo de nuevo.",
+                invalid: "El email ingresado no es válido. Por favor, íntentalo de nuevo.",
                 taken:
                   "Este correo electrónico ya está registrado. Por favor, intenta con otro o inicia sesión.",
               },
@@ -357,12 +344,10 @@ i18n.use(initReactI18next).init({
             subtitle: "Por favor, crea una contraseña segura para tu cuenta.",
             passwordField: {
               label: "Contraseña",
-              placeholder:
-                "Crea tu contraseña (mínimo 8 caracteres, número y carácter especial)",
+              placeholder: "Crea tu contraseña (mínimo 8 caracteres, número y carácter especial)",
               error: {
                 required: "Por favor, introduce la contraseña.",
-                invalid:
-                  "La contraseña no cumple con los siguientes requisitos: {{requirements}}",
+                invalid: "La contraseña no cumple con los siguientes requisitos: {{requirements}}",
               },
             },
             requirements: {
@@ -389,8 +374,7 @@ i18n.use(initReactI18next).init({
           },
           done: {
             title: "¡Listo!",
-            subtitle:
-              "¡Gracias por ser parte de la comunidad You are not alone!",
+            subtitle: "¡Gracias por ser parte de la comunidad You are not alone!",
           },
           continue: "Continuar",
         },
@@ -453,8 +437,7 @@ i18n.use(initReactI18next).init({
                 "Si necesitas restablecer tu contraseña, al momento de iniciar sesión puedes hacer clic en “Olvidé mi contraseña” y recibirás un correo electrónico con los pasos para recuperar tu cuenta.",
             },
             {
-              question:
-                "¿En la app hay recursos o contactos que me puedan ayudar?",
+              question: "¿En la app hay recursos o contactos que me puedan ayudar?",
               answer:
                 "Si necesitas restablecer tu contraseña, al momento de iniciar sesión puedes hacer clic en “Olvidé mi contraseña” y recibirás un correo electrónico con los pasos para recuperar tu cuenta.",
             },
@@ -536,8 +519,7 @@ i18n.use(initReactI18next).init({
           },
           step2: {
             title: "Comparte tus emociones en un espacio seguro",
-            subtitle:
-              "Elige un estado de ánimo cada día, exprésalo y conecta con otras personas.",
+            subtitle: "Elige un estado de ánimo cada día, exprésalo y conecta con otras personas.",
           },
           step3: {
             title: "Participa en un mapa de emociones compartidas",
@@ -576,8 +558,7 @@ i18n.use(initReactI18next).init({
         },
         helpModal: {
           title: "Estamos aquí para escucharte",
-          subtitle:
-            "Hemos notado que no te sientes bien.<br />Hablar con alguien puede ayudarte.",
+          subtitle: "Hemos notado que no te sientes bien.<br />Hablar con alguien puede ayudarte.",
           button: "Llamar",
         },
       },

@@ -1,78 +1,78 @@
-import { createTheme } from "@mui/material/styles";
-import "@fontsource/roboto";
+import { createTheme } from "@mui/material/styles"
+import "@fontsource/roboto"
 
 declare module "@mui/material/styles" {
   interface Theme {
     colors: {
-      blackBackground: string;
-      lightBlue: string;
-      pink: string;
-      yellow: string;
-      blueExtraLight: string;
-      green: string;
-      lightGray: string;
-      orange: string;
-      lightPink: string;
-      darkPurple: string;
-      red: string;
-      defaultBackground: string;
-      lightRed: string;
-    };
+      blackBackground: string
+      lightBlue: string
+      pink: string
+      yellow: string
+      blueExtraLight: string
+      green: string
+      lightGray: string
+      orange: string
+      lightPink: string
+      darkPurple: string
+      red: string
+      defaultBackground: string
+      lightRed: string
+    }
     gradients: {
-      gradientBlack?: string;
-      gradientPurple?: string;
-      gradientPurpleToBottom?: string;
-    };
+      gradientBlack?: string
+      gradientPurple?: string
+      gradientPurpleToBottom?: string
+    }
     borders: {
-      borderRadius?: string;
-    };
+      borderRadius?: string
+    }
     sidebar?: {
-      width: string;
-    };
+      width: string
+    }
   }
 
   interface ThemeOptions {
     colors?: {
-      white?: string;
-      blackBackground?: string;
-      lightBlue?: string;
-      pink?: string;
-      yellow?: string;
-      blueExtraLight?: string;
-      green?: string;
-      lightGray?: string;
-      orange?: string;
-      lightPink?: string;
-      darkPurple?: string;
-      red?: string;
-      defaultBackground?: string;
-      lightRed?: string;
-    };
+      white?: string
+      blackBackground?: string
+      lightBlue?: string
+      pink?: string
+      yellow?: string
+      blueExtraLight?: string
+      green?: string
+      lightGray?: string
+      orange?: string
+      lightPink?: string
+      darkPurple?: string
+      red?: string
+      defaultBackground?: string
+      lightRed?: string
+    }
     gradients?: {
-      gradientBlack?: string;
-      gradientPurple?: string;
-      gradientPurpleToBottom?: string;
-    };
+      gradientBlack?: string
+      gradientPurple?: string
+      gradientPurpleToBottom?: string
+    }
     borders?: {
-      borderRadius?: string;
-    };
+      borderRadius?: string
+    }
     sidebar?: {
-      width: string;
-    };
+      width: string
+    }
   }
 
   interface TypographyVariants {
-    body3: React.CSSProperties;
+    body3: React.CSSProperties
   }
 
   interface TypographyVariantsOptions {
-    body3?: React.CSSProperties;
+    body3?: React.CSSProperties
   }
 }
 
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
-    body3: true;
+    body3: true
   }
 }
 
@@ -137,6 +137,6 @@ const theme = createTheme({
   sidebar: {
     width: "5.5rem",
   },
-});
+})
 
-export default theme;
+export default theme

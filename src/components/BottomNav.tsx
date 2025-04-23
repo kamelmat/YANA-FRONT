@@ -1,26 +1,26 @@
-import styled from "@emotion/styled";
-import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import type { Theme } from "@mui/material/styles";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
-import useScreenSize from "../hooks/useScreenSize";
+import React from "react"
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material"
+import { useTheme } from "@mui/material/styles"
+import type { Theme } from "@mui/material/styles"
+import styled from "@emotion/styled"
+import useScreenSize from "../hooks/useScreenSize"
+import { useLocation, useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
-import ResourcesIcon from "../assets/icons/loupe.svg?react";
-import ContactsIcon from "../assets/icons/people_outline.svg?react";
-import HomeIcon from "../assets/icons/roofing.svg?react";
-import ProfileIcon from "../assets/icons/sentiment_satisfied_alt.svg?react";
+import HomeIcon from "../assets/icons/roofing.svg?react"
+import ResourcesIcon from "../assets/icons/loupe.svg?react"
+import ContactsIcon from "../assets/icons/people_outline.svg?react"
+import ProfileIcon from "../assets/icons/sentiment_satisfied_alt.svg?react"
 
 interface NavItem {
-  icon: React.ReactNode;
-  selectedColor: string;
-  route: string;
+  icon: React.ReactNode
+  selectedColor: string
+  route: string
 }
 
 interface StyledNavActionProps {
-  selected?: boolean;
-  selectedColor?: string;
+  selected?: boolean
+  selectedColor?: string
 }
 
 const StyledBottomNavAction = styled(BottomNavigationAction, {
@@ -57,14 +57,14 @@ const StyledBottomNavAction = styled(BottomNavigationAction, {
   "&:focus": {
     outline: "none",
   },
-}));
+}))
 
 const BottomNav: React.FC = () => {
-  const { t } = useTranslation();
-  const theme = useTheme() as Theme;
-  const screenSize = useScreenSize();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { t } = useTranslation()
+  const theme = useTheme() as Theme
+  const screenSize = useScreenSize()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const navItems: NavItem[] = [
     {
@@ -87,22 +87,15 @@ const BottomNav: React.FC = () => {
       selectedColor: theme.colors.green,
       route: "/profile",
     },
-  ];
+  ]
 
-  if (
-    screenSize !== "sm" ||
-    location.pathname === "/login" ||
-    location.pathname === "/register" ||
-    location.pathname === "/onboarding" ||
-    location.pathname.startsWith("/reset-password")
-  )
-    return;
+  if (screenSize !== "sm" || location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/onboarding" || location.pathname.startsWith("/reset-password")) return
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    navigate(navItems[newValue].route);
-  };
+    navigate(navItems[newValue].route)
+  }
 
-  const currentIndex = navItems.findIndex((item) => item.route === location.pathname);
+  const currentIndex = navItems.findIndex(item => item.route === location.pathname);
 
   return (
     <Paper
@@ -145,7 +138,7 @@ const BottomNav: React.FC = () => {
         ))}
       </BottomNavigation>
     </Paper>
-  );
-};
+  )
+}
 
-export default React.memo(BottomNav);
+export default React.memo(BottomNav)
