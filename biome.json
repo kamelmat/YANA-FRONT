@@ -6,7 +6,8 @@
     "useIgnoreFile": false
   },
   "files": {
-    "ignoreUnknown": false,
+    "ignoreUnknown": true,
+    "include": ["src"],
     "ignore": []
   },
   "formatter": {
@@ -29,7 +30,7 @@
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "single",
+      "quoteStyle": "double",
       "trailingCommas": "es5",
       "semicolons": "always"
     }

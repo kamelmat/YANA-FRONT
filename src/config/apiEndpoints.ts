@@ -1,4 +1,4 @@
-import { API_URL } from "./env"
+import { API_URL } from "./env";
 
 // Auth endpoints
 export const AUTH_ENDPOINTS = {
@@ -9,7 +9,9 @@ export const AUTH_ENDPOINTS = {
   REFRESH_TOKEN: `${API_URL}/usuario/api/token/refresh/`,
   UPDATE_AVATAR: `${API_URL}/usuario/api/update-avatar/`,
   DELETE_ACCOUNT: `${API_URL}/usuario/api/delete-account/`,
-} as const
+  PASSWORD_RESET: `${API_URL}/usuario/api/password/reset/`,
+  PASSWORD_RESET_CONFIRM: `${API_URL}/usuario/api/password/reset/confirm/`,
+} as const;
 
 // Emotions endpoints
 export const EMOTIONS_ENDPOINTS = {
@@ -17,4 +19,4 @@ export const EMOTIONS_ENDPOINTS = {
   GET_AVAILABLE_EMOTIONS: `${API_URL}/emociones/emotions/available/`,
   GET_LAST_EMOTION: `${API_URL}/emociones/user/emotions/last/`,
   GET_NEARBY_EMOTIONS: `${API_URL}/emociones/api/nearby-emotions`,
-} as const
+} as const;

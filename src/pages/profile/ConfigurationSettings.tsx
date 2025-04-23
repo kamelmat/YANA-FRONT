@@ -1,18 +1,29 @@
-import { Typography, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material"
-import { useTranslation } from "react-i18next"
-import SettingsSection from "../../components/profile/SettingsSection"
-import CommonBox from "../../commons/CommonBox"
-import CommonSwitch from "../../commons/CommonSwitch"
-import theme from "../../theme"
-import { useSettingsStore } from "../../store/useSettingsStore"
-import { useProfileRedirect } from "../../hooks/useProfileRedirect"
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
+import { useTranslation } from "react-i18next";
+import CommonBox from "../../commons/CommonBox";
+import CommonSwitch from "../../commons/CommonSwitch";
+import SettingsSection from "../../components/profile/SettingsSection";
+import { useProfileRedirect } from "../../hooks/useProfileRedirect";
+import { useSettingsStore } from "../../store/useSettingsStore";
+import theme from "../../theme";
 export default function ConfigurationSettings() {
-  useProfileRedirect()
-  const { t } = useTranslation()
-  const { settings, updateSetting } = useSettingsStore()
+  useProfileRedirect();
+  const { t } = useTranslation();
+  const { settings, updateSetting } = useSettingsStore();
 
   return (
-    <SettingsSection title="/profile.configuration" gridRow={{ lg: "6 / 10", sm: "8 / 12" }} gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}>
+    <SettingsSection
+      title="/profile.configuration"
+      gridRow={{ lg: "6 / 10", sm: "8 / 12" }}
+      gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}
+    >
       <CommonBox>
         <FormControl
           sx={{
@@ -26,7 +37,12 @@ export default function ConfigurationSettings() {
             backgroundColor: "white",
           }}
         >
-          <FormLabel id="mode-radio-group-label" sx={{ margin: 0, color: "black", fontWeight: "bold" }}>{t("/profile.mode")}</FormLabel>
+          <FormLabel
+            id="mode-radio-group-label"
+            sx={{ margin: 0, color: "black", fontWeight: "bold" }}
+          >
+            {t("/profile.mode")}
+          </FormLabel>
           <RadioGroup
             aria-labelledby="mode-radio-group-label"
             value={settings.mode}
@@ -36,23 +52,31 @@ export default function ConfigurationSettings() {
           >
             <FormControlLabel
               value="dark"
-              control={<Radio sx={{
-                color: "black",
-                '&.Mui-checked': {
-                  color: theme.colors.lightBlue,
-                },
-              }} />}
+              control={
+                <Radio
+                  sx={{
+                    color: "black",
+                    "&.Mui-checked": {
+                      color: theme.colors.lightBlue,
+                    },
+                  }}
+                />
+              }
               label={t("/profile.dark")}
               sx={{ margin: 0 }}
             />
             <FormControlLabel
               value="light"
-              control={<Radio sx={{
-                color: "black",
-                '&.Mui-checked': {
-                  color: theme.colors.lightBlue,
-                },
-              }} />}
+              control={
+                <Radio
+                  sx={{
+                    color: "black",
+                    "&.Mui-checked": {
+                      color: theme.colors.lightBlue,
+                    },
+                  }}
+                />
+              }
               label={t("/profile.light")}
               sx={{ margin: 0 }}
             />
@@ -61,8 +85,10 @@ export default function ConfigurationSettings() {
       </CommonBox>
 
       <CommonBox sx={{ justifyContent: "space-between" }}>
-        <Typography variant="body1" fontWeight="bold">{t("/profile.appSounds")}</Typography>
-        <CommonSwitch 
+        <Typography variant="body1" fontWeight="bold">
+          {t("/profile.appSounds")}
+        </Typography>
+        <CommonSwitch
           checked={settings.appSounds}
           onChange={(e) => updateSetting("appSounds", e.target.checked)}
         />
@@ -81,7 +107,12 @@ export default function ConfigurationSettings() {
             backgroundColor: "white",
           }}
         >
-          <FormLabel id="fontsize-radio-group-label" sx={{ margin: 0, color: "black", fontWeight: "bold" }}>{t("/profile.fontsize")}</FormLabel>
+          <FormLabel
+            id="fontsize-radio-group-label"
+            sx={{ margin: 0, color: "black", fontWeight: "bold" }}
+          >
+            {t("/profile.fontsize")}
+          </FormLabel>
           <RadioGroup
             aria-labelledby="fontsize-radio-group-label"
             value={settings.fontSize}
@@ -91,23 +122,31 @@ export default function ConfigurationSettings() {
           >
             <FormControlLabel
               value="small"
-              control={<Radio sx={{
-                color: "black",
-                '&.Mui-checked': {
-                  color: theme.colors.lightBlue,
-                },
-              }} />}
+              control={
+                <Radio
+                  sx={{
+                    color: "black",
+                    "&.Mui-checked": {
+                      color: theme.colors.lightBlue,
+                    },
+                  }}
+                />
+              }
               label={t("/profile.small")}
               sx={{ margin: 0 }}
             />
             <FormControlLabel
               value="large"
-              control={<Radio sx={{
-                color: "black",
-                '&.Mui-checked': {
-                  color: theme.colors.lightBlue,
-                },
-              }} />}
+              control={
+                <Radio
+                  sx={{
+                    color: "black",
+                    "&.Mui-checked": {
+                      color: theme.colors.lightBlue,
+                    },
+                  }}
+                />
+              }
               label={t("/profile.large")}
               sx={{ margin: 0 }}
             />
@@ -115,5 +154,5 @@ export default function ConfigurationSettings() {
         </FormControl>
       </CommonBox>
     </SettingsSection>
-  )
-} 
+  );
+}
