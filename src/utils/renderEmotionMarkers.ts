@@ -2,13 +2,11 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { RefObject } from 'react';
 interface Emotion {
-
-  latitude: string | number
-  longitude: string | number
-  emotion: string
-  emotion_id: number
-  user_id: string
-
+  latitude: string | number;
+  longitude: string | number;
+  emotion: string;
+  emotion_id: number;
+  user_id: string;
 }
 
 const emotionModules = import.meta.glob('../assets/emotions/*.svg', {
@@ -76,26 +74,22 @@ export const renderEmotionMarkers = (
 
     const marker = new maplibregl.Marker({
       element: (() => {
+        const el = document.createElement('div');
+        el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 40px; height: 40px;" />`;
 
+        el.style.cursor = 'default';
+        el.addEventListener('mouseenter', () => {
+          el.style.cursor = 'pointer';
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.cursor = 'default';
+        });
 
-        const el = document.createElement("div")
-        el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 40px; height: 40px;" />`
+        el.addEventListener('click', () => {
+          onMarkerClick(checked_emotion.user_id);
+        });
 
-        el.style.cursor = "default"
-        el.addEventListener("mouseenter", () => {
-          el.style.cursor = "pointer"
-        })
-        el.addEventListener("mouseleave", () => {
-          el.style.cursor = "default"
-        })
-
-        el.addEventListener("click", () => {
-          onMarkerClick(checked_emotion.user_id)
-        })
-
-        return el
-
-
+        return el;
       })(),
       anchor: 'bottom',
     }).setLngLat([lng + offset, lat + offset]);

@@ -19,12 +19,10 @@ export const EMOTIONS_ENDPOINTS = {
   GET_AVAILABLE_EMOTIONS: `${API_URL}/emociones/emotions/available/`,
   GET_LAST_EMOTION: `${API_URL}/emociones/user/emotions/last/`,
   GET_NEARBY_EMOTIONS: `${API_URL}/emociones/api/nearby-emotions`,
-
-} as const
+} as const;
 
 // Messages endpoints
 export const MESSAGES_ENDPOINTS = {
   SEND_SUPPORT: `${API_URL}/mensajes/api/send-support/`,
   GET_TEMPLATE_MESSAGES: `${API_URL}/mensajes/templates/`,
-} as const
-
+} as const;
