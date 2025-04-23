@@ -81,14 +81,13 @@ const Emotions: React.FC = () => {
 
   const getIconSize = () => {
     switch (screenSize) {
-      case "sm":
-        return "3rem"
+      case "xl":
+        return "5.25rem"
       case "md":
-        return "4.5rem"
       case "lg":
-        return "5.25rem"
+        return "4rem"
       default:
-        return "5.25rem"
+        return "3rem"
     }
   }
 

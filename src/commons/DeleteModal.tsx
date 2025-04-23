@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import CustomButton from './CommonButton';
 import CustomTextField from './CommonTextField';
 import { useState } from 'react';
-import theme from '../theme';
 
 interface ModalProps {
   open: boolean;
@@ -111,25 +110,13 @@ export default function Modal({
         }}>
           <CustomButton
             text={t('common.delete')}
-            variantType="secondary"
+            variantType="cancel-fill"
             onClick={handleConfirm}
-            sx={{
-              backgroundColor: theme.colors.red,
-              color: 'white',
-              border: 'none',
-              fontWeight: 'light',
-              '&:hover': {
-                backgroundColor: `${theme.colors.red}CC`
-              }
-            }}
           />
           <CustomButton
             text={t('common.cancel')}
             variantType="primary"
             onClick={onClose}
-            sx={{
-              fontWeight: 'light',
-            }}
           />
         </Box>
       </DialogContent>
