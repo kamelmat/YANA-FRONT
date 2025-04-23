@@ -1,7 +1,7 @@
-import { Typography, Box } from "@mui/material";
-import CustomTextField from "../../commons/CommonTextField";
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { validateRepeatPassword, validatePassword } from "../../utils/registerUtils";
+import CustomTextField from "../../commons/CommonTextField";
+import { validatePassword, validateRepeatPassword } from "../../utils/registerUtils";
 
 interface Props {
   password: string;
@@ -16,23 +16,22 @@ interface Props {
 }
 
 export default function RegisterPasswordStage({
-  password, setPassword,
-  repeatPassword, setRepeatPassword,
-  passwordError, setPasswordError,
-  repeatPasswordError, setRepeatPasswordError,
-  passwordStrength
+  password,
+  setPassword,
+  repeatPassword,
+  setRepeatPassword,
+  passwordError,
+  setPasswordError,
+  repeatPasswordError,
+  setRepeatPasswordError,
+  passwordStrength,
 }: Props) {
   const { t } = useTranslation();
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       {/* username for accessibility warning */}
-      <input
-        type="text"
-        name="username"
-        autoComplete="username"
-        style={{ display: 'none' }}
-      />
+      <input type="text" name="username" autoComplete="username" style={{ display: "none" }} />
 
       <CustomTextField
         label={t("register.password.passwordField.label")}
@@ -50,12 +49,18 @@ export default function RegisterPasswordStage({
       {password && (
         <Typography variant="body2" sx={{ color: "#fff", fontWeight: "light" }}>
           {t("register.password.passwordStrength.text")}:{" "}
-          <Box component="span" sx={{
-            color: passwordStrength === t("register.password.passwordStrength.strong") ? "limegreen"
-              : passwordStrength === t("register.password.passwordStrength.medium") ? "orange"
-                : "red",
-            fontWeight: "bold"
-          }}>
+          <Box
+            component="span"
+            sx={{
+              color:
+                passwordStrength === t("register.password.passwordStrength.strong")
+                  ? "limegreen"
+                  : passwordStrength === t("register.password.passwordStrength.medium")
+                    ? "orange"
+                    : "red",
+              fontWeight: "bold",
+            }}
+          >
             {passwordStrength}
           </Box>
         </Typography>

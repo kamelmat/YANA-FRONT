@@ -1,16 +1,16 @@
-import { create } from "zustand"
-import { persist } from "zustand/middleware"
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface AuthState {
-  accessToken: string | null
-  refreshToken: string | null
-  name: string | null
-  avatarId: string | null
-  setAccessToken: (token: string | null) => void
-  setRefreshToken: (token: string | null) => void
-  setName: (name: string | null) => void
-  setAvatarId: (id: string | null) => void
-  clearAuth: () => void
+  accessToken: string | null;
+  refreshToken: string | null;
+  name: string | null;
+  avatarId: string | null;
+  setAccessToken: (token: string | null) => void;
+  setRefreshToken: (token: string | null) => void;
+  setName: (name: string | null) => void;
+  setAvatarId: (id: string | null) => void;
+  clearAuth: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -30,4 +30,4 @@ export const useAuthStore = create<AuthState>()(
       name: "auth-storage",
     }
   )
-)
+);
