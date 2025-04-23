@@ -133,7 +133,7 @@ i18n.use(initReactI18next).init({
         },
         "/contacts": {
           menu: "Contacts",
-          title: "Contacts",
+          title: "Institutions",
           contacts: {
             "Centro de Atención al Suicida (CAS)": {
               description:
@@ -459,7 +459,7 @@ i18n.use(initReactI18next).init({
         },
         "/contacts": {
           menu: "Contactos",
-          title: "Contactos",
+          title: "Instituciones",
           contacts: {
             "Centro de Atención al Suicida (CAS)": {
               description:
@@ -486,7 +486,7 @@ i18n.use(initReactI18next).init({
               schedule: "Horario: disponible las 24 horas, todos los días.",
               phone: "Teléfonos: 102 (línea gratuita).",
             },
-            "Sistema de Atención Médica de Emergencias (SAME)": {
+            "Sistema de Atención Médica de Emergencia (SAME)": {
               description:
                 "Ofrece atención médica de emergencia en caso de accidentes o enfermedades graves.",
               schedule: "Horario: disponible las 24 horas, todos los días.",
