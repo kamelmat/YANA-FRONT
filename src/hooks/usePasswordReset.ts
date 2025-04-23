@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { authService } from "../services/auth";
-import type { PasswordResetRequest } from "../services/auth";
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '../services/auth';
+import type { PasswordResetRequest } from '../services/auth';
 
 export const usePasswordReset = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export const usePasswordReset = () => {
       return await authService.requestPasswordReset(data);
     },
     onSuccess: () => {
-      navigate("/login");
+      navigate('/login');
     },
   });
 };

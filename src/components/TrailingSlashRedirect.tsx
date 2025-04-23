@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const TrailingSlashRedirect = () => {
   const location = useLocation();
@@ -7,7 +7,7 @@ const TrailingSlashRedirect = () => {
 
   useEffect(() => {
     const pathname = location.pathname;
-    if (pathname !== "/" && pathname.endsWith("/")) {
+    if (pathname !== '/' && pathname.endsWith('/')) {
       const newPathname = pathname.slice(0, -1);
       navigate(newPathname + location.search, { replace: true });
     }

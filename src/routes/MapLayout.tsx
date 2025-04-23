@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import { MapView } from "../components/MapView";
-import { useAvailableEmotions } from "../hooks/useAvailableEmotions";
-import { usePersistentEmotionsStore } from "../store/emotionsStore";
+import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { MapView } from '../components/MapView';
+import { useAvailableEmotions } from '../hooks/useAvailableEmotions';
+import { usePersistentEmotionsStore } from '../store/emotionsStore';
 
 const MapLayout = () => {
   const { data: availableEmotions } = useAvailableEmotions();

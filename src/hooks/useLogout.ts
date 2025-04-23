@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { authService } from "../services/auth";
-import { useAuthStore } from "../store/authStore";
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '../services/auth';
+import { useAuthStore } from '../store/authStore';
 
 export const useLogout = () => {
   const navigate = useNavigate();
@@ -11,16 +11,16 @@ export const useLogout = () => {
   return useMutation({
     mutationFn: () => {
       if (!accessToken || !refreshToken) {
-        throw new Error("No tokens available");
+        throw new Error('No tokens available');
       }
       return authService.logout(accessToken, refreshToken);
     },
     onMutate: () => {
       useAuthStore.getState().clearAuth();
-      navigate("/login");
+      navigate('/login');
     },
     onError: (error) => {
-      console.error("Logout error:", error);
+      console.error('Logout error:', error);
     },
   });
 };
