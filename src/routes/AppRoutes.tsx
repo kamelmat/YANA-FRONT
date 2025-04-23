@@ -9,11 +9,10 @@ import AccountSettings from "../pages/profile/AccountSettings"
 import ConfigurationSettings from "../pages/profile/ConfigurationSettings"
 import InteractionsSettings from "../pages/profile/InteractionsSettings"
 import FAQ from "../pages/FAQ"
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import MapLayout from "./MapLayout"
 import ProtectedRoute from "../components/ProtectedRoute"
 import { useTokenRefresh } from "../hooks/useTokenRefresh"
-import { useAuthStore } from "../store/authStore"
 import Onboarding from "../pages/Onboarding"
 import TrailingSlashRedirect from "../components/TrailingSlashRedirect"
 import ResetPassword from "../pages/ResetPassword"
@@ -21,7 +20,6 @@ import ResetPasswordConfirm from "../pages/ResetPasswordConfirm"
 
 const AppRoutes: React.FC = () => {
   useTokenRefresh();
-  const accessToken = useAuthStore((state) => state.accessToken);
 
   return (
     <>
@@ -42,7 +40,6 @@ const AppRoutes: React.FC = () => {
           <Route path="/profile/configuration" element={<ConfigurationSettings />} />
           <Route path="/profile/interactions" element={<InteractionsSettings />} />
         </Route>
-        <Route path="*" element={<Navigate to={accessToken ? "/" : "/login"} replace />} />
       </Routes>
     </>
   )
