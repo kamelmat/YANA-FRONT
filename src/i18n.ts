@@ -134,6 +134,39 @@ i18n.use(initReactI18next).init({
         "/contacts": {
           menu: "Contacts",
           title: "Contacts",
+          contacts: {
+            "Centro de Atención al Suicida (CAS)": {
+              description:
+                "Provides care and assistance to people in emotional crisis or at risk of suicide.",
+              schedule: "Hours: available 24/7, every day.",
+              phone:
+                "Phone: 135 (toll-free from landlines in CABA and Greater Buenos Aires) or (011) 5275-1135 (from anywhere in the country).",
+            },
+            "Programa Nacional de Prevención del Suicidio": {
+              description:
+                "Offers support, information, and counseling to people in crisis or those seeking to help someone in that situation.",
+              schedule: "Hours: available 24/7, every day.",
+              phone: "Phone: 141 (toll-free and confidential line).",
+            },
+            "Salud Mental": {
+              description:
+                "Provides assistance, support, and referrals for mental health emergencies.",
+              schedule: "Hours: available 24/7, every day.",
+              phone: "Phone: 0800 999 0091 (toll-free line).",
+            },
+            "Atención a Niñas, Niños y Adolescentes": {
+              description:
+                "Provides support, counseling, and guidance on the rights of children and adolescents.",
+              schedule: "Hours: available 24/7, every day.",
+              phone: "Phone: 102 (toll-free line).",
+            },
+            "Sistema de Atención Médica de Emergencias (SAME)": {
+              description:
+                "Provides emergency medical care in case of accidents or serious illnesses.",
+              schedule: "Hours: available 24/7, every day.",
+              phone: "Phone: 107 (toll-free line).",
+            },
+          },
         },
         "/FAQ": {
           menu: "FAQ",
@@ -427,6 +460,39 @@ i18n.use(initReactI18next).init({
         "/contacts": {
           menu: "Contactos",
           title: "Contactos",
+          contacts: {
+            "Centro de Atención al Suicida (CAS)": {
+              description:
+                "Brinda atención y asistencia a personas en crisis emocional o en riesgo de suicidio.",
+              schedule: "Horario: disponible las 24 horas, todos los días.",
+              phone:
+                "Teléfonos: 135 (línea gratuita desde teléfonos fijos en CABA y Gran Buenos Aires) o (011) 5275-1135 (desde cualquier parte del país).",
+            },
+            "Programa Nacional de Prevención del Suicidio": {
+              description:
+                "Ofrece contención, información y asesoramiento a personas en crisis o a quienes buscan ayudar a alguien en esa situación.",
+              schedule: "Horario: disponible las 24 horas, todos los días.",
+              phone: "Teléfonos: 141 (línea gratuita y confidencial).",
+            },
+            "Salud Mental": {
+              description:
+                "Ofrece asistencia, acompañamiento y derivación en casos de urgencias en salud mental.",
+              schedule: "Horario: disponible las 24 horas, todos los días.",
+              phone: "Teléfonos: 0800 999 0091 (línea gratuita).",
+            },
+            "Atención a Niñas, Niños y Adolescentes": {
+              description:
+                "Brinda contención, asesoramiento y orientación sobre los derechos de niñas, niños y adolescentes.",
+              schedule: "Horario: disponible las 24 horas, todos los días.",
+              phone: "Teléfonos: 102 (línea gratuita).",
+            },
+            "Sistema de Atención Médica de Emergencias (SAME)": {
+              description:
+                "Ofrece atención médica de emergencia en caso de accidentes o enfermedades graves.",
+              schedule: "Horario: disponible las 24 horas, todos los días.",
+              phone: "Teléfonos: 107 (línea gratuita).",
+            },
+          },
         },
         "/FAQ": {
           menu: "FAQ",
