@@ -1,5 +1,5 @@
-import LogIn from "../components/LoginComponent"
-import useScreenSize from '../hooks/useScreenSize';
+import LogIn from "../components/LoginComponent";
+import useScreenSize from "../hooks/useScreenSize";
 
 import AuthContainer from "../commons/AuthContainer";
 

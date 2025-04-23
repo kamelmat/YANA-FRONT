@@ -1,3 +1,4 @@
+
 import {
   Dialog,
   DialogContent,
@@ -44,6 +45,7 @@ export default function MarkerModal({
   }
 
   const icons = [buttonSendGreen, buttonSendOrange, buttonSendPink, buttonSendPurple]
+
 
   return (
     <Dialog
@@ -100,9 +102,11 @@ export default function MarkerModal({
               </Box>
               <Divider sx={{ borderColor: "gray", marginY: 1 }} />
             </Box>
+
           )
         })}
+
       </DialogContent>
     </Dialog>
-  )
+  );
 }

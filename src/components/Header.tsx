@@ -1,22 +1,22 @@
-import { Box, IconButton, Typography } from "@mui/material"
-import { useLocation, useNavigate } from "react-router-dom"
-import styled from "@emotion/styled"
-import useScreenSize from "../hooks/useScreenSize"
-import { useAuthStore } from "../store/authStore"
-import { getFormattedDate } from "../utils/getFormattedDate"
-import { useTranslation } from "react-i18next"
+import styled from "@emotion/styled";
+import { Box, IconButton, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useLocation, useNavigate } from "react-router-dom";
+import useScreenSize from "../hooks/useScreenSize";
+import { useAuthStore } from "../store/authStore";
+import { getFormattedDate } from "../utils/getFormattedDate";
 
-import Logo from "../assets/branding/yana.svg?url"
-import Slogan_ES from "../assets/branding/slogan_es.svg?url"
-import Slogan_EN from "../assets/branding/slogan_en.svg?url"
-import NotificationsIcon from "../assets/icons/notifications.svg?url"
-import BackIcon from "../assets/icons/back.svg?url"
-import ProfileIcon from "../assets/icons/profile.svg?url"
+import Slogan_EN from "../assets/branding/slogan_en.svg?url";
+import Slogan_ES from "../assets/branding/slogan_es.svg?url";
+import Logo from "../assets/branding/yana.svg?url";
+import BackIcon from "../assets/icons/back.svg?url";
+import NotificationsIcon from "../assets/icons/notifications.svg?url";
+import ProfileIcon from "../assets/icons/profile.svg?url";
 
-import theme from "../theme"
+import theme from "../theme";
 
-import "@fontsource/league-spartan"
-import HamburgerMenu from "./HamburgerMenu"
+import "@fontsource/league-spartan";
+import HamburgerMenu from "./HamburgerMenu";
 
 const CustomIconButton = styled(IconButton)(() => ({
   transition: "transform 0.2s ease-in-out",
@@ -24,20 +24,26 @@ const CustomIconButton = styled(IconButton)(() => ({
   "&:hover": {
     transform: "scale(1.15)",
   },
-}))
+}));
 
 export default function Header() {
-  const screenSize = useScreenSize()
-  const name = useAuthStore((state) => state.name)
-  const date = getFormattedDate()
-  const location = useLocation().pathname
-  const navigate = useNavigate()
-  const { t } = useTranslation()
+  const screenSize = useScreenSize();
+  const name = useAuthStore((state) => state.name);
+  const date = getFormattedDate();
+  const location = useLocation().pathname;
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
-  const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh"
-  const isDesktop = screenSize === "lg" || screenSize === "xl"
+  const iconSize = screenSize === "sm" ? "21px" : screenSize === "md" ? "35px" : "2.5vh";
+  const isDesktop = screenSize === "lg" || screenSize === "xl";
 
-  if (location === "/login" || location === "/register" || location === "/onboarding" || location.startsWith("/reset-password")) return
+  if (
+    location === "/login" ||
+    location === "/register" ||
+    location === "/onboarding" ||
+    location.startsWith("/reset-password")
+  )
+    return;
 
   return (
     <Box
@@ -47,7 +53,8 @@ export default function Header() {
         justifyContent: "space-between",
         width: "100%",
         height: "8vh",
-        backgroundColor: screenSize === "sm" ? theme.colors.darkPurple : theme.colors.blackBackground,
+        backgroundColor:
+          screenSize === "sm" ? theme.colors.darkPurple : theme.colors.blackBackground,
         padding: "0 1.25rem",
         position: "fixed",
         top: 0,
@@ -65,7 +72,13 @@ export default function Header() {
               style={{ width: "3rem", cursor: "pointer" }}
               onClick={() => navigate("/")}
             />
-            {isDesktop && <img src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN} alt="Slogan" style={{ height: "4.5vh" }} />}
+            {isDesktop && (
+              <img
+                src={navigator.language.includes("es") ? Slogan_ES : Slogan_EN}
+                alt="Slogan"
+                style={{ height: "4.5vh" }}
+              />
+            )}
           </>
         )}
         {screenSize === "sm" && (
@@ -83,7 +96,10 @@ export default function Header() {
                 >
                   {t("header.welcome", { name })}
                 </Typography>
-                <Typography variant="body1" sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}>
+                <Typography
+                  variant="body1"
+                  sx={{ color: "white", lineHeight: 1, fontFamily: "League Spartan" }}
+                >
                   {date}
                 </Typography>
               </>
@@ -105,11 +121,11 @@ export default function Header() {
           textAlign: "center",
         }}
       >
-        {location !== "/" && location !== "/FAQ" && !isDesktop && 
+        {location !== "/" && location !== "/FAQ" && !isDesktop && (
           <Typography variant="h5" sx={{ color: "white" }}>
             {t(`${location}.title`)}
           </Typography>
-        }
+        )}
       </Box>
 
       <Box sx={{ display: "flex", alignItems: "center", gap: "1rem" }}>
@@ -124,5 +140,5 @@ export default function Header() {
         )}
       </Box>
     </Box>
-  )
+  );
 }
