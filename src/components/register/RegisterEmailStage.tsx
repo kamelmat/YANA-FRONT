@@ -1,6 +1,6 @@
-import { useTranslation } from "react-i18next";
-import CustomTextField from "../../commons/CommonTextField";
-import { validateEmail } from "../../utils/registerUtils";
+import { useTranslation } from 'react-i18next';
+import CustomTextField from '../../commons/CommonTextField';
+import { validateEmail } from '../../utils/registerUtils';
 
 interface Props {
   name: string;
@@ -38,32 +38,32 @@ export default function RegisterEmailStage({
   return (
     <>
       <CustomTextField
-        label={t("register.email.nameField.label")}
+        label={t('register.email.nameField.label')}
         value={name}
         setValue={setName}
-        placeholder={t("register.email.nameField.placeholder")}
+        placeholder={t('register.email.nameField.placeholder')}
         error={!!nameError}
         helperText={nameError}
         onBlur={handleNameBlur}
       />
       <CustomTextField
-        label={t("register.email.lastNameField.label")}
+        label={t('register.email.lastNameField.label')}
         value={lastName}
         setValue={setLastName}
-        placeholder={t("register.email.lastNameField.placeholder")}
+        placeholder={t('register.email.lastNameField.placeholder')}
         error={!!lastNameError}
         helperText={lastNameError}
         onBlur={handleLastNameBlur}
       />
       <CustomTextField
-        label={t("register.email.emailField.label")}
+        label={t('register.email.emailField.label')}
         value={email}
         setValue={(val: string) => {
           setEmail(val);
           const error = validateEmail(val);
           setEmailError(error);
         }}
-        placeholder={t("register.email.emailField.placeholder")}
+        placeholder={t('register.email.emailField.placeholder')}
         error={!!emailError}
         helperText={emailError}
         onBlur={() => {

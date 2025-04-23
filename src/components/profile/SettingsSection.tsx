@@ -1,8 +1,8 @@
-import { Box, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import useScreenSize from "../../hooks/useScreenSize";
-import { useSettingsStore } from "../../store/useSettingsStore";
-import theme from "../../theme";
+import { Box, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import useScreenSize from '../../hooks/useScreenSize';
+import { useSettingsStore } from '../../store/useSettingsStore';
+import theme from '../../theme';
 
 interface SettingsSectionProps {
   title: string;
@@ -27,17 +27,17 @@ export default function SettingsSection({
   const { t } = useTranslation();
   const { settings } = useSettingsStore();
 
-  if (screenSize === "sm") {
+  if (screenSize === 'sm') {
     return (
       <Box
         sx={{
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
           margin: 0,
-          padding: "6em 1em",
-          gap: "1.25rem",
+          padding: '6em 1em',
+          gap: '1.25rem',
           backgroundColor: settings.customization
             ? theme.colors[settings.customization as keyof typeof theme.colors]
             : theme.colors.defaultBackground,
@@ -45,11 +45,11 @@ export default function SettingsSection({
       >
         <Box
           sx={{
-            width: "100%",
-            maxWidth: "600px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
+            width: '100%',
+            maxWidth: '600px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
           }}
         >
           {children}
@@ -63,23 +63,23 @@ export default function SettingsSection({
       sx={{
         gridRow: gridRow,
         gridColumn: gridColumn,
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
       }}
     >
       <Box
         sx={{
-          display: "grid",
-          gridTemplateRows: "repeat(4, 1fr)",
-          height: "100%",
-          gap: "1em",
+          display: 'grid',
+          gridTemplateRows: 'repeat(4, 1fr)',
+          height: '100%',
+          gap: '1em',
         }}
       >
         <Typography
           variant="h2"
           sx={{
-            color: "white",
+            color: 'white',
           }}
         >
           {t(title)}

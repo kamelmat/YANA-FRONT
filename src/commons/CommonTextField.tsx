@@ -1,9 +1,9 @@
-import { TextField } from "@mui/material";
-import type { TextFieldProps } from "@mui/material";
-import type { ChangeEvent } from "react";
-import theme from "../theme";
+import { TextField } from '@mui/material';
+import type { TextFieldProps } from '@mui/material';
+import type { ChangeEvent } from 'react';
+import theme from '../theme';
 
-interface CustomTextFieldProps extends Omit<TextFieldProps, "value" | "onChange" | "label"> {
+interface CustomTextFieldProps extends Omit<TextFieldProps, 'value' | 'onChange' | 'label'> {
   label: string;
   value: string;
   setValue: (val: string) => void;
@@ -37,49 +37,49 @@ export default function CustomTextField({
       placeholder={placeholder}
       sx={{
         ...rest.sx,
-        "& .MuiOutlinedInput-root": {
+        '& .MuiOutlinedInput-root': {
           color: theme.colors.lightGray,
-          "& .MuiOutlinedInput-notchedOutline": {
+          '& .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.colors.lightGray,
-            borderWidth: "1px",
+            borderWidth: '1px',
           },
-          "&:hover .MuiOutlinedInput-notchedOutline": {
+          '&:hover .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.colors.lightBlue,
           },
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.colors.lightBlue,
           },
-          "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.colors.lightRed,
           },
         },
-        "& .MuiInputLabel-root": {
+        '& .MuiInputLabel-root': {
           color: theme.colors.lightGray,
-          "&.Mui-focused": {
+          '&.Mui-focused': {
             color: theme.colors.lightBlue,
           },
-          "&.Mui-error": {
+          '&.Mui-error': {
             color: theme.colors.lightRed,
           },
         },
-        "& .MuiFormHelperText-root": {
-          "&.Mui-error": {
+        '& .MuiFormHelperText-root': {
+          '&.Mui-error': {
             color: theme.colors.lightRed,
           },
         },
-        "& input": {
-          backgroundColor: "transparent !important",
+        '& input': {
+          backgroundColor: 'transparent !important',
         },
-        "& input:-webkit-autofill": {
-          WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
-          WebkitTextFillColor: "#fff !important",
-          transition: "background-color 9999s ease-in-out 0s !important",
+        '& input:-webkit-autofill': {
+          WebkitBoxShadow: '0 0 0px 1000px transparent inset !important',
+          WebkitTextFillColor: '#fff !important',
+          transition: 'background-color 9999s ease-in-out 0s !important',
         },
-        "& input:-webkit-autofill:hover, & input:-webkit-autofill:focus, & input:-webkit-autofill:active":
+        '& input:-webkit-autofill:hover, & input:-webkit-autofill:focus, & input:-webkit-autofill:active':
           {
-            WebkitBoxShadow: "0 0 0px 1000px transparent inset !important",
-            WebkitTextFillColor: "#fff !important",
-            transition: "background-color 9999s ease-in-out 0s !important",
+            WebkitBoxShadow: '0 0 0px 1000px transparent inset !important',
+            WebkitTextFillColor: '#fff !important',
+            transition: 'background-color 9999s ease-in-out 0s !important',
           },
       }}
     />
