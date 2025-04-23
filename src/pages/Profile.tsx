@@ -1,5 +1,5 @@
-import ProfileMobile from "../components/profile/ProfileMobile";
 import ProfileDesktop from "../components/profile/ProfileDesktop";
+import ProfileMobile from "../components/profile/ProfileMobile";
 import useScreenSize from "../hooks/useScreenSize";
 
 export default function Profile() {
@@ -8,6 +8,6 @@ export default function Profile() {
   if (screenSize !== "sm") {
     return <ProfileDesktop />;
   }
-  
+
   return <ProfileMobile />;
 }
