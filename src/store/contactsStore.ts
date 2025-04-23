@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import type { Contact } from "../services/contacts";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import type { Contact } from '../services/contacts';
 
 interface ContactsState {
   contacts: Contact[];
@@ -14,7 +14,7 @@ export const useContactsStore = create<ContactsState>()(
       setContacts: (contacts) => set({ contacts }),
     }),
     {
-      name: "contacts-storage",
+      name: 'contacts-storage',
     }
   )
 );

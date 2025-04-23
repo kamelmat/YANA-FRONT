@@ -1,5 +1,5 @@
-import { RESOURCES_ENDPOINTS } from "../config/apiEndpoints";
-import { getAuthHeaders, handleApiError } from "../utils/apiUtils";
+import { RESOURCES_ENDPOINTS } from '../config/apiEndpoints';
+import { getAuthHeaders, handleApiError } from '../utils/apiUtils';
 
 export interface Contact {
   name: string;
