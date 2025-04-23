@@ -1,5 +1,7 @@
 
+
 import { EMOTIONS_ENDPOINTS, MESSAGES_ENDPOINTS } from "../config/apiEndpoints"
+
 
 
 export interface CreateEmotionRequest {
@@ -52,9 +54,9 @@ export const emotionsService = {
   ): Promise<CreateEmotionResponse> => {
     try {
       const response = await fetch(EMOTIONS_ENDPOINTS.CREATE_EMOTION, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(data),
@@ -63,12 +65,12 @@ export const emotionsService = {
       const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to create emotion");
+        throw new Error(responseData.message || 'Failed to create emotion');
       }
 
       return responseData;
     } catch (error) {
-      console.error("Create emotion error:", error);
+      console.error('Create emotion error:', error);
       throw error;
     }
   },
@@ -84,12 +86,12 @@ export const emotionsService = {
       const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to get available emotions");
+        throw new Error(responseData.message || 'Failed to get available emotions');
       }
 
       return responseData;
     } catch (error) {
-      console.error("Get available emotions error:", error);
+      console.error('Get available emotions error:', error);
       throw error;
     }
   },
@@ -109,12 +111,12 @@ export const emotionsService = {
       const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to get last emotion");
+        throw new Error(responseData.message || 'Failed to get last emotion');
       }
 
       return responseData;
     } catch (error) {
-      console.error("Get last emotion error:", error);
+      console.error('Get last emotion error:', error);
       throw error;
     }
   },

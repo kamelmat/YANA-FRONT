@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { authService } from "../services/auth";
-import { useAuthStore } from "../store/authStore";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '../services/auth';
+import { useAuthStore } from '../store/authStore';
 
 const TOKEN_REFRESH_THRESHOLD = 5 * 60 * 1000; // 5 minutes before expiration
 
@@ -20,15 +20,15 @@ export const useTokenRefresh = () => {
         const response = await authService.refreshToken(refreshToken);
         setAccessToken(response.access);
       } catch (error) {
-        console.error("Failed to refresh token:", error);
+        console.error('Failed to refresh token:', error);
         clearAuth();
-        navigate("/login");
+        navigate('/login');
       }
     };
 
-    const tokenParts = accessToken.split(".");
+    const tokenParts = accessToken.split('.');
     if (tokenParts.length !== 3) {
-      console.error("Invalid JWT format");
+      console.error('Invalid JWT format');
       return;
     }
 
@@ -48,9 +48,9 @@ export const useTokenRefresh = () => {
 
       return () => clearTimeout(timer);
     } catch (error) {
-      console.error("Error parsing JWT:", error);
+      console.error('Error parsing JWT:', error);
       clearAuth();
-      navigate("/login");
+      navigate('/login');
     }
   }, [accessToken, refreshToken, setAccessToken, clearAuth, navigate]);
 };

@@ -1,4 +1,5 @@
 
+
 import {
   Dialog,
   DialogContent,
@@ -16,6 +17,7 @@ import buttonSendOrange from "../assets/messages/buttonSendOrange.svg"
 import buttonSendPink from "../assets/messages/buttonSendPink.svg"
 import buttonSendPurple from "../assets/messages/buttonSendPurple.svg"
 
+
 interface MarkerModalProps {
   open: boolean
   onClose: () => void
@@ -23,6 +25,7 @@ interface MarkerModalProps {
   position: { x: number; y: number } | null
   sharedEmotion: number | null
 }
+
 
 export default function MarkerModal({
   open,
@@ -47,26 +50,30 @@ export default function MarkerModal({
   const icons = [buttonSendGreen, buttonSendOrange, buttonSendPink, buttonSendPurple]
 
 
+
   return (
     <Dialog
       open={open}
       onClose={onClose}
       sx={{
-        "& .MuiDialog-paper": {
-          backgroundColor: "black",
-          color: "white",
-          minWidth: "250px",
-          maxWidth: "400px",
+        '& .MuiDialog-paper': {
+          backgroundColor: 'black',
+          color: 'white',
+          minWidth: '250px',
+          maxWidth: '400px',
           padding: 0,
+
           position: "absolute",
           top: position?.y ? position.y + 90 : 500,
           left: position?.x ? position.x + 135 : 1000,
           transform: "translate(-50%, -50%)",
           transition: "top 0.3s, left 0.3s",
+
         },
       }}
     >
       <DialogContent sx={{ padding: 2 }}>
+
         {isLoading && <CircularProgress sx={{ color: "white" }} />}
         {isError && <Typography color="error">Error cargando mensajes</Typography>}
         {isSuccess && <Typography color="success.main">¡Mensaje enviado!</Typography>}
@@ -105,6 +112,7 @@ export default function MarkerModal({
 
           )
         })}
+
 
       </DialogContent>
     </Dialog>

@@ -5,14 +5,14 @@ import {
   Radio,
   RadioGroup,
   Typography,
-} from "@mui/material";
-import { useTranslation } from "react-i18next";
-import CommonBox from "../../commons/CommonBox";
-import CommonSwitch from "../../commons/CommonSwitch";
-import SettingsSection from "../../components/profile/SettingsSection";
-import { useProfileRedirect } from "../../hooks/useProfileRedirect";
-import { useSettingsStore } from "../../store/useSettingsStore";
-import theme from "../../theme";
+} from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import CommonBox from '../../commons/CommonBox';
+import CommonSwitch from '../../commons/CommonSwitch';
+import SettingsSection from '../../components/profile/SettingsSection';
+import { useProfileRedirect } from '../../hooks/useProfileRedirect';
+import { useSettingsStore } from '../../store/useSettingsStore';
+import theme from '../../theme';
 export default function ConfigurationSettings() {
   useProfileRedirect();
   const { t } = useTranslation();
@@ -21,48 +21,48 @@ export default function ConfigurationSettings() {
   return (
     <SettingsSection
       title="/profile.configuration"
-      gridRow={{ lg: "6 / 10", sm: "8 / 12" }}
-      gridColumn={{ lg: "4 / 8", sm: "1 / 13" }}
+      gridRow={{ lg: '6 / 10', sm: '8 / 12' }}
+      gridColumn={{ lg: '4 / 8', sm: '1 / 13' }}
     >
       <CommonBox>
         <FormControl
           sx={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            color: "black",
-            backgroundColor: "white",
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            color: 'black',
+            backgroundColor: 'white',
           }}
         >
           <FormLabel
             id="mode-radio-group-label"
-            sx={{ margin: 0, color: "black", fontWeight: "bold" }}
+            sx={{ margin: 0, color: 'black', fontWeight: 'bold' }}
           >
-            {t("/profile.mode")}
+            {t('/profile.mode')}
           </FormLabel>
           <RadioGroup
             aria-labelledby="mode-radio-group-label"
             value={settings.mode}
-            onChange={(e) => updateSetting("mode", e.target.value as "dark" | "light")}
+            onChange={(e) => updateSetting('mode', e.target.value as 'dark' | 'light')}
             name="mode-radio-group"
-            sx={{ display: "flex", flexDirection: "row", gap: 4 }}
+            sx={{ display: 'flex', flexDirection: 'row', gap: 4 }}
           >
             <FormControlLabel
               value="dark"
               control={
                 <Radio
                   sx={{
-                    color: "black",
-                    "&.Mui-checked": {
+                    color: 'black',
+                    '&.Mui-checked': {
                       color: theme.colors.lightBlue,
                     },
                   }}
                 />
               }
-              label={t("/profile.dark")}
+              label={t('/profile.dark')}
               sx={{ margin: 0 }}
             />
             <FormControlLabel
@@ -70,69 +70,69 @@ export default function ConfigurationSettings() {
               control={
                 <Radio
                   sx={{
-                    color: "black",
-                    "&.Mui-checked": {
+                    color: 'black',
+                    '&.Mui-checked': {
                       color: theme.colors.lightBlue,
                     },
                   }}
                 />
               }
-              label={t("/profile.light")}
+              label={t('/profile.light')}
               sx={{ margin: 0 }}
             />
           </RadioGroup>
         </FormControl>
       </CommonBox>
 
-      <CommonBox sx={{ justifyContent: "space-between" }}>
+      <CommonBox sx={{ justifyContent: 'space-between' }}>
         <Typography variant="body1" fontWeight="bold">
-          {t("/profile.appSounds")}
+          {t('/profile.appSounds')}
         </Typography>
         <CommonSwitch
           checked={settings.appSounds}
-          onChange={(e) => updateSetting("appSounds", e.target.checked)}
+          onChange={(e) => updateSetting('appSounds', e.target.checked)}
         />
       </CommonBox>
 
       <CommonBox>
         <FormControl
           sx={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            color: "black",
-            backgroundColor: "white",
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            color: 'black',
+            backgroundColor: 'white',
           }}
         >
           <FormLabel
             id="fontsize-radio-group-label"
-            sx={{ margin: 0, color: "black", fontWeight: "bold" }}
+            sx={{ margin: 0, color: 'black', fontWeight: 'bold' }}
           >
-            {t("/profile.fontsize")}
+            {t('/profile.fontsize')}
           </FormLabel>
           <RadioGroup
             aria-labelledby="fontsize-radio-group-label"
             value={settings.fontSize}
-            onChange={(e) => updateSetting("fontSize", e.target.value as "small" | "large")}
+            onChange={(e) => updateSetting('fontSize', e.target.value as 'small' | 'large')}
             name="fontsize-radio-group"
-            sx={{ display: "flex", flexDirection: "row", gap: 4 }}
+            sx={{ display: 'flex', flexDirection: 'row', gap: 4 }}
           >
             <FormControlLabel
               value="small"
               control={
                 <Radio
                   sx={{
-                    color: "black",
-                    "&.Mui-checked": {
+                    color: 'black',
+                    '&.Mui-checked': {
                       color: theme.colors.lightBlue,
                     },
                   }}
                 />
               }
-              label={t("/profile.small")}
+              label={t('/profile.small')}
               sx={{ margin: 0 }}
             />
             <FormControlLabel
@@ -140,14 +140,14 @@ export default function ConfigurationSettings() {
               control={
                 <Radio
                   sx={{
-                    color: "black",
-                    "&.Mui-checked": {
+                    color: 'black',
+                    '&.Mui-checked': {
                       color: theme.colors.lightBlue,
                     },
                   }}
                 />
               }
-              label={t("/profile.large")}
+              label={t('/profile.large')}
               sx={{ margin: 0 }}
             />
           </RadioGroup>

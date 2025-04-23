@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import type { AvailableEmotion } from "../services/emotions";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import type { AvailableEmotion } from '../services/emotions';
 
 interface PersistentEmotionsState {
   emotions: AvailableEmotion[];
@@ -19,7 +19,7 @@ export const usePersistentEmotionsStore = create<PersistentEmotionsState>()(
       setEmotions: (emotions) => set({ emotions }),
     }),
     {
-      name: "emotions-storage",
+      name: 'emotions-storage',
     }
   )
 );

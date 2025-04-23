@@ -1,8 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
-import type { Stage } from "../pages/Register";
-import { authService } from "../services/auth";
-import type { RegisterData } from "../services/auth";
-import { useAuthStore } from "../store/authStore";
+import { useMutation } from '@tanstack/react-query';
+import type { Stage } from '../pages/Register';
+import { authService } from '../services/auth';
+import type { RegisterData } from '../services/auth';
+import { useAuthStore } from '../store/authStore';
 
 export const useRegister = (setStage: (stage: Stage) => void) => {
   const setAccessToken = useAuthStore(
@@ -30,10 +30,10 @@ export const useRegister = (setStage: (stage: Stage) => void) => {
       return response;
     },
     onSuccess: () => {
-      setStage("done");
+      setStage('done');
     },
     onError: (error: Error) => {
-      console.error("Registration error:", error.message);
+      console.error('Registration error:', error.message);
     },
   });
 };
