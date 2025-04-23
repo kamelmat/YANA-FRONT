@@ -1,5 +1,5 @@
-import { AUTH_ENDPOINTS } from "../config/apiEndpoints";
-import { getAuthHeaders, getDefaultHeaders, handleApiError } from "../utils/apiUtils";
+import { AUTH_ENDPOINTS } from '../config/apiEndpoints';
+import { getAuthHeaders, getDefaultHeaders, handleApiError } from '../utils/apiUtils';
 
 export interface RegisterData {
   name: string;
@@ -44,11 +44,11 @@ export const authService = {
   register: async (data: RegisterData): Promise<RegisterResponse> => {
     try {
       const response = await fetch(AUTH_ENDPOINTS.REGISTER, {
-        method: "POST",
+        method: 'POST',
         headers: getDefaultHeaders(),
         body: JSON.stringify(data),
-        credentials: "include",
-        mode: "cors",
+        credentials: 'include',
+        mode: 'cors',
       });
 
       if (!response.ok) {
@@ -57,7 +57,7 @@ export const authService = {
 
       return response.json();
     } catch (error) {
-      console.error("Register error:", error);
+      console.error('Register error:', error);
       throw error;
     }
   },
@@ -65,7 +65,7 @@ export const authService = {
   login: async (data: LoginData): Promise<LoginResponse> => {
     try {
       const response = await fetch(AUTH_ENDPOINTS.LOGIN, {
-        method: "POST",
+        method: 'POST',
         headers: getDefaultHeaders(),
         body: JSON.stringify(data),
       });
@@ -84,10 +84,10 @@ export const authService = {
   logout: async (accessToken: string, refreshToken: string) => {
     try {
       const response = await fetch(AUTH_ENDPOINTS.LOGOUT, {
-        method: "POST",
+        method: 'POST',
         headers: getAuthHeaders(accessToken),
         body: JSON.stringify({ refresh: refreshToken }),
-        credentials: "include",
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -104,10 +104,10 @@ export const authService = {
   checkEmail: async (email: string): Promise<boolean> => {
     try {
       const response = await fetch(AUTH_ENDPOINTS.CHECK_EMAIL, {
-        method: "POST",
+        method: 'POST',
         headers: getDefaultHeaders(),
         body: JSON.stringify({ email }),
-        credentials: "include",
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -125,7 +125,7 @@ export const authService = {
   refreshToken: async (refreshToken: string) => {
     try {
       const response = await fetch(AUTH_ENDPOINTS.REFRESH_TOKEN, {
-        method: "POST",
+        method: 'POST',
         headers: getDefaultHeaders(),
         body: JSON.stringify({ refresh: refreshToken }),
       });
@@ -144,7 +144,7 @@ export const authService = {
   requestPasswordReset: async (data: PasswordResetRequest) => {
     try {
       const response = await fetch(AUTH_ENDPOINTS.PASSWORD_RESET, {
-        method: "POST",
+        method: 'POST',
         headers: getDefaultHeaders(),
         body: JSON.stringify(data),
       });
@@ -155,7 +155,7 @@ export const authService = {
 
       return response.json();
     } catch (error) {
-      console.error("Password reset request error:", error);
+      console.error('Password reset request error:', error);
       throw error;
     }
   },
@@ -163,7 +163,7 @@ export const authService = {
   confirmPasswordReset: async (data: PasswordResetConfirmRequest) => {
     try {
       const response = await fetch(AUTH_ENDPOINTS.PASSWORD_RESET_CONFIRM, {
-        method: "POST",
+        method: 'POST',
         headers: getDefaultHeaders(),
         body: JSON.stringify(data),
       });
@@ -174,7 +174,7 @@ export const authService = {
 
       return response.json();
     } catch (error) {
-      console.error("Password reset confirmation error:", error);
+      console.error('Password reset confirmation error:', error);
       throw error;
     }
   },

@@ -1,8 +1,8 @@
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { authService } from "../services/auth";
-import type { LoginData } from "../services/auth";
-import { useAuthStore } from "../store/authStore";
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '../services/auth';
+import type { LoginData } from '../services/auth';
+import { useAuthStore } from '../store/authStore';
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -22,6 +22,6 @@ export const useLogin = () => {
 
       return response;
     },
-    onSuccess: () => navigate("/"),
+    onSuccess: () => navigate('/'),
   });
 };
