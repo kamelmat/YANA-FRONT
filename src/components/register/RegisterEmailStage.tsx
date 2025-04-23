@@ -1,5 +1,5 @@
-import CustomTextField from "../../commons/CommonTextField";
 import { useTranslation } from "react-i18next";
+import CustomTextField from "../../commons/CommonTextField";
 import { validateEmail } from "../../utils/registerUtils";
 
 interface Props {
@@ -19,13 +19,19 @@ interface Props {
   isEmailChecked: boolean;
 }
 
-export default function RegisterEmailStage({ 
-  name, setName, 
-  lastName, setLastName, 
-  email, setEmail, 
-  emailError, setEmailError,
-  nameError, lastNameError,
-  handleNameBlur, handleLastNameBlur,
+export default function RegisterEmailStage({
+  name,
+  setName,
+  lastName,
+  setLastName,
+  email,
+  setEmail,
+  emailError,
+  setEmailError,
+  nameError,
+  lastNameError,
+  handleNameBlur,
+  handleLastNameBlur,
 }: Props) {
   const { t } = useTranslation();
 

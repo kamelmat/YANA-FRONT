@@ -1,10 +1,10 @@
-import { Dialog, DialogContent, Divider, Box, Typography } from "@mui/material"
+import { Box, Dialog, DialogContent, Divider, Typography } from "@mui/material";
 
 interface MarkerModalProps {
-  open: boolean
-  onClose: () => void
+  open: boolean;
+  onClose: () => void;
   // userId: string | null
-  position: { x: number; y: number } | null
+  position: { x: number; y: number } | null;
 }
 
 export default function MarkerModal({ open, onClose, position }: MarkerModalProps) {
@@ -13,9 +13,9 @@ export default function MarkerModal({ open, onClose, position }: MarkerModalProp
     { text: "Cuentas con todo mi apoyo", icon: "😿" },
     { text: "¡Ánimo!", icon: "😿" },
     { text: "List item", icon: "😿" },
-  ]
+  ];
 
-  console.log(position?.x, position?.y)
+  console.log(position?.x, position?.y);
 
   return (
     <Dialog
@@ -52,10 +52,12 @@ export default function MarkerModal({ open, onClose, position }: MarkerModalProp
               </Typography>
               <Box sx={{ marginLeft: 1 }}>{response.icon}</Box>
             </Box>
-            {responses.indexOf(response) < responses.length - 1 && <Divider sx={{ borderColor: "gray", marginY: 1 }} />}
+            {responses.indexOf(response) < responses.length - 1 && (
+              <Divider sx={{ borderColor: "gray", marginY: 1 }} />
+            )}
           </Box>
         ))}
       </DialogContent>
     </Dialog>
-  )
+  );
 }

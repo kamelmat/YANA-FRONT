@@ -1,6 +1,6 @@
-import { Switch } from '@mui/material';
-import type { SwitchProps } from '@mui/material';
-import theme from '../theme';
+import { Switch } from "@mui/material";
+import type { SwitchProps } from "@mui/material";
+import theme from "../theme";
 
 const commonSwitchStyles = {
   width: "3.5rem",
@@ -41,4 +41,4 @@ export default function CommonSwitch({ sx, ...rest }: SwitchProps) {
       {...rest}
     />
   );
-} 
+}
