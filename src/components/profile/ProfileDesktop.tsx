@@ -66,13 +66,14 @@ const ProfileDesktop: FC = () => {
         margin: 0,
         padding:{
           sm: "8em",
+          md: "1% 5%",
           lg: "5% 10%"
         },
         gap: "1em",
         backgroundColor: settings.customization ? theme.colors[settings.customization as keyof typeof theme.colors] : theme.colors.defaultBackground,
       }}
     >
-      {(screenSize === "xl") && (
+      {(screenSize === "xl" || screenSize === "lg") && (
         <Typography
           variant="h1"
           sx={{
@@ -109,6 +110,7 @@ const ProfileDesktop: FC = () => {
               sm: "100%"
             },
             aspectRatio: "1/1",
+            mx: screenSize === "md" ? "auto" : 0
           }}
           src={avatarSrc}
           alt="User Avatar"
@@ -155,9 +157,8 @@ const ProfileDesktop: FC = () => {
           text={t("/profile.deleteAccount")}
           icon={<img src={deleteIcon} alt={t("/profile.deleteAccount")} />}
           iconPosition="end"
-          variantType="ghost"
+          variantType="square-cancel"
           onClick={() => setIsDeleteModalOpen(true)}
-          sx={{  borderRadius: "0.75rem", border: screenSize !== "sm" ? `0.25rem solid ${theme.colors.red}` : "none" }}
         />
       </SettingsSection>
 
