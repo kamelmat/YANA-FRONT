@@ -1,12 +1,12 @@
-import { useMutation } from "@tanstack/react-query"
-import { useAuthStore } from "../store/authStore"
-import { useNavigate } from "react-router-dom"
-import { AUTH_ENDPOINTS } from "../config/apiEndpoints"
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { AUTH_ENDPOINTS } from "../config/apiEndpoints";
+import { useAuthStore } from "../store/authStore";
 
 export function useDeleteAccount() {
-  const accessToken = useAuthStore((state) => state.accessToken)
-  const clearAuth = useAuthStore((state) => state.clearAuth)
-  const navigate = useNavigate()
+  const accessToken = useAuthStore((state) => state.accessToken);
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const navigate = useNavigate();
 
   return useMutation({
     mutationFn: async (password: string) => {
@@ -18,19 +18,19 @@ export function useDeleteAccount() {
         },
         body: JSON.stringify({ password }),
         credentials: "include",
-      })
+      });
 
-      const responseData = await response.json()
+      const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to delete account")
+        throw new Error(responseData.message || "Failed to delete account");
       }
 
-      return responseData
+      return responseData;
     },
     onSuccess: () => {
-      clearAuth()
-      navigate("/login")
+      clearAuth();
+      navigate("/login");
     },
-  })
+  });
 }

@@ -1,18 +1,29 @@
-import { Box, Typography, Container, Grid } from "@mui/material"
-import theme from "../theme"
-import Logo from "../assets/branding/yana.svg?url"
-import { useLocation } from "react-router-dom"
-import useScreenSize from "../hooks/useScreenSize"
-import { useTranslation } from "react-i18next"
+import { Box, Container, Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
+import Logo from "../assets/branding/yana.svg?url";
+import useScreenSize from "../hooks/useScreenSize";
+import theme from "../theme";
 
 export const Footer = () => {
-  const location = useLocation().pathname
-  const screenSize = useScreenSize()
-  const { t } = useTranslation()
+  const location = useLocation().pathname;
+  const screenSize = useScreenSize();
+  const { t } = useTranslation();
 
-  if (location === "/login" || location === "/" || location === "/register" || location === "/profile" || location === "/profile/account" || location === "/profile/configuration" || location === "/profile/interactions" || location === "/onboarding" || location.startsWith("/reset-password")) return null
+  if (
+    location === "/login" ||
+    location === "/" ||
+    location === "/register" ||
+    location === "/profile" ||
+    location === "/profile/account" ||
+    location === "/profile/configuration" ||
+    location === "/profile/interactions" ||
+    location === "/onboarding" ||
+    location.startsWith("/reset-password")
+  )
+    return null;
 
-  const sidebarWidth = screenSize === "sm" ? 0 : theme.sidebar?.width
+  const sidebarWidth = screenSize === "sm" ? 0 : theme.sidebar?.width;
 
   return (
     <Box
@@ -58,9 +69,7 @@ export const Footer = () => {
               }}
             >
               <img src={Logo} alt="Logo YouAreNotAlone" style={{ width: 40, height: 40 }} />
-              <Typography variant="h2" >
-                {t("footer.title")}
-              </Typography>
+              <Typography variant="h2">{t("footer.title")}</Typography>
             </Box>
             <Typography variant="body2" sx={{ maxWidth: { xs: 400, sm: 300 } }}>
               {t("footer.copyright")}
@@ -122,7 +131,7 @@ export const Footer = () => {
               }}
             >
               <Typography variant="h5" gutterBottom>
-              {t("footer.contact")}
+                {t("footer.contact")}
               </Typography>
               <Typography variant="body2">Info@yana.com</Typography>
               <Box sx={{ display: "flex", mt: 2, gap: 2 }}>
@@ -142,7 +151,7 @@ export const Footer = () => {
         </Grid>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

@@ -1,92 +1,92 @@
-import maplibregl from "maplibre-gl"
-import "maplibre-gl/dist/maplibre-gl.css"
-import type { RefObject } from "react"
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+import type { RefObject } from "react";
 interface Emotion {
-  latitude: string | number
-  longitude: string | number
-  emotion: string
-  emotion_id: number
+  latitude: string | number;
+  longitude: string | number;
+  emotion: string;
+  emotion_id: number;
 }
 
 const emotionModules = import.meta.glob("../assets/emotions/*.svg", {
   query: "?url",
   import: "default",
   eager: true,
-})
+});
 
-const emotionIcons: Record<string, string> = {}
+const emotionIcons: Record<string, string> = {};
 for (const [path, url] of Object.entries(emotionModules)) {
-  const fileName = path.split("/").pop()
-  if (!fileName) continue
-  const emotionName = fileName.replace(".svg", "").toLowerCase()
-  emotionIcons[emotionName] = url as string
+  const fileName = path.split("/").pop();
+  if (!fileName) continue;
+  const emotionName = fileName.replace(".svg", "").toLowerCase();
+  emotionIcons[emotionName] = url as string;
 }
 
 export const clearMarkers = (markersRef: RefObject<maplibregl.Marker[]>) => {
   if (markersRef.current) {
     for (const marker of markersRef.current) {
-      marker.remove()
+      marker.remove();
     }
-    markersRef.current = []
+    markersRef.current = [];
   }
-}
+};
 export const renderEmotionMarkers = (
   data: Emotion[],
   mapRef: RefObject<maplibregl.Map | null>,
   markersRef: RefObject<maplibregl.Marker[]>,
   onMarkerClick: () => void // 🆕
 ) => {
-  clearMarkers(markersRef)
-  const markerOffsets: Record<string, number> = {}
+  clearMarkers(markersRef);
+  const markerOffsets: Record<string, number> = {};
 
-  let minLat = 90
-  let maxLat = -90
-  let minLng = 180
-  let maxLng = -180
+  let minLat = 90;
+  let maxLat = -90;
+  let minLng = 180;
+  let maxLng = -180;
 
   for (const checked_emotion of data) {
-    if (!checked_emotion.latitude || !checked_emotion.longitude) continue
+    if (!checked_emotion.latitude || !checked_emotion.longitude) continue;
 
-    let lat = Number.parseFloat(checked_emotion.latitude.toString())
-    let lng = Number.parseFloat(checked_emotion.longitude.toString())
+    let lat = Number.parseFloat(checked_emotion.latitude.toString());
+    let lng = Number.parseFloat(checked_emotion.longitude.toString());
 
     if (Math.abs(lat) > 90 || Math.abs(lng) > 180) {
-      ;[lat, lng] = [lng, lat]
+      [lat, lng] = [lng, lat];
     }
 
-    lat = Math.max(-90, Math.min(90, lat))
-    lng = Math.max(-180, Math.min(180, lng))
+    lat = Math.max(-90, Math.min(90, lat));
+    lng = Math.max(-180, Math.min(180, lng));
 
-    minLat = Math.min(minLat, lat)
-    maxLat = Math.max(maxLat, lat)
-    minLng = Math.min(minLng, lng)
-    maxLng = Math.max(maxLng, lng)
+    minLat = Math.min(minLat, lat);
+    maxLat = Math.max(maxLat, lat);
+    minLng = Math.min(minLng, lng);
+    maxLng = Math.max(maxLng, lng);
 
-    const icon = emotionIcons[checked_emotion.emotion.toLowerCase()]
-    if (!icon) continue
+    const icon = emotionIcons[checked_emotion.emotion.toLowerCase()];
+    if (!icon) continue;
 
-    if (Number.isNaN(lat) || Number.isNaN(lng)) continue
+    if (Number.isNaN(lat) || Number.isNaN(lng)) continue;
 
-    const coords = `${lat.toFixed(4)},${lng.toFixed(4)}`
-    markerOffsets[coords] = (markerOffsets[coords] || 0) + 1
-    const offset = markerOffsets[coords] * 0.0001
+    const coords = `${lat.toFixed(4)},${lng.toFixed(4)}`;
+    markerOffsets[coords] = (markerOffsets[coords] || 0) + 1;
+    const offset = markerOffsets[coords] * 0.0001;
 
     const marker = new maplibregl.Marker({
       element: (() => {
-        const el = document.createElement("div")
-        el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 40px; height: 40px;" />`
+        const el = document.createElement("div");
+        el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 40px; height: 40px;" />`;
         el.addEventListener("click", () => {
-          onMarkerClick()
-        })
-        return el
+          onMarkerClick();
+        });
+        return el;
       })(),
       anchor: "bottom",
-    }).setLngLat([lng + offset, lat + offset])
+    }).setLngLat([lng + offset, lat + offset]);
 
     if (mapRef.current) {
-      marker.addTo(mapRef.current)
-      markersRef.current = markersRef.current || []
-      markersRef.current.push(marker)
+      marker.addTo(mapRef.current);
+      markersRef.current = markersRef.current || [];
+      markersRef.current.push(marker);
     }
   }
-}
+};
