@@ -39,8 +39,6 @@ export default function MarkerModal({
       shared_emotion: sharedEmotion,
       template: templateId,
     });
-
-    console.log(sharedEmotion, templateId);
   };
 
   const icons = [buttonSendGreen, buttonSendOrange, buttonSendPink, buttonSendPurple];

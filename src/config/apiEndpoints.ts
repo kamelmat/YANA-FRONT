@@ -26,3 +26,8 @@ export const MESSAGES_ENDPOINTS = {
   SEND_SUPPORT: `${API_URL}/mensajes/api/send-support/`,
   GET_TEMPLATE_MESSAGES: `${API_URL}/mensajes/templates/`,
 } as const;
+
+// Resources endpoints
+export const RESOURCES_ENDPOINTS = {
+  GET_RESOURCES: `${API_URL}/recursos/api/resources/`,
+} as const;
