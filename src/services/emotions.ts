@@ -1,32 +1,32 @@
-import { EMOTIONS_ENDPOINTS } from "../config/apiEndpoints"
+import { EMOTIONS_ENDPOINTS } from '../config/apiEndpoints';
 
 export interface CreateEmotionRequest {
-  emotion_id: string
-  latitude: number
-  longitude: number
+  emotion_id: string;
+  latitude: number;
+  longitude: number;
 }
 
 export interface CreateEmotionResponse {
-  id: string
-  emotion_id: string
-  userId: string
-  latitude: number
-  longitude: number
-  createdAt: string
-  updatedAt: string
+  id: string;
+  emotion_id: string;
+  userId: string;
+  latitude: number;
+  longitude: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface AvailableEmotion {
-  id: string
-  name: string
+  id: string;
+  name: string;
 }
 
 export interface LastEmotionResponse {
-  emotion: string
-  latitude: number
-  longitude: number
-  created_at: string
-  is_active: boolean
+  emotion: string;
+  latitude: number;
+  longitude: number;
+  created_at: string;
+  is_active: boolean;
 }
 
 export const emotionsService = {
@@ -36,24 +36,24 @@ export const emotionsService = {
   ): Promise<CreateEmotionResponse> => {
     try {
       const response = await fetch(EMOTIONS_ENDPOINTS.CREATE_EMOTION, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(data),
-      })
+      });
 
-      const responseData = await response.json()
+      const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to create emotion")
+        throw new Error(responseData.message || 'Failed to create emotion');
       }
 
-      return responseData
+      return responseData;
     } catch (error) {
-      console.error("Create emotion error:", error)
-      throw error
+      console.error('Create emotion error:', error);
+      throw error;
     }
   },
 
@@ -63,18 +63,18 @@ export const emotionsService = {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      })
+      });
 
-      const responseData = await response.json()
+      const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to get available emotions")
+        throw new Error(responseData.message || 'Failed to get available emotions');
       }
 
-      return responseData
+      return responseData;
     } catch (error) {
-      console.error("Get available emotions error:", error)
-      throw error
+      console.error('Get available emotions error:', error);
+      throw error;
     }
   },
 
@@ -84,22 +84,22 @@ export const emotionsService = {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      })
+      });
 
       if (response.status === 404) {
-        return null
+        return null;
       }
 
-      const responseData = await response.json()
+      const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to get last emotion")
+        throw new Error(responseData.message || 'Failed to get last emotion');
       }
 
-      return responseData
+      return responseData;
     } catch (error) {
-      console.error("Get last emotion error:", error)
-      throw error
+      console.error('Get last emotion error:', error);
+      throw error;
     }
   },
-}
+};

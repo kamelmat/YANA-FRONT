@@ -1,39 +1,39 @@
-import { create } from "zustand"
-import { persist } from "zustand/middleware"
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface MuteSettings {
-  duration: "1h" | "24h"
-  createdAt: number
+  duration: '1h' | '24h';
+  createdAt: number;
 }
 
 interface Settings {
-  mode: "dark" | "light"
-  appSounds: boolean
-  fontSize: "small" | "large"
-  saveHistory: boolean
-  hideStatus: boolean
-  mute: MuteSettings | null
-  notifications: boolean
-  customization: string
-  avatar: number
+  mode: 'dark' | 'light';
+  appSounds: boolean;
+  fontSize: 'small' | 'large';
+  saveHistory: boolean;
+  hideStatus: boolean;
+  mute: MuteSettings | null;
+  notifications: boolean;
+  customization: string;
+  avatar: number;
 }
 
 interface SettingsStore {
-  settings: Settings
-  updateSetting: <K extends keyof Settings>(key: K, value: Settings[K]) => void
+  settings: Settings;
+  updateSetting: <K extends keyof Settings>(key: K, value: Settings[K]) => void;
 }
 
 const defaultSettings: Settings = {
-  mode: "dark",
+  mode: 'dark',
   appSounds: true,
-  fontSize: "small",
+  fontSize: 'small',
   saveHistory: true,
   hideStatus: false,
   mute: null,
   notifications: true,
-  customization: "lightBlue",
+  customization: 'lightBlue',
   avatar: 34,
-}
+};
 
 export const useSettingsStore = create<SettingsStore>()(
   persist(
@@ -41,24 +41,24 @@ export const useSettingsStore = create<SettingsStore>()(
       settings: defaultSettings,
       updateSetting: (key, value) =>
         set((state) => {
-          if (key === "mute" && value) {
+          if (key === 'mute' && value) {
             return {
               settings: {
                 ...state.settings,
-                [key]: { duration: value as "1h" | "24h", createdAt: Date.now() },
+                [key]: { duration: value as '1h' | '24h', createdAt: Date.now() },
               },
-            }
+            };
           }
           return {
             settings: {
               ...state.settings,
               [key]: value,
             },
-          }
+          };
         }),
     }),
     {
-      name: "settings-storage",
+      name: 'settings-storage',
     }
   )
-)
+);

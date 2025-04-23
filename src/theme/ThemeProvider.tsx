@@ -60,9 +60,5 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
     });
   }, [settings.fontSize]);
 
-  return (
-    <MuiThemeProvider theme={theme}>
-      {children}
-    </MuiThemeProvider>
-  );
-} 
+  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+}

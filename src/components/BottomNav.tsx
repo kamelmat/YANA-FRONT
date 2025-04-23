@@ -1,113 +1,120 @@
-import React from "react"
-import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material"
-import { useTheme } from "@mui/material/styles"
-import type { Theme } from "@mui/material/styles"
-import styled from "@emotion/styled"
-import useScreenSize from "../hooks/useScreenSize"
-import { useLocation, useNavigate } from "react-router-dom"
-import { useTranslation } from "react-i18next"
+import React from 'react';
+import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
+import styled from '@emotion/styled';
+import useScreenSize from '../hooks/useScreenSize';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-import HomeIcon from "../assets/icons/roofing.svg?react"
-import ResourcesIcon from "../assets/icons/loupe.svg?react"
-import ContactsIcon from "../assets/icons/people_outline.svg?react"
-import ProfileIcon from "../assets/icons/sentiment_satisfied_alt.svg?react"
+import HomeIcon from '../assets/icons/roofing.svg?react';
+import ResourcesIcon from '../assets/icons/loupe.svg?react';
+import ContactsIcon from '../assets/icons/people_outline.svg?react';
+import ProfileIcon from '../assets/icons/sentiment_satisfied_alt.svg?react';
 
 interface NavItem {
-  icon: React.ReactNode
-  selectedColor: string
-  route: string
+  icon: React.ReactNode;
+  selectedColor: string;
+  route: string;
 }
 
 interface StyledNavActionProps {
-  selected?: boolean
-  selectedColor?: string
+  selected?: boolean;
+  selectedColor?: string;
 }
 
 const StyledBottomNavAction = styled(BottomNavigationAction, {
-  shouldForwardProp: (prop) => prop !== "selectedColor",
+  shouldForwardProp: (prop) => prop !== 'selectedColor',
 })<StyledNavActionProps>(({ selectedColor }) => ({
-  minWidth: "auto",
-  paddingBottom: "10px",
-  color: "#ffffff",
-  "&.Mui-selected": {
-    color: selectedColor || "#ffffff",
-    "& svg": {
-      color: selectedColor || "#ffffff",
-      "& path": {
-        fill: selectedColor || "#ffffff",
+  minWidth: 'auto',
+  paddingBottom: '10px',
+  color: '#ffffff',
+  '&.Mui-selected': {
+    color: selectedColor || '#ffffff',
+    '& svg': {
+      color: selectedColor || '#ffffff',
+      '& path': {
+        fill: selectedColor || '#ffffff',
       },
     },
   },
-  "& .MuiBottomNavigationAction-label": {
-    fontSize: "inherit",
-    marginTop: "2px",
-    "&.Mui-selected": {
-      fontSize: "inherit",
+  '& .MuiBottomNavigationAction-label': {
+    fontSize: 'inherit',
+    marginTop: '2px',
+    '&.Mui-selected': {
+      fontSize: 'inherit',
     },
   },
-  "& svg": {
-    color: "#ffffff",
-    "& path": {
-      fill: "#ffffff",
+  '& svg': {
+    color: '#ffffff',
+    '& path': {
+      fill: '#ffffff',
     },
   },
-  "&:hover": {
-    background: "transparent",
+  '&:hover': {
+    background: 'transparent',
   },
-  "&:focus": {
-    outline: "none",
+  '&:focus': {
+    outline: 'none',
   },
-}))
+}));
 
 const BottomNav: React.FC = () => {
-  const { t } = useTranslation()
-  const theme = useTheme() as Theme
-  const screenSize = useScreenSize()
-  const navigate = useNavigate()
-  const location = useLocation()
+  const { t } = useTranslation();
+  const theme = useTheme() as Theme;
+  const screenSize = useScreenSize();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems: NavItem[] = [
     {
       icon: <HomeIcon width={24} height={24} />,
       selectedColor: theme.colors.pink,
-      route: "/",
+      route: '/',
     },
     {
       icon: <ResourcesIcon width={24} height={24} />,
       selectedColor: theme.colors.lightBlue,
-      route: "/resources",
+      route: '/resources',
     },
     {
       icon: <ContactsIcon width={24} height={24} />,
       selectedColor: theme.colors.yellow,
-      route: "/contacts",
+      route: '/contacts',
     },
     {
       icon: <ProfileIcon width={24} height={24} />,
       selectedColor: theme.colors.green,
-      route: "/profile",
+      route: '/profile',
     },
-  ]
+  ];
 
-  if (screenSize !== "sm" || location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/onboarding" || location.pathname.startsWith("/reset-password")) return
+  if (
+    screenSize !== 'sm' ||
+    location.pathname === '/login' ||
+    location.pathname === '/register' ||
+    location.pathname === '/onboarding' ||
+    location.pathname.startsWith('/reset-password')
+  )
+    return;
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
-    navigate(navItems[newValue].route)
-  }
+    navigate(navItems[newValue].route);
+  };
 
-  const currentIndex = navItems.findIndex(item => item.route === location.pathname);
+  const currentIndex = navItems.findIndex((item) => item.route === location.pathname);
 
   return (
     <Paper
       component="nav"
       elevation={3}
       sx={{
-        position: "fixed",
+        position: 'fixed',
         bottom: 0,
         left: 0,
         right: 0,
         borderRadius: `${theme.borders?.borderRadius} ${theme.borders?.borderRadius} 0 0`,
-        height: "20vw",
+        height: '20vw',
         background: theme.gradients.gradientBlack,
         zIndex: 900,
       }}
@@ -117,11 +124,11 @@ const BottomNav: React.FC = () => {
         onChange={handleChange}
         showLabels
         sx={{
-          background: "transparent",
-          height: "100%",
-          "& .MuiBottomNavigationAction-label": {
+          background: 'transparent',
+          height: '100%',
+          '& .MuiBottomNavigationAction-label': {
             fontSize: theme.typography.body3.fontSize,
-            "&.Mui-selected": {
+            '&.Mui-selected': {
               fontSize: theme.typography.body3.fontSize,
             },
           },
@@ -138,7 +145,7 @@ const BottomNav: React.FC = () => {
         ))}
       </BottomNavigation>
     </Paper>
-  )
-}
+  );
+};
 
-export default React.memo(BottomNav)
+export default React.memo(BottomNav);

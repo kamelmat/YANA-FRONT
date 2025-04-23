@@ -18,11 +18,14 @@ export default function ResetPassword() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    resetPassword({ email }, {
-      onSettled: () => {
-        setIsLoading(false);
+    resetPassword(
+      { email },
+      {
+        onSettled: () => {
+          setIsLoading(false);
+        },
       }
-    });
+    );
   };
 
   const isButtonDisabled = !email || isLoading;
@@ -42,7 +45,13 @@ export default function ResetPassword() {
           padding: screenSize === 'sm' ? '10% 1em' : '',
         }}
       >
-        <Box gap="1em" sx={{ marginTop: '25%' }} display="flex" flexDirection="column" alignItems="center">
+        <Box
+          gap="1em"
+          sx={{ marginTop: '25%' }}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
           <Typography
             variant="h5"
             sx={{
@@ -69,11 +78,11 @@ export default function ResetPassword() {
           disabled={isButtonDisabled}
           icon={isLoading ? <CircularProgress size={20} sx={{ color: 'white' }} /> : undefined}
           sx={{
-            color: "#fff",
-            fontWeight: "normal",
+            color: '#fff',
+            fontWeight: 'normal',
           }}
         />
       </Box>
     </AuthContainer>
   );
-} 
+}
