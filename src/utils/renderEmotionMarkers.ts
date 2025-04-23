@@ -1,6 +1,6 @@
-import maplibregl from "maplibre-gl";
-import "maplibre-gl/dist/maplibre-gl.css";
-import type { RefObject } from "react";
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import type { RefObject } from 'react';
 interface Emotion {
   latitude: string | number;
   longitude: string | number;
@@ -8,17 +8,17 @@ interface Emotion {
   emotion_id: number;
 }
 
-const emotionModules = import.meta.glob("../assets/emotions/*.svg", {
-  query: "?url",
-  import: "default",
+const emotionModules = import.meta.glob('../assets/emotions/*.svg', {
+  query: '?url',
+  import: 'default',
   eager: true,
 });
 
 const emotionIcons: Record<string, string> = {};
 for (const [path, url] of Object.entries(emotionModules)) {
-  const fileName = path.split("/").pop();
+  const fileName = path.split('/').pop();
   if (!fileName) continue;
-  const emotionName = fileName.replace(".svg", "").toLowerCase();
+  const emotionName = fileName.replace('.svg', '').toLowerCase();
   emotionIcons[emotionName] = url as string;
 }
 
@@ -73,14 +73,14 @@ export const renderEmotionMarkers = (
 
     const marker = new maplibregl.Marker({
       element: (() => {
-        const el = document.createElement("div");
+        const el = document.createElement('div');
         el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 40px; height: 40px;" />`;
-        el.addEventListener("click", () => {
+        el.addEventListener('click', () => {
           onMarkerClick();
         });
         return el;
       })(),
-      anchor: "bottom",
+      anchor: 'bottom',
     }).setLngLat([lng + offset, lat + offset]);
 
     if (mapRef.current) {

@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { AUTH_ENDPOINTS } from "../config/apiEndpoints";
-import { useAuthStore } from "../store/authStore";
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { AUTH_ENDPOINTS } from '../config/apiEndpoints';
+import { useAuthStore } from '../store/authStore';
 
 export function useDeleteAccount() {
   const accessToken = useAuthStore((state) => state.accessToken);
@@ -11,26 +11,26 @@ export function useDeleteAccount() {
   return useMutation({
     mutationFn: async (password: string) => {
       const response = await fetch(AUTH_ENDPOINTS.DELETE_ACCOUNT, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({ password }),
-        credentials: "include",
+        credentials: 'include',
       });
 
       const responseData = await response.json();
 
       if (!response.ok) {
-        throw new Error(responseData.message || "Failed to delete account");
+        throw new Error(responseData.message || 'Failed to delete account');
       }
 
       return responseData;
     },
     onSuccess: () => {
       clearAuth();
-      navigate("/login");
+      navigate('/login');
     },
   });
 }

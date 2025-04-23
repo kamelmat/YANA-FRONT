@@ -1,45 +1,45 @@
-import { Box, CircularProgress, Link, Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import back from "../assets/icons/back.svg?url";
-import method from "../assets/register/create.svg?url";
-import done from "../assets/register/done.webp";
-import email from "../assets/register/mail.svg?url";
-import password from "../assets/register/password.svg?url";
-import AuthContainer from "../commons/AuthContainer";
-import CustomButton from "../commons/CommonButton";
-import RegisterDoneStage from "../components/register/RegisterDoneStage";
-import RegisterEmailStage from "../components/register/RegisterEmailStage";
-import RegisterMethodStage from "../components/register/RegisterMethodStage";
-import RegisterPasswordStage from "../components/register/RegisterPasswordStage";
-import useScreenSize from "../hooks/useScreenSize";
-import theme from "../theme";
+import { Box, CircularProgress, Link, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import back from '../assets/icons/back.svg?url';
+import method from '../assets/register/create.svg?url';
+import done from '../assets/register/done.webp';
+import email from '../assets/register/mail.svg?url';
+import password from '../assets/register/password.svg?url';
+import AuthContainer from '../commons/AuthContainer';
+import CustomButton from '../commons/CommonButton';
+import RegisterDoneStage from '../components/register/RegisterDoneStage';
+import RegisterEmailStage from '../components/register/RegisterEmailStage';
+import RegisterMethodStage from '../components/register/RegisterMethodStage';
+import RegisterPasswordStage from '../components/register/RegisterPasswordStage';
+import useScreenSize from '../hooks/useScreenSize';
+import theme from '../theme';
 
 import {
   getPasswordStrength,
   validateEmail,
   validateLastName,
   validateName,
-} from "../utils/registerUtils";
+} from '../utils/registerUtils';
 
-import { useCheckEmail } from "../hooks/useCheckEmail";
-import { useRegister } from "../hooks/useRegister";
-import { useAuthStore } from "../store/authStore";
+import { useCheckEmail } from '../hooks/useCheckEmail';
+import { useRegister } from '../hooks/useRegister';
+import { useAuthStore } from '../store/authStore';
 
-export type Stage = "email" | "password" | "done" | "method";
+export type Stage = 'email' | 'password' | 'done' | 'method';
 
 const STAGE = {
   email: {
-    next: "password",
-    back: "method",
+    next: 'password',
+    back: 'method',
   },
   password: {
-    next: "done",
-    back: "email",
+    next: 'done',
+    back: 'email',
   },
   method: {
-    next: "email",
+    next: 'email',
   },
 };
 
@@ -56,18 +56,18 @@ export default function Register() {
   const { t } = useTranslation();
   const accessToken = useAuthStore((state) => state.accessToken);
 
-  const [stage, setStage] = useState<Stage>("method");
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [repeatPasswordError, setRepeatPasswordError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [lastNameError, setLastNameError] = useState("");
-  const [passwordStrength, setPasswordStrength] = useState("");
+  const [stage, setStage] = useState<Stage>('method');
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [repeatPasswordError, setRepeatPasswordError] = useState('');
+  const [nameError, setNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
+  const [passwordStrength, setPasswordStrength] = useState('');
   const [canContinue, setCanContinue] = useState(false);
   const [emailChecked, setEmailChecked] = useState(false);
 
@@ -75,43 +75,43 @@ export default function Register() {
   const { mutate: checkEmail, isPending: isCheckingEmail } = useCheckEmail();
 
   useEffect(() => {
-    if (stage === "email") {
+    if (stage === 'email') {
       const valid = !validateEmail(email) && !validateName(name) && !validateLastName(lastName);
       setCanContinue(valid);
     }
 
-    if (stage === "password") {
+    if (stage === 'password') {
       const passValid = !passwordError;
       const matchValid = !repeatPasswordError;
       setCanContinue(passValid && matchValid);
       setPasswordStrength(getPasswordStrength(password));
     }
 
-    if (stage === "done") {
+    if (stage === 'done') {
       setCanContinue(true);
     }
   }, [stage, email, password, name, lastName, passwordError, repeatPasswordError]);
 
   const handleClick = async () => {
-    if (stage === "done" && accessToken) {
-      navigate("/onboarding");
+    if (stage === 'done' && accessToken) {
+      navigate('/onboarding');
       return;
     }
 
-    if (stage === "email") {
+    if (stage === 'email') {
       checkEmail(email, {
         onSuccess: (isInUse) => {
           if (!isInUse) {
             setStage(STAGE[stage].next as Stage);
           } else {
-            setEmailError(t("register.email.emailField.error.taken"));
+            setEmailError(t('register.email.emailField.error.taken'));
             setCanContinue(false);
           }
         },
       });
     }
 
-    if (stage === "password") {
+    if (stage === 'password') {
       register({
         name,
         last_name: lastName,
@@ -122,8 +122,8 @@ export default function Register() {
   };
 
   const handleBackClick = () => {
-    if (stage === "method") navigate(-1);
-    else if (stage === "done") return;
+    if (stage === 'method') navigate(-1);
+    else if (stage === 'done') return;
     else setStage(STAGE[stage].back as Stage);
   };
 
@@ -133,31 +133,31 @@ export default function Register() {
         display="flex"
         flexDirection="column"
         justifyContent={
-          screenSize === "sm" || !(stage === "email" || stage === "password")
-            ? "center"
-            : "space-between"
+          screenSize === 'sm' || !(stage === 'email' || stage === 'password')
+            ? 'center'
+            : 'space-between'
         }
         alignItems="center"
         position="relative"
-        sx={{ height: "100%", width: "100%", mt: 2, mb: { xs: 6, md: 2 }, px: 1.5 }}
+        sx={{ height: '100%', width: '100%', mt: 2, mb: { xs: 6, md: 2 }, px: 1.5 }}
       >
-        {stage !== "done" && (
+        {stage !== 'done' && (
           <Box
             component="img"
             src={back}
             alt="back"
             sx={{
-              height: "2em",
-              width: "2em",
-              alignSelf: "flex-start",
-              cursor: "pointer",
-              transition: "transform 0.2s ease-in-out",
-              "&:hover": {
-                transform: "scale(1.15)",
+              height: '2em',
+              width: '2em',
+              alignSelf: 'flex-start',
+              cursor: 'pointer',
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.15)',
               },
-              position: "absolute",
+              position: 'absolute',
               top: 0,
-              left: "1em",
+              left: '1em',
             }}
             onClick={handleBackClick}
           />
@@ -169,36 +169,36 @@ export default function Register() {
           alignItems="center"
           width="100%"
           mt={
-            stage === "method" || stage === "done" || screenSize === "sm" || screenSize === "lg"
+            stage === 'method' || stage === 'done' || screenSize === 'sm' || screenSize === 'lg'
               ? 0
               : 10
           }
         >
           <Box
             sx={{
-              width: screenSize === "sm" ? "35%" : screenSize !== "lg" ? "40%" : "25%",
-              aspectRatio: "1/1",
+              width: screenSize === 'sm' ? '35%' : screenSize !== 'lg' ? '40%' : '25%',
+              aspectRatio: '1/1',
               mb: 3,
             }}
           >
-            <img src={IMGS[stage]} alt={stage} style={{ height: "100%", width: "100%" }} />
+            <img src={IMGS[stage]} alt={stage} style={{ height: '100%', width: '100%' }} />
           </Box>
-          <Typography variant="h3" align="center" sx={{ color: "#fff", fontWeight: "light" }}>
+          <Typography variant="h3" align="center" sx={{ color: '#fff', fontWeight: 'light' }}>
             {t(`register.${stage}.title`)}
           </Typography>
           <Typography
             variant="body2"
             align="center"
             mt={1}
-            sx={{ color: "#fff", fontWeight: "light" }}
+            sx={{ color: '#fff', fontWeight: 'light' }}
           >
             {t(`register.${stage}.subtitle`)}
           </Typography>
 
-          <Stack sx={{ width: "100%", gap: 2, my: 3 }}>
-            {stage === "method" && <RegisterMethodStage onEmailClick={() => setStage("email")} />}
+          <Stack sx={{ width: '100%', gap: 2, my: 3 }}>
+            {stage === 'method' && <RegisterMethodStage onEmailClick={() => setStage('email')} />}
 
-            {stage === "email" && (
+            {stage === 'email' && (
               <RegisterEmailStage
                 name={name}
                 setName={setName}
@@ -217,7 +217,7 @@ export default function Register() {
               />
             )}
 
-            {stage === "password" && (
+            {stage === 'password' && (
               <RegisterPasswordStage
                 password={password}
                 setPassword={setPassword}
@@ -231,34 +231,34 @@ export default function Register() {
               />
             )}
 
-            {stage === "done" && <RegisterDoneStage onContinue={handleClick} />}
+            {stage === 'done' && <RegisterDoneStage onContinue={handleClick} />}
 
-            {stage === "method" && (
+            {stage === 'method' && (
               <Typography
                 variant="body2"
                 align="center"
-                sx={{ color: "#fff", fontWeight: "light" }}
+                sx={{ color: '#fff', fontWeight: 'light' }}
               >
-                {t("register.method.haveAccount")}{" "}
+                {t('register.method.haveAccount')}{' '}
                 <Link
                   underline="none"
-                  sx={{ textTransform: "none", color: theme.colors.lightBlue }}
-                  onClick={() => navigate("/login")}
+                  sx={{ textTransform: 'none', color: theme.colors.lightBlue }}
+                  onClick={() => navigate('/login')}
                 >
-                  {t("register.method.login")}
+                  {t('register.method.login')}
                 </Link>
               </Typography>
             )}
           </Stack>
         </Box>
-        {(stage === "email" || stage === "password") && (
+        {(stage === 'email' || stage === 'password') && (
           <CustomButton
-            text={t("register.continue")}
+            text={t('register.continue')}
             onClick={handleClick}
             disabled={!canContinue || isCheckingEmail || isRegistering}
             icon={
               isCheckingEmail || isRegistering ? (
-                <CircularProgress size={20} sx={{ color: "white" }} />
+                <CircularProgress size={20} sx={{ color: 'white' }} />
               ) : undefined
             }
           />

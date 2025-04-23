@@ -1,6 +1,6 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { emotionsService } from "../services/emotions";
-import { useAuthStore } from "../store/authStore";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { emotionsService } from '../services/emotions';
+import { useAuthStore } from '../store/authStore';
 
 export const useCreateEmotion = () => {
   const accessToken = useAuthStore((state) => state.accessToken);
@@ -8,11 +8,11 @@ export const useCreateEmotion = () => {
 
   return useMutation({
     mutationFn: async (data: { emotion_id: string; latitude: number; longitude: number }) => {
-      if (!accessToken) throw new Error("No access token available");
+      if (!accessToken) throw new Error('No access token available');
       return emotionsService.createEmotion(data, accessToken);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["nearbyEmotions"] });
+      queryClient.invalidateQueries({ queryKey: ['nearbyEmotions'] });
     },
   });
 };

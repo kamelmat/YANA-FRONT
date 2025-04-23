@@ -5,7 +5,7 @@ export interface ApiError {
 }
 
 export const handleApiError = async (response: Response): Promise<never> => {
-  let errorMessage = "An error occurred";
+  let errorMessage = 'An error occurred';
   let errorCode: string | undefined;
 
   try {
@@ -28,10 +28,10 @@ export const handleApiError = async (response: Response): Promise<never> => {
 
 export const getAuthHeaders = (accessToken: string) => ({
   Authorization: `Bearer ${accessToken}`,
-  "Content-Type": "application/json",
+  'Content-Type': 'application/json',
 });
 
 export const getDefaultHeaders = () => ({
-  "Content-Type": "application/json",
-  Accept: "application/json",
+  'Content-Type': 'application/json',
+  Accept: 'application/json',
 });

@@ -1,4 +1,4 @@
-import { API_URL } from "./env";
+import { API_URL } from './env';
 
 // Auth endpoints
 export const AUTH_ENDPOINTS = {
