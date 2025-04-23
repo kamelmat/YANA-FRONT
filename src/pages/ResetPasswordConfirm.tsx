@@ -1,16 +1,16 @@
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Box, Typography, CircularProgress } from '@mui/material';
-import CommonTextField from '../commons/CommonTextField';
-import CommonButton from '../commons/CommonButton';
-import AuthContainer from '../commons/AuthContainer';
-import useScreenSize from '../hooks/useScreenSize';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import AuthContainer from '../commons/AuthContainer';
+import CommonButton from '../commons/CommonButton';
+import CommonTextField from '../commons/CommonTextField';
 import { usePasswordResetConfirm } from '../hooks/usePasswordResetConfirm';
+import useScreenSize from '../hooks/useScreenSize';
 import {
+  getPasswordStrength,
   validatePassword,
   validateRepeatPassword,
-  getPasswordStrength,
 } from '../utils/registerUtils';
 
 export default function ResetPasswordConfirm() {

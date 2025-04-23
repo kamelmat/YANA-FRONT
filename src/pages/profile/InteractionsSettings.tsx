@@ -1,18 +1,18 @@
 import {
-  Typography,
   FormControl,
-  FormLabel,
-  RadioGroup,
   FormControlLabel,
+  FormLabel,
   Radio,
+  RadioGroup,
+  Typography,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import SettingsSection from '../../components/profile/SettingsSection';
 import CommonBox from '../../commons/CommonBox';
 import CommonSwitch from '../../commons/CommonSwitch';
-import theme from '../../theme';
-import { useSettingsStore } from '../../store/useSettingsStore';
+import SettingsSection from '../../components/profile/SettingsSection';
 import { useProfileRedirect } from '../../hooks/useProfileRedirect';
+import { useSettingsStore } from '../../store/useSettingsStore';
+import theme from '../../theme';
 export default function InteractionsSettings() {
   useProfileRedirect();
   const { t } = useTranslation();

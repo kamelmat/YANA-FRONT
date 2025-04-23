@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import { useState, useMemo } from 'react';
 import { Avatar, Box, Typography } from '@mui/material';
+import type { FC } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import theme from '../../theme';
 
@@ -9,17 +9,17 @@ import avatarIcon32 from '../../assets/avatars/avatar_32.svg?url';
 import avatarIcon33 from '../../assets/avatars/avatar_33.svg?url';
 import avatarIcon34 from '../../assets/avatars/avatar_34.svg?url';
 import avatarIcon35 from '../../assets/avatars/avatar_35.svg?url';
-import CustomButton from '../../commons/CommonButton';
 import deleteIcon from '../../assets/icons/cancel.svg?url';
+import CustomButton from '../../commons/CommonButton';
 
-import useScreenSize from '../../hooks/useScreenSize';
 import Modal from '../../commons/DeleteModal';
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
+import useScreenSize from '../../hooks/useScreenSize';
 import AccountSettings from '../../pages/profile/AccountSettings';
 import ConfigurationSettings from '../../pages/profile/ConfigurationSettings';
 import InteractionsSettings from '../../pages/profile/InteractionsSettings';
-import SettingsSection from './SettingsSection';
 import { useSettingsStore } from '../../store/useSettingsStore';
+import SettingsSection from './SettingsSection';
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,

@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
-import theme from '../theme';
 import { useLocation } from 'react-router-dom';
 import registerBackground from '../assets/register/background.webp';
+import theme from '../theme';
 
 interface AuthContainerProps {
   screenSize: string;

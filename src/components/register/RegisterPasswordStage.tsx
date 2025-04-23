@@ -1,7 +1,7 @@
-import { Typography, Box } from '@mui/material';
-import CustomTextField from '../../commons/CommonTextField';
+import { Box, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { validateRepeatPassword, validatePassword } from '../../utils/registerUtils';
+import CustomTextField from '../../commons/CommonTextField';
+import { validatePassword, validateRepeatPassword } from '../../utils/registerUtils';
 
 interface Props {
   password: string;

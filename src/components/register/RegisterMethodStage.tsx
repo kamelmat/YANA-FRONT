@@ -1,7 +1,7 @@
-import { Typography, Link } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import CustomButton from '../../commons/CommonButton';
 import Mail from '../../assets/icons/mail.svg?url';
+import CustomButton from '../../commons/CommonButton';
 import theme from '../../theme';
 
 export default function RegisterMethodStage({ onEmailClick }: { onEmailClick: () => void }) {

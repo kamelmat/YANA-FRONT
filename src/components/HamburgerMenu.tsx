@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   Box,
+  Drawer,
   IconButton,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Drawer,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import PersonIcon from '../assets/icons/account_circle.svg?react';
+import LogoutIcon from '../assets/icons/exit.svg?react';
 import HelpIcon from '../assets/icons/faq.svg?react';
 import SettingsIcon from '../assets/icons/settings.svg?react';
-import LogoutIcon from '../assets/icons/exit.svg?react';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { useLogout } from '../hooks/useLogout';
 
 const HamburgerMenu = () => {

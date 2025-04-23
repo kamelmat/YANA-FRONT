@@ -1,30 +1,30 @@
-import { Typography, Box, Stack, Link, CircularProgress } from '@mui/material';
-import AuthContainer from '../commons/AuthContainer';
-import useScreenSize from '../hooks/useScreenSize';
-import theme from '../theme';
-import CustomButton from '../commons/CommonButton';
-import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Box, CircularProgress, Link, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import RegisterMethodStage from '../components/register/RegisterMethodStage';
-import RegisterEmailStage from '../components/register/RegisterEmailStage';
-import RegisterPasswordStage from '../components/register/RegisterPasswordStage';
-import RegisterDoneStage from '../components/register/RegisterDoneStage';
+import { useNavigate } from 'react-router-dom';
+import back from '../assets/icons/back.svg?url';
 import method from '../assets/register/create.svg?url';
+import done from '../assets/register/done.webp';
 import email from '../assets/register/mail.svg?url';
 import password from '../assets/register/password.svg?url';
-import done from '../assets/register/done.webp';
-import back from '../assets/icons/back.svg?url';
+import AuthContainer from '../commons/AuthContainer';
+import CustomButton from '../commons/CommonButton';
+import RegisterDoneStage from '../components/register/RegisterDoneStage';
+import RegisterEmailStage from '../components/register/RegisterEmailStage';
+import RegisterMethodStage from '../components/register/RegisterMethodStage';
+import RegisterPasswordStage from '../components/register/RegisterPasswordStage';
+import useScreenSize from '../hooks/useScreenSize';
+import theme from '../theme';
 
 import {
-  validateEmail,
   getPasswordStrength,
-  validateName,
+  validateEmail,
   validateLastName,
+  validateName,
 } from '../utils/registerUtils';
 
-import { useRegister } from '../hooks/useRegister';
 import { useCheckEmail } from '../hooks/useCheckEmail';
+import { useRegister } from '../hooks/useRegister';
 import { useAuthStore } from '../store/authStore';
 
 export type Stage = 'email' | 'password' | 'done' | 'method';

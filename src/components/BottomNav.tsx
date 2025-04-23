@@ -1,15 +1,15 @@
-import React from 'react';
+import styled from '@emotion/styled';
 import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
-import styled from '@emotion/styled';
-import useScreenSize from '../hooks/useScreenSize';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useScreenSize from '../hooks/useScreenSize';
 
-import HomeIcon from '../assets/icons/roofing.svg?react';
 import ResourcesIcon from '../assets/icons/loupe.svg?react';
 import ContactsIcon from '../assets/icons/people_outline.svg?react';
+import HomeIcon from '../assets/icons/roofing.svg?react';
 import ProfileIcon from '../assets/icons/sentiment_satisfied_alt.svg?react';
 
 interface NavItem {

@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
-import { useAuthStore } from '../store/authStore';
 import { AUTH_ENDPOINTS } from '../config/apiEndpoints';
+import { useAuthStore } from '../store/authStore';
 
 interface UpdateAvatarResponse {
   success: boolean;

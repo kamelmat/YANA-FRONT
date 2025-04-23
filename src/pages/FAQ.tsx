@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Box,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Divider,
-  TextField,
-} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import SearchIcon from '@mui/icons-material/Search';
-import theme from '../theme';
-import { useSettingsStore } from '../store/useSettingsStore';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Divider,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useScreenSize from '../hooks/useScreenSize';
+import { useSettingsStore } from '../store/useSettingsStore';
+import theme from '../theme';
 
 const FAQ = () => {
   const { t } = useTranslation();

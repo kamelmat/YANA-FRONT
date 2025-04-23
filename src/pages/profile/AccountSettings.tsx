@@ -1,17 +1,17 @@
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import SettingsSection from '../../components/profile/SettingsSection';
-import CommonBox from '../../commons/CommonBox';
-import CommonSwitch from '../../commons/CommonSwitch';
-import { useProfileRedirect } from '../../hooks/useProfileRedirect';
-import theme from '../../theme';
 import avatarIcon31 from '../../assets/avatars/avatar_31.svg?url';
 import avatarIcon32 from '../../assets/avatars/avatar_32.svg?url';
 import avatarIcon33 from '../../assets/avatars/avatar_33.svg?url';
 import avatarIcon34 from '../../assets/avatars/avatar_34.svg?url';
 import avatarIcon35 from '../../assets/avatars/avatar_35.svg?url';
-import { useSettingsStore } from '../../store/useSettingsStore';
+import CommonBox from '../../commons/CommonBox';
+import CommonSwitch from '../../commons/CommonSwitch';
+import SettingsSection from '../../components/profile/SettingsSection';
+import { useProfileRedirect } from '../../hooks/useProfileRedirect';
 import { useUpdateAvatar } from '../../hooks/useUpdateAvatar';
+import { useSettingsStore } from '../../store/useSettingsStore';
+import theme from '../../theme';
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,

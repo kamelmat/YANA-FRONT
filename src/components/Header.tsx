@@ -1,16 +1,16 @@
-import { Box, IconButton, Typography } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { Box, IconButton, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useScreenSize from '../hooks/useScreenSize';
 import { useAuthStore } from '../store/authStore';
 import { getFormattedDate } from '../utils/getFormattedDate';
-import { useTranslation } from 'react-i18next';
 
-import Logo from '../assets/branding/yana.svg?url';
-import Slogan_ES from '../assets/branding/slogan_es.svg?url';
 import Slogan_EN from '../assets/branding/slogan_en.svg?url';
-import NotificationsIcon from '../assets/icons/notifications.svg?url';
+import Slogan_ES from '../assets/branding/slogan_es.svg?url';
+import Logo from '../assets/branding/yana.svg?url';
 import BackIcon from '../assets/icons/back.svg?url';
+import NotificationsIcon from '../assets/icons/notifications.svg?url';
 import ProfileIcon from '../assets/icons/profile.svg?url';
 
 import theme from '../theme';

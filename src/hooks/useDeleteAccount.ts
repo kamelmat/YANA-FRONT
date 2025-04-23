@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { useAuthStore } from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
 import { AUTH_ENDPOINTS } from '../config/apiEndpoints';
+import { useAuthStore } from '../store/authStore';
 
 export function useDeleteAccount() {
   const accessToken = useAuthStore((state) => state.accessToken);

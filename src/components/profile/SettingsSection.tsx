@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import useScreenSize from '../../hooks/useScreenSize';
-import theme from '../../theme';
 import { useTranslation } from 'react-i18next';
+import useScreenSize from '../../hooks/useScreenSize';
 import { useSettingsStore } from '../../store/useSettingsStore';
+import theme from '../../theme';
 
 interface SettingsSectionProps {
   title: string;

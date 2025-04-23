@@ -1,20 +1,20 @@
-import React from 'react';
 import { Box, List, ListItem, ListItemText, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import useScreenSize from '../hooks/useScreenSize';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useScreenSize from '../hooks/useScreenSize';
 
 import { useLogout } from '../hooks/useLogout';
 import { useAuthStore } from '../store/authStore';
 import { getFormattedDate } from '../utils/getFormattedDate';
 
-import HomeIcon from '../assets/icons/roofing.svg?react';
+import ExitIcon from '../assets/icons/exit.svg?react';
+import FAQIcon from '../assets/icons/faq.svg?react';
 import ResourcesIcon from '../assets/icons/loupe.svg?react';
 import ContactsIcon from '../assets/icons/people_outline.svg?react';
-import FAQIcon from '../assets/icons/faq.svg?react';
+import HomeIcon from '../assets/icons/roofing.svg?react';
 import SettingsIcon from '../assets/icons/settings.svg?react';
-import ExitIcon from '../assets/icons/exit.svg?react';
 
 import styled from '@emotion/styled';
 

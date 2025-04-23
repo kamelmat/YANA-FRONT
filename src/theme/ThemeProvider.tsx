@@ -1,7 +1,7 @@
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+import { useMemo } from 'react';
 import { useSettingsStore } from '../store/useSettingsStore';
 import baseTheme from '../theme';
-import { useMemo } from 'react';
 
 interface ThemeProviderProps {
   children: React.ReactNode;

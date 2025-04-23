@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, Divider, Box, Typography } from '@mui/material';
+import { Box, Dialog, DialogContent, Divider, Typography } from '@mui/material';
 
 interface MarkerModalProps {
   open: boolean;

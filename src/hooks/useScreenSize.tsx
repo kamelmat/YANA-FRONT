@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type ScreenSize = 'sm' | 'md' | 'lg' | 'xl';
 

@@ -1,5 +1,5 @@
 import { AUTH_ENDPOINTS } from '../config/apiEndpoints';
-import { handleApiError, getAuthHeaders, getDefaultHeaders } from '../utils/apiUtils';
+import { getAuthHeaders, getDefaultHeaders, handleApiError } from '../utils/apiUtils';
 
 export interface RegisterData {
   name: string;

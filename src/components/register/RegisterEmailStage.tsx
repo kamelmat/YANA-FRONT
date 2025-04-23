@@ -1,5 +1,5 @@
-import CustomTextField from '../../commons/CommonTextField';
 import { useTranslation } from 'react-i18next';
+import CustomTextField from '../../commons/CommonTextField';
 import { validateEmail } from '../../utils/registerUtils';
 
 interface Props {

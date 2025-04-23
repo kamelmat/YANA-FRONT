@@ -1,10 +1,10 @@
 import { Box, Button } from '@mui/material';
 import type { ButtonProps } from '@mui/material';
-import type { ReactNode } from 'react';
-import { darken } from '@mui/material/styles';
-import theme from '../theme';
-import useScreenSize from '../hooks/useScreenSize';
 import type { SxProps, Theme } from '@mui/material';
+import { darken } from '@mui/material/styles';
+import type { ReactNode } from 'react';
+import useScreenSize from '../hooks/useScreenSize';
+import theme from '../theme';
 
 type VariantType =
   | 'primary'

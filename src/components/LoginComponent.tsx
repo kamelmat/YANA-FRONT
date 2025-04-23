@@ -1,15 +1,15 @@
-import Logo from '../assets/branding/yana.svg?url';
-import Slogan_ES from '../assets/branding/slogan_es.svg?url';
 import Slogan_EN from '../assets/branding/slogan_en.svg?url';
+import Slogan_ES from '../assets/branding/slogan_es.svg?url';
+import Logo from '../assets/branding/yana.svg?url';
 import theme from '../theme';
 
 import CustomButton from '../commons/CommonButton';
 import CustomTextField from '../commons/CommonTextField';
 
-import { useState, useEffect } from 'react';
-import { Box, Checkbox, Link, Stack, Typography, CircularProgress } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Box, Checkbox, CircularProgress, Link, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useLogin } from '../hooks/useLogin';
 import useScreenSize from '../hooks/useScreenSize';
 

@@ -1,17 +1,17 @@
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { getUserLocation } from '../utils/getUserLocation';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { useUserLocationStore } from '../store/userLocationStore';
-import marker from '../assets/icons/marker.svg?url';
-import { useLocation } from 'react-router-dom';
-import { useNearbyEmotions } from '../hooks/useNearbyEmotions';
-import { renderEmotionMarkers, clearMarkers } from '../utils/renderEmotionMarkers';
 import { Box, CircularProgress, Typography } from '@mui/material';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import theme from '../theme';
-import { useNonPersistentEmotionsStore } from '../store/emotionsStore';
+import { useLocation } from 'react-router-dom';
+import marker from '../assets/icons/marker.svg?url';
 import { MAP_TILER_KEY } from '../config/env';
+import { useNearbyEmotions } from '../hooks/useNearbyEmotions';
+import { useNonPersistentEmotionsStore } from '../store/emotionsStore';
+import { useUserLocationStore } from '../store/userLocationStore';
+import theme from '../theme';
+import { getUserLocation } from '../utils/getUserLocation';
+import { clearMarkers, renderEmotionMarkers } from '../utils/renderEmotionMarkers';
 import MarkerModal from './MarkerModal';
 
 export const MapView = () => {

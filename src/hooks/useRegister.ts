@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
+import type { Stage } from '../pages/Register';
 import { authService } from '../services/auth';
 import type { RegisterData } from '../services/auth';
-import type { Stage } from '../pages/Register';
 import { useAuthStore } from '../store/authStore';
 
 export const useRegister = (setStage: (stage: Stage) => void) => {

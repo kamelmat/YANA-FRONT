@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import { useState, useMemo } from 'react';
 import { Avatar, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import type { FC } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import theme from '../../theme';
 
 import avatarIcon31 from '../../assets/avatars/avatar_31.svg?url';
@@ -12,17 +12,17 @@ import avatarIcon34 from '../../assets/avatars/avatar_34.svg?url';
 import avatarIcon35 from '../../assets/avatars/avatar_35.svg?url';
 
 import accountIcon from '../../assets/icons/account_circle.svg?url';
-import intaractionsIcon from '../../assets/icons/groups.svg?url';
-import configurationIcon from '../../assets/icons/settings2.svg?url';
-import logoutIcon from '../../assets/icons/logout_blue.svg?url';
-import helpIcon from '../../assets/icons/emergency.svg?url';
 import deleteIcon from '../../assets/icons/cancel.svg?url';
+import helpIcon from '../../assets/icons/emergency.svg?url';
+import intaractionsIcon from '../../assets/icons/groups.svg?url';
+import logoutIcon from '../../assets/icons/logout_blue.svg?url';
+import configurationIcon from '../../assets/icons/settings2.svg?url';
 
 import CustomButton from '../../commons/CommonButton';
 import Modal from '../../commons/DeleteModal';
 import { useDeleteAccount } from '../../hooks/useDeleteAccount';
-import { useSettingsStore } from '../../store/useSettingsStore';
 import { useLogout } from '../../hooks/useLogout';
+import { useSettingsStore } from '../../store/useSettingsStore';
 
 const AVATAR_IMAGES = {
   31: avatarIcon31,

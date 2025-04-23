@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { useAuthStore } from '../store/authStore';
 import { EMOTIONS_ENDPOINTS } from '../config/apiEndpoints';
+import { useAuthStore } from '../store/authStore';
 
 interface Props {
   latitude: string;

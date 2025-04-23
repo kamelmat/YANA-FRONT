@@ -1,16 +1,16 @@
-import { useState, useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import backIcon from '../assets/icons/back.svg';
 import onboarding1 from '../assets/onboarding/1.webp';
 import onboarding2 from '../assets/onboarding/2.webp';
 import onboarding3 from '../assets/onboarding/3.webp';
 import onboarding4 from '../assets/onboarding/4.webp';
-import CustomButton from '../commons/CommonButton';
-import theme from '../theme';
-import useScreenSize from '../hooks/useScreenSize';
-import backIcon from '../assets/icons/back.svg';
 import nextIcon from '../assets/onboarding/next.svg';
+import CustomButton from '../commons/CommonButton';
+import useScreenSize from '../hooks/useScreenSize';
+import theme from '../theme';
 
 const ONBOARDING_IMAGES = {
   1: onboarding1,

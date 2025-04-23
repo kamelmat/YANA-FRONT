@@ -1,12 +1,12 @@
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Box, Typography, CircularProgress } from '@mui/material';
-import CommonTextField from '../commons/CommonTextField';
-import CommonButton from '../commons/CommonButton';
+import { useTranslation } from 'react-i18next';
 import AuthContainer from '../commons/AuthContainer';
+import CommonButton from '../commons/CommonButton';
+import CommonTextField from '../commons/CommonTextField';
+import { usePasswordReset } from '../hooks/usePasswordReset';
 import useScreenSize from '../hooks/useScreenSize';
 import theme from '../theme';
-import { useTranslation } from 'react-i18next';
-import { usePasswordReset } from '../hooks/usePasswordReset';
 
 export default function ResetPassword() {
   const [email, setEmail] = useState('');

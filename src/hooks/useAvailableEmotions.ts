@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { useAuthStore } from '../store/authStore';
 import { emotionsService } from '../services/emotions';
+import { useAuthStore } from '../store/authStore';
 
 export const useAvailableEmotions = () => {
   const accessToken = useAuthStore((state) => state.accessToken);

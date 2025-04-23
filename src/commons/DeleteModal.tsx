@@ -1,8 +1,8 @@
 import { Box, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomButton from './CommonButton';
 import CustomTextField from './CommonTextField';
-import { useState } from 'react';
 
 interface ModalProps {
   open: boolean;

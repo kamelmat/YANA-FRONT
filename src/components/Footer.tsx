@@ -1,9 +1,9 @@
-import { Box, Typography, Container, Grid } from '@mui/material';
-import theme from '../theme';
-import Logo from '../assets/branding/yana.svg?url';
-import { useLocation } from 'react-router-dom';
-import useScreenSize from '../hooks/useScreenSize';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
+import Logo from '../assets/branding/yana.svg?url';
+import useScreenSize from '../hooks/useScreenSize';
+import theme from '../theme';
 
 export const Footer = () => {
   const location = useLocation().pathname;
