@@ -1,4 +1,4 @@
-import { EMOTIONS_ENDPOINTS } from '../config/apiEndpoints';
+import { EMOTIONS_ENDPOINTS, MESSAGES_ENDPOINTS } from '../config/apiEndpoints';
 
 export interface CreateEmotionRequest {
   emotion_id: string;
@@ -27,6 +27,20 @@ export interface LastEmotionResponse {
   longitude: number;
   created_at: string;
   is_active: boolean;
+}
+
+export interface SendSupportRequest {
+  shared_emotion: number | null;
+  template: string;
+}
+
+export interface SendSupportResponse {
+  message: string;
+}
+
+export interface SupportMessageTemplate {
+  id: number;
+  text: string;
 }
 
 export const emotionsService = {
@@ -99,6 +113,56 @@ export const emotionsService = {
       return responseData;
     } catch (error) {
       console.error('Get last emotion error:', error);
+      throw error;
+    }
+  },
+
+  sendSupport: async (
+    data: SendSupportRequest,
+    accessToken: string
+  ): Promise<SendSupportResponse> => {
+    try {
+      const response = await fetch(MESSAGES_ENDPOINTS.SEND_SUPPORT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.message || 'Failed to send support');
+      }
+
+      return responseData;
+    } catch (error) {
+      console.error('Send support error:', error);
+      throw error;
+    }
+  },
+
+  getTemplateMessages: async (accessToken: string): Promise<SupportMessageTemplate[]> => {
+    try {
+      const response = await fetch(MESSAGES_ENDPOINTS.GET_TEMPLATE_MESSAGES, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.message || 'Failed to get template messages');
+      }
+
+      return responseData;
+    } catch (error) {
+      console.error('Get template messages error:', error);
       throw error;
     }
   },

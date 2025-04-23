@@ -25,8 +25,13 @@ export const MapView = () => {
   const markersRef = useRef<maplibregl.Marker[]>([]);
   const [isCreatingEmotion, setIsCreatingEmotion] = useState(false);
   const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
+  const [modalUserId, setModalUserId] = useState<string | null>(null);
+  const [sharedEmotionId, setSharedEmotionId] = useState<number | null>(null);
 
-  const openModal = useCallback(() => setModalOpen(true), []);
+  const openModal = useCallback((userId: string) => {
+    setModalUserId(userId);
+    setModalOpen(true);
+  }, []);
 
   const { data, isLoading, isError, isRefetching } = useNearbyEmotions({
     latitude: userLocation?.latitude?.toString() || '',
@@ -34,6 +39,9 @@ export const MapView = () => {
   });
 
   const isVisible = location.pathname === '/';
+
+  console.log(modalUserId);
+  console.log(JSON.stringify(data));
 
   // Show loading state when either creating emotion or fetching nearby emotions
   useEffect(() => {
@@ -103,7 +111,10 @@ export const MapView = () => {
   // Handle data updates and marker rendering
   useEffect(() => {
     if (data && mapRef.current && lastSelectedEmotion) {
+      const sharedEmotionId = data[0]?.shared_emotion_id;
+      setSharedEmotionId(sharedEmotionId);
       renderEmotionMarkers(data, mapRef, markersRef, openModal);
+      console.log(sharedEmotionId);
     } else if (!lastSelectedEmotion) {
       clearMarkers(markersRef);
     }
@@ -195,7 +206,13 @@ export const MapView = () => {
         </Box>
       )}
 
-      <MarkerModal open={modalOpen} onClose={closeModal} position={position} />
+      <MarkerModal
+        open={modalOpen}
+        onClose={closeModal}
+        position={position}
+        userId={modalUserId}
+        sharedEmotion={sharedEmotionId}
+      />
     </div>
   );
 };
