@@ -11,7 +11,7 @@ export const getUserLocation = (): Promise<[number, number]> => {
         resolve([latitude, longitude]);
       },
       (error) => {
-        console.error("Error getting location:", error);
+        console.error('Error getting location:', error);
         resolve([40.41672071780762, -3.703395193582358]); // Madrid como fallback
       }
     );
