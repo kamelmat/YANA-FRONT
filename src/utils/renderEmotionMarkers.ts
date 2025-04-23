@@ -6,6 +6,7 @@ interface Emotion {
   longitude: string | number
   emotion: string
   emotion_id: number
+  user_id: string
 }
 
 const emotionModules = import.meta.glob("../assets/emotions/*.svg", {
@@ -34,7 +35,7 @@ export const renderEmotionMarkers = (
   data: Emotion[],
   mapRef: RefObject<maplibregl.Map | null>,
   markersRef: RefObject<maplibregl.Marker[]>,
-  onMarkerClick: () => void // 🆕
+  onMarkerClick: (userId: string) => void // 🆕
 ) => {
   clearMarkers(markersRef)
   const markerOffsets: Record<string, number> = {}
@@ -75,9 +76,19 @@ export const renderEmotionMarkers = (
       element: (() => {
         const el = document.createElement("div")
         el.innerHTML = `<img src="${icon}" alt="${checked_emotion.emotion}" style="width: 40px; height: 40px;" />`
-        el.addEventListener("click", () => {
-          onMarkerClick()
+
+        el.style.cursor = "default"
+        el.addEventListener("mouseenter", () => {
+          el.style.cursor = "pointer"
         })
+        el.addEventListener("mouseleave", () => {
+          el.style.cursor = "default"
+        })
+
+        el.addEventListener("click", () => {
+          onMarkerClick(checked_emotion.user_id)
+        })
+
         return el
       })(),
       anchor: "bottom",
