@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useAuthStore } from '../store/authStore';
-import { authService } from '../services/auth';
 import { useNavigate } from 'react-router-dom';
+import { authService } from '../services/auth';
+import { useAuthStore } from '../store/authStore';
 
 const TOKEN_REFRESH_THRESHOLD = 5 * 60 * 1000; // 5 minutes before expiration
 
@@ -53,4 +53,4 @@ export const useTokenRefresh = () => {
       navigate('/login');
     }
   }, [accessToken, refreshToken, setAccessToken, clearAuth, navigate]);
-}; 
+};
