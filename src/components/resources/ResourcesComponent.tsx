@@ -5,8 +5,12 @@ import { Navigation, Pagination } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-import theme from "../theme"
-import useScreenSize from "../hooks/useScreenSize"
+import theme from "../../theme"
+import useScreenSize from "../../hooks/useScreenSize"
+import MeditationCard from "./MeditationCard"
+import PodcastCard from "./PodcastCard"
+import PlaylistCard from "./PlaylistCard"
+import { meditationData, podcastData, playlistData } from "../../data/resourcesData"
 
 const ResourcesComponent: React.FC = () => {
   const screenSize = useScreenSize()
@@ -47,81 +51,20 @@ const ResourcesComponent: React.FC = () => {
             enabled: screenSize === "sm" || screenSize === "md",
           }}
         >
-          {Array.from({ length: 8 }).map((_, index) => (
-            <SwiperSlide key={`meditation-${index}`}>
-              <Card
-                sx={{
-                  width: "100%",
-                  height:
-                    screenSize === "sm" ? "304.34px" : screenSize === "md" ? "22rem" : "24.94rem",
-                  maxHeight: "399px",
-                  border: "1px solid #e0e0e0",
-                  borderRadius: "10.56px",
-                  backgroundColor: "#f5f5f5",
-                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "сenter",
-                }}
-              >
-                {/* Card content */}
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: "bold",
-                    textAlign: "left",
-                    padding: "0.5rem",
-                    backgroundColor: "#f0f0f0",
-                    width: "100%",
-                  }}
-                >
-                  Meditation {index + 1}
-                </Typography>
-                <Box
-                  component="img"
-                  src={`https://picsum.photos/327/200?random=${index + 1}`}
-                  alt={`Meditation ${index + 1}`}
-                  sx={{
-                    width: "100%",
-                    height: screenSize === "sm" ? "140.14px" : "60%",
-                    objectFit: "cover",
-                  }}
-                />
-                <CardContent
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    padding: "1rem",
-                    height: "4.94rem",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "#757575",
-                      marginBottom: "1rem",
-                      textAlign: "left",
-                    }}
-                  >
-                    El texto de meditación {index + 1}. Aqui puedes agregar más información.
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      textTransform: "none",
-                      borderRadius: "20px",
-                      width: screenSize === "sm" ? "75.78px" : "7rem",
-                      height: "2.2rem",
-                      marginLeft: "auto",
-                      backgroundColor: theme.colors.lightBlue,
-                    }}
-                  >
-                    Acceder
-                  </Button>
-                </CardContent>
-              </Card>
+          {meditationData.map((meditation) => (
+            <SwiperSlide
+              key={meditation.id}
+              style={{
+                width: "auto",
+              }}
+            >
+              <MeditationCard
+                avatar={meditation.avatar}
+                title={meditation.title}
+                description={meditation.description}
+                id={meditation.id}
+                image={meditation.image}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -148,7 +91,7 @@ const ResourcesComponent: React.FC = () => {
       </Box>
 
       {/* Podcasts */}
-      <Box sx={{ marginBottom: 4, marginTop: "2rem" }}>
+      <Box sx={{ marginBottom: 4, marginTop: "2rem", height: "auto" }}>
         <Typography
           sx={{
             marginBottom: 2,
@@ -167,21 +110,14 @@ const ResourcesComponent: React.FC = () => {
             gap: 2,
           }}
         >
-          {Array.from({ length: screenSize === "lg" ? 7 : 4 }).map((_, index) => (
-            <Card
-              key={`podcast-${index}`}
-              sx={{
-                width: screenSize === "sm" ? "100%" : screenSize === "md" ? "100%" : "41.2rem",
-                height: screenSize === "sm" ? "80px" : screenSize === "md" ? "6.5rem" : "7.52rem",
-                borderRadius: "1.13rem",
-                backgroundColor: "#f5f5f5",
-                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <CardContent>
-                <Typography variant="body1">{`Podcast ${index + 1}`}</Typography>
-              </CardContent>
-            </Card>
+          {podcastData.map((podcast) => (
+            <PodcastCard
+              key={podcast.id}
+              avatar={podcast.avatar}
+              title={podcast.title}
+              description={podcast.description}
+              image={podcast.image}
+            />
           ))}
         </Box>
       </Box>
@@ -210,87 +146,19 @@ const ResourcesComponent: React.FC = () => {
             enabled: screenSize === "sm" || screenSize === "md",
           }}
         >
-          {Array.from({ length: 8 }).map((_, index) => (
-            <SwiperSlide key={`playlist-${index}`}>
-              <Card
-                sx={{
-                  width: "100%",
-                  height:
-                    screenSize === "sm" ? "315.67px" : screenSize === "md" ? "23rem" : "27.41rem",
-                  border: "1px solid #e0e0e0",
-                  borderRadius: "10.56px",
-                  backgroundColor: "#f5f5f5",
-                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                {/* Image */}
-                <Box
-                  component="img"
-                  src={`https://picsum.photos/327/200?random=${index + 1}`}
-                  alt={`playlist ${index + 1}`}
-                  sx={{
-                    width: "99%",
-                    height:
-                      screenSize === "sm" ? "10.14rem" : screenSize === "md" ? "9rem" : "12rem",
-                    objectFit: "cover",
-                  }}
-                />
-
-                {/* Title */}
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: "bold",
-                    textAlign: "center",
-                    padding: "0.5rem",
-                    backgroundColor: "#f0f0f0",
-                    width: "100%",
-                  }}
-                >
-                  Playlist {index + 1}
-                </Typography>
-
-                {/* Disctiption */}
-                <CardContent
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: "1rem",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: "#757575",
-                      textAlign: "center",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    Playlist {index + 1}. Aquí puedes agregar más información.
-                  </Typography>
-
-                  {/* Button */}
-                  <Button
-                    variant="contained"
-                    sx={{
-                      textTransform: "none",
-                      borderRadius: "20px",
-                      width: screenSize === "sm" ? "75.78px" : "7rem",
-                      height: "2.2rem",
-                      marginLeft: "auto",
-                      backgroundColor: theme.colors.lightBlue,
-                    }}
-                  >
-                    Escuchar
-                  </Button>
-                </CardContent>
-              </Card>
+          {playlistData.map((playlist) => (
+            <SwiperSlide
+              key={playlist.id}
+              style={{
+                width: "auto",
+              }}
+            >
+              <PlaylistCard
+                title={playlist.title}
+                description={playlist.description}
+                id={playlist.id}
+                image={playlist.image}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

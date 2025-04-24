@@ -1,86 +1,87 @@
 import React from "react"
 import { Box, Typography, Card, CardContent } from "@mui/material"
+import useScreenSize from "../../hooks/useScreenSize"
+import theme from "../../theme"
+import CommonButton from "../../commons/CommonButton"
+import { SwiperSlide } from "swiper/react"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
 
-interface PodcastCardProps {
+interface PlaylistCardProps {
   avatar: string
   title: string
   description: string
   image: string
 }
 
-const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, image }) => {
+const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }) => {
+  const screenSize = useScreenSize()
   return (
     <Card
       sx={{
         width: "100%",
-        height: "7.52rem",
-        borderRadius: "1.13rem",
+        maxWidth: "24.74rem",
+        height: screenSize === "sm" ? "315.67px" : screenSize === "md" ? "23rem" : "27.41rem",
+        border: "1px solid #e0e0e0",
+        borderRadius: "10.56px",
         backgroundColor: "#f5f5f5",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         alignItems: "center",
-        padding: "0.5rem",
+        padding: "1rem",
       }}
     >
-      {/* Аватар слева */}
-      <Box
-        component="img"
-        src={avatar}
-        alt={`Avatar for ${title}`}
-        sx={{
-          width: "60.2px",
-          height: "60.2px",
-          marginRight: "1rem",
-          objectFit: "cover",
-          borderRadius: "50%",
-        }}
-      />
-
-      {/* Текст в центре */}
-      <CardContent
-        sx={{
-          flex: 1,
-          padding: 0,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <Typography
-          variant="body1"
-          sx={{
-            color: "#333",
-            fontWeight: "bold",
-            textAlign: "left",
-          }}
-        >
-          {title}
-        </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            color: "#757575",
-            textAlign: "left",
-          }}
-        >
-          {description}
-        </Typography>
-      </CardContent>
-
-      {/* Картинка справа */}
       <Box
         component="img"
         src={image}
         alt={`Image for ${title}`}
         sx={{
-          width: "120.39px",
-          height: "122.18px",
+          width: "99%",
+          height: screenSize === "sm" ? "10.14rem" : screenSize === "md" ? "9rem" : "12rem",
           objectFit: "cover",
-          borderRadius: "8px",
+        }}
+      />
+
+      {/* Title */}
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: "bold",
+          textAlign: "left",
+          padding: "0.5rem",
+          backgroundColor: "#f0f0f0",
+          width: "100%",
+        }}
+      >
+        {title}
+      </Typography>
+      <Typography
+        variant="body2"
+        sx={{
+          color: "#757575",
+          textAlign: "left",
+        }}
+      >
+        {description}
+      </Typography>
+
+      <CommonButton
+        text="Escuchar"
+        sx={{
+          textTransform: "none",
+          borderRadius: "20px",
+          width: screenSize === "sm" ? "75.78px" : "7rem",
+          height: "2.2rem",
+          marginLeft: "auto",
+          backgroundColor: theme.colors.lightBlue,
+          color: "#fff",
         }}
       />
     </Card>
   )
 }
 
-export default PodcastCard
+export default PlaylistCard

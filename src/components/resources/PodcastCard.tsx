@@ -1,25 +1,29 @@
 import React from "react"
 import { Box, Typography, Card, CardContent } from "@mui/material"
+import useScreenSize from "../../hooks/useScreenSize"
 
-interface PlaylistCardProps {
+interface PodcastCardProps {
   avatar: string
   title: string
   description: string
   image: string
 }
 
-const PlaylistCard: React.FC<PlaylistCardProps> = ({ avatar, title, description, image }) => {
+const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, image }) => {
+  const screenSize = useScreenSize()
+
   return (
     <Card
       sx={{
-        width: "100%",
-        height: "7.52rem",
+        width: screenSize === "sm" ? "100%" : screenSize === "md" ? "100%" : "41.2rem",
+        height: screenSize === "sm" ? "80px" : screenSize === "md" ? "6.5rem" : "7.52rem",
         borderRadius: "1.13rem",
         backgroundColor: "#f5f5f5",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        padding: "0.5rem 0 0.5rem 0.5rem",
         display: "flex",
+        justifyContent: "space-between",
         alignItems: "center",
-        padding: "0.5rem",
       }}
     >
       {/* Аватар слева */}
@@ -83,4 +87,4 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ avatar, title, description,
   )
 }
 
-export default PlaylistCard
+export default PodcastCard

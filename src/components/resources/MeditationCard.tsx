@@ -2,22 +2,30 @@ import React from "react"
 import { Box, Typography, Card, CardContent } from "@mui/material"
 import CommonButton from "../../commons/CommonButton"
 import useScreenSize from "../../hooks/useScreenSize"
-import theme from "../../../theme"
+import theme from "../../theme"
 
 interface MeditationCardProps {
   avatar: string
   title: string
   description: string
   id: number
+  image: string
 }
 
-const MeditationCard: React.FC<MeditationCardProps> = ({ avatar, title, description, id }) => {
+const MeditationCard: React.FC<MeditationCardProps> = ({
+  avatar,
+  title,
+  description,
+  id,
+  image,
+}) => {
   const screenSize = useScreenSize()
 
   return (
     <Card
       sx={{
         width: "100%",
+        maxWidth: "24.74rem",
         height: screenSize === "sm" ? "304.34px" : screenSize === "md" ? "22rem" : "24.94rem",
         maxHeight: "399px",
         border: "1px solid #e0e0e0",
@@ -30,39 +38,49 @@ const MeditationCard: React.FC<MeditationCardProps> = ({ avatar, title, descript
         alignItems: "center",
       }}
     >
-      {/* Аватар */}
       <Box
-        component="img"
-        src={avatar}
-        alt={`Avatar for ${title}`}
         sx={{
-          width: "60px",
-          height: "60px",
-          borderRadius: "50%",
-          marginTop: "1rem",
-        }}
-      />
-      {/* Заголовок */}
-      <Typography
-        variant="h6"
-        sx={{
-          fontWeight: "bold",
-          textAlign: "left",
-          padding: "0.5rem",
-          backgroundColor: "#f0f0f0",
+          display: "flex",
           width: "100%",
+          paddingLeft: "0.5rem",
         }}
       >
-        {title}
-      </Typography>
+        {/* Аватар */}
+        <Box
+          component="img"
+          src={avatar}
+          alt={`Avatar for ${title}`}
+          sx={{
+            width: "3.75rem",
+            height: "3.75rem",
+            borderRadius: "50%",
+            marginTop: "1rem",
+          }}
+        />
+
+        {/* Заголовок */}
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "bold",
+            textAlign: "left",
+            padding: "0.5rem",
+            backgroundColor: "#f0f0f0",
+            width: "100%",
+          }}
+        >
+          {title}
+        </Typography>
+      </Box>
+
       {/* Изображение */}
       <Box
         component="img"
-        src={avatar}
+        src={image}
         alt={`Meditation ${id}`}
         sx={{
           width: "100%",
-          height: screenSize === "sm" ? "140.14px" : "60%",
+          height: screenSize === "sm" ? "140.14px" : "164.83px",
           objectFit: "cover",
         }}
       />
@@ -93,6 +111,8 @@ const MeditationCard: React.FC<MeditationCardProps> = ({ avatar, title, descript
             height: "2.2rem",
             marginLeft: "auto",
             backgroundColor: theme.colors.lightBlue,
+            color: "white",
+            borderRadius: "1.13rem",
           }}
         />
       </CardContent>
