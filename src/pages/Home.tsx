@@ -1,5 +1,5 @@
-import Emotions from "../components/Emotions";
+import Emotions from '../components/Emotions';
 
 export default function Home() {
-  return <Emotions />
+  return <Emotions />;
 }

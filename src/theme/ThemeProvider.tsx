@@ -1,7 +1,7 @@
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+import { useMemo } from 'react';
 import { useSettingsStore } from '../store/useSettingsStore';
 import baseTheme from '../theme';
-import { useMemo } from 'react';
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -60,9 +60,5 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
     });
   }, [settings.fontSize]);
 
-  return (
-    <MuiThemeProvider theme={theme}>
-      {children}
-    </MuiThemeProvider>
-  );
-} 
+  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+}

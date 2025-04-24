@@ -1,13 +1,17 @@
+import { Box, CircularProgress, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Box, Typography, CircularProgress } from '@mui/material';
-import CommonTextField from '../commons/CommonTextField';
-import CommonButton from '../commons/CommonButton';
-import AuthContainer from '../commons/AuthContainer';
-import useScreenSize from '../hooks/useScreenSize';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import AuthContainer from '../commons/AuthContainer';
+import CommonButton from '../commons/CommonButton';
+import CommonTextField from '../commons/CommonTextField';
 import { usePasswordResetConfirm } from '../hooks/usePasswordResetConfirm';
-import { validatePassword, validateRepeatPassword, getPasswordStrength } from '../utils/registerUtils';
+import useScreenSize from '../hooks/useScreenSize';
+import {
+  getPasswordStrength,
+  validatePassword,
+  validateRepeatPassword,
+} from '../utils/registerUtils';
 
 export default function ResetPasswordConfirm() {
   const [newPassword, setNewPassword] = useState('');
@@ -24,35 +28,39 @@ export default function ResetPasswordConfirm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const passwordValidation = validatePassword(newPassword);
     const repeatPasswordValidation = validateRepeatPassword(confirmPassword, newPassword);
-    
+
     setPasswordError(passwordValidation);
     setRepeatPasswordError(repeatPasswordValidation);
-    
+
     if (passwordValidation || repeatPasswordValidation) {
       return;
     }
-    
+
     if (!uid || !token) {
       return;
     }
-    
+
     setIsLoading(true);
-    confirmReset({
-      uidb64: uid,
-      token,
-      new_password: newPassword,
-      confirm_password: confirmPassword,
-    }, {
-      onSettled: () => {
-        setIsLoading(false);
+    confirmReset(
+      {
+        uidb64: uid,
+        token,
+        new_password: newPassword,
+        confirm_password: confirmPassword,
+      },
+      {
+        onSettled: () => {
+          setIsLoading(false);
+        },
       }
-    });
+    );
   };
 
-  const isButtonDisabled = !newPassword || !confirmPassword || isLoading || !!passwordError || !!repeatPasswordError;
+  const isButtonDisabled =
+    !newPassword || !confirmPassword || isLoading || !!passwordError || !!repeatPasswordError;
 
   return (
     <AuthContainer screenSize={screenSize}>
@@ -85,14 +93,20 @@ export default function ResetPasswordConfirm() {
           />
 
           {newPassword && (
-            <Typography variant="body2" sx={{ color: "#fff", fontWeight: "light" }}>
-              {t("register.password.passwordStrength.text")}:{" "}
-              <Box component="span" sx={{
-                color: passwordStrength === t("register.password.passwordStrength.strong") ? "limegreen"
-                  : passwordStrength === t("register.password.passwordStrength.medium") ? "orange"
-                    : "red",
-                fontWeight: "bold"
-              }}>
+            <Typography variant="body2" sx={{ color: '#fff', fontWeight: 'light' }}>
+              {t('register.password.passwordStrength.text')}:{' '}
+              <Box
+                component="span"
+                sx={{
+                  color:
+                    passwordStrength === t('register.password.passwordStrength.strong')
+                      ? 'limegreen'
+                      : passwordStrength === t('register.password.passwordStrength.medium')
+                        ? 'orange'
+                        : 'red',
+                  fontWeight: 'bold',
+                }}
+              >
                 {passwordStrength}
               </Box>
             </Typography>
@@ -122,11 +136,11 @@ export default function ResetPasswordConfirm() {
           disabled={isButtonDisabled}
           icon={isLoading ? <CircularProgress size={20} sx={{ color: 'white' }} /> : undefined}
           sx={{
-            color: "#fff",
-            fontWeight: "normal",
+            color: '#fff',
+            fontWeight: 'normal',
           }}
         />
       </Box>
     </AuthContainer>
   );
-} 
+}

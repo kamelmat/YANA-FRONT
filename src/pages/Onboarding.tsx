@@ -1,16 +1,16 @@
-import { useState, useCallback } from 'react';
 import { Box, Typography } from '@mui/material';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import backIcon from '../assets/icons/back.svg';
 import onboarding1 from '../assets/onboarding/1.webp';
 import onboarding2 from '../assets/onboarding/2.webp';
 import onboarding3 from '../assets/onboarding/3.webp';
 import onboarding4 from '../assets/onboarding/4.webp';
-import CustomButton from '../commons/CommonButton';
-import theme from '../theme';
-import useScreenSize from '../hooks/useScreenSize';
-import backIcon from '../assets/icons/back.svg';
 import nextIcon from '../assets/onboarding/next.svg';
+import CustomButton from '../commons/CommonButton';
+import useScreenSize from '../hooks/useScreenSize';
+import theme from '../theme';
 
 const ONBOARDING_IMAGES = {
   1: onboarding1,
@@ -23,7 +23,7 @@ const Onboarding = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  const [direction, setDirection] = useState<"left" | "right" | null>(null);
+  const [direction, setDirection] = useState<'left' | 'right' | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -57,9 +57,9 @@ const Onboarding = () => {
   const handleNext = useCallback(() => {
     if (currentStep < 4) {
       setIsAnimating(true);
-      setDirection("left");
+      setDirection('left');
       setTimeout(() => {
-        setCurrentStep((prev) => (prev + 1) <= 4 ? prev + 1 : 4);
+        setCurrentStep((prev) => (prev + 1 <= 4 ? prev + 1 : 4));
         setDirection(null);
         setIsAnimating(false);
       }, 300);
@@ -69,9 +69,9 @@ const Onboarding = () => {
   const handlePrev = useCallback(() => {
     if (currentStep > 1) {
       setIsAnimating(true);
-      setDirection("right");
+      setDirection('right');
       setTimeout(() => {
-        setCurrentStep((prev) => (prev - 1) >= 1 ? prev - 1 : 1);
+        setCurrentStep((prev) => (prev - 1 >= 1 ? prev - 1 : 1));
         setDirection(null);
         setIsAnimating(false);
       }, 300);
@@ -83,7 +83,7 @@ const Onboarding = () => {
   }, [navigate]);
 
   const handleBack = useCallback(() => {
-    if (currentStep === 1 || screenSize === "lg" || screenSize === "xl") {
+    if (currentStep === 1 || screenSize === 'lg' || screenSize === 'xl') {
       navigate(-1);
     } else {
       handlePrev();
@@ -92,10 +92,10 @@ const Onboarding = () => {
 
   const getStepTransform = (step: number) => {
     const offset = step - currentStep;
-    if (direction === "left") {
+    if (direction === 'left') {
       return `translateX(${(offset - 1) * 100}%)`;
     }
-    if (direction === "right") {
+    if (direction === 'right') {
       return `translateX(${(offset + 1) * 100}%)`;
     }
     return `translateX(${offset * 100}%)`;
@@ -104,40 +104,40 @@ const Onboarding = () => {
   const renderStepContent = (step: number) => (
     <Box
       sx={{
-        position: "absolute",
-        top:{
-          xs: "12.5%",
-          md: "22.5%",
-          lg: "45%"
+        position: 'absolute',
+        top: {
+          xs: '12.5%',
+          md: '22.5%',
+          lg: '45%',
         },
         left: 0,
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
         transform: getStepTransform(step),
-        transition: "transform 0.3s ease-in-out",
+        transition: 'transform 0.3s ease-in-out',
         padding: {
-          xs: "0 1em",
-          md: "0 10%",
+          xs: '0 1em',
+          md: '0 10%',
         },
       }}
     >
       {/* Image for mobile and tablet */}
       <Box
         sx={{
-          display: { xs: "block", lg: "none" },
-          width: screenSize === "sm" ? "60vw" : "80%",
-          maxWidth: "400px",
-          aspectRatio: "1/1",
+          display: { xs: 'block', lg: 'none' },
+          width: screenSize === 'sm' ? '60vw' : '80%',
+          maxWidth: '400px',
+          aspectRatio: '1/1',
           mb: 4,
         }}
       >
         <img
           src={ONBOARDING_IMAGES[step as keyof typeof ONBOARDING_IMAGES]}
           alt={`Onboarding step ${step}`}
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
       </Box>
 
@@ -146,10 +146,10 @@ const Onboarding = () => {
         variant="h4"
         align="center"
         sx={{
-          color: "#fff",
-          fontWeight: "bold",
+          color: '#fff',
+          fontWeight: 'bold',
           mb: 2,
-          width: screenSize === "sm" || screenSize === "md" ? "100%" : "60%",
+          width: screenSize === 'sm' || screenSize === 'md' ? '100%' : '60%',
         }}
       >
         {t(`onboarding.step${step}.title`)}
@@ -160,9 +160,9 @@ const Onboarding = () => {
         variant="body1"
         align="center"
         sx={{
-          color: "#fff",
+          color: '#fff',
           mb: 4,
-          width: screenSize === "sm" || screenSize === "md" ? "100%" : "60%",
+          width: screenSize === 'sm' || screenSize === 'md' ? '100%' : '60%',
         }}
       >
         {t(`onboarding.step${step}.subtitle`)}
@@ -171,12 +171,12 @@ const Onboarding = () => {
       {/* Start Button */}
       {step === 4 && (
         <CustomButton
-          text={t("common.start")}
+          text={t('common.start')}
           onClick={handleStart}
-          variantType={screenSize === "sm" || screenSize === "md" ? "secondary-fill" : "primary"}
+          variantType={screenSize === 'sm' || screenSize === 'md' ? 'secondary-fill' : 'primary'}
           sx={{
             mt: 5,
-            width: screenSize === "sm" || screenSize === "md" ? "100%" : "60%",
+            width: screenSize === 'sm' || screenSize === 'md' ? '100%' : '60%',
           }}
         />
       )}
@@ -186,16 +186,16 @@ const Onboarding = () => {
   const renderNavigationButtons = () => (
     <Box
       sx={{
-        display: { xs: "none", lg: "flex" },
-        alignItems: "center",
-        justifyContent: "center",
+        display: { xs: 'none', lg: 'flex' },
+        alignItems: 'center',
+        justifyContent: 'center',
         gap: 2,
-        width: "100%",
-        position: "absolute",
-        top: "50%",
+        width: '100%',
+        position: 'absolute',
+        top: '50%',
         left: 0,
         right: 0,
-        transform: "translateY(-50%)",
+        transform: 'translateY(-50%)',
         zIndex: 1,
       }}
     >
@@ -205,15 +205,15 @@ const Onboarding = () => {
           src={nextIcon}
           alt="prev"
           sx={{
-            width: "1.5rem",
-            height: "1.5rem",
-            cursor: "pointer",
-            transform: "rotate(180deg)",
-            transition: "transform 0.2s ease-in-out",
-            position: "absolute",
-            left: "10%",
-            "&:hover": {
-              transform: "rotate(180deg) scale(1.15)",
+            width: '1.5rem',
+            height: '1.5rem',
+            cursor: 'pointer',
+            transform: 'rotate(180deg)',
+            transition: 'transform 0.2s ease-in-out',
+            position: 'absolute',
+            left: '10%',
+            '&:hover': {
+              transform: 'rotate(180deg) scale(1.15)',
             },
           }}
           onClick={handlePrev}
@@ -225,14 +225,14 @@ const Onboarding = () => {
           src={nextIcon}
           alt="next"
           sx={{
-            width: "1.5rem",
-            height: "1.5rem",
-            cursor: "pointer",
-            transition: "transform 0.2s ease-in-out",
-            position: "absolute",
-            right: "10%",
-            "&:hover": {
-              transform: "scale(1.15)",
+            width: '1.5rem',
+            height: '1.5rem',
+            cursor: 'pointer',
+            transition: 'transform 0.2s ease-in-out',
+            position: 'absolute',
+            right: '10%',
+            '&:hover': {
+              transform: 'scale(1.15)',
             },
           }}
           onClick={handleNext}
@@ -241,19 +241,20 @@ const Onboarding = () => {
     </Box>
   );
 
-  const renderDots = () => (
-    currentStep !== 4 && !(direction === "left" && currentStep === 3) && (
+  const renderDots = () =>
+    currentStep !== 4 &&
+    !(direction === 'left' && currentStep === 3) && (
       <Box
         sx={{
-          display: "flex",
+          display: 'flex',
           gap: 2,
-          position: "absolute",
+          position: 'absolute',
           bottom: {
-            xs: "12.5%",
-            sm: "22.5%",
+            xs: '12.5%',
+            sm: '22.5%',
           },
-          left: "50%",
-          transform: "translateX(-50%)",
+          left: '50%',
+          transform: 'translateX(-50%)',
         }}
       >
         {[1, 2, 3].map((step) => (
@@ -262,27 +263,26 @@ const Onboarding = () => {
             sx={{
               width: 15,
               height: 15,
-              borderRadius: "50%",
-              backgroundColor: currentStep === step ? theme.colors.lightBlue : "#fff",
-              transition: "all 0.3s ease-in-out",
-              transform: currentStep === step ? "scale(1.2)" : "scale(1)",
+              borderRadius: '50%',
+              backgroundColor: currentStep === step ? theme.colors.lightBlue : '#fff',
+              transition: 'all 0.3s ease-in-out',
+              transform: currentStep === step ? 'scale(1.2)' : 'scale(1)',
             }}
           />
         ))}
       </Box>
-    )
-  );
+    );
 
   return (
     <Box
       sx={{
-        height: "100vh",
-        width: "100vw",
-        display: "flex",
-        flexDirection: { xs: "column", lg: "row" },
-        backgroundColor: "#1E1E1E",
-        position: "relative",
-        overflow: "hidden",
+        height: '100vh',
+        width: '100vw',
+        display: 'flex',
+        flexDirection: { xs: 'column', lg: 'row' },
+        backgroundColor: '#1E1E1E',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -293,17 +293,17 @@ const Onboarding = () => {
         src={backIcon}
         alt="back"
         sx={{
-          height: "2em",
-          width: "2em",
-          alignSelf: "flex-start",
-          cursor: "pointer",
-          transition: "transform 0.2s ease-in-out",
-          "&:hover": {
-            transform: "scale(1.15)",
+          height: '2em',
+          width: '2em',
+          alignSelf: 'flex-start',
+          cursor: 'pointer',
+          transition: 'transform 0.2s ease-in-out',
+          '&:hover': {
+            transform: 'scale(1.15)',
           },
-          position: "absolute",
-          top: "1em",
-          left: "1em",
+          position: 'absolute',
+          top: '1em',
+          left: '1em',
           zIndex: 1,
         }}
         onClick={handleBack}
@@ -311,23 +311,23 @@ const Onboarding = () => {
 
       <Box
         sx={{
-          width: { xs: "100%", lg: "50%" },
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: { xs: "0", lg: "4em" },
-          position: "relative",
+          width: { xs: '100%', lg: '50%' },
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: { xs: '0', lg: '4em' },
+          position: 'relative',
         }}
       >
         {renderNavigationButtons()}
         <Box
           sx={{
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            overflow: "hidden",
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            overflow: 'hidden',
           }}
         >
           {[1, 2, 3, 4].map((step) => renderStepContent(step))}
@@ -337,46 +337,46 @@ const Onboarding = () => {
 
       <Box
         sx={{
-          width: { xs: "100%", lg: "50%" },
-          height: "100%",
-          display: { xs: "none", lg: "flex" },
-          alignItems: "center",
-          justifyContent: "center",
+          width: { xs: '100%', lg: '50%' },
+          height: '100%',
+          display: { xs: 'none', lg: 'flex' },
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <Box
           sx={{
-            width: "90%",
-            height: "100%",
-            position: "relative",
-            overflow: "hidden",
+            width: '90%',
+            height: '100%',
+            position: 'relative',
+            overflow: 'hidden',
           }}
         >
           {[1, 2, 3, 4].map((step) => (
             <Box
               key={step}
               sx={{
-                position: "absolute",
+                position: 'absolute',
                 top: '5%',
                 left: 0,
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent: "center",
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                justifyContent: 'center',
                 opacity: currentStep === step ? 1 : 0,
-                transition: "opacity 0.3s ease-in-out",
+                transition: 'opacity 0.3s ease-in-out',
               }}
             >
               <Box
                 sx={{
-                  width: "75%",
-                  aspectRatio: "1/1",
+                  width: '75%',
+                  aspectRatio: '1/1',
                 }}
               >
                 <img
                   src={ONBOARDING_IMAGES[step as keyof typeof ONBOARDING_IMAGES]}
                   alt={`Onboarding step ${step}`}
-                  style={{ width: "100%", height: "auto", objectFit: "contain" }}
+                  style={{ width: '100%', height: 'auto', objectFit: 'contain' }}
                 />
               </Box>
             </Box>

@@ -16,4 +16,4 @@ const TrailingSlashRedirect = () => {
   return null;
 };
 
-export default TrailingSlashRedirect; 
+export default TrailingSlashRedirect;
