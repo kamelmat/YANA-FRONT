@@ -6,45 +6,45 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 import theme from "../theme"
+import useScreenSize from "../hooks/useScreenSize"
 
 const ResourcesComponent: React.FC = () => {
+  const screenSize = useScreenSize()
+
   return (
     <Box
       sx={{
-        padding: "7.5rem 6.32rem 3.13rem 14.69rem",
+        padding:
+          screenSize === "sm"
+            ? "6rem 1rem 8rem 1rem"
+            : screenSize === "md"
+            ? "6rem 3rem 1rem 7rem"
+            : "7.5rem 6.32rem 3.13rem 14.69rem",
         backgroundColor: theme.colors.blackBackground,
         color: "#fff",
       }}
     >
       {/* Meditaciones */}
-
-      <Box
-        sx={{
-          position: "relative",
-        }}
-      >
-        <Typography variant="h1" sx={{ marginBottom: 2 }}>
+      <Box>
+        <Typography
+          sx={{
+            marginBottom: 2,
+            typography: screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
+          }}
+        >
           Meditaciones
         </Typography>
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={16}
-          slidesPerView={4}
-          navigation // Включаем стрелки
-          pagination={false}
-          breakpoints={{
-            1024: {
-              slidesPerView: 4,
-            },
-            768: {
-              slidesPerView: 3,
-            },
-            480: {
-              slidesPerView: 2,
-            },
-            0: {
-              slidesPerView: 1,
-            },
+          spaceBetween={screenSize === "sm" ? 8 : screenSize === "md" ? 12 : 16}
+          slidesPerView={
+            screenSize === "sm" ? 1 : screenSize === "md" ? 2 : screenSize === "lg" ? 3 : 4
+          }
+          navigation={screenSize === "lg"}
+          pagination={{
+            clickable: true,
+            el: ".meditation-pagination",
+            enabled: screenSize === "sm" || screenSize === "md",
           }}
         >
           {Array.from({ length: 8 }).map((_, index) => (
@@ -52,7 +52,9 @@ const ResourcesComponent: React.FC = () => {
               <Card
                 sx={{
                   width: "100%",
-                  height: "24.94rem",
+                  height:
+                    screenSize === "sm" ? "304.34px" : screenSize === "md" ? "22rem" : "24.94rem",
+                  maxHeight: "399px",
                   border: "1px solid #e0e0e0",
                   borderRadius: "10.56px",
                   backgroundColor: "#f5f5f5",
@@ -82,7 +84,7 @@ const ResourcesComponent: React.FC = () => {
                   alt={`Meditation ${index + 1}`}
                   sx={{
                     width: "100%",
-                    height: "60%",
+                    height: screenSize === "sm" ? "140.14px" : "60%",
                     objectFit: "cover",
                   }}
                 />
@@ -107,13 +109,13 @@ const ResourcesComponent: React.FC = () => {
                   </Typography>
                   <Button
                     variant="contained"
-                    color="primary"
                     sx={{
                       textTransform: "none",
                       borderRadius: "20px",
-                      width: "7rem",
+                      width: screenSize === "sm" ? "75.78px" : "7rem",
                       height: "2.2rem",
                       marginLeft: "auto",
+                      backgroundColor: theme.colors.lightBlue,
                     }}
                   >
                     Acceder
@@ -123,11 +125,36 @@ const ResourcesComponent: React.FC = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        {(screenSize === "sm" || screenSize === "md") && (
+          <Box
+            className="meditation-pagination"
+            sx={{
+              marginTop: "1.5rem",
+              justifyContent: "center",
+              display: "flex",
+              gap: 1,
+              "& .swiper-pagination-bullet": {
+                backgroundColor: theme.colors.lightGray,
+                opacity: 0.7,
+                width: "8px",
+                height: "8px",
+              },
+              "& .swiper-pagination-bullet-active": {
+                backgroundColor: "gray",
+              },
+            }}
+          />
+        )}
       </Box>
 
       {/* Podcasts */}
       <Box sx={{ marginBottom: 4, marginTop: "2rem" }}>
-        <Typography variant="h1" sx={{ marginBottom: 2 }}>
+        <Typography
+          sx={{
+            marginBottom: 2,
+            typography: screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
+          }}
+        >
           Podcasts
           <Typography component="span" variant="body1" sx={{ color: theme.colors.lightGray }}>
             (recomendados)
@@ -140,12 +167,12 @@ const ResourcesComponent: React.FC = () => {
             gap: 2,
           }}
         >
-          {Array.from({ length: 7 }).map((_, index) => (
+          {Array.from({ length: screenSize === "lg" ? 7 : 4 }).map((_, index) => (
             <Card
               key={`podcast-${index}`}
               sx={{
-                width: "41.2rem",
-                height: "7.52rem",
+                width: screenSize === "sm" ? "100%" : screenSize === "md" ? "100%" : "41.2rem",
+                height: screenSize === "sm" ? "80px" : screenSize === "md" ? "6.5rem" : "7.52rem",
                 borderRadius: "1.13rem",
                 backgroundColor: "#f5f5f5",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
@@ -161,37 +188,26 @@ const ResourcesComponent: React.FC = () => {
 
       {/* Playlists */}
       <Box sx={{ marginBottom: 4, marginTop: "2rem" }}>
-        <Typography variant="h1" sx={{ marginBottom: 2 }}>
+        <Typography
+          sx={{
+            marginBottom: 2,
+            typography: screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
+          }}
+        >
           Playlists
         </Typography>
 
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={24}
-          slidesPerView={4}
-          navigation
-          pagination={false}
-          breakpoints={{
-            1728: {
-              slidesPerView: 4,
-              spaceBetween: 24,
-            },
-            1440: {
-              slidesPerView: 3,
-              spaceBetween: 16,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 16,
-            },
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 16,
-            },
-            480: {
-              slidesPerView: 1,
-              spaceBetween: 16,
-            },
+          spaceBetween={screenSize === "sm" ? 8 : screenSize === "md" ? 12 : 16}
+          slidesPerView={
+            screenSize === "sm" ? 1 : screenSize === "md" ? 2 : screenSize === "lg" ? 3 : 4
+          }
+          navigation={screenSize === "lg"}
+          pagination={{
+            clickable: true,
+            el: ".playlist-pagination",
+            enabled: screenSize === "sm" || screenSize === "md",
           }}
         >
           {Array.from({ length: 8 }).map((_, index) => (
@@ -199,7 +215,8 @@ const ResourcesComponent: React.FC = () => {
               <Card
                 sx={{
                   width: "100%",
-                  height: "27.41rem",
+                  height:
+                    screenSize === "sm" ? "315.67px" : screenSize === "md" ? "23rem" : "27.41rem",
                   border: "1px solid #e0e0e0",
                   borderRadius: "10.56px",
                   backgroundColor: "#f5f5f5",
@@ -217,7 +234,8 @@ const ResourcesComponent: React.FC = () => {
                   alt={`playlist ${index + 1}`}
                   sx={{
                     width: "99%",
-                    height: "10.14rem",
+                    height:
+                      screenSize === "sm" ? "10.14rem" : screenSize === "md" ? "9rem" : "12rem",
                     objectFit: "cover",
                   }}
                 />
@@ -254,19 +272,19 @@ const ResourcesComponent: React.FC = () => {
                       marginBottom: "1rem",
                     }}
                   >
-                    Это описание playlist {index + 1}. Здесь можно добавить больше информации.
+                    Playlist {index + 1}. Aquí puedes agregar más información.
                   </Typography>
 
                   {/* Button */}
                   <Button
                     variant="contained"
-                    color="primary"
                     sx={{
                       textTransform: "none",
                       borderRadius: "20px",
-                      width: "7rem",
+                      width: screenSize === "sm" ? "75.78px" : "7rem",
                       height: "2.2rem",
                       marginLeft: "auto",
+                      backgroundColor: theme.colors.lightBlue,
                     }}
                   >
                     Escuchar
@@ -276,55 +294,95 @@ const ResourcesComponent: React.FC = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        {(screenSize === "sm" || screenSize === "md") && (
+          <Box
+            className="playlist-pagination"
+            sx={{
+              marginTop: "1.5rem",
+              justifyContent: "center",
+              display: "flex",
+              gap: 1,
+              "& .swiper-pagination-bullet": {
+                backgroundColor: theme.colors.lightGray,
+                opacity: 0.7,
+                width: "8px",
+                height: "8px",
+              },
+              "& .swiper-pagination-bullet-active": {
+                backgroundColor: "gray",
+              },
+            }}
+          />
+        )}
       </Box>
 
       {/* Banner */}
       <Box
         sx={{
-          width: "97vw",
-          height: "26.47rem",
+          width: screenSize === "sm" ? "100%" : screenSize === "md" ? "98vw" : "97vw",
+          height: screenSize === "sm" ? "7.5rem" : screenSize === "md" ? "18rem" : "26.47rem",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           position: "relative",
-          padding: "2.34rem 1rem 4.22rem 6.13rem",
-          marginLeft: "-14.69rem",
-          marginRight: "-6.32rem",
-          marginTop: "4rem",
+          padding:
+            screenSize === "sm"
+              ? "0.5rem 1rem"
+              : screenSize === "md"
+              ? "2rem 1rem 3rem 4rem"
+              : "2.34rem 1rem 4.22rem 6.13rem",
+          marginLeft: screenSize === "sm" ? 0 : screenSize === "md" ? "-8rem" : "-14.69rem",
+          marginRight: screenSize === "sm" ? 0 : screenSize === "md" ? "-4rem" : "-6.32rem",
+          marginTop: screenSize === "sm" ? "2rem" : "4rem",
           backgroundImage: `url(/src/assets/resources/banner.png)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          borderRadius: screenSize === "sm" ? "10px" : 0,
         }}
       >
         <Box
           sx={{
-            width: "30%",
-            height: "80%",
+            width: "60%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
             alignItems: "flex-start",
-            margin: "3rem 3rem 4rem 6rem",
-            gap: "1.5rem",
+            margin:
+              screenSize === "sm"
+                ? 0
+                : screenSize === "md"
+                ? "2rem 2rem 3rem 4rem"
+                : "3rem 3rem 4rem 6rem",
+            gap: screenSize === "sm" ? "0.1rem" : "1.5rem",
           }}
         >
-          <Typography variant="h1">Enfoca tu mente, relaja tu cuerpo.</Typography>
-          <Typography variant="h3">Ingresa a un ambiente sonoro distinto.</Typography>
+          <Typography
+            sx={{ typography: screenSize === "sm" ? "body1" : screenSize === "md" ? "h3" : "h1" }}
+          >
+            Enfoca tu mente, <br />
+            relaja tu cuerpo.
+          </Typography>
+          <Typography
+            sx={{ typography: screenSize === "sm" ? "body3" : screenSize === "md" ? "h6" : "h3" }}
+          >
+            Ingresa a un ambiente sonoro <br />
+            distinto.
+          </Typography>
           <Button
             component="a"
             href="https://binaurapp.com/"
             target="_blank"
             rel="noopener noreferrer"
             sx={{
-              width: "254px",
-              height: "58px",
-              borderRadius: "100px",
-              border: "1px solid #fff",
+              width: screenSize === "sm" ? "69.33px" : screenSize === "md" ? "180px" : "254px",
+              height: screenSize === "sm" ? "15.83px" : screenSize === "md" ? "35px" : "58px",
+              borderRadius: screenSize === "sm" ? "27.3px" : "6.25rem",
+              border: screenSize === "sm" ? "0.27px solid #FFFFFF" : "1px solid #fff",
               backgroundColor: "transparent",
               color: "#fff",
               textTransform: "none",
-              fontSize: "16px",
+              fontSize: screenSize === "sm" ? "4.37px" : screenSize === "md" ? "12px" : "16px",
               fontWeight: "bold",
               "&:hover": {
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -353,8 +411,21 @@ const ResourcesComponent: React.FC = () => {
             textDecoration: "none",
           }}
         >
-          <img src="/src/assets/resources/binaur.png" alt="binaur" />
-          <Typography variant="h4" sx={{ textAlign: "center" }}>
+          <Box
+            component="img"
+            src="/src/assets/resources/binaur.png"
+            alt="binaur"
+            sx={{
+              width: screenSize === "sm" ? "58.96px" : screenSize === "md" ? "120px" : "100%",
+              height: screenSize === "sm" ? "58.96px" : screenSize === "md" ? "120px" : "100%",
+            }}
+          />
+          <Typography
+            sx={{
+              textAlign: "center",
+              typography: screenSize === "sm" ? "body1" : screenSize === "md" ? "h6" : "h4",
+            }}
+          >
             Binaurapp
           </Typography>
         </Box>
