@@ -1,4 +1,4 @@
-import { API_URL } from './env';
+import { API_URL } from "./env";
 
 // Auth endpoints
 export const AUTH_ENDPOINTS = {
@@ -25,6 +25,7 @@ export const EMOTIONS_ENDPOINTS = {
 export const MESSAGES_ENDPOINTS = {
   SEND_SUPPORT: `${API_URL}/mensajes/api/send-support/`,
   GET_TEMPLATE_MESSAGES: `${API_URL}/mensajes/templates/`,
+  GET_NOTIFICATIONS: `${API_URL}/mensajes/api/notifications/`,
 } as const;
 
 // Resources endpoints
