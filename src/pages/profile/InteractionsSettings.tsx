@@ -78,7 +78,7 @@ export default function InteractionsSettings() {
             value={settings.mute?.originalDuration || ''}
             onChange={handleMuteChange}
             name="mute-radio-group"
-            sx={{ display: 'flex', flexDirection: 'row', gap: 4 }}
+            sx={{ display: 'flex', flexDirection: 'row', gap: 4, flexWrap: 'nowrap' }}
           >
             <FormControlLabel
               value="1h"
