@@ -34,11 +34,12 @@ export default function MarkerModal({
   const { data: responses, isLoading, isError } = useGetTemplateMessages();
   const { mutate: sendSupport, isPending, isSuccess } = useSendSupport();
 
-  const handleSend = (templateId: string) => {
+  const handleSend = (template: number) => {
     if (!userId || sharedEmotion === null) return;
+    console.log('templateId', template);
     sendSupport({
       shared_emotion: sharedEmotion,
-      template: templateId,
+      template_id: template,
     });
   };
 
@@ -80,7 +81,7 @@ export default function MarkerModal({
           const icon = icons[index % icons.length];
 
           return (
-            <Box key={response.id}>
+            <Box key={response.text}>
               <Box
                 sx={{
                   display: 'flex',
@@ -103,7 +104,7 @@ export default function MarkerModal({
                       cursor: 'pointer',
                     },
                   }}
-                  onClick={() => handleSend(response.text)}
+                  onClick={() => handleSend(response.id)}
                   disabled={isPending}
                 >
                   <img src={icon} alt="icon" style={{ width: '45px', height: '45px' }} />
