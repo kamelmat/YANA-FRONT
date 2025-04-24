@@ -311,6 +311,15 @@ i18n.use(initReactI18next).init({
           subtitle: 'We have noticed you are feeling unwell.<br />Talking to someone can help.',
           button: 'Call',
         },
+        markerModal: {
+          success: 'Message sent!',
+          error: 'Error sending message',
+          templateMessages: {
+            '1': 'Cheer up!',
+            '2': "I'm here for you",
+            '3': "I'm with you, I share what you feel",
+          },
+        },
       },
     },
     es: {
@@ -626,6 +635,15 @@ i18n.use(initReactI18next).init({
           title: 'Estamos aquí para escucharte',
           subtitle: 'Hemos notado que no te sientes bien.<br />Hablar con alguien puede ayudarte.',
           button: 'Llamar',
+        },
+        markerModal: {
+          success: '¡Mensaje enviado!',
+          error: 'Error al enviar el mensaje',
+          templateMessages: {
+            '1': '¡Ánimo!',
+            '2': 'Cuentas con todo mi apoyo',
+            '3': 'Estoy contigo, comparto lo que sientes',
+          },
         },
       },
     },
