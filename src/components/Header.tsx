@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useScreenSize from '../hooks/useScreenSize';
 import { useAuthStore } from '../store/authStore';
+import { useNotificationsStore } from '../store/notificationsStore';
 import { getFormattedDate } from '../utils/getFormattedDate';
+import { useNotifications } from '../hooks/useNotifications';
 
 import Slogan_EN from '../assets/branding/slogan_en.svg?url';
 import Slogan_ES from '../assets/branding/slogan_es.svg?url';
@@ -26,6 +28,16 @@ const CustomIconButton = styled(IconButton)(() => ({
   },
 }));
 
+const NotificationDot = styled(Box)({
+  position: 'absolute' as const,
+  top: '0.2rem',
+  right: '-0.2rem',
+  width: '0.5rem',
+  height: '0.5rem',
+  backgroundColor: theme.colors.red,
+  borderRadius: '50%',
+});
+
 export default function Header() {
   const screenSize = useScreenSize();
   const name = useAuthStore((state) => state.name);
@@ -33,6 +45,8 @@ export default function Header() {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const hasNotifications = useNotificationsStore((state) => state.hasNotifications);
+  useNotifications(); // Start polling
 
   const iconSize = screenSize === 'sm' ? '21px' : screenSize === 'md' ? '35px' : '2.5vh';
   const isDesktop = screenSize === 'lg' || screenSize === 'xl';
@@ -129,9 +143,12 @@ export default function Header() {
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <CustomIconButton>
-          <img src={NotificationsIcon} alt="Notifications" style={{ height: iconSize }} />
-        </CustomIconButton>
+        <Box sx={{ position: 'relative' }}>
+          <CustomIconButton>
+            <img src={NotificationsIcon} alt="Notifications" style={{ height: iconSize }} />
+          </CustomIconButton>
+          {hasNotifications && <NotificationDot />}
+        </Box>
         {screenSize === 'sm' && <HamburgerMenu />}
         {screenSize !== 'sm' && (
           <CustomIconButton onClick={() => navigate('/profile')}>
