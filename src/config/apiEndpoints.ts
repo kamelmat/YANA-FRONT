@@ -18,7 +18,7 @@ export const EMOTIONS_ENDPOINTS = {
   CREATE_EMOTION: `${API_URL}/emociones/user/emotions/create/`,
   GET_AVAILABLE_EMOTIONS: `${API_URL}/emociones/emotions/available/`,
   GET_LAST_EMOTION: `${API_URL}/emociones/user/emotions/last/`,
-  GET_NEARBY_EMOTIONS: `${API_URL}/emociones/api/nearby-emotions`,
+  GET_NEARBY_EMOTIONS: `${API_URL}/emociones/api/nearby-emotions/`,
 } as const;
 
 // Messages endpoints
