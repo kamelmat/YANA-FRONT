@@ -1,18 +1,19 @@
-import React from 'react';
 import {
+  Alert,
   Box,
   Button,
   CircularProgress,
   Dialog,
   DialogContent,
   Divider,
-  Typography,
   Snackbar,
-  Alert,
+  Typography,
 } from '@mui/material';
+import React from 'react';
 import { useGetTemplateMessages } from '../hooks/useGetTemplateMessages';
 import { useSendSupport } from '../hooks/useSendSupport';
 
+import { useTranslation } from 'react-i18next';
 import buttonSendGreen from '../assets/messages/buttonSendGreen.svg';
 import buttonSendOrange from '../assets/messages/buttonSendOrange.svg';
 import buttonSendPink from '../assets/messages/buttonSendPink.svg';
@@ -34,6 +35,7 @@ export default function MarkerModal({
   userId,
   sharedEmotion,
 }: MarkerModalProps) {
+  const { t } = useTranslation();
   const { data: responses, isLoading } = useGetTemplateMessages();
   const { mutate: sendSupport, isPending, isSuccess, isError } = useSendSupport();
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
@@ -106,7 +108,9 @@ export default function MarkerModal({
                   }}
                 >
                   <Typography variant="body1">
-                    {response.text}
+                    {t(`markerModal.templateMessages.${response.id}`, {
+                      defaultValue: response.text,
+                    })}
                   </Typography>
 
                   <Button
@@ -141,14 +145,14 @@ export default function MarkerModal({
         <Alert
           onClose={handleCloseSnackbar}
           severity={isSuccess ? 'success' : 'error'}
-          sx={{ 
+          sx={{
             width: '100%',
             '& .MuiAlert-message': {
-              color: 'black'
-            }
+              color: 'black',
+            },
           }}
         >
-          {isSuccess ? '¡Mensaje enviado!' : 'Error al enviar el mensaje'}
+          {isSuccess ? t('markerModal.success') : t('markerModal.error')}
         </Alert>
       </Snackbar>
     </>
