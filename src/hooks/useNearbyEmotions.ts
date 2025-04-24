@@ -15,6 +15,7 @@ const fetchNearbyEmotions = async ({ latitude, longitude }: Props, accessToken: 
 
   const res = await fetch(url.toString(), {
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
   })
