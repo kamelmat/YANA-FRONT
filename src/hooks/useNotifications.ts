@@ -3,7 +3,7 @@ import { useAuthStore } from "../store/authStore";
 import { useNotificationsStore } from "../store/notificationsStore";
 import { notificationsService } from "../services/notifications";
 
-const POLLING_INTERVAL = 30000; // Poll every 30 seconds
+const POLLING_INTERVAL = 10000; // Poll every 10 seconds
 
 export const useNotifications = () => {
   const accessToken = useAuthStore((state) => state.accessToken);
