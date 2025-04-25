@@ -16,7 +16,7 @@ import {
   playlistData,
 } from "../../data/resourcesData";
 import banner from "../../assets/resources/banner.webp";
-import binaur from "../../assets/resources/binaur.png";
+import binaur from "../../assets/resources/binaur.webp";
 
 const ResourcesComponent: React.FC = () => {
   const screenSize = useScreenSize();
