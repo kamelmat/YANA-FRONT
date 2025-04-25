@@ -1,51 +1,53 @@
-import avatarMedit1 from "../assets/resources/avatar_medit1.png"
-import avatarMedit2 from "../assets/resources/avatar_medit2.png"
-import avatarMedit3 from "../assets/resources/avatar_medit3.png"
-import avatarMedit4 from "../assets/resources/avatar_medit4.png"
-import imgMedit1 from "../assets/resources/img_medit1.png"
-import imgMedit2 from "../assets/resources/img_medit2.png"
-import imgMedit3 from "../assets/resources/img_medit3.png"
-import imgMedit4 from "../assets/resources/img_medit4.png"
+import avatarMedit1 from "../assets/resources/avatar_medit1.webp";
+import avatarMedit2 from "../assets/resources/avatar_medit2.webp";
+import avatarMedit3 from "../assets/resources/avatar_medit3.webp";
+import avatarMedit4 from "../assets/resources/avatar_medit4.webp";
+import imgMedit1 from "../assets/resources/img_medit1.webp";
+import imgMedit2 from "../assets/resources/img_medit2.webp";
+import imgMedit3 from "../assets/resources/img_medit3.webp";
+import imgMedit4 from "../assets/resources/img_medit4.webp";
 
-import avatarPodcast1 from "../assets/resources/avatarPodcast1.png"
-import avatarPodcast2 from "../assets/resources/avatarPodcast2.png"
-import avatarPodcast3 from "../assets/resources/avatarPodcast3.png"
-import avatarPodcast4 from "../assets/resources/avatarPodcast4.png"
-import avatarPodcast5 from "../assets/resources/avatarPodcast5.png"
-import avatarPodcast6 from "../assets/resources/avatarPodcast6.png"
-import imgPodcast1 from "../assets/resources/imgPodcast1.png"
-import imgPodcast2 from "../assets/resources/imgPodcast2.png"
-import imgPodcast3 from "../assets/resources/imgPodcast3.png"
-import imgPodcast4 from "../assets/resources/imgPodcast4.png"
-import imgPodcast5 from "../assets/resources/imgPodcast5.png"
-import imgPodcast6 from "../assets/resources/imgPodcast6.png"
+import avatarPodcast1 from "../assets/resources/avatarPodcast1.webp";
+import avatarPodcast2 from "../assets/resources/avatarPodcast2.webp";
+import avatarPodcast3 from "../assets/resources/avatarPodcast3.webp";
+import avatarPodcast4 from "../assets/resources/avatarPodcast4.webp";
+import avatarPodcast5 from "../assets/resources/avatarPodcast5.webp";
+import avatarPodcast6 from "../assets/resources/avatarPodcast6.webp";
+import imgPodcast1 from "../assets/resources/imgPodcast1.webp";
+import imgPodcast2 from "../assets/resources/imgPodcast2.webp";
+import imgPodcast3 from "../assets/resources/imgPodcast3.webp";
+import imgPodcast4 from "../assets/resources/imgPodcast4.webp";
+import imgPodcast5 from "../assets/resources/imgPodcast5.webp";
+import imgPodcast6 from "../assets/resources/imgPodcast6.webp";
 
-import imgPlaylist1 from "../assets/resources/imgPlaylist1.svg"
-import imgPlaylist2 from "../assets/resources/imgPlaylist2.svg"
-import imgPlaylist3 from "../assets/resources/imgPlaylist3.svg"
-import imgPlaylist4 from "../assets/resources/imgPlaylist4.svg"
+import imgPlaylist1 from "../assets/resources/imgPlaylist1.svg";
+import imgPlaylist2 from "../assets/resources/imgPlaylist2.svg";
+import imgPlaylist3 from "../assets/resources/imgPlaylist3.svg";
+import imgPlaylist4 from "../assets/resources/imgPlaylist4.svg";
 
 export type resourcesDataProps = {
-  id: number
-  avatar: string | null
-  title: string
-  description: string
-  image: string
-}
+  id: number;
+  avatar: string | null;
+  title: string;
+  description: string;
+  image: string;
+};
 
 export const meditationData: resourcesDataProps[] = [
   {
     id: 1,
     avatar: avatarMedit1,
     title: "Mente tranquila. Un espacio seguro.",
-    description: "Meditación para principiantes.Gabriela Málaga · 3k de vistas · hace 1 año",
+    description:
+      "Meditación para principiantes.Gabriela Málaga · 3k de vistas · hace 1 año",
     image: imgMedit1,
   },
   {
     id: 2,
     avatar: avatarMedit2,
     title: "Bienestar emocional.Tiempo de introspección.",
-    description: "Meditación guiada para relajar. Luz Zapata · 4k de vistas · hace 3 meses",
+    description:
+      "Meditación guiada para relajar. Luz Zapata · 4k de vistas · hace 3 meses",
     image: imgMedit2,
   },
   {
@@ -59,10 +61,11 @@ export const meditationData: resourcesDataProps[] = [
     id: 4,
     avatar: avatarMedit4,
     title: "Runa solar.Un viaje sonoro a tu interior.",
-    description: "Medita y conócete a ti mismo. Runa Solar · 1k de vistas ·  hace 2 años",
+    description:
+      "Medita y conócete a ti mismo. Runa Solar · 1k de vistas ·  hace 2 años",
     image: imgMedit4,
   },
-]
+];
 
 export const podcastData: resourcesDataProps[] = [
   {
@@ -107,20 +110,22 @@ export const podcastData: resourcesDataProps[] = [
     description: "ONG Red de apoyo",
     image: imgPodcast6,
   },
-]
+];
 
 export const playlistData: resourcesDataProps[] = [
   {
     id: 1,
     title: "Manos enlazadas. Canciones para conectar con tu entorno.",
-    description: "Música india orientada a mejorar tu vinculación con lo que te rodea.",
+    description:
+      "Música india orientada a mejorar tu vinculación con lo que te rodea.",
     image: imgPlaylist1,
     avatar: null,
   },
   {
     id: 2,
     title: "Sensaciones. Sonidos que calman.",
-    description: "Una exquisita selección musical producida con cuencos tibetanos.",
+    description:
+      "Una exquisita selección musical producida con cuencos tibetanos.",
     image: imgPlaylist2,
     avatar: null,
   },
@@ -139,4 +144,4 @@ export const playlistData: resourcesDataProps[] = [
     image: imgPlaylist4,
     avatar: null,
   },
-]
+];
