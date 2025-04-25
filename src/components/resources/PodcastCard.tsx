@@ -21,11 +21,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
     <Card
       sx={{
         width:
-          screenSize === "sm"
-            ? "100%"
-            : screenSize === "md"
-            ? "100%"
-            : "41.2rem",
+          screenSize === "sm" ? "100%" : screenSize === "md" ? "100%" : "100%",
         height:
           screenSize === "sm"
             ? "80px"
@@ -39,6 +35,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        marginRight: "0.5rem",
       }}
     >
       <Box

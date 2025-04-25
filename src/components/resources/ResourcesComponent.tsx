@@ -114,15 +114,18 @@ const ResourcesComponent: React.FC = () => {
           <Typography
             component="span"
             variant="body1"
-            sx={{ color: theme.colors.lightGray }}
+            sx={{ color: theme.colors.lightGray, marginLeft: "0.5rem" }}
           >
             (recomendados)
           </Typography>
         </Typography>
         <Box
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",
+              lg: "1fr 1fr",
+            },
             gap: 2,
           }}
         >
