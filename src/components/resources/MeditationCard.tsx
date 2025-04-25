@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, Typography } from '@mui/material';
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import CommonButton from '../../commons/CommonButton';
 import useScreenSize from '../../hooks/useScreenSize';
 import theme from '../../theme';
@@ -20,7 +21,7 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
   image,
 }) => {
   const screenSize = useScreenSize();
-
+  const { t } = useTranslation();
   return (
     <Card
       sx={{
@@ -102,14 +103,12 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
           {description}
         </Typography>
         <CommonButton
-          text="Acceder"
+          text={t('resources.access')}
+          variantType='secondary-fill'
           sx={{
             width: screenSize === 'sm' ? '75.78px' : '7rem',
             height: '2.2rem',
             marginLeft: 'auto',
-            backgroundColor: theme.colors.lightBlue,
-            color: 'white',
-            borderRadius: '1.13rem',
           }}
         />
       </CardContent>

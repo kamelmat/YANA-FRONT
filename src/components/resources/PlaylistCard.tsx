@@ -3,7 +3,7 @@ import type React from 'react';
 import CommonButton from '../../commons/CommonButton';
 import useScreenSize from '../../hooks/useScreenSize';
 import theme from '../../theme';
-
+import { useTranslation } from 'react-i18next';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -18,6 +18,7 @@ interface PlaylistCardProps {
 
 const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }) => {
   const screenSize = useScreenSize();
+  const { t } = useTranslation();
   return (
     <Card
       sx={{
@@ -69,15 +70,12 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }
       </Typography>
 
       <CommonButton
-        text="Escuchar"
+        text={t('resources.listen')}
+        variantType='secondary-fill'
         sx={{
-          textTransform: 'none',
-          borderRadius: '20px',
           width: screenSize === 'sm' ? '75.78px' : '7rem',
           height: '2.2rem',
           marginLeft: 'auto',
-          backgroundColor: theme.colors.lightBlue,
-          color: '#fff',
         }}
       />
     </Card>
