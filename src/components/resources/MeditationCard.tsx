@@ -24,9 +24,12 @@ const MeditationCard: React.FC<meditationDataProps> = ({
       sx={{
         width: '100%',
         maxWidth: '24.74rem',
+        height: screenSize === 'sm' ? '304.34px' : screenSize === 'md' ? '22rem' : '24.94rem',
         borderRadius: '16px',
         backgroundColor: '#fff',
-        overflow: 'visible',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -55,14 +58,15 @@ const MeditationCard: React.FC<meditationDataProps> = ({
         </IconButton>
       </Box>
 
-      <Box sx={{ position: 'relative' }}>
+      <Box sx={{ position: 'relative', height: '50%' }}>
         <Box
           component="img"
           src={image}
           alt={description}
           sx={{
             width: '100%',
-            height: 'auto',
+            height: '100%',
+            objectFit: 'cover',
             display: 'block',
           }}
         />
@@ -82,13 +86,15 @@ const MeditationCard: React.FC<meditationDataProps> = ({
         </Typography>
       </Box>
 
-      <CardContent>
-        <Typography variant="h6" sx={{ mb: 1 }}>
-          {description}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {author} · {views} · {date}
-        </Typography>
+      <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Box>
+          <Typography variant="h6" sx={{ mb: 1 }}>
+            {description}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {author} · {views} · {date}
+          </Typography>
+        </Box>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
           <CommonButton
             text={t('resources.access')}
