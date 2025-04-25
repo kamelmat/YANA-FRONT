@@ -28,29 +28,54 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }
         flexDirection: 'column',
       }}
     >
-      <Box
-        component="img"
-        src={image}
-        alt={title}
-        sx={{
-          width: '100%',
-          height: 'auto',
-          display: 'block',
-        }}
-      />
+      <Box sx={{ position: 'relative', height: '50%', overflow: 'hidden' }}>
+        <Box
+          component="img"
+          src={image}
+          alt={title}
+          sx={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
+          }}
+        />
+      </Box>
 
       <Box sx={{ 
         p: 2, 
         flex: 1, 
         display: 'flex', 
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        height: '50%'
       }}>
         <Box>
-          <Typography variant="h6" sx={{ mb: 1, fontWeight: 500 }}>
+          <Typography 
+            variant="h6" 
+            sx={{ 
+              mb: 1, 
+              fontWeight: 500,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical'
+            }}
+          >
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography 
+            variant="body2" 
+            color="text.secondary"
+            sx={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical'
+            }}
+          >
             {description}
           </Typography>
         </Box>

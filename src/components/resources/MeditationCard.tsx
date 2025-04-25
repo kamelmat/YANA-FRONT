@@ -24,7 +24,7 @@ const MeditationCard: React.FC<meditationDataProps> = ({
       sx={{
         width: '100%',
         maxWidth: '24.74rem',
-        height: screenSize === 'sm' ? '304.34px' : screenSize === 'md' ? '22rem' : '24.94rem',
+        height: screenSize === 'sm' ? '400px' : '28rem',
         borderRadius: '16px',
         backgroundColor: '#fff',
         overflow: 'hidden',
