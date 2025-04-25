@@ -28,7 +28,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }
         flexDirection: 'column',
       }}
     >
-      <Box sx={{ position: 'relative', height: '50%', overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', height: '50%', overflow: 'hidden', px: 1 }}>
         <Box
           component="img"
           src={image}

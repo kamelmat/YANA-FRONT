@@ -27,8 +27,8 @@ const ResourcesComponent: React.FC = () => {
           screenSize === 'sm'
             ? '6rem 1rem 8rem 1rem'
             : screenSize === 'md'
-              ? '6rem 3rem 1rem 7rem'
-              : '7.5rem 6.32rem 3.13rem 14.69rem',
+              ? '6rem 3rem 1rem calc(${theme.sidebar?.width} + 3rem)'
+              : `7.5rem 6rem 3.13rem calc(${theme.sidebar?.width} + 6rem)`,
         backgroundColor: theme.colors.blackBackground,
         color: '#fff',
       }}
@@ -203,7 +203,7 @@ const ResourcesComponent: React.FC = () => {
       {/* Banner */}
       <Box
         sx={{
-          width: screenSize === 'sm' ? '100%' : screenSize === 'md' ? '98vw' : '97vw',
+          width: "100%",
           height: screenSize === 'sm' ? '7.5rem' : screenSize === 'md' ? '18rem' : '26.47rem',
           display: 'flex',
           justifyContent: 'space-between',
@@ -215,19 +215,17 @@ const ResourcesComponent: React.FC = () => {
               : screenSize === 'md'
                 ? '2rem 1rem 3rem 4rem'
                 : '2.34rem 1rem 4.22rem 6.13rem',
-          marginLeft: screenSize === 'sm' ? 0 : screenSize === 'md' ? '-8rem' : '-14.69rem',
-          marginRight: screenSize === 'sm' ? 0 : screenSize === 'md' ? '-4rem' : '-6.32rem',
           marginTop: screenSize === 'sm' ? '2rem' : '4rem',
           backgroundImage: `url(${banner})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          borderRadius: screenSize === 'sm' ? '10px' : 0,
+          borderRadius: '10px',
         }}
       >
         <Box
           sx={{
-            width: (screenSize === 'lg' || screenSize === 'xl') ? '20%' :  '60%',
+            width: (screenSize === 'lg' || screenSize === 'xl') ? '25%' :  '60%',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
