@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import { Box, IconButton, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useNotifications } from '../hooks/useNotifications';
 import useScreenSize from '../hooks/useScreenSize';
 import { useAuthStore } from '../store/authStore';
 import { useNotificationsStore } from '../store/notificationsStore';
 import { getFormattedDate } from '../utils/getFormattedDate';
-import { useNotifications } from '../hooks/useNotifications';
 
 import Slogan_EN from '../assets/branding/slogan_en.svg?url';
 import Slogan_ES from '../assets/branding/slogan_es.svg?url';

@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Typography, Card, CardContent } from "@mui/material";
-import useScreenSize from "../../hooks/useScreenSize";
+import { Box, Card, CardContent, Typography } from '@mui/material';
+import type React from 'react';
+import useScreenSize from '../../hooks/useScreenSize';
 
 interface PodcastCardProps {
   avatar: string;
@@ -9,33 +9,22 @@ interface PodcastCardProps {
   image: string;
 }
 
-const PodcastCard: React.FC<PodcastCardProps> = ({
-  avatar,
-  title,
-  description,
-  image,
-}) => {
+const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, image }) => {
   const screenSize = useScreenSize();
 
   return (
     <Card
       sx={{
-        width:
-          screenSize === "sm" ? "100%" : screenSize === "md" ? "100%" : "100%",
-        height:
-          screenSize === "sm"
-            ? "80px"
-            : screenSize === "md"
-            ? "6.5rem"
-            : "7.52rem",
-        borderRadius: "1.13rem",
-        backgroundColor: "#f5f5f5",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        padding: "0.5rem 0 0.5rem 0.5rem",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginRight: "0.5rem",
+        width: screenSize === 'sm' ? '100%' : screenSize === 'md' ? '100%' : '100%',
+        height: screenSize === 'sm' ? '80px' : screenSize === 'md' ? '6.5rem' : '7.52rem',
+        borderRadius: '1.13rem',
+        backgroundColor: '#f5f5f5',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        padding: '0.5rem 0 0.5rem 0.5rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginRight: '0.5rem',
       }}
     >
       <Box
@@ -43,11 +32,11 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
         src={avatar}
         alt={`Avatar for ${title}`}
         sx={{
-          width: "60.2px",
-          height: "60.2px",
-          marginRight: "1rem",
-          objectFit: "cover",
-          borderRadius: "50%",
+          width: '60.2px',
+          height: '60.2px',
+          marginRight: '1rem',
+          objectFit: 'cover',
+          borderRadius: '50%',
         }}
       />
 
@@ -55,17 +44,17 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
         sx={{
           flex: 1,
           padding: 0,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
       >
         <Typography
           variant="body1"
           sx={{
-            color: "#333",
-            fontWeight: "bold",
-            textAlign: "left",
+            color: '#333',
+            fontWeight: 'bold',
+            textAlign: 'left',
           }}
         >
           {title}
@@ -73,8 +62,8 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
         <Typography
           variant="body2"
           sx={{
-            color: "#757575",
-            textAlign: "left",
+            color: '#757575',
+            textAlign: 'left',
           }}
         >
           {description}
@@ -86,10 +75,10 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
         src={image}
         alt={`Image for ${title}`}
         sx={{
-          width: "120.39px",
-          height: "122.18px",
-          objectFit: "cover",
-          borderRadius: "8px",
+          width: '120.39px',
+          height: '122.18px',
+          objectFit: 'cover',
+          borderRadius: '8px',
         }}
       />
     </Card>
