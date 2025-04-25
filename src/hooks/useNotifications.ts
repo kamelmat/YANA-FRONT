@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { useAuthStore } from "../store/authStore";
-import { useNotificationsStore } from "../store/notificationsStore";
-import { notificationsService } from "../services/notifications";
-import { useSettingsStore } from "../store/useSettingsStore";
-import notificationSoundFile from "../assets/sounds/notification.mp3";
-import { useEffect } from "react";
+import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import notificationSoundFile from '../assets/sounds/notification.mp3';
+import { notificationsService } from '../services/notifications';
+import { useAuthStore } from '../store/authStore';
+import { useNotificationsStore } from '../store/notificationsStore';
+import { useSettingsStore } from '../store/useSettingsStore';
 
 const POLLING_INTERVAL = 10000; // Poll every 10 seconds
 
@@ -16,7 +16,7 @@ export const useNotifications = () => {
   const { settings } = useSettingsStore();
 
   const { data } = useQuery({
-    queryKey: ["notifications"],
+    queryKey: ['notifications'],
     queryFn: async () => {
       if (!settings.notifications) {
         return false;
@@ -30,25 +30,14 @@ export const useNotifications = () => {
 
   useEffect(() => {
     if (data !== undefined) {
-      if (
-        data &&
-        !hasNotifications &&
-        settings.notifications &&
-        settings.appSounds
-      ) {
+      if (data && !hasNotifications && settings.notifications && settings.appSounds) {
         notificationSound.play().catch((error) => {
-          console.error("Error playing notification sound:", error);
+          console.error('Error playing notification sound:', error);
         });
       }
       setHasNotifications(data);
     }
-  }, [
-    data,
-    hasNotifications,
-    settings.notifications,
-    settings.appSounds,
-    setHasNotifications,
-  ]);
+  }, [data, hasNotifications, settings.notifications, settings.appSounds, setHasNotifications]);
 
   return data;
 };

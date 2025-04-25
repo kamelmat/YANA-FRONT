@@ -21,10 +21,10 @@ export default function InteractionsSettings() {
 
   const handleMuteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const duration = e.target.value as '1h' | '24h';
-    updateSetting('mute', { 
-      duration, 
+    updateSetting('mute', {
+      duration,
       originalDuration: duration,
-      createdAt: Date.now() 
+      createdAt: Date.now(),
     });
   };
 
