@@ -230,30 +230,13 @@ const ResourcesComponent: React.FC = () => {
           justifyContent: "space-between",
           alignItems: "center",
           position: "relative",
-          padding:
-            screenSize === "sm"
-              ? "0.5rem 1rem"
-              : screenSize === "md"
-              ? "2rem 1rem 3rem 4rem"
-              : "2.34rem 1rem 4.22rem 6.13rem",
-          marginLeft:
-            screenSize === "sm"
-              ? 0
-              : screenSize === "md"
-              ? "-8rem"
-              : "-14.69rem",
-          marginRight:
-            screenSize === "sm"
-              ? 0
-              : screenSize === "md"
-              ? "-4rem"
-              : "-6.32rem",
           marginTop: screenSize === "sm" ? "2rem" : "4rem",
-          backgroundImage: `url(/src/assets/resources/banner.png)`,
+          backgroundImage: `url(/src/assets/resources/banner.webp)`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          borderRadius: screenSize === "sm" ? "10px" : 0,
+          borderRadius: screenSize === "sm" ? "10px" : 3,
+          maxWidth: "100%",
         }}
       >
         <Box
@@ -270,6 +253,7 @@ const ResourcesComponent: React.FC = () => {
                 ? "2rem 2rem 3rem 4rem"
                 : "3rem 3rem 4rem 6rem",
             gap: screenSize === "sm" ? "0.1rem" : "1.5rem",
+            paddingLeft: 1,
           }}
         >
           <Typography
