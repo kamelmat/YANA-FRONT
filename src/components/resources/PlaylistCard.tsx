@@ -1,8 +1,8 @@
 import { Box, Card, Typography } from '@mui/material';
 import type React from 'react';
+import { useTranslation } from 'react-i18next';
 import CommonButton from '../../commons/CommonButton';
 import useScreenSize from '../../hooks/useScreenSize';
-import { useTranslation } from 'react-i18next';
 
 interface PlaylistCardProps {
   title: string;
@@ -13,7 +13,7 @@ interface PlaylistCardProps {
 const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }) => {
   const screenSize = useScreenSize();
   const { t } = useTranslation();
-  
+
   return (
     <Card
       sx={{
@@ -42,38 +42,40 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }
         />
       </Box>
 
-      <Box sx={{ 
-        p: 2, 
-        flex: 1, 
-        display: 'flex', 
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        height: '50%'
-      }}>
+      <Box
+        sx={{
+          p: 2,
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '50%',
+        }}
+      >
         <Box>
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              mb: 1, 
+          <Typography
+            variant="h6"
+            sx={{
+              mb: 1,
               fontWeight: 500,
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
               WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical'
+              WebkitBoxOrient: 'vertical',
             }}
           >
             {title}
           </Typography>
-          <Typography 
-            variant="body2" 
+          <Typography
+            variant="body2"
             color="text.secondary"
             sx={{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
               WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical'
+              WebkitBoxOrient: 'vertical',
             }}
           >
             {description}

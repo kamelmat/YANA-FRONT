@@ -1,10 +1,10 @@
-import { Box, Card, CardContent, Typography, IconButton } from '@mui/material';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Box, Card, CardContent, IconButton, Typography } from '@mui/material';
 import type React from 'react';
 import { useTranslation } from 'react-i18next';
 import CommonButton from '../../commons/CommonButton';
-import useScreenSize from '../../hooks/useScreenSize';
 import type { meditationDataProps } from '../../data/resourcesData';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import useScreenSize from '../../hooks/useScreenSize';
 
 const MeditationCard: React.FC<meditationDataProps> = ({
   avatar,
@@ -86,7 +86,9 @@ const MeditationCard: React.FC<meditationDataProps> = ({
         </Typography>
       </Box>
 
-      <CardContent sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <CardContent
+        sx={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+      >
         <Box>
           <Typography variant="h6" sx={{ mb: 1 }}>
             {description}

@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Footer from "./components/Footer";
 import { BrowserRouter } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import AppRoutes from './routes/AppRoutes';

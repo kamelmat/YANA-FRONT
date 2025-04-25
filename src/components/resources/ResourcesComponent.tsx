@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useTranslation } from 'react-i18next';
 import banner from '../../assets/resources/banner.webp';
 import binaur from '../../assets/resources/binaur.webp';
 import { useResourcesData } from '../../data/resourcesData';
@@ -13,7 +14,6 @@ import theme from '../../theme';
 import MeditationCard from './MeditationCard';
 import PlaylistCard from './PlaylistCard';
 import PodcastCard from './PodcastCard';
-import { useTranslation } from 'react-i18next';
 
 const ResourcesComponent: React.FC = () => {
   const screenSize = useScreenSize();
@@ -203,7 +203,7 @@ const ResourcesComponent: React.FC = () => {
       {/* Banner */}
       <Box
         sx={{
-          width: "100%",
+          width: '100%',
           height: screenSize === 'sm' ? '7.5rem' : screenSize === 'md' ? '18rem' : '26.47rem',
           display: 'flex',
           justifyContent: 'space-between',
@@ -225,7 +225,7 @@ const ResourcesComponent: React.FC = () => {
       >
         <Box
           sx={{
-            width: (screenSize === 'lg' || screenSize === 'xl') ? '25%' :  '60%',
+            width: screenSize === 'lg' || screenSize === 'xl' ? '25%' : '60%',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
