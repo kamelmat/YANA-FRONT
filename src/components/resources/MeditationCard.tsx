@@ -1,15 +1,15 @@
-import React from "react"
-import { Box, Typography, Card, CardContent } from "@mui/material"
-import CommonButton from "../../commons/CommonButton"
-import useScreenSize from "../../hooks/useScreenSize"
-import theme from "../../theme"
+import React from "react";
+import { Box, Typography, Card, CardContent } from "@mui/material";
+import CommonButton from "../../commons/CommonButton";
+import useScreenSize from "../../hooks/useScreenSize";
+import theme from "../../theme";
 
 interface MeditationCardProps {
-  avatar: string
-  title: string
-  description: string
-  id: number
-  image: string
+  avatar: string;
+  title: string;
+  description: string;
+  id: number;
+  image: string;
 }
 
 const MeditationCard: React.FC<MeditationCardProps> = ({
@@ -19,14 +19,19 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
   id,
   image,
 }) => {
-  const screenSize = useScreenSize()
+  const screenSize = useScreenSize();
 
   return (
     <Card
       sx={{
         width: "100%",
         maxWidth: "24.74rem",
-        height: screenSize === "sm" ? "304.34px" : screenSize === "md" ? "22rem" : "24.94rem",
+        height:
+          screenSize === "sm"
+            ? "304.34px"
+            : screenSize === "md"
+            ? "22rem"
+            : "24.94rem",
         maxHeight: "399px",
         border: "1px solid #e0e0e0",
         borderRadius: "10.56px",
@@ -45,7 +50,6 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
           paddingLeft: "0.5rem",
         }}
       >
-        {/* Аватар */}
         <Box
           component="img"
           src={avatar}
@@ -58,7 +62,6 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
           }}
         />
 
-        {/* Заголовок */}
         <Typography
           variant="h6"
           sx={{
@@ -73,7 +76,6 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
         </Typography>
       </Box>
 
-      {/* Изображение */}
       <Box
         component="img"
         src={image}
@@ -84,7 +86,7 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
           objectFit: "cover",
         }}
       />
-      {/* Описание и кнопка */}
+
       <CardContent
         sx={{
           display: "flex",
@@ -117,7 +119,7 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
         />
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
-export default MeditationCard
+export default MeditationCard;

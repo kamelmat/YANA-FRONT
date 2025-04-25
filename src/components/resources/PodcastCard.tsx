@@ -1,22 +1,37 @@
-import React from "react"
-import { Box, Typography, Card, CardContent } from "@mui/material"
-import useScreenSize from "../../hooks/useScreenSize"
+import React from "react";
+import { Box, Typography, Card, CardContent } from "@mui/material";
+import useScreenSize from "../../hooks/useScreenSize";
 
 interface PodcastCardProps {
-  avatar: string
-  title: string
-  description: string
-  image: string
+  avatar: string;
+  title: string;
+  description: string;
+  image: string;
 }
 
-const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, image }) => {
-  const screenSize = useScreenSize()
+const PodcastCard: React.FC<PodcastCardProps> = ({
+  avatar,
+  title,
+  description,
+  image,
+}) => {
+  const screenSize = useScreenSize();
 
   return (
     <Card
       sx={{
-        width: screenSize === "sm" ? "100%" : screenSize === "md" ? "100%" : "41.2rem",
-        height: screenSize === "sm" ? "80px" : screenSize === "md" ? "6.5rem" : "7.52rem",
+        width:
+          screenSize === "sm"
+            ? "100%"
+            : screenSize === "md"
+            ? "100%"
+            : "41.2rem",
+        height:
+          screenSize === "sm"
+            ? "80px"
+            : screenSize === "md"
+            ? "6.5rem"
+            : "7.52rem",
         borderRadius: "1.13rem",
         backgroundColor: "#f5f5f5",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
@@ -26,7 +41,6 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, i
         alignItems: "center",
       }}
     >
-      {/* Аватар слева */}
       <Box
         component="img"
         src={avatar}
@@ -40,7 +54,6 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, i
         }}
       />
 
-      {/* Текст в центре */}
       <CardContent
         sx={{
           flex: 1,
@@ -71,7 +84,6 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, i
         </Typography>
       </CardContent>
 
-      {/* Картинка справа */}
       <Box
         component="img"
         src={image}
@@ -84,7 +96,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, i
         }}
       />
     </Card>
-  )
-}
+  );
+};
 
-export default PodcastCard
+export default PodcastCard;

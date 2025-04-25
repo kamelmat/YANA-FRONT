@@ -1,19 +1,23 @@
-import React from "react"
-import { Box, Typography, Card, CardContent, Button } from "@mui/material"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination } from "swiper/modules"
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-import theme from "../../theme"
-import useScreenSize from "../../hooks/useScreenSize"
-import MeditationCard from "./MeditationCard"
-import PodcastCard from "./PodcastCard"
-import PlaylistCard from "./PlaylistCard"
-import { meditationData, podcastData, playlistData } from "../../data/resourcesData"
+import React from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import theme from "../../theme";
+import useScreenSize from "../../hooks/useScreenSize";
+import MeditationCard from "./MeditationCard";
+import PodcastCard from "./PodcastCard";
+import PlaylistCard from "./PlaylistCard";
+import {
+  meditationData,
+  podcastData,
+  playlistData,
+} from "../../data/resourcesData";
 
 const ResourcesComponent: React.FC = () => {
-  const screenSize = useScreenSize()
+  const screenSize = useScreenSize();
 
   return (
     <Box
@@ -33,7 +37,8 @@ const ResourcesComponent: React.FC = () => {
         <Typography
           sx={{
             marginBottom: 2,
-            typography: screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
+            typography:
+              screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
           }}
         >
           Meditaciones
@@ -42,7 +47,13 @@ const ResourcesComponent: React.FC = () => {
           modules={[Navigation, Pagination]}
           spaceBetween={screenSize === "sm" ? 8 : screenSize === "md" ? 12 : 16}
           slidesPerView={
-            screenSize === "sm" ? 1 : screenSize === "md" ? 2 : screenSize === "lg" ? 3 : 4
+            screenSize === "sm"
+              ? 1
+              : screenSize === "md"
+              ? 2
+              : screenSize === "lg"
+              ? 3
+              : 4
           }
           navigation={screenSize === "lg"}
           pagination={{
@@ -59,7 +70,7 @@ const ResourcesComponent: React.FC = () => {
               }}
             >
               <MeditationCard
-                avatar={meditation.avatar}
+                avatar={meditation.avatar ?? ""}
                 title={meditation.title}
                 description={meditation.description}
                 id={meditation.id}
@@ -95,11 +106,16 @@ const ResourcesComponent: React.FC = () => {
         <Typography
           sx={{
             marginBottom: 2,
-            typography: screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
+            typography:
+              screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
           }}
         >
           Podcasts
-          <Typography component="span" variant="body1" sx={{ color: theme.colors.lightGray }}>
+          <Typography
+            component="span"
+            variant="body1"
+            sx={{ color: theme.colors.lightGray }}
+          >
             (recomendados)
           </Typography>
         </Typography>
@@ -113,7 +129,7 @@ const ResourcesComponent: React.FC = () => {
           {podcastData.map((podcast) => (
             <PodcastCard
               key={podcast.id}
-              avatar={podcast.avatar}
+              avatar={podcast.avatar ?? ""}
               title={podcast.title}
               description={podcast.description}
               image={podcast.image}
@@ -127,7 +143,8 @@ const ResourcesComponent: React.FC = () => {
         <Typography
           sx={{
             marginBottom: 2,
-            typography: screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
+            typography:
+              screenSize === "sm" ? "h4" : screenSize === "md" ? "h3" : "h1",
           }}
         >
           Playlists
@@ -137,7 +154,13 @@ const ResourcesComponent: React.FC = () => {
           modules={[Navigation, Pagination]}
           spaceBetween={screenSize === "sm" ? 8 : screenSize === "md" ? 12 : 16}
           slidesPerView={
-            screenSize === "sm" ? 1 : screenSize === "md" ? 2 : screenSize === "lg" ? 3 : 4
+            screenSize === "sm"
+              ? 1
+              : screenSize === "md"
+              ? 2
+              : screenSize === "lg"
+              ? 3
+              : 4
           }
           navigation={screenSize === "lg"}
           pagination={{
@@ -154,6 +177,7 @@ const ResourcesComponent: React.FC = () => {
               }}
             >
               <PlaylistCard
+                avatar={playlist.avatar ?? ""}
                 title={playlist.title}
                 description={playlist.description}
                 id={playlist.id}
@@ -187,8 +211,18 @@ const ResourcesComponent: React.FC = () => {
       {/* Banner */}
       <Box
         sx={{
-          width: screenSize === "sm" ? "100%" : screenSize === "md" ? "98vw" : "97vw",
-          height: screenSize === "sm" ? "7.5rem" : screenSize === "md" ? "18rem" : "26.47rem",
+          width:
+            screenSize === "sm"
+              ? "100%"
+              : screenSize === "md"
+              ? "98vw"
+              : "97vw",
+          height:
+            screenSize === "sm"
+              ? "7.5rem"
+              : screenSize === "md"
+              ? "18rem"
+              : "26.47rem",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -199,8 +233,18 @@ const ResourcesComponent: React.FC = () => {
               : screenSize === "md"
               ? "2rem 1rem 3rem 4rem"
               : "2.34rem 1rem 4.22rem 6.13rem",
-          marginLeft: screenSize === "sm" ? 0 : screenSize === "md" ? "-8rem" : "-14.69rem",
-          marginRight: screenSize === "sm" ? 0 : screenSize === "md" ? "-4rem" : "-6.32rem",
+          marginLeft:
+            screenSize === "sm"
+              ? 0
+              : screenSize === "md"
+              ? "-8rem"
+              : "-14.69rem",
+          marginRight:
+            screenSize === "sm"
+              ? 0
+              : screenSize === "md"
+              ? "-4rem"
+              : "-6.32rem",
           marginTop: screenSize === "sm" ? "2rem" : "4rem",
           backgroundImage: `url(/src/assets/resources/banner.png)`,
           backgroundSize: "cover",
@@ -226,13 +270,27 @@ const ResourcesComponent: React.FC = () => {
           }}
         >
           <Typography
-            sx={{ typography: screenSize === "sm" ? "body1" : screenSize === "md" ? "h3" : "h1" }}
+            sx={{
+              typography:
+                screenSize === "sm"
+                  ? "body1"
+                  : screenSize === "md"
+                  ? "h3"
+                  : "h1",
+            }}
           >
             Enfoca tu mente, <br />
             relaja tu cuerpo.
           </Typography>
           <Typography
-            sx={{ typography: screenSize === "sm" ? "body3" : screenSize === "md" ? "h6" : "h3" }}
+            sx={{
+              typography:
+                screenSize === "sm"
+                  ? "body3"
+                  : screenSize === "md"
+                  ? "h6"
+                  : "h3",
+            }}
           >
             Ingresa a un ambiente sonoro <br />
             distinto.
@@ -243,14 +301,30 @@ const ResourcesComponent: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             sx={{
-              width: screenSize === "sm" ? "69.33px" : screenSize === "md" ? "180px" : "254px",
-              height: screenSize === "sm" ? "15.83px" : screenSize === "md" ? "35px" : "58px",
+              width:
+                screenSize === "sm"
+                  ? "69.33px"
+                  : screenSize === "md"
+                  ? "180px"
+                  : "254px",
+              height:
+                screenSize === "sm"
+                  ? "15.83px"
+                  : screenSize === "md"
+                  ? "35px"
+                  : "58px",
               borderRadius: screenSize === "sm" ? "27.3px" : "6.25rem",
-              border: screenSize === "sm" ? "0.27px solid #FFFFFF" : "1px solid #fff",
+              border:
+                screenSize === "sm" ? "0.27px solid #FFFFFF" : "1px solid #fff",
               backgroundColor: "transparent",
               color: "#fff",
               textTransform: "none",
-              fontSize: screenSize === "sm" ? "4.37px" : screenSize === "md" ? "12px" : "16px",
+              fontSize:
+                screenSize === "sm"
+                  ? "4.37px"
+                  : screenSize === "md"
+                  ? "12px"
+                  : "16px",
               fontWeight: "bold",
               "&:hover": {
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -284,14 +358,29 @@ const ResourcesComponent: React.FC = () => {
             src="/src/assets/resources/binaur.png"
             alt="binaur"
             sx={{
-              width: screenSize === "sm" ? "58.96px" : screenSize === "md" ? "120px" : "100%",
-              height: screenSize === "sm" ? "58.96px" : screenSize === "md" ? "120px" : "100%",
+              width:
+                screenSize === "sm"
+                  ? "58.96px"
+                  : screenSize === "md"
+                  ? "7.5rem"
+                  : "80%",
+              height:
+                screenSize === "sm"
+                  ? "58.96px"
+                  : screenSize === "md"
+                  ? "7.5rem"
+                  : "80%",
             }}
           />
           <Typography
             sx={{
               textAlign: "center",
-              typography: screenSize === "sm" ? "body1" : screenSize === "md" ? "h6" : "h4",
+              typography:
+                screenSize === "sm"
+                  ? "body1"
+                  : screenSize === "md"
+                  ? "h6"
+                  : "h4",
             }}
           >
             Binaurapp
@@ -299,7 +388,7 @@ const ResourcesComponent: React.FC = () => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default ResourcesComponent
+export default ResourcesComponent;

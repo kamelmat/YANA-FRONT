@@ -1,28 +1,38 @@
-import React from "react"
-import { Box, Typography, Card, CardContent } from "@mui/material"
-import useScreenSize from "../../hooks/useScreenSize"
-import theme from "../../theme"
-import CommonButton from "../../commons/CommonButton"
-import { SwiperSlide } from "swiper/react"
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
+import React from "react";
+import { Box, Typography, Card } from "@mui/material";
+import useScreenSize from "../../hooks/useScreenSize";
+import theme from "../../theme";
+import CommonButton from "../../commons/CommonButton";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface PlaylistCardProps {
-  avatar: string
-  title: string
-  description: string
-  image: string
+  avatar: string;
+  title: string;
+  description: string;
+  image: string;
+  id: number;
 }
 
-const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }) => {
-  const screenSize = useScreenSize()
+const PlaylistCard: React.FC<PlaylistCardProps> = ({
+  title,
+  description,
+  image,
+}) => {
+  const screenSize = useScreenSize();
   return (
     <Card
       sx={{
         width: "100%",
         maxWidth: "24.74rem",
-        height: screenSize === "sm" ? "315.67px" : screenSize === "md" ? "23rem" : "27.41rem",
+        height:
+          screenSize === "sm"
+            ? "315.67px"
+            : screenSize === "md"
+            ? "23rem"
+            : "27.41rem",
         border: "1px solid #e0e0e0",
         borderRadius: "10.56px",
         backgroundColor: "#f5f5f5",
@@ -40,12 +50,16 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }
         alt={`Image for ${title}`}
         sx={{
           width: "99%",
-          height: screenSize === "sm" ? "10.14rem" : screenSize === "md" ? "9rem" : "12rem",
+          height:
+            screenSize === "sm"
+              ? "10.14rem"
+              : screenSize === "md"
+              ? "9rem"
+              : "12rem",
           objectFit: "cover",
         }}
       />
 
-      {/* Title */}
       <Typography
         variant="h6"
         sx={{
@@ -81,7 +95,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }
         }}
       />
     </Card>
-  )
-}
+  );
+};
 
-export default PlaylistCard
+export default PlaylistCard;
