@@ -207,19 +207,21 @@ export default function Header() {
       </Box>
 
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <Box sx={{ position: 'relative' }}>
-          <CustomIconButton onClick={handleNotificationsClick}>
-            <img src={NotificationsIcon} alt="Notifications" style={{ height: iconSize }} />
-          </CustomIconButton>
-          {hasNotifications && <NotificationDot />}
-        </Box>
+        {location !== '/notifications' && (
+          <Box sx={{ position: 'relative' }}>
+            <CustomIconButton onClick={handleNotificationsClick}>
+              <img src={NotificationsIcon} alt="Notifications" style={{ height: iconSize }} />
+            </CustomIconButton>
+            {hasNotifications && <NotificationDot />}
+          </Box>
+        )}
         <NotificationsPopup
           anchorEl={notificationsAnchor}
           open={Boolean(notificationsAnchor)}
           onClose={handleNotificationsClose}
           notifications={fakeNotifications}
         />
-        {screenSize === 'sm' && <HamburgerMenu />}
+        {screenSize === 'sm' && location !== '/notifications' && <HamburgerMenu />}
         {screenSize !== 'sm' && (
           <CustomIconButton onClick={() => navigate('/profile')}>
             <img src={ProfileIcon} alt="Profile" style={{ height: iconSize }} />
