@@ -1,7 +1,7 @@
-import LogIn from "../components/LoginComponent"
+import LogIn from '../components/LoginComponent';
 import useScreenSize from '../hooks/useScreenSize';
 
-import AuthContainer from "../commons/AuthContainer";
+import AuthContainer from '../commons/AuthContainer';
 
 export default function Login() {
   const screenSize = useScreenSize();

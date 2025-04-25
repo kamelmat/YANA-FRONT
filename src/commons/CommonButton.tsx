@@ -1,12 +1,20 @@
 import { Box, Button } from '@mui/material';
 import type { ButtonProps } from '@mui/material';
-import type { ReactNode } from 'react';
-import { darken } from '@mui/material/styles';
-import theme from '../theme';
-import useScreenSize from '../hooks/useScreenSize';
 import type { SxProps, Theme } from '@mui/material';
+import { darken } from '@mui/material/styles';
+import type { ReactNode } from 'react';
+import useScreenSize from '../hooks/useScreenSize';
+import theme from '../theme';
 
-type VariantType = 'primary' | 'secondary' | 'square-primary' | 'square-secondary' | 'cancel' | 'secondary-fill' | 'cancel-fill' | 'square-cancel';
+type VariantType =
+  | 'primary'
+  | 'secondary'
+  | 'square-primary'
+  | 'square-secondary'
+  | 'cancel'
+  | 'secondary-fill'
+  | 'cancel-fill'
+  | 'square-cancel';
 type IconPosition = 'start' | 'end';
 
 interface CustomButtonProps extends ButtonProps {
@@ -116,7 +124,7 @@ export default function CustomButton({
       sx={[
         baseStyles,
         variantStyles[variantType],
-        ...(Array.isArray(rest.sx) ? rest.sx : [rest.sx])
+        ...(Array.isArray(rest.sx) ? rest.sx : [rest.sx]),
       ]}
     >
       <Box
@@ -124,31 +132,33 @@ export default function CustomButton({
         alignItems="center"
         justifyContent={icon && iconPosition === 'end' ? 'space-between' : 'center'}
         width="100%"
-        padding={screenSize === "lg" ? "0.75em 0" : "1em 0"}
+        padding={screenSize === 'lg' ? '0.75em 0' : '1em 0'}
         gap={icon ? '0.75em' : 0}
         flexDirection={iconPosition === 'end' ? 'row-reverse' : 'row'}
       >
         {icon && (
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
               justifyContent: 'center',
               transition: 'transform 0.2s ease-in-out',
               '&:hover': {
-                transform: 'scale(1.1)'
-              }
-            }} 
+                transform: 'scale(1.1)',
+              },
+            }}
             component="span"
           >
             {icon}
           </Box>
         )}
-        <span style={{ 
-          fontSize: screenSize === "lg" ? "1rem" : "0.9rem",
-          letterSpacing: "0.5px",
-          fontWeight: 600
-        }}>
+        <span
+          style={{
+            fontSize: screenSize === 'lg' ? '1rem' : '0.9rem',
+            letterSpacing: '0.5px',
+            fontWeight: 600,
+          }}
+        >
           {text}
         </span>
       </Box>
