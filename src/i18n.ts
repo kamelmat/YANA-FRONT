@@ -186,7 +186,7 @@ i18n.use(initReactI18next).init({
             {
               question: 'What do I do if I forget my password?',
               answer:
-                'If you forget your password, you can reset it by clicking on “Forgot my password” when you log in and you will receive an email with the steps to recover your account.',
+                'If you forget your password, you can reset it by clicking on "Forgot my password" when you log in and you will receive an email with the steps to recover your account.',
             },
             {
               question: 'Does the app have resources or contacts that can help me?',
@@ -212,7 +212,7 @@ i18n.use(initReactI18next).init({
             {
               question: 'Can I delete my account at any time?',
               answer:
-                'Yes, you can delete your account. Only you have to do is click on the “Delete account” option. But… we want to accompany you!',
+                'Yes, you can delete your account. Only you have to do is click on the "Delete account" option. But… we want to accompany you!',
             },
           ],
         },
@@ -318,6 +318,82 @@ i18n.use(initReactI18next).init({
             '1': 'Cheer up!',
             '2': "I'm here for you",
             '3': "I'm with you, I share what you feel",
+          },
+        },
+        resources: {
+          meditation: {
+            items: [
+              {
+                title: 'Peaceful mind. A safe space.',
+                description: 'Meditation for beginners. Gabriela Málaga · 3k views · 1 year ago',
+              },
+              {
+                title: 'Emotional well-being. Time for introspection.',
+                description: 'Guided meditation to relax. Luz Zapata · 4k views · 3 months ago',
+              },
+              {
+                title: 'Here and now. In search of tranquility.',
+                description: 'Meditate and connect. Alma Soler · 11k views · 11 months ago',
+              },
+              {
+                title: 'Solar rune. A sonic journey to your interior.',
+                description: 'Meditate and know yourself. Runa Solar · 1k views · 2 years ago',
+              },
+            ],
+          },
+          podcast: {
+            items: [
+              {
+                title: 'How to cultivate solidarity?',
+                description: 'Lic. Ana Gabriela Mena and team',
+              },
+              {
+                title: 'Learning in community',
+                description: 'Personal Growth Center',
+              },
+              {
+                title: 'Life is worth living',
+                description: 'Collective Development School',
+              },
+              {
+                title: 'Always forward',
+                description: 'Lorena Capobianco Ludueña',
+              },
+              {
+                title: 'You can count on me',
+                description: 'Zafiro Medical Center',
+              },
+              {
+                title: 'Connected bridges',
+                description: 'Support Network NGO',
+              },
+              {
+                title: 'Stories of everyday life',
+                description: 'Civil Association Well-being and Empathy',
+              },
+            ],
+          },
+          playlist: {
+            items: [
+              {
+                title: 'Joined hands. Songs to connect with your surroundings.',
+                description:
+                  'Indian music oriented to improve your connection with what surrounds you.',
+              },
+              {
+                title: 'Sensations. Sounds that calm.',
+                description: 'An exquisite musical selection produced with Tibetan bowls.',
+              },
+              {
+                title: 'Sounds that help you sleep.',
+                description: 'A relaxing auditory experience to fall asleep.',
+              },
+              {
+                title: 'ENYA Nature as a source of inspiration.',
+                description:
+                  'The music of the Irish artist guides towards a journey of deep connection with the environment.',
+              },
+            ],
           },
         },
       },
@@ -509,12 +585,12 @@ i18n.use(initReactI18next).init({
             {
               question: 'Si olvido mi contraseña, ¿puedo restablecerla?',
               answer:
-                'Si necesitas restablecer tu contraseña, al momento de iniciar sesión puedes hacer clic en “Olvidé mi contraseña” y recibirás un correo electrónico con los pasos para recuperar tu cuenta.',
+                'Si necesitas restablecer tu contraseña, al momento de iniciar sesión puedes hacer clic en "Olvidé mi contraseña" y recibirás un correo electrónico con los pasos para recuperar tu cuenta.',
             },
             {
               question: '¿En la app hay recursos o contactos que me puedan ayudar?',
               answer:
-                'Si necesitas restablecer tu contraseña, al momento de iniciar sesión puedes hacer clic en “Olvidé mi contraseña” y recibirás un correo electrónico con los pasos para recuperar tu cuenta.',
+                'Si necesitas restablecer tu contraseña, al momento de iniciar sesión puedes hacer clic en "Olvidé mi contraseña" y recibirás un correo electrónico con los pasos para recuperar tu cuenta.',
             },
             {
               question:
@@ -536,7 +612,7 @@ i18n.use(initReactI18next).init({
             {
               question: '¿Puedo eliminar mi cuenta en cualquier momento?',
               answer:
-                'Sí, puedes borrar tu cuenta. Solo debes hacer clic en la opción “Eliminar cuenta”. Pero… ¡queremos acompañarte!',
+                'Sí, puedes borrar tu cuenta. Solo debes hacer clic en la opción "Eliminar cuenta". Pero… ¡queremos acompañarte!',
             },
           ],
         },
@@ -643,6 +719,84 @@ i18n.use(initReactI18next).init({
             '1': '¡Ánimo!',
             '2': 'Cuentas con todo mi apoyo',
             '3': 'Estoy contigo, comparto lo que sientes',
+          },
+        },
+        resources: {
+          meditation: {
+            items: [
+              {
+                title: 'Mente tranquila. Un espacio seguro.',
+                description:
+                  'Meditación para principiantes. Gabriela Málaga · 3k de vistas · hace 1 año',
+              },
+              {
+                title: 'Bienestar emocional. Tiempo de introspección.',
+                description:
+                  'Meditación guiada para relajar. Luz Zapata · 4k de vistas · hace 3 meses',
+              },
+              {
+                title: 'Aquí y ahora. En busca de la tranquilidad.',
+                description: 'Medita y conecta. Alma Soler · 11k de vistas · hace 11 meses',
+              },
+              {
+                title: 'Runa solar. Un viaje sonoro a tu interior.',
+                description:
+                  'Medita y conócete a ti mismo. Runa Solar · 1k de vistas · hace 2 años',
+              },
+            ],
+          },
+          podcast: {
+            items: [
+              {
+                title: '¿Cómo cultivar la solidaridad?',
+                description: 'Lic. Ana Gabriela Mena y equipo',
+              },
+              {
+                title: 'Aprender en comunidad',
+                description: 'Centro de Crecimiento Personal',
+              },
+              {
+                title: 'Vivir vale la pena',
+                description: 'Escuela de Desarrollo Colectivo',
+              },
+              {
+                title: 'Siempre adelante',
+                description: 'Lorena Capobianco Ludueña',
+              },
+              {
+                title: 'Cuentas conmigo',
+                description: 'Centro Médico Zafiro',
+              },
+              {
+                title: 'Puentes conectados',
+                description: 'ONG Red de apoyo',
+              },
+              {
+                title: 'Historias de la vida cotidiana',
+                description: 'Asociación Civil Bienestar y Empatía',
+              },
+            ],
+          },
+          playlist: {
+            items: [
+              {
+                title: 'Manos enlazadas. Canciones para conectar con tu entorno.',
+                description: 'Música india orientada a mejorar tu vinculación con lo que te rodea.',
+              },
+              {
+                title: 'Sensaciones. Sonidos que calman.',
+                description: 'Una exquisita selección musical producida con cuencos tibetanos.',
+              },
+              {
+                title: 'Sonidos que te ayudan a dormir.',
+                description: 'Una experiencia auditiva relajante para conciliar el sueño.',
+              },
+              {
+                title: 'ENYA La naturaleza como fuente de inspiración.',
+                description:
+                  'La música de la artista irlandesa guía hacia un viaje de conexión profunda con el ambiente.',
+              },
+            ],
           },
         },
       },

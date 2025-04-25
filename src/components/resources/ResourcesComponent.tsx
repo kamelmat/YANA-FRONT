@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import banner from '../../assets/resources/banner.webp';
 import binaur from '../../assets/resources/binaur.webp';
-import { meditationData, playlistData, podcastData } from '../../data/resourcesData';
+import { useResourcesData } from '../../data/resourcesData';
 import useScreenSize from '../../hooks/useScreenSize';
 import theme from '../../theme';
 import MeditationCard from './MeditationCard';
@@ -16,6 +16,7 @@ import PodcastCard from './PodcastCard';
 
 const ResourcesComponent: React.FC = () => {
   const screenSize = useScreenSize();
+  const { meditationData, podcastData, playlistData } = useResourcesData();
 
   return (
     <Box
