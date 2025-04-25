@@ -169,10 +169,8 @@ const ResourcesComponent: React.FC = () => {
               }}
             >
               <PlaylistCard
-                avatar={playlist.avatar ?? ''}
                 title={playlist.title}
                 description={playlist.description}
-                id={playlist.id}
                 image={playlist.image}
               />
             </SwiperSlide>
