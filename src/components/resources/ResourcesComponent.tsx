@@ -15,6 +15,8 @@ import {
   podcastData,
   playlistData,
 } from "../../data/resourcesData";
+import banner from "../../assets/resources/banner.webp";
+import binaur from "../../assets/resources/binaur.png";
 
 const ResourcesComponent: React.FC = () => {
   const screenSize = useScreenSize();
@@ -249,7 +251,7 @@ const ResourcesComponent: React.FC = () => {
               ? "-4rem"
               : "-6.32rem",
           marginTop: screenSize === "sm" ? "2rem" : "4rem",
-          backgroundImage: `url(/src/assets/resources/banner.png)`,
+          backgroundImage: `url(${banner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -358,7 +360,7 @@ const ResourcesComponent: React.FC = () => {
         >
           <Box
             component="img"
-            src="/src/assets/resources/binaur.png"
+            src={binaur}
             alt="binaur"
             sx={{
               width:
