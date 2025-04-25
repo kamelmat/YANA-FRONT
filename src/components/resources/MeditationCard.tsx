@@ -58,7 +58,7 @@ const MeditationCard: React.FC<meditationDataProps> = ({
         </IconButton>
       </Box>
 
-      <Box sx={{ position: 'relative', height: '50%' }}>
+      <Box sx={{ position: 'relative', height: '50%', px: 1 }}>
         <Box
           component="img"
           src={image}
