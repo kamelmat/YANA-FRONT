@@ -333,6 +333,11 @@ i18n.use(initReactI18next).init({
         resources: {
           access: "Access",
           listen: "Listen",
+          binaurapp: {
+            title: "Focus your mind, relax your body.",
+            subtitle: "Enter in a different sound environment.",
+            button: "Go to the web",
+          },
           meditation: {
             title: "Meditations",
             items: [
@@ -375,6 +380,7 @@ i18n.use(initReactI18next).init({
             ],
           },
           podcast: {
+            recommended: "(recommended)",
             items: [
               {
                 title: "How to cultivate solidarity?",
@@ -767,6 +773,11 @@ i18n.use(initReactI18next).init({
         resources: {
           access: "Acceder",
           listen: "Escuchar",
+          binaurapp: {
+            title: "Enfoca tu mente, relaja tu cuerpo.",
+            subtitle: "Ingresa en un ambiente sonoro distinto.",
+            button: "Ir a la web",
+          },
           meditation: {
             title: "Meditaciones",
             items: [
@@ -809,6 +820,7 @@ i18n.use(initReactI18next).init({
             ],
           },
           podcast: {
+            recommended: "(recomendados)",
             items: [
               {
                 title: "¿Cómo cultivar la solidaridad?",

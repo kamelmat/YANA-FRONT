@@ -13,10 +13,12 @@ import theme from '../../theme';
 import MeditationCard from './MeditationCard';
 import PlaylistCard from './PlaylistCard';
 import PodcastCard from './PodcastCard';
+import { useTranslation } from 'react-i18next';
 
 const ResourcesComponent: React.FC = () => {
   const screenSize = useScreenSize();
   const { meditationData, podcastData, playlistData } = useResourcesData();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -39,7 +41,7 @@ const ResourcesComponent: React.FC = () => {
             typography: screenSize === 'sm' ? 'h4' : screenSize === 'md' ? 'h3' : 'h1',
           }}
         >
-          Meditaciones
+          {t('resources.meditation.title')}
         </Typography>
         <Swiper
           modules={[Navigation, Pagination]}
@@ -112,7 +114,7 @@ const ResourcesComponent: React.FC = () => {
             variant="body1"
             sx={{ color: theme.colors.lightGray, marginLeft: '0.5rem' }}
           >
-            (recomendados)
+            {t('resources.podcast.recommended')}
           </Typography>
         </Typography>
         <Box
@@ -225,7 +227,7 @@ const ResourcesComponent: React.FC = () => {
       >
         <Box
           sx={{
-            width: '60%',
+            width: (screenSize === 'lg' || screenSize === 'xl') ? '20%' :  '60%',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -244,16 +246,14 @@ const ResourcesComponent: React.FC = () => {
               typography: screenSize === 'sm' ? 'body1' : screenSize === 'md' ? 'h3' : 'h1',
             }}
           >
-            Enfoca tu mente, <br />
-            relaja tu cuerpo.
+            {t('resources.binaurapp.title')}
           </Typography>
           <Typography
             sx={{
               typography: screenSize === 'sm' ? 'body3' : screenSize === 'md' ? 'h6' : 'h3',
             }}
           >
-            Ingresa a un ambiente sonoro <br />
-            distinto.
+            {t('resources.binaurapp.subtitle')}
           </Typography>
           <Button
             component="a"
@@ -275,7 +275,7 @@ const ResourcesComponent: React.FC = () => {
               },
             }}
           >
-            Descargar app
+            {t('resources.binaurapp.button')}
           </Button>
         </Box>
         <Box
@@ -300,7 +300,7 @@ const ResourcesComponent: React.FC = () => {
           <Box
             component="img"
             src={binaur}
-            alt="binaur"
+            alt="binaurapp"
             sx={{
               width: screenSize === 'sm' ? '58.96px' : screenSize === 'md' ? '7.5rem' : '80%',
               height: screenSize === 'sm' ? '58.96px' : screenSize === 'md' ? '7.5rem' : '80%',
