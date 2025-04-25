@@ -334,26 +334,43 @@ i18n.use(initReactI18next).init({
           access: "Access",
           listen: "Listen",
           meditation: {
+            title: "Meditations",
             items: [
               {
-                title: "Peaceful mind. A safe space.",
-                description:
-                  "Meditation for beginners. Gabriela Málaga · 3k views · 1 year ago",
+                title: "Peaceful mind.",
+                subtitle: "A safe space.",
+                description: "Meditation for beginners.",
+                author: "Gabriela Málaga",
+                views: "3k views",
+                date: "1 year ago",
+                duration: "15 min",
               },
               {
-                title: "Emotional well-being. Time for introspection.",
-                description:
-                  "Guided meditation to relax. Luz Zapata · 4k views · 3 months ago",
+                title: "Emotional well-being.",
+                subtitle: "Time for introspection.",
+                description: "Guided meditation to relax.",
+                author: "Luz Zapata",
+                views: "4k views",
+                date: "3 months ago",
+                duration: "20 min",
               },
               {
-                title: "Here and now. In search of tranquility.",
-                description:
-                  "Meditate and connect. Alma Soler · 11k views · 11 months ago",
+                title: "Here and now.",
+                subtitle: "In search of tranquility.",
+                description: "Meditate and connect.",
+                author: "Alma Soler",
+                views: "11k views",
+                date: "11 months ago",
+                duration: "35 min",
               },
               {
-                title: "Solar rune. A sonic journey to your interior.",
-                description:
-                  "Meditate and know yourself. Runa Solar · 1k views · 2 years ago",
+                title: "Solar rune.",
+                subtitle: "A sonic journey to your interior.",
+                description: "Meditate and know yourself.",
+                author: "Runa Solar",
+                views: "1k views",
+                date: "2 years ago",
+                duration: "25 min",
               },
             ],
           },
@@ -751,26 +768,43 @@ i18n.use(initReactI18next).init({
           access: "Acceder",
           listen: "Escuchar",
           meditation: {
+            title: "Meditaciones",
             items: [
               {
-                title: "Mente tranquila. Un espacio seguro.",
-                description:
-                  "Meditación para principiantes. Gabriela Málaga · 3k de vistas · hace 1 año",
+                title: "Mente tranquila.",
+                subtitle: "Un espacio seguro.",
+                description: "Meditación para principiantes.",
+                author: "Gabriela Málaga",
+                views: "3k de vistas",
+                date: "hace 1 año",
+                duration: "15 min",
               },
               {
-                title: "Bienestar emocional. Tiempo de introspección.",
-                description:
-                  "Meditación guiada para relajar. Luz Zapata · 4k de vistas · hace 3 meses",
+                title: "Bienestar emocional.",
+                subtitle: "Tiempo de introspección.",
+                description: "Meditación guiada para relajar.",
+                author: "Luz Zapata",
+                views: "4k de vistas",
+                date: "hace 3 meses",
+                duration: "20 min",
               },
               {
                 title: "Aquí y ahora. En busca de la tranquilidad.",
-                description:
-                  "Medita y conecta. Alma Soler · 11k de vistas · hace 11 meses",
+                subtitle: "En busca de la tranquilidad.",
+                description: "Meditación y conexión.",
+                author: "Alma Soler",
+                views: "11k de vistas",
+                date: "hace 11 meses",
+                duration: "35 min",
               },
               {
-                title: "Runa solar. Un viaje sonoro a tu interior.",
-                description:
-                  "Medita y conócete a ti mismo. Runa Solar · 1k de vistas · hace 2 años",
+                title: "Runa solar.",
+                subtitle: "Un viaje sonoro a tu interior.",
+                description: "Meditación y conexión.",
+                author: "Runa Solar",
+                views: "1k de vistas",
+                date: "hace 2 años",
+                duration: "25 min",
               },
             ],
           },

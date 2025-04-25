@@ -1,23 +1,20 @@
-import { Box, Card, CardContent, Typography } from '@mui/material';
+import { Box, Card, CardContent, Typography, IconButton } from '@mui/material';
 import type React from 'react';
 import { useTranslation } from 'react-i18next';
 import CommonButton from '../../commons/CommonButton';
 import useScreenSize from '../../hooks/useScreenSize';
-import theme from '../../theme';
+import type { meditationDataProps } from '../../data/resourcesData';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
-interface MeditationCardProps {
-  avatar: string;
-  title: string;
-  description: string;
-  id: number;
-  image: string;
-}
-
-const MeditationCard: React.FC<MeditationCardProps> = ({
+const MeditationCard: React.FC<meditationDataProps> = ({
   avatar,
   title,
+  subtitle,
+  duration,
+  views,
+  author,
+  date,
   description,
-  id,
   image,
 }) => {
   const screenSize = useScreenSize();
@@ -27,90 +24,81 @@ const MeditationCard: React.FC<MeditationCardProps> = ({
       sx={{
         width: '100%',
         maxWidth: '24.74rem',
-        height: screenSize === 'sm' ? '304.34px' : screenSize === 'md' ? '22rem' : '24.94rem',
-        maxHeight: '399px',
-        border: '1px solid #e0e0e0',
-        borderRadius: '10.56px',
-        backgroundColor: '#f5f5f5',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        borderRadius: '16px',
+        backgroundColor: '#fff',
+        overflow: 'visible',
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          width: '100%',
-          paddingLeft: '0.5rem',
-        }}
-      >
+      <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+        {avatar && (
+          <Box
+            component="img"
+            src={avatar}
+            alt={`Avatar for ${title}`}
+            sx={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+            }}
+          />
+        )}
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+            {title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {subtitle}
+          </Typography>
+        </Box>
+        <IconButton size="small">
+          <MoreVertIcon />
+        </IconButton>
+      </Box>
+
+      <Box sx={{ position: 'relative' }}>
         <Box
           component="img"
-          src={avatar}
-          alt={`Avatar for ${title}`}
+          src={image}
+          alt={description}
           sx={{
-            width: '3.75rem',
-            height: '3.75rem',
-            borderRadius: '50%',
-            marginTop: '1rem',
+            width: '100%',
+            height: 'auto',
+            display: 'block',
           }}
         />
-
         <Typography
-          variant="h6"
           sx={{
-            fontWeight: 'bold',
-            textAlign: 'left',
-            padding: '0.5rem',
-            backgroundColor: '#f0f0f0',
-            width: '100%',
+            position: 'absolute',
+            bottom: 8,
+            right: 20,
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            color: 'white',
+            padding: '2px 8px',
+            borderRadius: '4px',
+            fontSize: '0.875rem',
           }}
         >
-          {title}
+          {duration}
         </Typography>
       </Box>
 
-      <Box
-        component="img"
-        src={image}
-        alt={`Meditation ${id}`}
-        sx={{
-          width: '100%',
-          height: screenSize === 'sm' ? '140.14px' : '164.83px',
-          objectFit: 'cover',
-        }}
-      />
-
-      <CardContent
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: '1rem',
-          height: '4.94rem',
-        }}
-      >
-        <Typography
-          variant="body2"
-          sx={{
-            color: '#757575',
-            marginBottom: '1rem',
-            textAlign: 'left',
-          }}
-        >
+      <CardContent>
+        <Typography variant="h6" sx={{ mb: 1 }}>
           {description}
         </Typography>
-        <CommonButton
-          text={t('resources.access')}
-          variantType='secondary-fill'
-          sx={{
-            width: screenSize === 'sm' ? '75.78px' : '7rem',
-            height: '2.2rem',
-            marginLeft: 'auto',
-          }}
-        />
+        <Typography variant="body2" color="text.secondary">
+          {author} · {views} · {date}
+        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+          <CommonButton
+            text={t('resources.access')}
+            variantType="secondary-fill"
+            sx={{
+              width: screenSize === 'sm' ? '75.78px' : '7rem',
+              height: '2.2rem',
+            }}
+          />
+        </Box>
       </CardContent>
     </Card>
   );

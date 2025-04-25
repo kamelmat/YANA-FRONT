@@ -64,6 +64,11 @@ const ResourcesComponent: React.FC = () => {
               <MeditationCard
                 avatar={meditation.avatar ?? ''}
                 title={meditation.title}
+                subtitle={meditation.subtitle}
+                duration={meditation.duration}
+                views={meditation.views}
+                author={meditation.author}
+                date={meditation.date}
                 description={meditation.description}
                 id={meditation.id}
                 image={meditation.image}
@@ -198,31 +203,6 @@ const ResourcesComponent: React.FC = () => {
       {/* Banner */}
       <Box
         sx={{
-<<<<<<< HEAD
-          width:
-            screenSize === "sm"
-              ? "100%"
-              : screenSize === "md"
-              ? "98vw"
-              : "97vw",
-          height:
-            screenSize === "sm"
-              ? "7.5rem"
-              : screenSize === "md"
-              ? "18rem"
-              : "26.47rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          position: "relative",
-          marginTop: screenSize === "sm" ? "2rem" : "4rem",
-          backgroundImage: `url(/src/assets/resources/banner.webp)`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          borderRadius: screenSize === "sm" ? "10px" : 3,
-          maxWidth: "100%",
-=======
           width: screenSize === 'sm' ? '100%' : screenSize === 'md' ? '98vw' : '97vw',
           height: screenSize === 'sm' ? '7.5rem' : screenSize === 'md' ? '18rem' : '26.47rem',
           display: 'flex',
@@ -243,7 +223,6 @@ const ResourcesComponent: React.FC = () => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           borderRadius: screenSize === 'sm' ? '10px' : 0,
->>>>>>> 9d0119f61376603726498fe92f3619c354ec1a6b
         }}
       >
         <Box
@@ -256,18 +235,10 @@ const ResourcesComponent: React.FC = () => {
             margin:
               screenSize === 'sm'
                 ? 0
-<<<<<<< HEAD
-                : screenSize === "md"
-                ? "2rem 2rem 3rem 4rem"
-                : "3rem 3rem 4rem 6rem",
-            gap: screenSize === "sm" ? "0.1rem" : "1.5rem",
-            paddingLeft: 1,
-=======
                 : screenSize === 'md'
                   ? '2rem 2rem 3rem 4rem'
                   : '3rem 3rem 4rem 6rem',
             gap: screenSize === 'sm' ? '0.1rem' : '1.5rem',
->>>>>>> 9d0119f61376603726498fe92f3619c354ec1a6b
           }}
         >
           <Typography

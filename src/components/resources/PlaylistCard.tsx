@@ -2,7 +2,6 @@ import { Box, Card, Typography } from '@mui/material';
 import type React from 'react';
 import CommonButton from '../../commons/CommonButton';
 import useScreenSize from '../../hooks/useScreenSize';
-import theme from '../../theme';
 import { useTranslation } from 'react-i18next';
 import 'swiper/css';
 import 'swiper/css/navigation';
