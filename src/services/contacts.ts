@@ -2,7 +2,14 @@ import { RESOURCES_ENDPOINTS } from '../config/apiEndpoints';
 import { getAuthHeaders, handleApiError } from '../utils/apiUtils';
 
 export interface Contact {
+  id: number;
   name: string;
+  description: string;
+  url: string;
+  location: string;
+  category: string;
+  phone?: string;
+  email?: string;
 }
 
 class ContactsService {

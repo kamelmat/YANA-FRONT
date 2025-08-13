@@ -129,7 +129,11 @@ i18n.use(initReactI18next).init({
         },
         '/contacts': {
           menu: 'Contacts',
-          title: 'Institutions',
+          title: 'Help & Support Resources',
+          localResources: 'Resources in {{country}}',
+          internationalResources: 'International Resources',
+          noLocalResources: 'No local resources found for your area',
+          visitWebsite: 'Visit Website',
           contacts: {
             'Centro de Atención al Suicida (CAS)': {
               description:
@@ -566,7 +570,11 @@ i18n.use(initReactI18next).init({
         },
         '/contacts': {
           menu: 'Contactos',
-          title: 'Instituciones',
+          title: 'Recursos de Ayuda y Apoyo',
+          localResources: 'Recursos en {{country}}',
+          internationalResources: 'Recursos Internacionales',
+          noLocalResources: 'No se encontraron recursos locales para tu área',
+          visitWebsite: 'Visitar Sitio Web',
           contacts: {
             'Centro de Atención al Suicida (CAS)': {
               description:
