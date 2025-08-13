@@ -28,8 +28,9 @@ export const MapView = () => {
   const [modalUserId, setModalUserId] = useState<string | null>(null);
   const [sharedEmotionId, setSharedEmotionId] = useState<number | null>(null);
 
-  const openModal = useCallback((userId: string) => {
+  const openModal = useCallback((userId: string, emotionId: number) => {
     setModalUserId(userId);
+    setSharedEmotionId(emotionId);
     setModalOpen(true);
   }, []);
 
@@ -108,8 +109,6 @@ export const MapView = () => {
   // Handle data updates and marker rendering
   useEffect(() => {
     if (data && mapRef.current && lastSelectedEmotion) {
-      const sharedEmotionId = data[0]?.shared_emotion_id;
-      setSharedEmotionId(sharedEmotionId);
       renderEmotionMarkers(data, mapRef, markersRef, openModal);
     } else if (!lastSelectedEmotion) {
       clearMarkers(markersRef);
