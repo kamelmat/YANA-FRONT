@@ -10,6 +10,16 @@ export default function Contacts() {
   const { t } = useTranslation();
   const screenSize = useScreenSize();
 
+  // Debug logging
+  console.log('Contacts Debug:', {
+    localContacts,
+    internationalContacts,
+    userCountry,
+    contacts,
+    isLoading,
+    hasNewFormatContacts: localContacts.length > 0 || internationalContacts.length > 0
+  });
+
   const renderContactPlaceholder = (index: number) => (
     <Box key={`placeholder-${index}`} mb={4}>
       <Skeleton
