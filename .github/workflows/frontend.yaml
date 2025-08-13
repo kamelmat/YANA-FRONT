@@ -1,40 +1,34 @@
 name: Deploy React to GCP (DISABLED - Using Vercel)
 
-# This workflow is disabled because we're using Vercel for deployment
-# To re-enable, uncomment the 'on:' section below
+# This workflow is disabled because we're using Vercel for automatic deployment
+# GitHub Actions is not needed since Vercel handles the deployment automatically
 
-# concurrency:
-#   group: ${{ github.workflow }}-${{ github.ref }}
-#   cancel-in-progress: true
-
-# on:
-#   push:
-#     branches:
-#       - main
-#       - cicd/pipelines
-#   workflow_dispatch:
+on:
+  # Commenting out all triggers to disable this workflow
+  # push:
+  #   branches:
+  #     - main
+  #     - cicd/pipelines
+  # workflow_dispatch:
+  
+  # Using a manual trigger only to prevent "No event triggers defined" error
+  workflow_dispatch:
 
 jobs:
-  build:
-    name: Build Vite React App (DISABLED)
+  disabled-notice:
+    name: Workflow Disabled Notice
     runs-on: ubuntu-latest
-    if: false  # This prevents the workflow from running
-    env:
-      NODE_VERSION: "20.x"
-      VITE_API_URL: ${{ secrets.VITE_API_URL }}
-      VITE_MAP_TILER_KEY: ${{ secrets.VITE_MAP_TILER_KEY }}
     steps:
-      - name: Workflow Disabled
-        run: echo "This workflow is disabled - using Vercel for deployment"
-
-  deploy:
-    name: Deploy Vite React App to GCP (DISABLED)
-    runs-on: ubuntu-latest
-    needs: build
-    if: false  # This prevents the workflow from running
-    env:
-      PROJECT_ID: "training-batch-05"
-      GCS_BUCKET: "gs://yana-front"
-    steps:
-      - name: Workflow Disabled
-        run: echo "This workflow is disabled - using Vercel for deployment"
+      - name: Notice
+        run: |
+          echo "=================================================="
+          echo "🚨 This GitHub Actions workflow is DISABLED"
+          echo "🚀 We use Vercel for automatic deployment instead"
+          echo "✅ Your app deploys automatically via Vercel at:"
+          echo "   https://yana-front.vercel.app"
+          echo "=================================================="
+          echo "To re-enable GCP deployment:"
+          echo "1. Uncomment the push triggers above"
+          echo "2. Configure GCP secrets in repository settings"
+          echo "3. Remove this notice job"
+          echo "=================================================="
