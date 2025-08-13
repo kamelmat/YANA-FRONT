@@ -1,102 +1,40 @@
-name: Deploy React to GCP
+name: Deploy React to GCP (DISABLED - Using Vercel)
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+# This workflow is disabled because we're using Vercel for deployment
+# To re-enable, uncomment the 'on:' section below
 
-on:
-  push:
-    branches:
-      - main
-      - cicd/pipelines
-  workflow_dispatch:
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.ref }}
+#   cancel-in-progress: true
+
+# on:
+#   push:
+#     branches:
+#       - main
+#       - cicd/pipelines
+#   workflow_dispatch:
 
 jobs:
   build:
-    name: Build Vite React App
+    name: Build Vite React App (DISABLED)
     runs-on: ubuntu-latest
+    if: false  # This prevents the workflow from running
     env:
       NODE_VERSION: "20.x"
       VITE_API_URL: ${{ secrets.VITE_API_URL }}
       VITE_MAP_TILER_KEY: ${{ secrets.VITE_MAP_TILER_KEY }}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          check-latest: true
-
-      - name: Cache Dependencies
-        id: npm-cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-            ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
-
-      - name: Install Dependencies
-        run: npm ci --prefer-offline --no-audit
-        env:
-          CI: true
-
-      - name: Linting
-        run: npm run lint
-        env:
-          CI: true
-
-      - name: Build Project
-        run: npm run build
-        env:
-          CI: true
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
-          VITE_MAP_TILER_KEY: ${{ secrets.VITE_MAP_TILER_KEY }}
-
-      - name: Debug imprime variables VITE_
-        run: |
-          echo "VITE_API_URL = $VITE_API_URL"
-          echo "VITE_MAP_TILER_KEY = $VITE_MAP_TILER_KEY"
-
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: ./dist
+      - name: Workflow Disabled
+        run: echo "This workflow is disabled - using Vercel for deployment"
 
   deploy:
-    name: Deploy Vite React App to GCP
+    name: Deploy Vite React App to GCP (DISABLED)
     runs-on: ubuntu-latest
     needs: build
+    if: false  # This prevents the workflow from running
     env:
       PROJECT_ID: "training-batch-05"
       GCS_BUCKET: "gs://yana-front"
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Download Build Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: ./dist
-
-      - name: Debug imprime variables VITE_
-        run: |
-          echo "VITE_API_URL = $VITE_API_URL"
-          echo "VITE_MAP_TILER_KEY = $VITE_MAP_TILER_KEY"
-
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - name: Upload to GCS Bucket
-        run: |
-          gsutil -m rsync -r ./dist ${GCS_BUCKET}
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" ${{ env.GCS_BUCKET }}/**/*.js
-          gsutil -m setmeta -h "Cache-Control:public, max-age=3600" ${{ env.GCS_BUCKET }}/**/*.css
-          gsutil -m setmeta -h "Cache-Control:no-cache" ${{ env.GCS_BUCKET }}/index.html
+      - name: Workflow Disabled
+        run: echo "This workflow is disabled - using Vercel for deployment"
