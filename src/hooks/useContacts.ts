@@ -53,13 +53,22 @@ export const useContacts = () => {
       // Set all contacts in store for backward compatibility
       setContacts(allContacts);
       
-      // Detect user's country from actual location coordinates
+      // Detect user's country from existing location coordinates (no new geolocation call)
       let userCountry = 'España'; // Default fallback
       if (userLocation?.latitude && userLocation?.longitude) {
         userCountry = await getUserCountryFromCoordinates(
           userLocation.latitude, 
           userLocation.longitude
         );
+      } else {
+        // If no location available, use browser language as fallback
+        const browserLanguage = navigator.language.toLowerCase();
+        if (browserLanguage.includes('es')) userCountry = 'España';
+        else if (browserLanguage.includes('fr')) userCountry = 'France';
+        else if (browserLanguage.includes('pt')) userCountry = 'Portugal';
+        else if (browserLanguage.includes('de')) userCountry = 'Germany';
+        else if (browserLanguage.includes('en-us')) userCountry = 'United States';
+        else if (browserLanguage.includes('en-gb')) userCountry = 'United Kingdom';
       }
       
       // Filter and prioritize by user's actual geographic location
