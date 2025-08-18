@@ -40,12 +40,15 @@ export const renderEmotionMarkers = (
   clearMarkers(markersRef);
   const markerOffsets: Record<string, number> = {};
 
+  // Optimize for large datasets - limit to closest 50 emotions
+  const limitedData = data.slice(0, 50);
+
   let minLat = 90;
   let maxLat = -90;
   let minLng = 180;
   let maxLng = -180;
 
-  for (const checked_emotion of data) {
+  for (const checked_emotion of limitedData) {
     if (!checked_emotion.latitude || !checked_emotion.longitude) continue;
 
     let lat = Number.parseFloat(checked_emotion.latitude.toString());

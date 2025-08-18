@@ -112,6 +112,8 @@ const Emotions: React.FC = () => {
           onSuccess: () => {
             fetchNearbyEmotions().then(() => {
               setIsCreatingEmotion(false);
+            }).catch(() => {
+              setIsCreatingEmotion(false);
             });
           },
           onError: () => {
