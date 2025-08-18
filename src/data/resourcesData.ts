@@ -110,7 +110,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.0.title'),
       description: t('resources.podcast.items.0.description'),
       image: imgPodcast1,
-      url: 'https://open.spotify.com/show/2HL3MdSdgAQzCaQWeWzQ1s',
+      url: 'https://www.youtube.com/@TherapyforBlackGirls',
     },
     {
       id: 2,
@@ -118,7 +118,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.1.title'),
       description: t('resources.podcast.items.1.description'),
       image: imgPodcast2,
-      url: 'https://open.spotify.com/show/5EqqB52m2bsr4k1Ii7sStc',
+      url: 'https://www.youtube.com/@TEDTalks',
     },
     {
       id: 3,
@@ -126,7 +126,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.2.title'),
       description: t('resources.podcast.items.2.description'),
       image: imgPodcast3,
-      url: 'https://open.spotify.com/show/1s6bWYkKJYdqLNXRNS7bJp',
+      url: 'https://www.youtube.com/@KatiMorton',
     },
     {
       id: 4,
@@ -134,7 +134,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.3.title'),
       description: t('resources.podcast.items.3.description'),
       image: imgPodcast4,
-      url: 'https://open.spotify.com/show/5F4k3fJHDbfZdEOT0SVKG8',
+      url: 'https://www.youtube.com/@Psych2Go',
     },
     {
       id: 5,
@@ -142,7 +142,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.4.title'),
       description: t('resources.podcast.items.4.description'),
       image: imgPodcast5,
-      url: 'https://open.spotify.com/show/6o4VQKmHE5dZpJ4QXIXqjk',
+      url: 'https://www.youtube.com/@schoolofgreatness',
     },
     {
       id: 6,
@@ -150,7 +150,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.5.title'),
       description: t('resources.podcast.items.5.description'),
       image: imgPodcast6,
-      url: 'https://open.spotify.com/show/3PQOWpvp9lzrY7TDC5bKHQ',
+      url: 'https://www.youtube.com/@AnxietyGuy',
     },
     {
       id: 7,
@@ -158,7 +158,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.6.title'),
       description: t('resources.podcast.items.6.description'),
       image: imgPodcast7,
-      url: 'https://open.spotify.com/show/0VEZcOiaW18vMRzq2mKL6Y',
+      url: 'https://www.youtube.com/@MedCircle',
     },
   ];
 
@@ -169,7 +169,7 @@ export const useResourcesData = () => {
       description: t('resources.playlist.items.0.description'),
       image: imgPlaylist1,
       avatar: null,
-      url: 'https://open.spotify.com/playlist/37i9dQZF1DWXe9gFZP0gtP',
+      url: 'https://open.spotify.com/search/anxiety%20relief%20music',
     },
     {
       id: 2,
@@ -177,7 +177,7 @@ export const useResourcesData = () => {
       description: t('resources.playlist.items.1.description'),
       image: imgPlaylist2,
       avatar: null,
-      url: 'https://open.spotify.com/playlist/37i9dQZF1DWZd79rJ6a7lp',
+      url: 'https://open.spotify.com/search/deep%20sleep%20music',
     },
     {
       id: 3,
@@ -185,7 +185,7 @@ export const useResourcesData = () => {
       description: t('resources.playlist.items.2.description'),
       image: imgPlaylist3,
       avatar: null,
-      url: 'https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO',
+      url: 'https://open.spotify.com/search/peaceful%20piano',
     },
     {
       id: 4,
@@ -193,7 +193,7 @@ export const useResourcesData = () => {
       description: t('resources.playlist.items.3.description'),
       image: imgPlaylist4,
       avatar: null,
-      url: 'https://open.spotify.com/playlist/37i9dQZF1DX8ymr6UES7ow',
+      url: 'https://open.spotify.com/search/nature%20sounds%20rain',
     },
   ];
 
