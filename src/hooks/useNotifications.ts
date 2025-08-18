@@ -22,6 +22,10 @@ export const useNotifications = () => {
         return false;
       }
 
+      if (!accessToken) {
+        throw new Error('No access token available');
+      }
+
       return await notificationsService.getNotifications(accessToken);
     },
     refetchInterval: POLLING_INTERVAL,

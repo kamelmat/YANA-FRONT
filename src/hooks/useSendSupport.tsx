@@ -5,12 +5,12 @@ import { useAuthStore } from '../store/authStore';
 export const useSendSupport = () => {
   const accessToken = useAuthStore((state) => state.accessToken);
 
-  if (!accessToken) {
-    throw new Error('No access token available');
-  }
-
   return useMutation({
-    mutationFn: (data: { shared_emotion: number | null; template_id: number }) =>
-      emotionsService.sendSupport(data, accessToken),
+    mutationFn: (data: { shared_emotion: number | null; template_id: number }) => {
+      if (!accessToken) {
+        throw new Error('No access token available');
+      }
+      return emotionsService.sendSupport(data, accessToken);
+    },
   });
 };
