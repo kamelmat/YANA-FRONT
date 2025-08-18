@@ -35,7 +35,7 @@ export const renderEmotionMarkers = (
   data: Emotion[],
   mapRef: RefObject<maplibregl.Map | null>,
   markersRef: RefObject<maplibregl.Marker[]>,
-  onMarkerClick: (userId: string, emotionId: number) => void // Updated to include emotionId
+  onMarkerClick: (userId: string, sharedEmotionId: number) => void // Updated to use shared_emotion_id
 ) => {
   clearMarkers(markersRef);
   const markerOffsets: Record<string, number> = {};
@@ -89,7 +89,7 @@ export const renderEmotionMarkers = (
         });
 
         el.addEventListener('click', () => {
-          onMarkerClick(checked_emotion.user_id, checked_emotion.emotion_id);
+          onMarkerClick(checked_emotion.user_id, checked_emotion.shared_emotion_id);
         });
 
         return el;

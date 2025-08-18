@@ -42,8 +42,6 @@ export default function MarkerModal({
 
   const handleSend = (template: number) => {
     if (!userId || sharedEmotion === null) return;
-    console.log('templateId', template);
-    // Fixed: Now correctly uses clicked marker's emotion ID instead of user's own ID
     sendSupport({
       shared_emotion: sharedEmotion,
       template_id: template,

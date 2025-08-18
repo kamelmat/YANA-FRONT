@@ -28,9 +28,9 @@ export const MapView = () => {
   const [modalUserId, setModalUserId] = useState<string | null>(null);
   const [sharedEmotionId, setSharedEmotionId] = useState<number | null>(null);
 
-  const openModal = useCallback((userId: string, emotionId: number) => {
+  const openModal = useCallback((userId: string, sharedEmotionId: number) => {
     setModalUserId(userId);
-    setSharedEmotionId(emotionId);
+    setSharedEmotionId(sharedEmotionId);
     setModalOpen(true);
   }, []);
 
