@@ -6,6 +6,7 @@ interface Emotion {
   longitude: string | number;
   emotion: string;
   emotion_id: number;
+  shared_emotion_id: number;
   user_id: string;
 }
 
