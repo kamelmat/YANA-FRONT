@@ -8,9 +8,10 @@ interface PlaylistCardProps {
   title: string;
   description: string;
   image: string;
+  url?: string;
 }
 
-const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }) => {
+const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image, url }) => {
   const screenSize = useScreenSize();
   const { t } = useTranslation();
 
@@ -89,6 +90,7 @@ const PlaylistCard: React.FC<PlaylistCardProps> = ({ title, description, image }
               width: screenSize === 'sm' ? '75.78px' : '7rem',
               height: '2.2rem',
             }}
+            onClick={() => url && window.open(url, '_blank', 'noopener,noreferrer')}
           />
         </Box>
       </Box>

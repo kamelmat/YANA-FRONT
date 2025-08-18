@@ -34,6 +34,7 @@ export type resourcesDataProps = {
   title: string;
   description: string;
   image: string;
+  url?: string;
 };
 
 export type meditationDataProps = resourcesDataProps & {
@@ -59,6 +60,7 @@ export const useResourcesData = () => {
       date: t('resources.meditation.items.0.date'),
       description: t('resources.meditation.items.0.description'),
       image: imgMedit1,
+      url: 'https://www.headspace.com/',
     },
     {
       id: 2,
@@ -71,6 +73,7 @@ export const useResourcesData = () => {
       author: t('resources.meditation.items.1.author'),
       date: t('resources.meditation.items.1.date'),
       image: imgMedit2,
+      url: 'https://insighttimer.com/',
     },
     {
       id: 3,
@@ -83,6 +86,7 @@ export const useResourcesData = () => {
       author: t('resources.meditation.items.2.author'),
       date: t('resources.meditation.items.2.date'),
       image: imgMedit3,
+      url: 'https://www.calm.com/',
     },
     {
       id: 4,
@@ -95,6 +99,7 @@ export const useResourcesData = () => {
       author: t('resources.meditation.items.3.author'),
       date: t('resources.meditation.items.3.date'),
       image: imgMedit4,
+      url: 'https://liberatemeditation.com/',
     },
   ];
 
@@ -105,6 +110,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.0.title'),
       description: t('resources.podcast.items.0.description'),
       image: imgPodcast1,
+      url: 'https://open.spotify.com/show/2HL3MdSdgAQzCaQWeWzQ1s',
     },
     {
       id: 2,
@@ -112,6 +118,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.1.title'),
       description: t('resources.podcast.items.1.description'),
       image: imgPodcast2,
+      url: 'https://open.spotify.com/show/5EqqB52m2bsr4k1Ii7sStc',
     },
     {
       id: 3,
@@ -119,6 +126,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.2.title'),
       description: t('resources.podcast.items.2.description'),
       image: imgPodcast3,
+      url: 'https://open.spotify.com/show/1s6bWYkKJYdqLNXRNS7bJp',
     },
     {
       id: 4,
@@ -126,6 +134,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.3.title'),
       description: t('resources.podcast.items.3.description'),
       image: imgPodcast4,
+      url: 'https://open.spotify.com/show/5F4k3fJHDbfZdEOT0SVKG8',
     },
     {
       id: 5,
@@ -133,6 +142,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.4.title'),
       description: t('resources.podcast.items.4.description'),
       image: imgPodcast5,
+      url: 'https://open.spotify.com/show/6o4VQKmHE5dZpJ4QXIXqjk',
     },
     {
       id: 6,
@@ -140,6 +150,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.5.title'),
       description: t('resources.podcast.items.5.description'),
       image: imgPodcast6,
+      url: 'https://open.spotify.com/show/3PQOWpvp9lzrY7TDC5bKHQ',
     },
     {
       id: 7,
@@ -147,6 +158,7 @@ export const useResourcesData = () => {
       title: t('resources.podcast.items.6.title'),
       description: t('resources.podcast.items.6.description'),
       image: imgPodcast7,
+      url: 'https://open.spotify.com/show/0VEZcOiaW18vMRzq2mKL6Y',
     },
   ];
 
@@ -157,6 +169,7 @@ export const useResourcesData = () => {
       description: t('resources.playlist.items.0.description'),
       image: imgPlaylist1,
       avatar: null,
+      url: 'https://open.spotify.com/playlist/37i9dQZF1DWXe9gFZP0gtP',
     },
     {
       id: 2,
@@ -164,6 +177,7 @@ export const useResourcesData = () => {
       description: t('resources.playlist.items.1.description'),
       image: imgPlaylist2,
       avatar: null,
+      url: 'https://open.spotify.com/playlist/37i9dQZF1DWZd79rJ6a7lp',
     },
     {
       id: 3,
@@ -171,6 +185,7 @@ export const useResourcesData = () => {
       description: t('resources.playlist.items.2.description'),
       image: imgPlaylist3,
       avatar: null,
+      url: 'https://open.spotify.com/playlist/37i9dQZF1DX4sWSpwq3LiO',
     },
     {
       id: 4,
@@ -178,6 +193,7 @@ export const useResourcesData = () => {
       description: t('resources.playlist.items.3.description'),
       image: imgPlaylist4,
       avatar: null,
+      url: 'https://open.spotify.com/playlist/37i9dQZF1DX8ymr6UES7ow',
     },
   ];
 

@@ -74,6 +74,7 @@ const ResourcesComponent: React.FC = () => {
                 description={meditation.description}
                 id={meditation.id}
                 image={meditation.image}
+                url={meditation.url}
               />
             </SwiperSlide>
           ))}
@@ -134,6 +135,7 @@ const ResourcesComponent: React.FC = () => {
               title={podcast.title}
               description={podcast.description}
               image={podcast.image}
+              url={podcast.url}
             />
           ))}
         </Box>
@@ -174,6 +176,7 @@ const ResourcesComponent: React.FC = () => {
                 title={playlist.title}
                 description={playlist.description}
                 image={playlist.image}
+                url={playlist.url}
               />
             </SwiperSlide>
           ))}

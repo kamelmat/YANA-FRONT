@@ -16,6 +16,7 @@ const MeditationCard: React.FC<meditationDataProps> = ({
   date,
   description,
   image,
+  url,
 }) => {
   const screenSize = useScreenSize();
   const { t } = useTranslation();
@@ -105,6 +106,7 @@ const MeditationCard: React.FC<meditationDataProps> = ({
               width: screenSize === 'sm' ? '75.78px' : '7rem',
               height: '2.2rem',
             }}
+            onClick={() => url && window.open(url, '_blank', 'noopener,noreferrer')}
           />
         </Box>
       </CardContent>

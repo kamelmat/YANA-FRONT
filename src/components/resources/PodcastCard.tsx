@@ -7,9 +7,10 @@ interface PodcastCardProps {
   title: string;
   description: string;
   image: string;
+  url?: string;
 }
 
-const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, image }) => {
+const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, image, url }) => {
   const screenSize = useScreenSize();
 
   return (
@@ -23,9 +24,11 @@ const PodcastCard: React.FC<PodcastCardProps> = ({ avatar, title, description, i
         padding: '0.5rem 0 0.5rem 0.5rem',
         display: 'flex',
         justifyContent: 'space-between',
+        cursor: url ? 'pointer' : 'default',
         alignItems: 'center',
         marginRight: '0.5rem',
       }}
+      onClick={() => url && window.open(url, '_blank', 'noopener,noreferrer')}
     >
       <Box
         component="img"
