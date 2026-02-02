@@ -29,6 +29,18 @@ export const MapView = () => {
   const [sharedEmotionId, setSharedEmotionId] = useState<number | null>(null);
   const [isMapSupported, setIsMapSupported] = useState(true);
 
+  const isWebGLAvailable = () => {
+    try {
+      const canvas = document.createElement('canvas');
+      const hasContext =
+        !!window.WebGLRenderingContext &&
+        (!!canvas.getContext('webgl') || !!canvas.getContext('experimental-webgl'));
+      return hasContext;
+    } catch {
+      return false;
+    }
+  };
+
   const openModal = useCallback((userId: string, sharedEmotionId: number) => {
     setModalUserId(userId);
     setSharedEmotionId(sharedEmotionId);
@@ -76,7 +88,7 @@ export const MapView = () => {
       isVisible
     ) {
       // Detect WebGL support before initializing the map to avoid runtime crashes
-      if (!maplibregl.supported()) {
+      if (!isWebGLAvailable()) {
         console.error('WebGL is not supported in this browser/device. Skipping map initialization.');
         setIsMapSupported(false);
         return;
